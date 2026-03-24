@@ -101,6 +101,7 @@ export const patterns: Pattern[] = [
             right -= 1
         return True`
       },
+      
       {
         id: 'tp-5',
         title: 'Trapping Rain Water',
@@ -127,7 +128,209 @@ export const patterns: Pattern[] = [
                     water += right_max - height[right]
                 right -= 1
         return water`
-      }
+      },
+      {
+        id: 'tp-6',
+        title: 'Remove Duplicates from Sorted Array',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/remove-duplicates-from-sorted-array/',
+        description: 'Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. Return the number of unique elements.',
+        language: 'python',
+        solution: `class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        slow = 0
+        for fast in range(1, len(nums)):
+            if nums[fast] != nums[slow]:
+                slow += 1
+                nums[slow] = nums[fast]
+        return slow + 1`
+      },
+      {
+        id: 'tp-7',
+        title: 'Move Zeroes',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/move-zeroes/',
+        description: 'Given an integer array nums, move all 0s to the end of it while maintaining the relative order of the non-zero elements. You must do this in-place without making a copy of the array.',
+        language: 'python',
+        solution: `class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        slow = 0
+        for fast in range(len(nums)):
+            if nums[fast] != 0:
+                nums[slow], nums[fast] = nums[fast], nums[slow]
+                slow += 1`
+      },
+      {
+        id: 'tp-8',
+        title: 'Squares of a Sorted Array',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/squares-of-a-sorted-array/',
+        description: 'Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.',
+        language: 'python',
+        solution: `class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        left, right = 0, len(nums) - 1
+        result = [0] * len(nums)
+        pos = len(nums) - 1
+        while left <= right:
+            left_sq = nums[left] ** 2
+            right_sq = nums[right] ** 2
+            if left_sq > right_sq:
+                result[pos] = left_sq
+                left += 1
+            else:
+                result[pos] = right_sq
+                right -= 1
+            pos -= 1
+        return result`
+      },
+      {
+        id: 'tp-9',
+        title: '4Sum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/4sum/',
+        description: 'Given an array nums of n integers and an integer target, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that their sum equals target.',
+        language: 'python',
+        solution: `class Solution:
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        result = []
+        n = len(nums)
+        for i in range(n - 3):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            for j in range(i + 1, n - 2):
+                if j > i + 1 and nums[j] == nums[j - 1]:
+                    continue
+                left, right = j + 1, n - 1
+                while left < right:
+                    total = nums[i] + nums[j] + nums[left] + nums[right]
+                    if total == target:
+                        result.append([nums[i], nums[j], nums[left], nums[right]])
+                        while left < right and nums[left] == nums[left + 1]:
+                            left += 1
+                        while left < right and nums[right] == nums[right - 1]:
+                            right -= 1
+                        left += 1
+                        right -= 1
+                    elif total < target:
+                        left += 1
+                    else:
+                        right -= 1
+        return result`
+      },
+      {
+        id: 'tp-10',
+        title: 'Sort Colors',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/sort-colors/',
+        description: 'Given an array nums with n objects colored red, white, or blue (0, 1, 2), sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.',
+        language: 'python',
+        solution: `class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        low, mid, high = 0, 0, len(nums) - 1
+        while mid <= high:
+            if nums[mid] == 0:
+                nums[low], nums[mid] = nums[mid], nums[low]
+                low += 1
+                mid += 1
+            elif nums[mid] == 1:
+                mid += 1
+            else:
+                nums[mid], nums[high] = nums[high], nums[mid]
+                high -= 1`
+      },
+      {
+        id: 'tp-11',
+        title: 'Minimum Size Subarray Sum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-size-subarray-sum/',
+        description: 'Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.',
+        language: 'python',
+        solution: `class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        left = 0
+        curr_sum = 0
+        min_len = float('inf')
+        for right in range(len(nums)):
+            curr_sum += nums[right]
+            while curr_sum >= target:
+                min_len = min(min_len, right - left + 1)
+                curr_sum -= nums[left]
+                left += 1
+        return 0 if min_len == float('inf') else min_len`
+      },
+      {
+        id: 'tp-12',
+        title: 'Reverse String',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/reverse-string/',
+        description: 'Write a function that reverses a string. The input string is given as an array of characters s. You must do this by modifying the input array in-place with O(1) extra memory.',
+        language: 'python',
+        solution: `class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        left, right = 0, len(s) - 1
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1`
+      },
+      {
+        id: 'tp-13',
+        title: 'Reverse Words in a String III',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/reverse-words-in-a-string-iii/',
+        description: 'Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.',
+        language: 'python',
+        solution: `class Solution:
+    def reverseWords(self, s: str) -> str:
+        return ' '.join(word[::-1] for word in s.split())`
+      },
+      {
+        id: 'tp-14',
+        title: 'Boats to Save People',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/boats-to-save-people/',
+        description: 'You are given an array people where people[i] is the weight of the ith person, and an infinite number of boats where each boat can carry a maximum weight of limit. Each boat carries at most two people. Return the minimum number of boats to carry every given person.',
+        language: 'python',
+        solution: `class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        people.sort()
+        left, right = 0, len(people) - 1
+        boats = 0
+        while left <= right:
+            if people[left] + people[right] <= limit:
+                left += 1
+            right -= 1
+            boats += 1
+        return boats`
+      },
+      {
+        id: 'tp-15',
+        title: 'Shortest Unsorted Continuous Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-unsorted-continuous-subarray/',
+        description: 'Given an integer array nums, you need to find one continuous subarray such that if you only sort this subarray in non-decreasing order, then the whole array will be sorted in non-decreasing order. Return the shortest such subarray length.',
+        language: 'python',
+        solution: `class Solution:
+    def findUnsortedSubarray(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < len(nums) - 1 and nums[left] <= nums[left + 1]:
+            left += 1
+        if left == len(nums) - 1:
+            return 0
+        while right > 0 and nums[right] >= nums[right - 1]:
+            right -= 1
+        sub_min = min(nums[left:right + 1])
+        sub_max = max(nums[left:right + 1])
+        while left > 0 and nums[left - 1] > sub_min:
+            left -= 1
+        while right < len(nums) - 1 and nums[right + 1] < sub_max:
+            right += 1
+        return right - left + 1`
+      },
     ]
   },
   {
