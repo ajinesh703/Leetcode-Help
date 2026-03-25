@@ -86,6 +86,221 @@ export const topics: Topic[] = [
         nums.reverse()
         nums[:k] = reversed(nums[:k])
         nums[k:] = reversed(nums[k:])`
+      },
+      {
+        id: 'arr-6',
+        title: 'Best Time to Buy and Sell Stock',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock/',
+        description: 'Given an array prices where prices[i] is the price of a stock on day i, return the maximum profit you can achieve from a single buy and sell.',
+        language: 'python',
+        solution: `class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        min_price = float('inf')
+        max_profit = 0
+        for price in prices:
+            if price < min_price:
+                min_price = price
+            elif price - min_price > max_profit:
+                max_profit = price - min_price
+        return max_profit`
+      },
+      {
+        id: 'arr-7',
+        title: 'Move Zeroes',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/move-zeroes/',
+        description: 'Given an integer array nums, move all 0s to the end of it while maintaining the relative order of the non-zero elements.',
+        language: 'python',
+        solution: `class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        insert_pos = 0
+        for num in nums:
+            if num != 0:
+                nums[insert_pos] = num
+                insert_pos += 1
+        for i in range(insert_pos, len(nums)):
+            nums[i] = 0`
+      },
+      {
+        id: 'arr-8',
+        title: '3Sum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/3sum/',
+        description: 'Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, j != k, and nums[i] + nums[j] + nums[k] == 0.',
+        language: 'python',
+        solution: `class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        result = []
+        for i in range(len(nums) - 2):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            left, right = i + 1, len(nums) - 1
+            while left < right:
+                total = nums[i] + nums[left] + nums[right]
+                if total == 0:
+                    result.append([nums[i], nums[left], nums[right]])
+                    while left < right and nums[left] == nums[left + 1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right - 1]:
+                        right -= 1
+                    left += 1
+                    right -= 1
+                elif total < 0:
+                    left += 1
+                else:
+                    right -= 1
+        return result`
+      },
+      {
+        id: 'arr-9',
+        title: 'Find Minimum in Rotated Sorted Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/',
+        description: 'Given the sorted rotated array nums of unique elements, return the minimum element of this array.',
+        language: 'python',
+        solution: `class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[right]:
+                left = mid + 1
+            else:
+                right = mid
+        return nums[left]`
+      },
+      {
+        id: 'arr-10',
+        title: 'Search in Rotated Sorted Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/search-in-rotated-sorted-array/',
+        description: 'Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not.',
+        language: 'python',
+        solution: `class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return mid
+            if nums[left] <= nums[mid]:
+                if nums[left] <= target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                if nums[mid] < target <= nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+        return -1`
+      },
+      {
+        id: 'arr-11',
+        title: 'Container With Most Water',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/container-with-most-water/',
+        description: 'Given n non-negative integers representing heights of vertical lines, find two lines that together with the x-axis form a container that holds the most water.',
+        language: 'python',
+        solution: `class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        max_water = 0
+        while left < right:
+            water = min(height[left], height[right]) * (right - left)
+            max_water = max(max_water, water)
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return max_water`
+      },
+      {
+        id: 'arr-12',
+        title: 'Merge Intervals',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/merge-intervals/',
+        description: 'Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals.',
+        language: 'python',
+        solution: `class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key=lambda x: x[0])
+        merged = [intervals[0]]
+        for start, end in intervals[1:]:
+            if start <= merged[-1][1]:
+                merged[-1][1] = max(merged[-1][1], end)
+            else:
+                merged.append([start, end])
+        return merged`
+      },
+      {
+        id: 'arr-13',
+        title: 'Trapping Rain Water',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/trapping-rain-water/',
+        description: 'Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.',
+        language: 'python',
+        solution: `class Solution:
+    def trap(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        left_max, right_max = height[left], height[right]
+        water = 0
+        while left < right:
+            if left_max < right_max:
+                left += 1
+                left_max = max(left_max, height[left])
+                water += left_max - height[left]
+            else:
+                right -= 1
+                right_max = max(right_max, height[right])
+                water += right_max - height[right]
+        return water`
+      },
+      {
+        id: 'arr-14',
+        title: 'Subarray Sum Equals K',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/subarray-sum-equals-k/',
+        description: 'Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.',
+        language: 'python',
+        solution: `class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        from collections import defaultdict
+        count = 0
+        prefix_sum = 0
+        prefix_counts = defaultdict(int)
+        prefix_counts[0] = 1
+        for num in nums:
+            prefix_sum += num
+            count += prefix_counts[prefix_sum - k]
+            prefix_counts[prefix_sum] += 1
+        return count`
+      },
+      {
+        id: 'arr-15',
+        title: 'Next Permutation',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/next-permutation/',
+        description: 'Given an array of integers nums, find the next permutation of nums. The replacement must be in place and use only constant extra memory.',
+        language: 'python',
+        solution: `class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        n = len(nums)
+        i = n - 2
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
+        if i >= 0:
+            j = n - 1
+            while nums[j] <= nums[i]:
+                j -= 1
+            nums[i], nums[j] = nums[j], nums[i]
+        left, right = i + 1, n - 1
+        while left < right:
+            nums[left], nums[right] = nums[right], nums[left]
+            left += 1
+            right -= 1`
       }
     ]
   },
