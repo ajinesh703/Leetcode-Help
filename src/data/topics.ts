@@ -503,6 +503,21 @@ export const topics: Topic[] = [
                 return True
         return False`
 },
+{
+    id: 'll-7',
+    title: 'Intersection of Two Linked Lists',
+    difficulty: 'Easy',
+    leetcodeUrl: 'https://leetcode.com/problems/intersection-of-two-linked-lists/',
+    description: 'Find the node at which the two lists intersect.',
+    language: 'python',
+    solution: `class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        a, b = headA, headB
+        while a != b:
+            a = a.next if a else headB
+            b = b.next if b else headA
+        return a`
+},
     ]
   },
   {
