@@ -484,7 +484,25 @@ export const topics: Topic[] = [
             first.next = second
             second.next = tmp1
             first, second = tmp1, tmp2`
-      }
+      },
+        
+            {
+    id: 'll-6',
+    title: 'Linked List Cycle',
+    difficulty: 'Easy',
+    leetcodeUrl: 'https://leetcode.com/problems/linked-list-cycle/',
+    description: 'Given head, determine if the linked list has a cycle in it.',
+    language: 'python',
+    solution: `class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False`
+},
     ]
   },
   {
