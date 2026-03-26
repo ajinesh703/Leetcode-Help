@@ -580,6 +580,31 @@ export const topics: Topic[] = [
         
         return dummy.next`
 },
+{
+    id: 'll-10',
+    title: 'Odd Even Linked List',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/odd-even-linked-list/',
+    description: 'Group all odd-indexed nodes together followed by the even-indexed nodes.',
+    language: 'python',
+    solution: `class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return head
+        
+        odd = head
+        even = head.next
+        even_head = even
+        
+        while even and even.next:
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
+        
+        odd.next = even_head
+        return head`
+},
     ]
   },
   {
