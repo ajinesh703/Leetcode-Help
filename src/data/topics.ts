@@ -1545,6 +1545,209 @@ export const topics: Topic[] = [
             else:
                 return root`
 },
+{
+  id: 'hm-19',
+  title: 'Find Minimum in Rotated Sorted Array',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/',
+  description: 'Given the sorted rotated array nums of unique elements, return the minimum element of this array.',
+  language: 'python',
+  solution: `class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[right]:
+                left = mid + 1
+            else:
+                right = mid
+        return nums[left]`
+},
+{
+  id: 'hm-20',
+  title: 'Container With Most Water',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/container-with-most-water/',
+  description: 'Given n non-negative integers where each represents a point at coordinate (i, ai), find two lines that together with the x-axis forms a container that holds the most water.',
+  language: 'python',
+  solution: `class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        max_water = 0
+        while left < right:
+            water = min(height[left], height[right]) * (right - left)
+            max_water = max(max_water, water)
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return max_water`
+},
+{
+  id: 'hm-21',
+  title: 'Subsets',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/subsets/',
+  description: 'Given an integer array nums of unique elements, return all possible subsets (the power set).',
+  language: 'python',
+  solution: `class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        result = []
+        def backtrack(start, current):
+            result.append(current[:])
+            for i in range(start, len(nums)):
+                current.append(nums[i])
+                backtrack(i + 1, current)
+                current.pop()
+        backtrack(0, [])
+        return result`
+},
+{
+  id: 'hm-22',
+  title: 'Linked List Cycle',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/linked-list-cycle/',
+  description: 'Given head of a linked list, determine if the linked list has a cycle in it using Floyd\'s cycle detection algorithm.',
+  language: 'python',
+  solution: `class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False`
+},
+{
+  id: 'hm-23',
+  title: 'Jump Game',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/jump-game/',
+  description: 'Given an integer array nums where each element represents max jump length at that position, return true if you can reach the last index.',
+  language: 'python',
+  solution: `class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        max_reach = 0
+        for i, jump in enumerate(nums):
+            if i > max_reach:
+                return False
+            max_reach = max(max_reach, i + jump)
+        return True`
+},
+{
+  id: 'hm-24',
+  title: 'Daily Temperatures',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/daily-temperatures/',
+  description: 'Given an array of integers temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature.',
+  language: 'python',
+  solution: `class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        result = [0] * len(temperatures)
+        stack = []
+        for i, temp in enumerate(temperatures):
+            while stack and temp > temperatures[stack[-1]]:
+                idx = stack.pop()
+                result[idx] = i - idx
+            stack.append(i)
+        return result`
+},
+{
+  id: 'hm-25',
+  title: 'Longest Common Subsequence',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-common-subsequence/',
+  description: 'Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0.',
+  language: 'python',
+  solution: `class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        m, n = len(text1), len(text2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if text1[i - 1] == text2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                else:
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+        return dp[m][n]`
+},
+{
+  id: 'hm-26',
+  title: 'Course Schedule',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/course-schedule/',
+  description: 'Given numCourses and prerequisites array, return true if you can finish all courses. This is essentially cycle detection in a directed graph.',
+  language: 'python',
+  solution: `class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        graph = [[] for _ in range(numCourses)]
+        for a, b in prerequisites:
+            graph[b].append(a)
+        # 0=unvisited, 1=visiting, 2=visited
+        state = [0] * numCourses
+        def dfs(node):
+            if state[node] == 1:
+                return False
+            if state[node] == 2:
+                return True
+            state[node] = 1
+            for neighbor in graph[node]:
+                if not dfs(neighbor):
+                    return False
+            state[node] = 2
+            return True
+        for i in range(numCourses):
+            if not dfs(i):
+                return False
+        return True`
+},
+{
+  id: 'hm-27',
+  title: 'House Robber',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/house-robber/',
+  description: 'Given an integer array nums representing the amount of money of each house, return the maximum amount you can rob without alerting the police (no two adjacent houses).',
+  language: 'python',
+  solution: `class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return nums[0]
+        prev2, prev1 = 0, 0
+        for num in nums:
+            curr = max(prev1, prev2 + num)
+            prev2 = prev1
+            prev1 = curr
+        return prev1`
+},
+{
+  id: 'hm-28',
+  title: 'Spiral Matrix',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/spiral-matrix/',
+  description: 'Given an m x n matrix, return all elements of the matrix in spiral order.',
+  language: 'python',
+  solution: `class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        result = []
+        top, bottom, left, right = 0, len(matrix)-1, 0, len(matrix[0])-1
+        while top <= bottom and left <= right:
+            for i in range(left, right + 1):
+                result.append(matrix[top][i])
+            top += 1
+            for i in range(top, bottom + 1):
+                result.append(matrix[i][right])
+            right -= 1
+            if top <= bottom:
+                for i in range(right, left - 1, -1):
+                    result.append(matrix[bottom][i])
+                bottom -= 1
+            if left <= right:
+                for i in range(bottom, top - 1, -1):
+                    result.append(matrix[i][left])
+                left += 1
+        return result`
+},
     ]
   },
   {
