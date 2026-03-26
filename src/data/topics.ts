@@ -1239,7 +1239,145 @@ export const topics: Topic[] = [
         from collections import Counter
         count = Counter(nums)
         return [x for x, _ in count.most_common(k)]`
-      }
+      },
+      {
+  id: 'hm-4',
+  title: 'Valid Parentheses',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/valid-parentheses/',
+  description: 'Given a string s containing just the characters "(", ")", "{", "}", "[" and "]", determine if the input string is valid.',
+  language: 'python',
+  solution: `class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        mapping = {')': '(', '}': '{', ']': '['}
+        for char in s:
+            if char in mapping:
+                top = stack.pop() if stack else '#'
+                if mapping[char] != top:
+                    return False
+            else:
+                stack.append(char)
+        return not stack`
+},
+{
+  id: 'hm-5',
+  title: 'Best Time to Buy and Sell Stock',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock/',
+  description: 'Given an array prices where prices[i] is the price of a stock on the ith day, return the maximum profit you can achieve.',
+  language: 'python',
+  solution: `class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        min_price = float('inf')
+        max_profit = 0
+        for price in prices:
+            if price < min_price:
+                min_price = price
+            elif price - min_price > max_profit:
+                max_profit = price - min_price
+        return max_profit`
+},
+{
+  id: 'hm-6',
+  title: 'Maximum Subarray',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-subarray/',
+  description: 'Given an integer array nums, find the subarray with the largest sum, and return its sum.',
+  language: 'python',
+  solution: `class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        max_sum = nums[0]
+        curr_sum = nums[0]
+        for num in nums[1:]:
+            curr_sum = max(num, curr_sum + num)
+            max_sum = max(max_sum, curr_sum)
+        return max_sum`
+},
+{
+  id: 'hm-7',
+  title: 'Climbing Stairs',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/climbing-stairs/',
+  description: 'You are climbing a staircase. It takes n steps to reach the top. Each time you can climb 1 or 2 steps. In how many distinct ways can you climb to the top?',
+  language: 'python',
+  solution: `class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n <= 2:
+            return n
+        a, b = 1, 2
+        for _ in range(3, n + 1):
+            a, b = b, a + b
+        return b`
+},
+{
+  id: 'hm-8',
+  title: 'Product of Array Except Self',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/product-of-array-except-self/',
+  description: 'Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].',
+  language: 'python',
+  solution: `class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        result = [1] * n
+        prefix = 1
+        for i in range(n):
+            result[i] = prefix
+            prefix *= nums[i]
+        suffix = 1
+        for i in range(n - 1, -1, -1):
+            result[i] *= suffix
+            suffix *= nums[i]
+        return result`
+},
+{
+  id: 'hm-9',
+  title: 'Merge Two Sorted Lists',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/merge-two-sorted-lists/',
+  description: 'Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.',
+  language: 'python',
+  solution: `class Solution:
+    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0)
+        curr = dummy
+        while l1 and l2:
+            if l1.val <= l2.val:
+                curr.next = l1
+                l1 = l1.next
+            else:
+                curr.next = l2
+                l2 = l2.next
+            curr = curr.next
+        curr.next = l1 if l1 else l2
+        return dummy.next`
+},
+{
+  id: 'hm-10',
+  title: 'Number of Islands',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-islands/',
+  description: 'Given an m x n 2D binary grid which represents a map of "1"s (land) and "0"s (water), return the number of islands.',
+  language: 'python',
+  solution: `class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid:
+            return 0
+        count = 0
+        def dfs(i, j):
+            if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != '1':
+                return
+            grid[i][j] = '0'
+            dfs(i+1, j); dfs(i-1, j)
+            dfs(i, j+1); dfs(i, j-1)
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == '1':
+                    dfs(i, j)
+                    count += 1
+        return count`
+},
     ]
   },
   {
