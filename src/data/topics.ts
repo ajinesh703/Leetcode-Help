@@ -1848,6 +1848,123 @@ export const topics: Topic[] = [
                 right = partition1 - 1
             else:
                 left = partition1 + 1`
+},{
+  id: 'hm-32',
+  title: 'Palindrome Linked List',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/palindrome-linked-list/',
+  description: 'Given the head of a singly linked list, return true if it is a palindrome or false otherwise. Must solve in O(n) time and O(1) space.',
+  language: 'python',
+  solution: `class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        prev = None
+        while slow:
+            next_node = slow.next
+            slow.next = prev
+            prev = slow
+            slow = next_node
+        left, right = head, prev
+        while right:
+            if left.val != right.val:
+                return False
+            left = left.next
+            right = right.next
+        return True`
+},
+{
+  id: 'hm-33',
+  title: 'Maximum Product Subarray',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
+  description: 'Given an integer array nums, find a subarray that has the largest product, and return the product.',
+  language: 'python',
+  solution: `class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        max_prod = nums[0]
+        min_prod = nums[0]
+        result = nums[0]
+        for num in nums[1:]:
+            candidates = (num, max_prod * num, min_prod * num)
+            max_prod = max(candidates)
+            min_prod = min(candidates)
+            result = max(result, max_prod)
+        return result`
+},
+{
+  id: 'hm-34',
+  title: 'Generate Parentheses',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/generate-parentheses/',
+  description: 'Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.',
+  language: 'python',
+  solution: `class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        result = []
+        def backtrack(current, open_count, close_count):
+            if len(current) == 2 * n:
+                result.append(current)
+                return
+            if open_count < n:
+                backtrack(current + '(', open_count + 1, close_count)
+            if close_count < open_count:
+                backtrack(current + ')', open_count, close_count + 1)
+        backtrack('', 0, 0)
+        return result`
+},
+{
+  id: 'hm-35',
+  title: 'Decode Ways',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/decode-ways/',
+  description: 'Given a string s containing only digits, return the number of ways to decode it. A → 1, B → 2, ..., Z → 26.',
+  language: 'python',
+  solution: `class Solution:
+    def numDecodings(self, s: str) -> int:
+        if not s or s[0] == '0':
+            return 0
+        n = len(s)
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        dp[1] = 1
+        for i in range(2, n + 1):
+            one_digit = int(s[i - 1])
+            two_digit = int(s[i - 2:i])
+            if one_digit >= 1:
+                dp[i] += dp[i - 1]
+            if 10 <= two_digit <= 26:
+                dp[i] += dp[i - 2]
+        return dp[n]`
+},
+{
+  id: 'hm-36',
+  title: 'Pacific Atlantic Water Flow',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/pacific-atlantic-water-flow/',
+  description: 'Given an m x n matrix of heights, return a list of grid coordinates where water can flow to both the Pacific and Atlantic oceans.',
+  language: 'python',
+  solution: `class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        rows, cols = len(heights), len(heights[0])
+        pacific, atlantic = set(), set()
+        def dfs(r, c, visited, prev_height):
+            if (r, c) in visited or r < 0 or c < 0 or r >= rows or c >= cols:
+                return
+            if heights[r][c] < prev_height:
+                return
+            visited.add((r, c))
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                dfs(r + dr, c + dc, visited, heights[r][c])
+        for r in range(rows):
+            dfs(r, 0, pacific, heights[r][0])
+            dfs(r, cols - 1, atlantic, heights[r][cols - 1])
+        for c in range(cols):
+            dfs(0, c, pacific, heights[0][c])
+            dfs(rows - 1, c, atlantic, heights[rows - 1][c])
+        return [[r, c] for r, c in pacific & atlantic]`
 },
     ]
   },
