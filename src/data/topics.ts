@@ -605,6 +605,162 @@ export const topics: Topic[] = [
         odd.next = even_head
         return head`
 },
+{
+    id: 'll-11',
+    title: 'Sort List',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/sort-list/',
+    description: 'Sort a linked list in O(n log n) time using constant space complexity.',
+    language: 'python',
+    solution: `class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+        
+        # Split list
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        mid = slow.next
+        slow.next = None
+        
+        left = self.sortList(head)
+        right = self.sortList(mid)
+        
+        return self.merge(left, right)
+    
+    def merge(self, l1, l2):
+        dummy = ListNode(0)
+        tail = dummy
+        
+        while l1 and l2:
+            if l1.val < l2.val:
+                tail.next = l1
+                l1 = l1.next
+            else:
+                tail.next = l2
+                l2 = l2.next
+            tail = tail.next
+        
+        tail.next = l1 if l1 else l2
+        return dummy.next`
+},
+{
+    id: 'll-12',
+    title: 'Rotate List',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/rotate-list/',
+    description: 'Rotate the list to the right by k places.',
+    language: 'python',
+    solution: `class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next or k == 0:
+            return head
+        
+        # Find length and tail
+        length = 1
+        tail = head
+        while tail.next:
+            tail = tail.next
+            length += 1
+        
+        k = k % length
+        if k == 0:
+            return head
+        
+        # Make it circular
+        tail.next = head
+        
+        # Find new tail
+        steps = length - k
+        new_tail = head
+        for _ in range(steps - 1):
+            new_tail = new_tail.next
+        
+        new_head = new_tail.next
+        new_tail.next = None
+        
+        return new_head`
+},
+{
+    id: 'll-12',
+    title: 'Rotate List',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/rotate-list/',
+    description: 'Rotate the list to the right by k places.',
+    language: 'python',
+    solution: `class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next or k == 0:
+            return head
+        
+        # Find length and tail
+        length = 1
+        tail = head
+        while tail.next:
+            tail = tail.next
+            length += 1
+        
+        k = k % length
+        if k == 0:
+            return head
+        
+        # Make it circular
+        tail.next = head
+        
+        # Find new tail
+        steps = length - k
+        new_tail = head
+        for _ in range(steps - 1):
+            new_tail = new_tail.next
+        
+        new_head = new_tail.next
+        new_tail.next = None
+        
+        return new_head`
+},
+{
+    id: 'll-13',
+    title: 'Flatten a Multilevel Doubly Linked List',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/',
+    description: 'Flatten a multilevel doubly linked list into a single-level linked list.',
+    language: 'python',
+    solution: `class Solution:
+    def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head:
+            return head
+        
+        def dfs(node):
+            curr = node
+            last = node
+            
+            while curr:
+                nxt = curr.next
+                if curr.child:
+                    child_last = dfs(curr.child)
+                    
+                    curr.next = curr.child
+                    curr.child.prev = curr
+                    curr.child = None
+                    
+                    if nxt:
+                        child_last.next = nxt
+                        nxt.prev = child_last
+                    
+                    last = child_last
+                else:
+                    last = curr
+                
+                curr = nxt
+            
+            return last
+        
+        dfs(head)
+        return head`
+},
     ]
   },
   {
