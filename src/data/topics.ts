@@ -1748,6 +1748,107 @@ export const topics: Topic[] = [
                 left += 1
         return result`
 },
+{
+  id: 'hm-29',
+  title: 'Trapping Rain Water',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/trapping-rain-water/',
+  description: 'Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.',
+  language: 'python',
+  solution: `class Solution:
+    def trap(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        left_max, right_max = 0, 0
+        water = 0
+        while left < right:
+            if height[left] < height[right]:
+                if height[left] >= left_max:
+                    left_max = height[left]
+                else:
+                    water += left_max - height[left]
+                left += 1
+            else:
+                if height[right] >= right_max:
+                    right_max = height[right]
+                else:
+                    water += right_max - height[right]
+                right -= 1
+        return water`
+},
+{
+  id: 'hm-30',
+  title: 'Serialize and Deserialize Binary Tree',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/serialize-and-deserialize-binary-tree/',
+  description: 'Design an algorithm to serialize and deserialize a binary tree. Serialization is converting a tree to a string, deserialization is the reverse.',
+  language: 'python',
+  solution: `class Codec:
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        if not root:
+            return 'null'
+        from collections import deque
+        queue = deque([root])
+        result = []
+        while queue:
+            node = queue.popleft()
+            if node:
+                result.append(str(node.val))
+                queue.append(node.left)
+                queue.append(node.right)
+            else:
+                result.append('null')
+        return ','.join(result)
+
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        if data == 'null':
+            return None
+        from collections import deque
+        nodes = data.split(',')
+        root = TreeNode(int(nodes[0]))
+        queue = deque([root])
+        i = 1
+        while queue:
+            node = queue.popleft()
+            if nodes[i] != 'null':
+                node.left = TreeNode(int(nodes[i]))
+                queue.append(node.left)
+            i += 1
+            if nodes[i] != 'null':
+                node.right = TreeNode(int(nodes[i]))
+                queue.append(node.right)
+            i += 1
+        return root`
+},
+{
+  id: 'hm-31',
+  title: 'Median of Two Sorted Arrays',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/median-of-two-sorted-arrays/',
+  description: 'Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).',
+  language: 'python',
+  solution: `class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        if len(nums1) > len(nums2):
+            nums1, nums2 = nums2, nums1
+        m, n = len(nums1), len(nums2)
+        left, right = 0, m
+        while left <= right:
+            partition1 = (left + right) // 2
+            partition2 = (m + n + 1) // 2 - partition1
+            maxLeft1 = float('-inf') if partition1 == 0 else nums1[partition1 - 1]
+            minRight1 = float('inf') if partition1 == m else nums1[partition1]
+            maxLeft2 = float('-inf') if partition2 == 0 else nums2[partition2 - 1]
+            minRight2 = float('inf') if partition2 == n else nums2[partition2]
+            if maxLeft1 <= minRight2 and maxLeft2 <= minRight1:
+                if (m + n) % 2 == 0:
+                    return (max(maxLeft1, maxLeft2) + min(minRight1, minRight2)) / 2.0
+                else:
+                    return float(max(maxLeft1, maxLeft2))
+            elif maxLeft1 > minRight2:
+                right = partition1 - 1
+            else:
+                left = partition1 + 1`
+},
     ]
   },
   {
