@@ -1494,6 +1494,57 @@ export const topics: Topic[] = [
                     return True
         return False`
 },
+{
+  id: 'hm-16',
+  title: 'Coin Change',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/coin-change/',
+  description: 'Given an array of coins and a total amount, return the fewest number of coins needed to make up that amount. Return -1 if it cannot be achieved.',
+  language: 'python',
+  solution: `class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0
+        for coin in coins:
+            for i in range(coin, amount + 1):
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+        return dp[amount] if dp[amount] != float('inf') else -1`
+},
+{
+  id: 'hm-17',
+  title: 'Rotate Image',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/rotate-image/',
+  description: 'Given an n x n 2D matrix representing an image, rotate the image by 90 degrees clockwise in-place.',
+  language: 'python',
+  solution: `class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        n = len(matrix)
+        # Transpose the matrix
+        for i in range(n):
+            for j in range(i + 1, n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        # Reverse each row
+        for i in range(n):
+            matrix[i].reverse()`
+},
+{
+  id: 'hm-18',
+  title: 'Lowest Common Ancestor of a Binary Search Tree',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/',
+  description: 'Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes p and q in the BST.',
+  language: 'python',
+  solution: `class Solution:
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        while root:
+            if p.val < root.val and q.val < root.val:
+                root = root.left
+            elif p.val > root.val and q.val > root.val:
+                root = root.right
+            else:
+                return root`
+},
     ]
   },
   {
