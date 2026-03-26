@@ -518,6 +518,40 @@ export const topics: Topic[] = [
             b = b.next if b else headA
         return a`
 },
+{
+    id: 'll-8',
+    title: 'Palindrome Linked List',
+    difficulty: 'Easy',
+    leetcodeUrl: 'https://leetcode.com/problems/palindrome-linked-list/',
+    description: 'Given the head of a singly linked list, return true if it is a palindrome.',
+    language: 'python',
+    solution: `class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        slow = fast = head
+        
+        # Find middle
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        # Reverse second half
+        prev = None
+        while slow:
+            nxt = slow.next
+            slow.next = prev
+            prev = slow
+            slow = nxt
+        
+        # Compare both halves
+        left, right = head, prev
+        while right:
+            if left.val != right.val:
+                return False
+            left = left.next
+            right = right.next
+        
+        return True`
+},
     ]
   },
   {
