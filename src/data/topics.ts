@@ -552,6 +552,59 @@ export const topics: Topic[] = [
         
         return True`
 },
+{
+    id: 'll-9',
+    title: 'Add Two Numbers',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/add-two-numbers/',
+    description: 'Add two numbers represented by linked lists and return the sum as a linked list.',
+    language: 'python',
+    solution: `class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0)
+        curr = dummy
+        carry = 0
+        
+        while l1 or l2 or carry:
+            val = carry
+            if l1:
+                val += l1.val
+                l1 = l1.next
+            if l2:
+                val += l2.val
+                l2 = l2.next
+            
+            carry = val // 10
+            curr.next = ListNode(val % 10)
+            curr = curr.next
+        
+        return dummy.next`
+},
+{
+    id: 'll-10',
+    title: 'Odd Even Linked List',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/odd-even-linked-list/',
+    description: 'Group all odd-indexed nodes together followed by the even-indexed nodes.',
+    language: 'python',
+    solution: `class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return head
+        
+        odd = head
+        even = head.next
+        even_head = even
+        
+        while even and even.next:
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
+        
+        odd.next = even_head
+        return head`
+},
     ]
   },
   {
