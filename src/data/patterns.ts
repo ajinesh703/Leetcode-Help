@@ -516,7 +516,274 @@ export const patterns: Pattern[] = [
             else:
                 left = mid + 1
         return left`
-      }
+      },
+      {
+        id: 'bs-5',
+        title: 'Find Peak Element',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-peak-element/',
+        description: 'A peak element is an element that is strictly greater than its neighbors. Given a 0-indexed integer array nums, find a peak element and return its index. You must write an algorithm that runs in O(log n) time.',
+        language: 'python',
+        solution: `class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[mid + 1]:
+                right = mid
+            else:
+                left = mid + 1
+        return left`
+      },
+      {
+        id: 'bs-6',
+        title: 'Search a 2D Matrix',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/search-a-2d-matrix/',
+        description: 'Write an efficient algorithm that searches for a value target in an m x n integer matrix. Each row is sorted left to right, and the first integer of each row is greater than the last integer of the previous row.',
+        language: 'python',
+        solution: `class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        m, n = len(matrix), len(matrix[0])
+        left, right = 0, m * n - 1
+        while left <= right:
+            mid = (left + right) // 2
+            val = matrix[mid // n][mid % n]
+            if val == target:
+                return True
+            elif val < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return False`
+      },
+      {
+        id: 'bs-7',
+        title: 'First Bad Version',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/first-bad-version/',
+        description: 'You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad. Find the first bad version.',
+        language: 'python',
+        solution: `class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        left, right = 1, n
+        while left < right:
+            mid = (left + right) // 2
+            if isBadVersion(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left`
+      },
+      {
+        id: 'bs-8',
+        title: 'Search Insert Position',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/search-insert-position/',
+        description: 'Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.',
+        language: 'python',
+        solution: `class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return left`
+      },
+      {
+        id: 'bs-9',
+        title: 'Find First and Last Position of Element in Sorted Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/',
+        description: 'Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value. If target is not found in the array, return [-1, -1]. You must write an algorithm with O(log n) runtime complexity.',
+        language: 'python',
+        solution: `class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        def find_left(nums, target):
+            left, right = 0, len(nums) - 1
+            while left <= right:
+                mid = (left + right) // 2
+                if nums[mid] < target:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+            return left
+
+        def find_right(nums, target):
+            left, right = 0, len(nums) - 1
+            while left <= right:
+                mid = (left + right) // 2
+                if nums[mid] <= target:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+            return right
+
+        left = find_left(nums, target)
+        right = find_right(nums, target)
+        if left <= right and right < len(nums) and nums[left] == target:
+            return [left, right]
+        return [-1, -1]`
+      },
+      {
+        id: 'bs-10',
+        title: 'Sqrt(x)',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/sqrtx/',
+        description: 'Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well. You must not use any built-in exponent function or operator.',
+        language: 'python',
+        solution: `class Solution:
+    def mySqrt(self, x: int) -> int:
+        if x < 2:
+            return x
+        left, right = 1, x // 2
+        while left <= right:
+            mid = (left + right) // 2
+            if mid * mid == x:
+                return mid
+            elif mid * mid < x:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return right`
+      },
+      {
+        id: 'bs-11',
+        title: 'Capacity To Ship Packages Within D Days',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/',
+        description: 'A conveyor belt has packages that must be shipped from one port to another within days days. The ith package on the conveyor belt has a weight of weights[i]. Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within days days.',
+        language: 'python',
+        solution: `class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        left, right = max(weights), sum(weights)
+        while left < right:
+            mid = (left + right) // 2
+            day_count, curr_load = 1, 0
+            for w in weights:
+                if curr_load + w > mid:
+                    day_count += 1
+                    curr_load = 0
+                curr_load += w
+            if day_count <= days:
+                right = mid
+            else:
+                left = mid + 1
+        return left`
+      },
+      {
+        id: 'bs-12',
+        title: 'Time Based Key-Value Store',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/time-based-key-value-store/',
+        description: 'Design a time-based key-value data structure that can store multiple values for the same key at different time stamps and retrieve the key\'s value at a certain timestamp.',
+        language: 'python',
+        solution: `class TimeMap:
+    def __init__(self):
+        self.store = {}
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if key not in self.store:
+            self.store[key] = []
+        self.store[key].append((timestamp, value))
+
+    def get(self, key: str, timestamp: int) -> str:
+        if key not in self.store:
+            return ""
+        pairs = self.store[key]
+        left, right = 0, len(pairs) - 1
+        result = ""
+        while left <= right:
+            mid = (left + right) // 2
+            if pairs[mid][0] <= timestamp:
+                result = pairs[mid][1]
+                left = mid + 1
+            else:
+                right = mid - 1
+        return result`
+      },
+      {
+        id: 'bs-13',
+        title: 'Find in Mountain Array',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/find-in-mountain-array/',
+        description: 'You may recall that an array arr is a mountain array if it increases to a peak element and then decreases. Given a mountain array mountainArr and an integer target, return the minimum index such that mountainArr.get(index) == target. If such an index does not exist, return -1.',
+        language: 'python',
+        solution: `class Solution:
+    def findInMountainArray(self, target: int, mountain_arr: 'MountainArray') -> int:
+        n = mountain_arr.length()
+
+        # Step 1: find peak index
+        left, right = 0, n - 1
+        while left < right:
+            mid = (left + right) // 2
+            if mountain_arr.get(mid) < mountain_arr.get(mid + 1):
+                left = mid + 1
+            else:
+                right = mid
+        peak = left
+
+        # Step 2: binary search ascending side
+        left, right = 0, peak
+        while left <= right:
+            mid = (left + right) // 2
+            val = mountain_arr.get(mid)
+            if val == target:
+                return mid
+            elif val < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+        # Step 3: binary search descending side
+        left, right = peak + 1, n - 1
+        while left <= right:
+            mid = (left + right) // 2
+            val = mountain_arr.get(mid)
+            if val == target:
+                return mid
+            elif val > target:
+                left = mid + 1
+            else:
+                right = mid - 1
+
+        return -1`
+      },
+      {
+        id: 'bs-14',
+        title: 'Median of Two Sorted Arrays',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/median-of-two-sorted-arrays/',
+        description: 'Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).',
+        language: 'python',
+        solution: `class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        if len(nums1) > len(nums2):
+            nums1, nums2 = nums2, nums1
+        m, n = len(nums1), len(nums2)
+        half = (m + n) // 2
+        left, right = 0, m
+        while left <= right:
+            i = (left + right) // 2
+            j = half - i
+            left1  = nums1[i - 1] if i > 0 else float('-inf')
+            right1 = nums1[i]     if i < m else float('inf')
+            left2  = nums2[j - 1] if j > 0 else float('-inf')
+            right2 = nums2[j]     if j < n else float('inf')
+            if left1 <= right2 and left2 <= right1:
+                if (m + n) % 2 == 1:
+                    return min(right1, right2)
+                return (max(left1, left2) + min(right1, right2)) / 2
+            elif left1 > right2:
+                right = i - 1
+            else:
+                left = i + 1`
+      },
     ]
   },
   {
