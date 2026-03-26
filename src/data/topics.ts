@@ -890,7 +890,292 @@ export const topics: Topic[] = [
             else:
                 stack.append(int(token))
         return stack[0]`
-      }
+      },
+      {
+        id: 'stk-1',
+        title: 'Valid Parentheses',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/valid-parentheses/',
+        description: 'Given a string s containing just the characters (, ), {, }, [ and ], determine if the input string is valid.',
+        language: 'python',
+        solution: `class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        mapping = {')': '(', '}': '{', ']': '['}
+        for char in s:
+            if char in mapping:
+                top = stack.pop() if stack else '#'
+                if mapping[char] != top:
+                    return False
+            else:
+                stack.append(char)
+        return not stack`
+      },
+      {
+        id: 'stk-2',
+        title: 'Min Stack',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/min-stack/',
+        description: 'Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.',
+        language: 'python',
+        solution: `class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+    
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        val = min(val, self.min_stack[-1] if self.min_stack else val)
+        self.min_stack.append(val)
+    
+    def pop(self) -> None:
+        self.stack.pop()
+        self.min_stack.pop()
+    
+    def top(self) -> int:
+        return self.stack[-1]
+    
+    def getMin(self) -> int:
+        return self.min_stack[-1]`
+      },
+      {
+        id: 'stk-3',
+        title: 'Evaluate Reverse Polish Notation',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/evaluate-reverse-polish-notation/',
+        description: 'Evaluate the value of an arithmetic expression in Reverse Polish Notation.',
+        language: 'python',
+        solution: `class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for token in tokens:
+            if token in '+-*/':
+                b, a = stack.pop(), stack.pop()
+                if token == '+': stack.append(a + b)
+                elif token == '-': stack.append(a - b)
+                elif token == '*': stack.append(a * b)
+                else: stack.append(int(a / b))
+            else:
+                stack.append(int(token))
+        return stack[0]`
+      },
+      {
+  id: 'stk-4',
+  title: 'Daily Temperatures',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/daily-temperatures/',
+  description: 'Given an array of integers temperatures representing daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature.',
+  language: 'python',
+  solution: `class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures)
+        stack = []  # (temp, index)
+        for i, t in enumerate(temperatures):
+            while stack and t > stack[-1][0]:
+                _, idx = stack.pop()
+                res[idx] = i - idx
+            stack.append((t, i))
+        return res`
+},
+{
+  id: 'stk-5',
+  title: 'Car Fleet',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/car-fleet/',
+  description: 'There are n cars at given miles away from the starting mile 0, traveling to their destination at target miles. Return the number of car fleets that will arrive at the destination.',
+  language: 'python',
+  solution: `class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        pairs = sorted(zip(position, speed), reverse=True)
+        stack = []
+        for pos, spd in pairs:
+            time = (target - pos) / spd
+            stack.append(time)
+            if len(stack) >= 2 and stack[-1] <= stack[-2]:
+                stack.pop()
+        return len(stack)`
+},
+{
+  id: 'stk-6',
+  title: 'Largest Rectangle in Histogram',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
+  description: 'Given an array of integers heights representing the histogram bar heights where the width of each bar is 1, return the area of the largest rectangle in the histogram.',
+  language: 'python',
+  solution: `class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        max_area = 0
+        stack = []  # (index, height)
+        for i, h in enumerate(heights):
+            start = i
+            while stack and stack[-1][1] > h:
+                idx, height = stack.pop()
+                max_area = max(max_area, height * (i - idx))
+                start = idx
+            stack.append((start, h))
+        for idx, height in stack:
+            max_area = max(max_area, height * (len(heights) - idx))
+        return max_area`
+},
+{
+  id: 'stk-7',
+  title: 'Generate Parentheses',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/generate-parentheses/',
+  description: 'Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.',
+  language: 'python',
+  solution: `class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        stack = []
+        def backtrack(open_count, close_count):
+            if open_count == close_count == n:
+                res.append(''.join(stack))
+                return
+            if open_count < n:
+                stack.append('(')
+                backtrack(open_count + 1, close_count)
+                stack.pop()
+            if close_count < open_count:
+                stack.append(')')
+                backtrack(open_count, close_count + 1)
+                stack.pop()
+        backtrack(0, 0)
+        return res`
+},
+{
+  id: 'stk-8',
+  title: 'Decode String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/decode-string/',
+  description: 'Given an encoded string, return its decoded string. The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times.',
+  language: 'python',
+  solution: `class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        cur_str = ''
+        cur_num = 0
+        for char in s:
+            if char.isdigit():
+                cur_num = cur_num * 10 + int(char)
+            elif char == '[':
+                stack.append((cur_str, cur_num))
+                cur_str, cur_num = '', 0
+            elif char == ']':
+                prev_str, num = stack.pop()
+                cur_str = prev_str + num * cur_str
+            else:
+                cur_str += char
+        return cur_str`
+},
+{
+  id: 'stk-9',
+  title: 'Next Greater Element I',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/next-greater-element-i/',
+  description: 'Given two arrays nums1 and nums2, return an array answer such that answer[i] is the next greater number for nums1[i] in nums2. If no greater number exists, return -1.',
+  language: 'python',
+  solution: `class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        next_greater = {}
+        stack = []
+        for num in nums2:
+            while stack and stack[-1] < num:
+                next_greater[stack.pop()] = num
+            stack.append(num)
+        for num in stack:
+            next_greater[num] = -1
+        return [next_greater[n] for n in nums1]`
+},
+{
+  id: 'stk-10',
+  title: 'Asteroid Collision',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/asteroid-collision/',
+  description: 'Given an array asteroids of integers representing asteroids in a row, find out the state after all collisions. Positive = moving right, negative = moving left. Same direction never collide.',
+  language: 'python',
+  solution: `class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
+        for ast in asteroids:
+            alive = True
+            while alive and ast < 0 and stack and stack[-1] > 0:
+                if stack[-1] < -ast:
+                    stack.pop()
+                elif stack[-1] == -ast:
+                    stack.pop()
+                    alive = False
+                else:
+                    alive = False
+            if alive:
+                stack.append(ast)
+        return stack`
+},
+{
+  id: 'stk-11',
+  title: 'Remove K Digits',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/remove-k-digits/',
+  description: 'Given string num representing a non-negative integer and an integer k, return the smallest possible integer after removing k digits from num.',
+  language: 'python',
+  solution: `class Solution:
+    def removeKdigits(self, num: str, k: int) -> str:
+        stack = []
+        for digit in num:
+            while k and stack and stack[-1] > digit:
+                stack.pop()
+                k -= 1
+            stack.append(digit)
+        # Remove remaining k digits from the end
+        stack = stack[:-k] if k else stack
+        return ''.join(stack).lstrip('0') or '0'`
+},
+{
+  id: 'stk-12',
+  title: 'Trapping Rain Water',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/trapping-rain-water/',
+  description: 'Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.',
+  language: 'python',
+  solution: `class Solution:
+    def trap(self, height: List[int]) -> int:
+        stack = []
+        water = 0
+        for i, h in enumerate(height):
+            while stack and h > height[stack[-1]]:
+                top = stack.pop()
+                if not stack:
+                    break
+                distance = i - stack[-1] - 1
+                bounded_height = min(h, height[stack[-1]]) - height[top]
+                water += distance * bounded_height
+            stack.append(i)
+        return water`
+},
+{
+  id: 'stk-13',
+  title: 'Basic Calculator II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/basic-calculator-ii/',
+  description: 'Given a string s which represents an expression, evaluate this expression and return its value. The integer division should truncate toward zero.',
+  language: 'python',
+  solution: `class Solution:
+    def calculate(self, s: str) -> int:
+        stack = []
+        num = 0
+        op = '+'
+        for i, ch in enumerate(s):
+            if ch.isdigit():
+                num = num * 10 + int(ch)
+            if (not ch.isdigit() and ch != ' ') or i == len(s) - 1:
+                if op == '+': stack.append(num)
+                elif op == '-': stack.append(-num)
+                elif op == '*': stack.append(stack.pop() * num)
+                elif op == '/': stack.append(int(stack.pop() / num))
+                op = ch
+                num = 0
+        return sum(stack)`
+},
     ]
   },
   {
