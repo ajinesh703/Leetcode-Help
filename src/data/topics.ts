@@ -1378,6 +1378,122 @@ export const topics: Topic[] = [
                     count += 1
         return count`
 },
+{
+  id: 'hm-11',
+  title: 'Binary Search',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/binary-search/',
+  description: 'Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. Return the index if found, else return -1.',
+  language: 'python',
+  solution: `class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return -1`
+},
+{
+  id: 'hm-12',
+  title: 'Reverse Linked List',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/reverse-linked-list/',
+  description: 'Given the head of a singly linked list, reverse the list, and return the reversed list.',
+  language: 'python',
+  solution: `class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        prev = None
+        curr = head
+        while curr:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+        return prev`
+},
+{
+  id: 'hm-13',
+  title: 'Longest Substring Without Repeating Characters',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-substring-without-repeating-characters/',
+  description: 'Given a string s, find the length of the longest substring without repeating characters.',
+  language: 'python',
+  solution: `class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_set = set()
+        left = 0
+        max_len = 0
+        for right in range(len(s)):
+            while s[right] in char_set:
+                char_set.remove(s[left])
+                left += 1
+            char_set.add(s[right])
+            max_len = max(max_len, right - left + 1)
+        return max_len`
+},
+{
+  id: 'hm-14',
+  title: '3Sum',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/3sum/',
+  description: 'Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, j != k, and nums[i] + nums[j] + nums[k] == 0.',
+  language: 'python',
+  solution: `class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        result = []
+        for i in range(len(nums) - 2):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            left, right = i + 1, len(nums) - 1
+            while left < right:
+                total = nums[i] + nums[left] + nums[right]
+                if total == 0:
+                    result.append([nums[i], nums[left], nums[right]])
+                    while left < right and nums[left] == nums[left + 1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right - 1]:
+                        right -= 1
+                    left += 1
+                    right -= 1
+                elif total < 0:
+                    left += 1
+                else:
+                    right -= 1
+        return result`
+},
+{
+  id: 'hm-15',
+  title: 'Word Search',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/word-search/',
+  description: 'Given an m x n grid of characters board and a string word, return true if word exists in the grid. The word can be constructed from letters of sequentially adjacent cells.',
+  language: 'python',
+  solution: `class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        rows, cols = len(board), len(board[0])
+        def dfs(r, c, idx):
+            if idx == len(word):
+                return True
+            if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != word[idx]:
+                return False
+            temp = board[r][c]
+            board[r][c] = '#'
+            found = (dfs(r+1, c, idx+1) or dfs(r-1, c, idx+1) or
+                     dfs(r, c+1, idx+1) or dfs(r, c-1, idx+1))
+            board[r][c] = temp
+            return found
+        for r in range(rows):
+            for c in range(cols):
+                if dfs(r, c, 0):
+                    return True
+        return False`
+},
     ]
   },
   {
