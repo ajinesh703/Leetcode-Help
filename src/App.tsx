@@ -5,21 +5,24 @@ import Home from './pages/Home';
 import PatternPage from './pages/PatternPage';
 import TopicPage from './pages/TopicPage';
 import ProblemDetail from './pages/ProblemDetail';
+import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <div className="main-layout">
-        <Sidebar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/patterns/:id" element={<PatternPage />} />
-          <Route path="/topics/:id" element={<TopicPage />} />
-          <Route path="/problem/:id" element={<ProblemDetail />} />
-        </Routes>
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Header />
+        <div className="main-layout">
+          <Sidebar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/patterns/:id" element={<PatternPage />} />
+            <Route path="/topics/:id" element={<TopicPage />} />
+            <Route path="/problem/:id" element={<ProblemDetail />} />
+          </Routes>
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 

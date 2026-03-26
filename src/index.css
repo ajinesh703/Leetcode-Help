@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-:root {
+/* ============ DARK MODE (Default) ============ */
+:root,
+:root[data-theme="dark"] {
   --bg-primary: #0a0a0f;
   --bg-secondary: #12121a;
   --bg-card: #1a1a2e;
@@ -20,6 +22,38 @@
   --code-bg: #0d1117;
   --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 30px rgba(108, 99, 255, 0.15);
+  --header-bg: rgba(10, 10, 15, 0.85);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============ LIGHT MODE ============ */
+:root[data-theme="light"] {
+  --bg-primary: #f0f2f8;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f5f3ff;
+  --bg-glass: rgba(255, 255, 255, 0.8);
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-glow: rgba(108, 99, 255, 0.4);
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-muted: #8888a0;
+  --accent-primary: #6C63FF;
+  --accent-secondary: #7B73FF;
+  --accent-gradient: linear-gradient(135deg, #6C63FF, #A855F7, #EC4899);
+  --easy: #0d9488;
+  --medium: #d97706;
+  --hard: #dc2626;
+  --code-bg: #f6f8fa;
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 30px rgba(108, 99, 255, 0.12);
+  --header-bg: rgba(240, 242, 248, 0.85);
+
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
@@ -44,6 +78,7 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body::before {
@@ -94,9 +129,10 @@ a {
   z-index: 100;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  background: rgba(10, 10, 15, 0.8);
+  background: var(--header-bg);
   border-bottom: 1px solid var(--border-color);
   padding: 0 2rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .header-inner {
@@ -197,6 +233,30 @@ a {
 .nav-link.active {
   color: var(--accent-primary);
   background: rgba(108, 99, 255, 0.1);
+}
+
+/* ============ Theme Toggle Button ============ */
+.theme-toggle {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  box-shadow: 0 2px 8px var(--shadow-lg);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-primary);
+  transform: rotate(20deg) scale(1.1);
+  box-shadow: var(--shadow-glow);
 }
 
 /* ============ Main Layout ============ */
@@ -627,6 +687,7 @@ a {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   overflow: hidden;
+  transition: background 0.3s ease;
 }
 
 .code-header {

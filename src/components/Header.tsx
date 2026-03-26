@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { ThemeToggle } from "./ThemeToggle";
 
 interface HeaderProps {
   onSearch?: (query: string) => void;
@@ -54,6 +55,10 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
             Topics
           </Link>
         </nav>
+
+        {/* 🌙 Dark / Light Mode Toggle */}
+        <ThemeToggle />
+
       </div>
     </header>
   );
