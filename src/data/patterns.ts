@@ -549,6 +549,115 @@ export const patterns: Pattern[] = [
             return result
         return atMost(k) - atMost(k - 1)`,
     },
+    {
+      id: 'sw-10',
+      title: 'Subarray Product Less Than K',
+      difficulty: 'Medium',
+      leetcodeUrl:
+        'https://leetcode.com/problems/subarray-product-less-than-k/',
+      description:
+        'Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k.',
+      language: 'python',
+      solution: `class Solution:
+    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        if k <= 1:
+            return 0
+        product = 1
+        left = result = 0
+        for right in range(len(nums)):
+            product *= nums[right]
+            while product >= k:
+                product //= nums[left]
+                left += 1
+            # Every window ending at 'right' contributes (right - left + 1) subarrays
+            result += right - left + 1
+        return result`,
+    },
+    {
+      id: 'sw-11',
+      title: 'Longest Subarray of 1s After Deleting One Element',
+      difficulty: 'Medium',
+      leetcodeUrl:
+        'https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/',
+      description:
+        'Given a binary array nums, you should delete one element from it. Return the size of the longest non-empty subarray containing only 1s in the resulting array. Return 0 if there is no such subarray.',
+      language: 'python',
+      solution: `class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        left = zeros = result = 0
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1
+            while zeros > 1:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+            # Subtract 1 because we must delete exactly one element
+            result = max(result, right - left)
+        return result`,
+    },
+    {
+      id: 'sw-12',
+      title: 'Maximum Number of Vowels in a Substring of Given Length',
+      difficulty: 'Medium',
+      leetcodeUrl:
+        'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
+      description:
+        'Given a string s and an integer k, return the maximum number of vowel letters in any substring of s with length k. Vowel letters in English are a, e, i, o, and u.',
+      language: 'python',
+      solution: `class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        vowels = set('aeiou')
+        count = sum(1 for c in s[:k] if c in vowels)
+        max_count = count
+        for i in range(k, len(s)):
+            count += (s[i] in vowels) - (s[i - k] in vowels)
+            max_count = max(max_count, count)
+        return max_count`,
+    },
+    {
+      id: 'sw-13',
+      title: 'Grumpy Bookstore Owner',
+      difficulty: 'Medium',
+      leetcodeUrl:
+        'https://leetcode.com/problems/grumpy-bookstore-owner/',
+      description:
+        'A bookstore owner has customers[i] customers on the i-th minute. The owner knows a secret technique to keep himself not grumpy for minutes consecutive minutes, but can only use it once. Return the maximum number of customers that can be satisfied throughout the day.',
+      language: 'python',
+      solution: `class Solution:
+    def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:
+        # Always-satisfied customers (when owner is not grumpy)
+        base = sum(c for c, g in zip(customers, grumpy) if g == 0)
+        # Extra customers gained during the secret-technique window
+        extra = sum(c * g for c, g in zip(customers[:minutes], grumpy[:minutes]))
+        max_extra = extra
+        for i in range(minutes, len(customers)):
+            extra += customers[i] * grumpy[i]
+            extra -= customers[i - minutes] * grumpy[i - minutes]
+            max_extra = max(max_extra, extra)
+        return base + max_extra`,
+    },
+    {
+      id: 'sw-14',
+      title: 'Minimum Size Subarray Sum',
+      difficulty: 'Medium',
+      leetcodeUrl:
+        'https://leetcode.com/problems/minimum-size-subarray-sum/',
+      description:
+        'Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.',
+      language: 'python',
+      solution: `class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        left = current_sum = 0
+        min_len = float('inf')
+        for right in range(len(nums)):
+            current_sum += nums[right]
+            while current_sum >= target:
+                min_len = min(min_len, right - left + 1)
+                current_sum -= nums[left]
+                left += 1
+        return 0 if min_len == float('inf') else min_len`,
+    },
   ],
 },
   {
