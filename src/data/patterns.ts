@@ -333,37 +333,40 @@ export const patterns: Pattern[] = [
       },
     ]
   },
-  {
-    id: 'sliding-window',
-    name: 'Sliding Window',
-    icon: '🪟',
-    description: 'Maintain a window of elements and slide it across the array to find optimal subarrays.',
-    color: '#FF6B6B',
-    problems: [
-      {
-        id: 'sw-1',
-        title: 'Best Time to Buy and Sell Stock',
-        difficulty: 'Easy',
-        leetcodeUrl: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock/',
-        description: 'You are given an array prices where prices[i] is the price of a given stock on the ith day. Maximize your profit by choosing a single day to buy and a single day to sell.',
-        language: 'python',
-        solution: `class Solution:
+ {
+  id: 'sliding-window',
+  name: 'Sliding Window',
+  icon: '🪟',
+  description: 'Maintain a window of elements and slide it across the array to find optimal subarrays.',
+  color: '#FF6B6B',
+  problems: [
+    {
+      id: 'sw-1',
+      title: 'Best Time to Buy and Sell Stock',
+      difficulty: 'Easy',
+      leetcodeUrl: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock/',
+      description:
+        'You are given an array prices where prices[i] is the price of a given stock on the ith day. Maximize your profit by choosing a single day to buy and a single day to sell.',
+      language: 'python',
+      solution: `class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         min_price = float('inf')
         max_profit = 0
         for price in prices:
             min_price = min(min_price, price)
             max_profit = max(max_profit, price - min_price)
-        return max_profit`
-      },
-      {
-        id: 'sw-2',
-        title: 'Longest Substring Without Repeating Characters',
-        difficulty: 'Medium',
-        leetcodeUrl: 'https://leetcode.com/problems/longest-substring-without-repeating-characters/',
-        description: 'Given a string s, find the length of the longest substring without repeating characters.',
-        language: 'python',
-        solution: `class Solution:
+        return max_profit`,
+    },
+    {
+      id: 'sw-2',
+      title: 'Longest Substring Without Repeating Characters',
+      difficulty: 'Medium',
+      leetcodeUrl:
+        'https://leetcode.com/problems/longest-substring-without-repeating-characters/',
+      description:
+        'Given a string s, find the length of the longest substring without repeating characters.',
+      language: 'python',
+      solution: `class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         char_set = set()
         left = 0
@@ -374,16 +377,17 @@ export const patterns: Pattern[] = [
                 left += 1
             char_set.add(s[right])
             max_len = max(max_len, right - left + 1)
-        return max_len`
-      },
-      {
-        id: 'sw-3',
-        title: 'Minimum Window Substring',
-        difficulty: 'Hard',
-        leetcodeUrl: 'https://leetcode.com/problems/minimum-window-substring/',
-        description: 'Given two strings s and t, return the minimum window substring of s such that every character in t is included in the window.',
-        language: 'python',
-        solution: `class Solution:
+        return max_len`,
+    },
+    {
+      id: 'sw-3',
+      title: 'Minimum Window Substring',
+      difficulty: 'Hard',
+      leetcodeUrl: 'https://leetcode.com/problems/minimum-window-substring/',
+      description:
+        'Given two strings s and t, return the minimum window substring of s such that every character in t is included in the window.',
+      language: 'python',
+      solution: `class Solution:
     def minWindow(self, s: str, t: str) -> str:
         from collections import Counter
         need = Counter(t)
@@ -402,16 +406,18 @@ export const patterns: Pattern[] = [
                 need[s[left]] += 1
                 missing += 1
                 left += 1
-        return s[start:end]`
-      },
-      {
-        id: 'sw-4',
-        title: 'Longest Repeating Character Replacement',
-        difficulty: 'Medium',
-        leetcodeUrl: 'https://leetcode.com/problems/longest-repeating-character-replacement/',
-        description: 'You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character at most k times.',
-        language: 'python',
-        solution: `class Solution:
+        return s[start:end]`,
+    },
+    {
+      id: 'sw-4',
+      title: 'Longest Repeating Character Replacement',
+      difficulty: 'Medium',
+      leetcodeUrl:
+        'https://leetcode.com/problems/longest-repeating-character-replacement/',
+      description:
+        'You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character at most k times.',
+      language: 'python',
+      solution: `class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         count = {}
         left = max_count = result = 0
@@ -422,10 +428,129 @@ export const patterns: Pattern[] = [
                 count[s[left]] -= 1
                 left += 1
             result = max(result, right - left + 1)
-        return result`
-      }
-    ]
-  },
+        return result`,
+    },
+
+    // ── 5 NEW PROBLEMS ────────────────────────────────────────────────────────
+
+    {
+      id: 'sw-5',
+      title: 'Maximum Average Subarray I',
+      difficulty: 'Easy',
+      leetcodeUrl:
+        'https://leetcode.com/problems/maximum-average-subarray-i/',
+      description:
+        'You are given an integer array nums consisting of n elements, and an integer k. Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value.',
+      language: 'python',
+      solution: `class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        window_sum = sum(nums[:k])
+        max_sum = window_sum
+        for i in range(k, len(nums)):
+            window_sum += nums[i] - nums[i - k]
+            max_sum = max(max_sum, window_sum)
+        return max_sum / k`,
+    },
+    {
+      id: 'sw-6',
+      title: 'Permutation in String',
+      difficulty: 'Medium',
+      leetcodeUrl: 'https://leetcode.com/problems/permutation-in-string/',
+      description:
+        'Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise. In other words, return true if one of s1\'s permutations is a substring of s2.',
+      language: 'python',
+      solution: `class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        from collections import Counter
+        if len(s1) > len(s2):
+            return False
+        need = Counter(s1)
+        window = Counter(s2[:len(s1)])
+        if window == need:
+            return True
+        for i in range(len(s1), len(s2)):
+            window[s2[i]] += 1
+            left_char = s2[i - len(s1)]
+            window[left_char] -= 1
+            if window[left_char] == 0:
+                del window[left_char]
+            if window == need:
+                return True
+        return False`,
+    },
+    {
+      id: 'sw-7',
+      title: 'Sliding Window Maximum',
+      difficulty: 'Hard',
+      leetcodeUrl: 'https://leetcode.com/problems/sliding-window-maximum/',
+      description:
+        'You are given an array of integers nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position, return the max sliding window.',
+      language: 'python',
+      solution: `class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        from collections import deque
+        dq = deque()   # stores indices, front is always the max
+        result = []
+        for i, num in enumerate(nums):
+            # Remove indices outside the window
+            while dq and dq[0] < i - k + 1:
+                dq.popleft()
+            # Remove smaller elements from the back
+            while dq and nums[dq[-1]] < num:
+                dq.pop()
+            dq.append(i)
+            if i >= k - 1:
+                result.append(nums[dq[0]])
+        return result`,
+    },
+    {
+      id: 'sw-8',
+      title: 'Fruits Into Baskets',
+      difficulty: 'Medium',
+      leetcodeUrl: 'https://leetcode.com/problems/fruit-into-baskets/',
+      description:
+        'You are visiting a farm that has a single row of fruit trees. You want to collect as much fruit as possible. However, the owner has some strict rules: you only have two baskets, and each basket can only hold a single type of fruit. Return the maximum number of fruits you can pick.',
+      language: 'python',
+      solution: `class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        from collections import defaultdict
+        basket = defaultdict(int)
+        left = result = 0
+        for right in range(len(fruits)):
+            basket[fruits[right]] += 1
+            while len(basket) > 2:
+                basket[fruits[left]] -= 1
+                if basket[fruits[left]] == 0:
+                    del basket[fruits[left]]
+                left += 1
+            result = max(result, right - left + 1)
+        return result`,
+    },
+    {
+      id: 'sw-9',
+      title: 'Count Number of Nice Subarrays',
+      difficulty: 'Medium',
+      leetcodeUrl:
+        'https://leetcode.com/problems/count-number-of-nice-subarrays/',
+      description:
+        'Given an array of integers nums and an integer k, a continuous subarray is called nice if there are exactly k odd numbers in it. Return the number of nice sub-arrays.',
+      language: 'python',
+      solution: `class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        # atMost(k) - atMost(k-1) gives exactly k odd numbers
+        def atMost(goal: int) -> int:
+            count = left = result = 0
+            for right in range(len(nums)):
+                count += nums[right] % 2
+                while count > goal:
+                    count -= nums[left] % 2
+                    left += 1
+                result += right - left + 1
+            return result
+        return atMost(k) - atMost(k - 1)`,
+    },
+  ],
+},
   {
     id: 'binary-search',
     name: 'Binary Search',
