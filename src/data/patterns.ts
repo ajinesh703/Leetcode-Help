@@ -1171,7 +1171,155 @@ export const patterns: Pattern[] = [
             else:
                 count += 1
         return count`
-      }
+      },
+      {
+  id: 'mi-4',
+  title: 'Meeting Rooms',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/meeting-rooms/',
+  description: 'Given an array of meeting time intervals where intervals[i] = [starti, endi], determine if a person could attend all meetings.',
+  language: 'python',
+  solution: `class Solution:
+    def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
+        intervals.sort(key=lambda x: x[0])
+        for i in range(1, len(intervals)):
+            if intervals[i][0] < intervals[i - 1][1]:
+                return False
+        return True`
+},
+{
+  id: 'mi-5',
+  title: 'Meeting Rooms II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/meeting-rooms-ii/',
+  description: 'Given an array of meeting time intervals, return the minimum number of conference rooms required.',
+  language: 'python',
+  solution: `class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        import heapq
+        intervals.sort(key=lambda x: x[0])
+        heap = []
+        for start, end in intervals:
+            if heap and heap[0] <= start:
+                heapq.heapreplace(heap, end)
+            else:
+                heapq.heappush(heap, end)
+        return len(heap)`
+},
+{
+  id: 'mi-6',
+  title: 'Minimum Number of Arrows to Burst Balloons',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/',
+  description: 'Given an array of balloon intervals on the x-axis, return the minimum number of arrows needed to burst all balloons.',
+  language: 'python',
+  solution: `class Solution:
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
+        points.sort(key=lambda x: x[1])
+        arrows = 1
+        end = points[0][1]
+        for start, finish in points[1:]:
+            if start > end:
+                arrows += 1
+                end = finish
+        return arrows`
+},
+{
+  id: 'mi-7',
+  title: 'Data Stream as Disjoint Intervals',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/data-stream-as-disjoint-intervals/',
+  description: 'Design a data structure that maintains a list of disjoint intervals and supports adding new values and retrieving all intervals.',
+  language: 'python',
+  solution: `class SummaryRanges:
+    def __init__(self):
+        self.intervals = []
+
+    def addNum(self, value: int) -> None:
+        new = [value, value]
+        merged = []
+        inserted = False
+        for interval in self.intervals:
+            if interval[1] + 1 < new[0]:
+                merged.append(interval)
+            elif interval[0] - 1 > new[1]:
+                if not inserted:
+                    merged.append(new)
+                    inserted = True
+                merged.append(interval)
+            else:
+                new[0] = min(new[0], interval[0])
+                new[1] = max(new[1], interval[1])
+        if not inserted:
+            merged.append(new)
+        self.intervals = merged
+
+    def getIntervals(self) -> List[List[int]]:
+        return self.intervals`
+},
+{
+  id: 'mi-8',
+  title: 'Remove Covered Intervals',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/remove-covered-intervals/',
+  description: 'Given an array of intervals, return the number of intervals that are not covered by any other interval.',
+  language: 'python',
+  solution: `class Solution:
+    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
+        intervals.sort(key=lambda x: (x[0], -x[1]))
+        count = 0
+        max_end = 0
+        for start, end in intervals:
+            if end > max_end:
+                count += 1
+                max_end = end
+        return count`
+},
+{
+  id: 'mi-9',
+  title: 'Interval List Intersections',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/interval-list-intersections/',
+  description: 'Given two lists of closed intervals, each list of intervals is pairwise disjoint and sorted. Return the intersection of these two interval lists.',
+  language: 'python',
+  solution: `class Solution:
+    def intervalIntersection(
+        self,
+        firstList: List[List[int]],
+        secondList: List[List[int]]
+    ) -> List[List[int]]:
+        result = []
+        i, j = 0, 0
+        while i < len(firstList) and j < len(secondList):
+            lo = max(firstList[i][0], secondList[j][0])
+            hi = min(firstList[i][1], secondList[j][1])
+            if lo <= hi:
+                result.append([lo, hi])
+            if firstList[i][1] < secondList[j][1]:
+                i += 1
+            else:
+                j += 1
+        return result`
+},
+{
+  id: 'mi-10',
+  title: 'Count of Range Sum',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/count-of-range-sum/',
+  description: 'Given an integer array nums and two integers lower and upper, return the number of range sums that lie in [lower, upper] inclusive.',
+  language: 'python',
+  solution: `class Solution:
+    def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
+        from sortedcontainers import SortedList
+        sl = SortedList([0])
+        prefix = 0
+        count = 0
+        for num in nums:
+            prefix += num
+            count += sl.bisect_right(prefix - lower) - sl.bisect_left(prefix - upper)
+            sl.add(prefix)
+        return count`
+},
     ]
   },
   {
