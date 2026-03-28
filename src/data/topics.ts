@@ -2193,7 +2193,113 @@ export const topics: Topic[] = [
             if node.next:
                 heapq.heappush(heap, (node.next.val, i, node.next))
         return dummy.next`
-      }
+      },
+      {
+  id: 'heap-4',
+  title: 'Top K Frequent Elements',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/top-k-frequent-elements/',
+  description: 'Given an integer array nums and an integer k, return the k most frequent elements.',
+  language: 'python',
+  solution: `class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        import heapq
+        from collections import Counter
+        count = Counter(nums)
+        return heapq.nlargest(k, count.keys(), key=lambda x: count[x])`
+},
+{
+  id: 'heap-5',
+  title: 'K Closest Points to Origin',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/k-closest-points-to-origin/',
+  description: 'Given an array of points, return the k closest points to the origin (0, 0).',
+  language: 'python',
+  solution: `class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        import heapq
+        heap = []
+        for x, y in points:
+            dist = x*x + y*y
+            heapq.heappush(heap, (dist, x, y))
+        return [[x, y] for dist, x, y in heapq.nsmallest(k, heap)]`
+},
+{
+  id: 'heap-6',
+  title: 'Task Scheduler',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/task-scheduler/',
+  description: 'Given a list of tasks and a cooldown n, return the minimum number of intervals needed to finish all tasks.',
+  language: 'python',
+  solution: `class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        import heapq
+        from collections import Counter, deque
+        count = Counter(tasks)
+        maxHeap = [-cnt for cnt in count.values()]
+        heapq.heapify(maxHeap)
+        time = 0
+        queue = deque()  # [-cnt, availableAt]
+        while maxHeap or queue:
+            time += 1
+            if maxHeap:
+                cnt = 1 + heapq.heappop(maxHeap)
+                if cnt:
+                    queue.append([cnt, time + n])
+            if queue and queue[0][1] == time:
+                heapq.heappush(maxHeap, queue.popleft()[0])
+        return time`
+},
+{
+  id: 'heap-7',
+  title: 'Find K Pairs with Smallest Sums',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-k-pairs-with-smallest-sums/',
+  description: 'Given two sorted arrays nums1 and nums2, return the k pairs (u, v) with the smallest sums.',
+  language: 'python',
+  solution: `class Solution:
+    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
+        import heapq
+        if not nums1 or not nums2:
+            return []
+        heap = [(nums1[i] + nums2[0], i, 0) for i in range(min(k, len(nums1)))]
+        heapq.heapify(heap)
+        result = []
+        while heap and len(result) < k:
+            s, i, j = heapq.heappop(heap)
+            result.append([nums1[i], nums2[j]])
+            if j + 1 < len(nums2):
+                heapq.heappush(heap, (nums1[i] + nums2[j+1], i, j+1))
+        return result`
+},
+{
+  id: 'heap-8',
+  title: 'Reorganize String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/reorganize-string/',
+  description: 'Rearrange characters of string s so that no two adjacent characters are the same. Return empty string if impossible.',
+  language: 'python',
+  solution: `class Solution:
+    def reorganizeString(self, s: str) -> str:
+        import heapq
+        from collections import Counter
+        count = Counter(s)
+        maxHeap = [(-cnt, ch) for ch, cnt in count.items()]
+        heapq.heapify(maxHeap)
+        result = []
+        prev = None
+        while maxHeap or prev:
+            if prev and not maxHeap:
+                return ""
+            cnt, ch = heapq.heappop(maxHeap)
+            result.append(ch)
+            if prev:
+                heapq.heappush(maxHeap, prev)
+                prev = None
+            if cnt + 1 != 0:
+                prev = (cnt + 1, ch)
+        return "".join(result)`
+},
     ]
   }
 ];
