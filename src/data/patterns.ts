@@ -1086,6 +1086,7 @@ export const patterns: Pattern[] = [
             sl.add(prefix)
         return count`
 },
+<<<<<<< HEAD
 {
   id: 'mi-11',
   title: 'My Calendar I',
@@ -1213,6 +1214,8 @@ export const patterns: Pattern[] = [
             prev_end = max(prev_end, iv.end)
         return result`
 },
+=======
+>>>>>>> origin/added-hm-leetcode-problems
     ]
   },
   {
