@@ -1320,6 +1320,133 @@ export const patterns: Pattern[] = [
             sl.add(prefix)
         return count`
 },
+            {
+        id: 'mi-11',
+        title: 'My Calendar I',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/my-calendar-i/',
+        description: 'Implement a calendar that does not allow double booking. Given start and end times, return true if the event can be added without causing a double booking.',
+        language: 'python',
+        solution: `class MyCalendar:
+    def __init__(self):
+        self.calendar = []
+
+    def book(self, start: int, end: int) -> bool:
+        for s, e in self.calendar:
+            if start < e and end > s:
+                return False
+        self.calendar.append((start, end))
+        return True`
+      },
+      {
+        id: 'mi-12',
+        title: 'My Calendar II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/my-calendar-ii/',
+        description: 'Implement a calendar that allows double booking but not triple booking. Return true if the event can be added without causing a triple booking.',
+        language: 'python',
+        solution: `class MyCalendarTwo:
+    def __init__(self):
+        self.bookings = []
+        self.overlaps = []
+
+    def book(self, start: int, end: int) -> bool:
+        for s, e in self.overlaps:
+            if start < e and end > s:
+                return False
+        for s, e in self.bookings:
+            if start < e and end > s:
+                self.overlaps.append((max(start, s), min(end, e)))
+        self.bookings.append((start, end))
+        return True`
+      },
+      {
+        id: 'mi-13',
+        title: 'Range Module',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/range-module/',
+        description: 'Design a module that tracks ranges of numbers. Implement addRange, queryRange, and removeRange operations on half-open intervals.',
+        language: 'python',
+        solution: `class RangeModule:
+    def __init__(self):
+        self.ranges = []
+
+    def addRange(self, left: int, right: int) -> None:
+        merged = []
+        inserted = False
+        for l, r in self.ranges:
+            if r < left:
+                merged.append((l, r))
+            elif l > right:
+                if not inserted:
+                    merged.append((left, right))
+                    inserted = True
+                merged.append((l, r))
+            else:
+                left = min(left, l)
+                right = max(right, r)
+        if not inserted:
+            merged.append((left, right))
+        self.ranges = merged
+
+    def queryRange(self, left: int, right: int) -> bool:
+        for l, r in self.ranges:
+            if l <= left and right <= r:
+                return True
+        return False
+
+    def removeRange(self, left: int, right: int) -> None:
+        updated = []
+        for l, r in self.ranges:
+            if r <= left or l >= right:
+                updated.append((l, r))
+            else:
+                if l < left:
+                    updated.append((l, left))
+                if r > right:
+                    updated.append((right, r))
+        self.ranges = updated`
+      },
+      {
+        id: 'mi-14',
+        title: 'Partition Labels',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/partition-labels/',
+        description: 'Given a string s, partition it into as many parts as possible so that each letter appears in at most one part. Return a list of integers representing the size of these parts.',
+        language: 'python',
+        solution: `class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        last = {c: i for i, c in enumerate(s)}
+        result = []
+        start = end = 0
+        for i, c in enumerate(s):
+            end = max(end, last[c])
+            if i == end:
+                result.append(end - start + 1)
+                start = i + 1
+        return result`
+      },
+      {
+        id: 'mi-15',
+        title: 'Employee Free Time',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/employee-free-time/',
+        description: 'Given a list of schedules of employees, return a list of finite intervals representing the common free time for all employees, sorted.',
+        language: 'python',
+        solution: `class Solution:
+    def employeeFreeTime(self, schedule: List[List[Interval]]) -> List[Interval]:
+        intervals = sorted(
+            [iv for emp in schedule for iv in emp],
+            key=lambda x: x.start
+        )
+        result = []
+        prev_end = intervals[0].end
+        for iv in intervals[1:]:
+            if iv.start > prev_end:
+                result.append(Interval(prev_end, iv.start))
+            prev_end = max(prev_end, iv.end)
+        return result`
+      },
     ]
   },
   {
