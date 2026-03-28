@@ -937,7 +937,282 @@ export const patterns: Pattern[] = [
             else:
                 count += 1
         return count`
-      }
+      },
+      {
+  id: 'mi-4',
+  title: 'Meeting Rooms',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/meeting-rooms/',
+  description: 'Given an array of meeting time intervals where intervals[i] = [starti, endi], determine if a person could attend all meetings.',
+  language: 'python',
+  solution: `class Solution:
+    def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
+        intervals.sort(key=lambda x: x[0])
+        for i in range(1, len(intervals)):
+            if intervals[i][0] < intervals[i - 1][1]:
+                return False
+        return True`
+},
+{
+  id: 'mi-5',
+  title: 'Meeting Rooms II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/meeting-rooms-ii/',
+  description: 'Given an array of meeting time intervals, return the minimum number of conference rooms required.',
+  language: 'python',
+  solution: `class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        import heapq
+        intervals.sort(key=lambda x: x[0])
+        heap = []
+        for start, end in intervals:
+            if heap and heap[0] <= start:
+                heapq.heapreplace(heap, end)
+            else:
+                heapq.heappush(heap, end)
+        return len(heap)`
+},
+{
+  id: 'mi-6',
+  title: 'Minimum Number of Arrows to Burst Balloons',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/',
+  description: 'Given an array of balloon intervals on the x-axis, return the minimum number of arrows needed to burst all balloons.',
+  language: 'python',
+  solution: `class Solution:
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
+        points.sort(key=lambda x: x[1])
+        arrows = 1
+        end = points[0][1]
+        for start, finish in points[1:]:
+            if start > end:
+                arrows += 1
+                end = finish
+        return arrows`
+},
+{
+  id: 'mi-7',
+  title: 'Data Stream as Disjoint Intervals',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/data-stream-as-disjoint-intervals/',
+  description: 'Design a data structure that maintains a list of disjoint intervals and supports adding new values and retrieving all intervals.',
+  language: 'python',
+  solution: `class SummaryRanges:
+    def __init__(self):
+        self.intervals = []
+
+    def addNum(self, value: int) -> None:
+        new = [value, value]
+        merged = []
+        inserted = False
+        for interval in self.intervals:
+            if interval[1] + 1 < new[0]:
+                merged.append(interval)
+            elif interval[0] - 1 > new[1]:
+                if not inserted:
+                    merged.append(new)
+                    inserted = True
+                merged.append(interval)
+            else:
+                new[0] = min(new[0], interval[0])
+                new[1] = max(new[1], interval[1])
+        if not inserted:
+            merged.append(new)
+        self.intervals = merged
+
+    def getIntervals(self) -> List[List[int]]:
+        return self.intervals`
+},
+{
+  id: 'mi-8',
+  title: 'Remove Covered Intervals',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/remove-covered-intervals/',
+  description: 'Given an array of intervals, return the number of intervals that are not covered by any other interval.',
+  language: 'python',
+  solution: `class Solution:
+    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
+        intervals.sort(key=lambda x: (x[0], -x[1]))
+        count = 0
+        max_end = 0
+        for start, end in intervals:
+            if end > max_end:
+                count += 1
+                max_end = end
+        return count`
+},
+{
+  id: 'mi-9',
+  title: 'Interval List Intersections',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/interval-list-intersections/',
+  description: 'Given two lists of closed intervals, each list of intervals is pairwise disjoint and sorted. Return the intersection of these two interval lists.',
+  language: 'python',
+  solution: `class Solution:
+    def intervalIntersection(
+        self,
+        firstList: List[List[int]],
+        secondList: List[List[int]]
+    ) -> List[List[int]]:
+        result = []
+        i, j = 0, 0
+        while i < len(firstList) and j < len(secondList):
+            lo = max(firstList[i][0], secondList[j][0])
+            hi = min(firstList[i][1], secondList[j][1])
+            if lo <= hi:
+                result.append([lo, hi])
+            if firstList[i][1] < secondList[j][1]:
+                i += 1
+            else:
+                j += 1
+        return result`
+},
+{
+  id: 'mi-10',
+  title: 'Count of Range Sum',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/count-of-range-sum/',
+  description: 'Given an integer array nums and two integers lower and upper, return the number of range sums that lie in [lower, upper] inclusive.',
+  language: 'python',
+  solution: `class Solution:
+    def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
+        from sortedcontainers import SortedList
+        sl = SortedList([0])
+        prefix = 0
+        count = 0
+        for num in nums:
+            prefix += num
+            count += sl.bisect_right(prefix - lower) - sl.bisect_left(prefix - upper)
+            sl.add(prefix)
+        return count`
+},
+{
+  id: 'mi-11',
+  title: 'My Calendar I',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/my-calendar-i/',
+  description: 'Implement a calendar that does not allow double booking. Given start and end times, return true if the event can be added without causing a double booking.',
+  language: 'python',
+  solution: `class MyCalendar:
+    def __init__(self):
+        self.calendar = []
+
+    def book(self, start: int, end: int) -> bool:
+        for s, e in self.calendar:
+            if start < e and end > s:
+                return False
+        self.calendar.append((start, end))
+        return True`
+},
+{
+  id: 'mi-12',
+  title: 'My Calendar II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/my-calendar-ii/',
+  description: 'Implement a calendar that allows double booking but not triple booking. Return true if the event can be added without causing a triple booking.',
+  language: 'python',
+  solution: `class MyCalendarTwo:
+    def __init__(self):
+        self.bookings = []
+        self.overlaps = []
+
+    def book(self, start: int, end: int) -> bool:
+        for s, e in self.overlaps:
+            if start < e and end > s:
+                return False
+        for s, e in self.bookings:
+            if start < e and end > s:
+                self.overlaps.append((max(start, s), min(end, e)))
+        self.bookings.append((start, end))
+        return True`
+},
+{
+  id: 'mi-13',
+  title: 'Range Module',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/range-module/',
+  description: 'Design a module that tracks ranges of numbers. Implement addRange, queryRange, and removeRange operations on half-open intervals.',
+  language: 'python',
+  solution: `class RangeModule:
+    def __init__(self):
+        self.ranges = []
+
+    def addRange(self, left: int, right: int) -> None:
+        merged = []
+        inserted = False
+        for l, r in self.ranges:
+            if r < left:
+                merged.append((l, r))
+            elif l > right:
+                if not inserted:
+                    merged.append((left, right))
+                    inserted = True
+                merged.append((l, r))
+            else:
+                left = min(left, l)
+                right = max(right, r)
+        if not inserted:
+            merged.append((left, right))
+        self.ranges = merged
+
+    def queryRange(self, left: int, right: int) -> bool:
+        for l, r in self.ranges:
+            if l <= left and right <= r:
+                return True
+        return False
+
+    def removeRange(self, left: int, right: int) -> None:
+        updated = []
+        for l, r in self.ranges:
+            if r <= left or l >= right:
+                updated.append((l, r))
+            else:
+                if l < left:
+                    updated.append((l, left))
+                if r > right:
+                    updated.append((right, r))
+        self.ranges = updated`
+},
+{
+  id: 'mi-14',
+  title: 'Partition Labels',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/partition-labels/',
+  description: 'Given a string s, partition it into as many parts as possible so that each letter appears in at most one part. Return a list of integers representing the size of these parts.',
+  language: 'python',
+  solution: `class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        last = {c: i for i, c in enumerate(s)}
+        result = []
+        start = end = 0
+        for i, c in enumerate(s):
+            end = max(end, last[c])
+            if i == end:
+                result.append(end - start + 1)
+                start = i + 1
+        return result`
+},
+{
+  id: 'mi-15',
+  title: 'Employee Free Time',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/employee-free-time/',
+  description: 'Given a list of schedules of employees, return a list of finite intervals representing the common free time for all employees, sorted.',
+  language: 'python',
+  solution: `class Solution:
+    def employeeFreeTime(self, schedule: List[List[Interval]]) -> List[Interval]:
+        intervals = sorted(
+            [iv for emp in schedule for iv in emp],
+            key=lambda x: x.start
+        )
+        result = []
+        prev_end = intervals[0].end
+        for iv in intervals[1:]:
+            if iv.start > prev_end:
+                result.append(Interval(prev_end, iv.start))
+            prev_end = max(prev_end, iv.end)
+        return result`
+},
     ]
   },
   {
