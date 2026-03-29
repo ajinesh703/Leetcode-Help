@@ -1264,6 +1264,129 @@ export const patterns: Pattern[] = [
                     return True
         return False`
 },
+{
+  id: 'fsp-11',
+  title: 'Intersection of Two Linked Lists',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/intersection-of-two-linked-lists/',
+  description: 'Given the heads of two singly linked lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.',
+  language: 'python',
+  solution: `class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        a, b = headA, headB
+        while a != b:
+            a = a.next if a else headB
+            b = b.next if b else headA
+        return a`
+},
+{
+  id: 'fsp-12',
+  title: 'Linked List Components',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/linked-list-components/',
+  description: 'Given the head of a linked list and an array nums, return the number of connected components in the list where each component contains nodes whose values exist in nums.',
+  language: 'python',
+  solution: `class Solution:
+    def numComponents(self, head: Optional[ListNode], nums: List[int]) -> int:
+        num_set = set(nums)
+        slow = fast = head
+        count = 0
+
+        while fast:
+            # Advance fast to end of current component
+            while fast and fast.val in num_set:
+                fast = fast.next
+            # If slow to fast range had valid nodes, it's one component
+            if slow != fast:
+                count += 1
+            slow = fast
+            # Skip nodes not in set
+            while fast and fast.val not in num_set:
+                fast = fast.next
+            slow = fast
+        return count`
+},
+{
+  id: 'fsp-13',
+  title: 'Delete the Middle Node of a Linked List',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/',
+  description: 'Given the head of a linked list, delete the middle node and return the head. The middle node is the ⌊n / 2⌋th node (0-indexed).',
+  language: 'python',
+  solution: `class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return None
+
+        slow, fast = head, head.next.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        slow.next = slow.next.next
+        return head`
+},
+{
+  id: 'fsp-14',
+  title: 'Maximum Twin Sum of a Linked List',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/',
+  description: 'In a linked list of even length, the twin of node i is node (n-1-i). Return the maximum twin sum of the linked list.',
+  language: 'python',
+  solution: `class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        # Step 1: Find middle
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Step 2: Reverse second half
+        prev = None
+        while slow:
+            slow.next, prev, slow = prev, slow, slow.next
+
+        # Step 3: Calculate max twin sum
+        max_sum = 0
+        left, right = head, prev
+        while right:
+            max_sum = max(max_sum, left.val + right.val)
+            left, right = left.next, right.next
+        return max_sum`
+},
+{
+  id: 'fsp-15',
+  title: 'Rotate List',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/rotate-list/',
+  description: 'Given the head of a linked list, rotate the list to the right by k places.',
+  language: 'python',
+  solution: `class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next or k == 0:
+            return head
+
+        # Step 1: Find length and tail using fast pointer
+        length, fast = 1, head
+        while fast.next:
+            fast = fast.next
+            length += 1
+
+        # Step 2: Find new tail using slow pointer
+        k = k % length
+        if k == 0:
+            return head
+
+        slow = head
+        for _ in range(length - k - 1):
+            slow = slow.next
+
+        # Step 3: Rotate
+        fast.next = head
+        head = slow.next
+        slow.next = None
+        return head`
+},
     ]
   },
   {
