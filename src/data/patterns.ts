@@ -1101,7 +1101,169 @@ export const patterns: Pattern[] = [
             slow = get_next(slow)
             fast = get_next(get_next(fast))
         return fast == 1`
-      }
+      },
+      {
+  id: 'fsp-5',
+  title: 'Find the Duplicate Number',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-the-duplicate-number/',
+  description: 'Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n], there is only one repeated number. Find that number without modifying the array.',
+  language: 'python',
+  solution: `class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        slow, fast = nums[0], nums[nums[0]]
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+        slow = 0
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+        return slow`
+},
+{
+  id: 'fsp-6',
+  title: 'Palindrome Linked List',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/palindrome-linked-list/',
+  description: 'Given the head of a singly linked list, return true if it is a palindrome or false otherwise.',
+  language: 'python',
+  solution: `class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Reverse second half
+        prev = None
+        while slow:
+            slow.next, prev, slow = prev, slow, slow.next
+
+        # Compare both halves
+        left, right = head, prev
+        while right:
+            if left.val != right.val:
+                return False
+            left, right = left.next, right.next
+        return True`
+},
+{
+  id: 'fsp-7',
+  title: 'Reorder List',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/reorder-list/',
+  description: 'Given the head of a singly linked list L0 → L1 → … → Ln, reorder it to: L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …',
+  language: 'python',
+  solution: `class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        # Step 1: Find middle
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        # Step 2: Reverse second half
+        second = slow.next
+        slow.next = None
+        prev = None
+        while second:
+            second.next, prev, second = prev, second, second.next
+
+        # Step 3: Merge both halves
+        first = head
+        while prev:
+            first.next, prev.next, first, prev = prev, first.next, first.next, prev.next`
+},
+{
+  id: 'fsp-8',
+  title: 'Sort List',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/sort-list/',
+  description: 'Given the head of a linked list, return the list after sorting it in ascending order in O(n log n) time and O(1) space.',
+  language: 'python',
+  solution: `class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+
+        # Find middle using slow/fast
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        mid = slow.next
+        slow.next = None
+
+        left = self.sortList(head)
+        right = self.sortList(mid)
+
+        # Merge sorted halves
+        dummy = ListNode(0)
+        cur = dummy
+        while left and right:
+            if left.val <= right.val:
+                cur.next, left = left, left.next
+            else:
+                cur.next, right = right, right.next
+            cur = cur.next
+        cur.next = left or right
+        return dummy.next`
+},
+{
+  id: 'fsp-9',
+  title: 'Remove Nth Node From End of List',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/remove-nth-node-from-end-of-list/',
+  description: 'Given the head of a linked list, remove the nth node from the end of the list and return its head.',
+  language: 'python',
+  solution: `class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        slow = fast = dummy
+
+        # Advance fast by n+1 steps
+        for _ in range(n + 1):
+            fast = fast.next
+
+        # Move both until fast reaches end
+        while fast:
+            slow = slow.next
+            fast = fast.next
+
+        slow.next = slow.next.next
+        return dummy.head`
+},
+{
+  id: 'fsp-10',
+  title: 'Circular Array Loop',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/circular-array-loop/',
+  description: 'You are given a circular array nums of positive and negative integers. Return true if there is a cycle with a length greater than 1 following the movement rules.',
+  language: 'python',
+  solution: `class Solution:
+    def circularArrayLoop(self, nums: List[int]) -> bool:
+        n = len(nums)
+
+        def next_idx(i):
+            return (i + nums[i]) % n
+
+        for i in range(n):
+            slow, fast = i, i
+
+            # Ensure same direction
+            while nums[slow] * nums[next_idx(fast)] > 0 and \
+                  nums[slow] * nums[next_idx(next_idx(fast))] > 0:
+                slow = next_idx(slow)
+                fast = next_idx(next_idx(fast))
+                if slow == fast:
+                    # Check cycle length > 1
+                    if slow == next_idx(slow):
+                        break
+                    return True
+        return False`
+},
     ]
   },
   {
