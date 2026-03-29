@@ -1387,6 +1387,270 @@ export const patterns: Pattern[] = [
         slow.next = None
         return head`
 },
+      {
+  id: 'fsp-16',
+  title: 'Length of Longest Cycle in a Graph',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/length-of-longest-cycle-in-a-graph/',
+  description: 'You are given a directed graph with n nodes. Find the length of the longest cycle in the graph. If no cycle exists, return -1.',
+  language: 'python',
+  solution: `class Solution:
+    def longestCycle(self, edges: List[int]) -> int:
+        visited = [False] * len(edges)
+        ans = -1
+
+        for i in range(len(edges)):
+            if visited[i]:
+                continue
+            slow, fast = i, i
+            while fast != -1 and edges[fast] != -1:
+                slow = edges[slow]
+                fast = edges[edges[fast]] if edges[fast] != -1 else -1
+                visited[slow] = True
+                if fast != -1:
+                    visited[fast] = True
+                if slow == fast:
+                    # Count cycle length
+                    length, node = 1, edges[slow]
+                    while node != slow:
+                        length += 1
+                        node = edges[node]
+                    ans = max(ans, length)
+                    break
+        return ans`
+},
+{
+  id: 'fsp-17',
+  title: 'Linked List Random Node',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/linked-list-random-node/',
+  description: 'Given a singly linked list, return a random node value. Each node must have equal probability of being chosen using reservoir sampling.',
+  language: 'python',
+  solution: `class Solution:
+    def __init__(self, head: Optional[ListNode]):
+        self.head = head
+
+    def getRandom(self) -> int:
+        slow, fast = self.head, self.head
+        result, idx = slow.val, 1
+
+        # Use slow to track candidate, fast to measure reservoir window
+        while fast.next:
+            fast = fast.next
+            idx += 1
+            if random.randint(1, idx) == 1:
+                slow = slow.next
+                result = slow.val
+        return result`
+},
+{
+  id: 'fsp-18',
+  title: 'Swap Nodes in Pairs',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/swap-nodes-in-pairs/',
+  description: 'Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the nodes.',
+  language: 'python',
+  solution: `class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        slow, fast = dummy, head
+
+        while fast and fast.next:
+            # Save next pair start
+            next_pair = fast.next.next
+
+            # Swap
+            slow.next = fast.next
+            fast.next.next = fast
+            fast.next = next_pair
+
+            # Advance slow by 2, fast to next pair
+            slow = fast
+            fast = next_pair
+        return dummy.next`
+},
+{
+  id: 'fsp-19',
+  title: 'Reverse Nodes in k-Group',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/reverse-nodes-in-k-group/',
+  description: 'Given the head of a linked list, reverse the nodes of the list k at a time and return the modified list. If nodes are not a multiple of k, leave the remaining nodes as is.',
+  language: 'python',
+  solution: `class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        group_prev = dummy
+
+        while True:
+            # Use fast pointer to check if k nodes remain
+            fast = group_prev
+            for _ in range(k):
+                fast = fast.next
+                if not fast:
+                    return dummy.next
+
+            # Reverse k nodes with slow pointer
+            slow = group_prev.next
+            prev = group_prev
+            for _ in range(k):
+                slow.next, prev, slow = prev, slow, slow.next
+
+            # Reconnect group
+            group_prev.next.next = slow
+            group_prev.next, group_prev = prev, group_prev.next`
+},
+{
+  id: 'fsp-20',
+  title: 'Split Linked List in Parts',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/split-linked-list-in-parts/',
+  description: 'Given the head of a linked list and an integer k, split the list into k consecutive parts. Part lengths should differ by at most 1 and earlier parts should be longer.',
+  language: 'python',
+  solution: `class Solution:
+    def splitListToParts(self, head: Optional[ListNode], k: int) -> List[Optional[ListNode]]:
+        # Use fast pointer to find total length
+        length, fast = 0, head
+        while fast:
+            length += 1
+            fast = fast.next
+
+        part_size, extra = divmod(length, k)
+        result = []
+        slow = head
+
+        for i in range(k):
+            result.append(slow)
+            size = part_size + (1 if i < extra else 0)
+            for _ in range(size - 1):
+                if slow:
+                    slow = slow.next
+            if slow:
+                slow.next, slow = None, slow.next
+        return result`
+},
+{
+  id: 'fsp-21',
+  title: 'Odd Even Linked List',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/odd-even-linked-list/',
+  description: 'Given the head of a singly linked list, group all odd-indexed nodes together followed by even-indexed nodes and return the reordered list.',
+  language: 'python',
+  solution: `class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return head
+
+        slow, fast = head, head.next
+        even_head = fast
+
+        while fast and fast.next:
+            slow.next = fast.next      # odd -> next odd
+            slow = slow.next
+            fast.next = slow.next      # even -> next even
+            fast = fast.next
+
+        slow.next = even_head
+        return head`
+},
+{
+  id: 'fsp-22',
+  title: 'Find K-th Node From End',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/kth-node-from-end-of-list-lcci/',
+  description: 'Implement an algorithm to find the kth to last element of a singly linked list. Return the value of that node.',
+  language: 'python',
+  solution: `class Solution:
+    def kthToLast(self, head: ListNode, k: int) -> int:
+        slow, fast = head, head
+
+        # Advance fast by k steps
+        for _ in range(k):
+            fast = fast.next
+
+        # Move both until fast reaches end
+        while fast:
+            slow = slow.next
+            fast = fast.next
+        return slow.val`
+},
+{
+  id: 'fsp-23',
+  title: 'Flatten a Multilevel Doubly Linked List',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/',
+  description: 'Given a doubly linked list where nodes may have a child pointer to another doubly linked list, flatten the list so all nodes appear in a single-level doubly linked list.',
+  language: 'python',
+  solution: `class Solution:
+    def flatten(self, head: Optional[Node]) -> Optional[Node]:
+        slow = head
+        while slow:
+            if slow.child:
+                fast = slow.child
+
+                # Use fast to find tail of child list
+                while fast.next:
+                    fast = fast.next
+
+                # Connect tail of child to slow's next
+                fast.next = slow.next
+                if slow.next:
+                    slow.next.prev = fast
+
+                # Connect slow to child
+                slow.next = slow.child
+                slow.child.prev = slow
+                slow.child = None
+
+            slow = slow.next
+        return head`
+},
+{
+  id: 'fsp-24',
+  title: 'Convert Binary Number in a Linked List to Integer',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/',
+  description: 'Given head which is a reference node to a singly linked list representing a binary number, return the decimal value of the number in the linked list.',
+  language: 'python',
+  solution: `class Solution:
+    def getDecimalValue(self, head: ListNode) -> int:
+        slow, fast = head, head
+
+        # Use fast to find length
+        length = 0
+        while fast:
+            fast = fast.next
+            length += 1
+
+        result = 0
+        for i in range(length - 1, -1, -1):
+            result += slow.val * (2 ** i)
+            slow = slow.next
+        return result`
+},
+{
+  id: 'fsp-25',
+  title: 'Reverse Linked List II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/reverse-linked-list-ii/',
+  description: 'Given the head of a singly linked list and two integers left and right, reverse the nodes of the list from position left to position right, and return the reversed list.',
+  language: 'python',
+  solution: `class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        slow = dummy
+
+        # Use slow to reach node just before left
+        for _ in range(left - 1):
+            slow = slow.next
+
+        # Use fast to reverse from left to right
+        fast = slow.next
+        for _ in range(right - left):
+            fast.next, slow.next, fast = slow.next, fast.next, fast.next
+            slow.next.next = fast
+
+        return dummy.next`
+},
     ]
   },
   {
