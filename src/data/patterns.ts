@@ -1018,6 +1018,189 @@ export const patterns: Pattern[] = [
             else:
                 left = i + 1`
       },
+      {
+  id: 'bs-15',
+  title: 'Search a 2D Matrix',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/search-a-2d-matrix/',
+  description: 'Write an efficient algorithm that searches for a value in an m x n matrix. Integers in each row are sorted from left to right. The first integer of each row is greater than the last integer of the previous row.',
+  language: 'python',
+  solution: `class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        m, n = len(matrix), len(matrix[0])
+        left, right = 0, m * n - 1
+        while left <= right:
+            mid = (left + right) // 2
+            val = matrix[mid // n][mid % n]
+            if val == target:
+                return True
+            elif val < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return False`
+},
+
+{
+  id: 'bs-16',
+  title: 'Koko Eating Bananas',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/koko-eating-bananas/',
+  description: 'Koko loves to eat bananas. There are n piles of bananas, the ith pile has piles[i] bananas. Koko can decide her bananas-per-hour eating speed of k. Find the minimum integer k such that she can eat all the bananas within h hours.',
+  language: 'python',
+  solution: `class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        left, right = 1, max(piles)
+        while left < right:
+            mid = (left + right) // 2
+            hours = sum(math.ceil(p / mid) for p in piles)
+            if hours <= h:
+                right = mid
+            else:
+                left = mid + 1
+        return left`
+},
+
+{
+  id: 'bs-17',
+  title: 'Find Minimum in Rotated Sorted Array',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/',
+  description: 'Given the sorted rotated array nums of unique elements, return the minimum element of this array. You must write an algorithm that runs in O(log n) time.',
+  language: 'python',
+  solution: `class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[right]:
+                left = mid + 1
+            else:
+                right = mid
+        return nums[left]`
+},
+
+{
+  id: 'bs-18',
+  title: 'Search in Rotated Sorted Array',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/search-in-rotated-sorted-array/',
+  description: 'Given the array nums sorted in ascending order (with distinct values) which is possibly rotated, and an integer target, return the index of target if it is in nums, or -1 if it is not in nums. You must write an algorithm with O(log n) runtime complexity.',
+  language: 'python',
+  solution: `class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return mid
+            if nums[left] <= nums[mid]:
+                if nums[left] <= target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                if nums[mid] < target <= nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+        return -1`
+},
+
+{
+  id: 'bs-19',
+  title: 'Time Based Key-Value Store',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/time-based-key-value-store/',
+  description: 'Design a time-based key-value data structure that can store multiple values for the same key at different time stamps and retrieve the key\'s value at a certain timestamp. Implement the TimeMap class with set and get operations.',
+  language: 'python',
+  solution: `class TimeMap:
+    def __init__(self):
+        self.store = defaultdict(list)
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        self.store[key].append((timestamp, value))
+
+    def get(self, key: str, timestamp: int) -> str:
+        arr = self.store[key]
+        left, right = 0, len(arr) - 1
+        res = ""
+        while left <= right:
+            mid = (left + right) // 2
+            if arr[mid][0] <= timestamp:
+                res = arr[mid][1]
+                left = mid + 1
+            else:
+                right = mid - 1
+        return res`
+},
+
+{
+  id: 'bs-20',
+  title: 'Find Peak Element',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-peak-element/',
+  description: 'A peak element is an element that is strictly greater than its neighbors. Given a 0-indexed integer array nums, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peak elements. You must write an algorithm that runs in O(log n) time.',
+  language: 'python',
+  solution: `class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[mid + 1]:
+                right = mid
+            else:
+                left = mid + 1
+        return left`
+},
+
+{
+  id: 'bs-21',
+  title: 'Capacity To Ship Packages Within D Days',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/',
+  description: 'A conveyor belt has packages that must be shipped within days days. The ith package on the conveyor belt has a weight of weights[i]. Find the least weight capacity of the ship that will result in all packages being shipped within days days.',
+  language: 'python',
+  solution: `class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        left, right = max(weights), sum(weights)
+        while left < right:
+            mid = (left + right) // 2
+            need, cur = 1, 0
+            for w in weights:
+                if cur + w > mid:
+                    need += 1
+                    cur = 0
+                cur += w
+            if need <= days:
+                right = mid
+            else:
+                left = mid + 1
+        return left`
+},
+
+{
+  id: 'bs-22',
+  title: 'Sqrt(x)',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/sqrtx/',
+  description: 'Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well. You must not use any built-in exponent function or operator.',
+  language: 'python',
+  solution: `class Solution:
+    def mySqrt(self, x: int) -> int:
+        if x < 2:
+            return x
+        left, right = 1, x // 2
+        while left <= right:
+            mid = (left + right) // 2
+            if mid * mid == x:
+                return mid
+            elif mid * mid < x:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return right`
+},
     ]
   },
   {
