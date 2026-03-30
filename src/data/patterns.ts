@@ -3855,6 +3855,299 @@ export const patterns: Pattern[] = [
             self.max_freq -= 1
         return val`
 },
+{
+  id: 'ms-61',
+  title: 'Parsing A Boolean Expression',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/parsing-a-boolean-expression/',
+  description: 'Given a boolean expression as a string, evaluate and return its value. Expressions can be t, f, !(expr), &(expr1,expr2,...), |(expr1,expr2,...)',
+  language: 'python',
+  solution: `class Solution:
+    def parseBoolExpr(self, expression: str) -> bool:
+        stack = []
+        for ch in expression:
+            if ch == ',':
+                continue
+            elif ch != ')':
+                stack.append(ch)
+            else:
+                seen = set()
+                while stack[-1] != '(':
+                    seen.add(stack.pop())
+                stack.pop()  # pop '('
+                op = stack.pop()
+                if op == '!':
+                    stack.append('f' if 't' in seen else 't')
+                elif op == '&':
+                    stack.append('f' if 'f' in seen else 't')
+                elif op == '|':
+                    stack.append('t' if 't' in seen else 'f')
+        return stack[0] == 't'`
+},
+{
+  id: 'ms-62',
+  title: 'Basic Calculator',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/basic-calculator/',
+  description: 'Given a string s representing a valid expression with +, -, (, ), and spaces, implement a basic calculator to evaluate it and return its result.',
+  language: 'python',
+  solution: `class Solution:
+    def calculate(self, s: str) -> int:
+        stack = []
+        result = 0
+        num = 0
+        sign = 1
+        for ch in s:
+            if ch.isdigit():
+                num = num * 10 + int(ch)
+            elif ch == '+':
+                result += sign * num
+                num = 0
+                sign = 1
+            elif ch == '-':
+                result += sign * num
+                num = 0
+                sign = -1
+            elif ch == '(':
+                stack.append(result)
+                stack.append(sign)
+                result = 0
+                sign = 1
+            elif ch == ')':
+                result += sign * num
+                num = 0
+                result *= stack.pop()
+                result += stack.pop()
+        return result + sign * num`
+},
+{
+  id: 'ms-63',
+  title: 'Basic Calculator II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/basic-calculator-ii/',
+  description: 'Given a string s representing an expression with +, -, *, / and spaces (no parentheses), evaluate and return the result as an integer.',
+  language: 'python',
+  solution: `class Solution:
+    def calculate(self, s: str) -> int:
+        stack = []
+        num = 0
+        sign = '+'
+        for i, ch in enumerate(s):
+            if ch.isdigit():
+                num = num * 10 + int(ch)
+            if (not ch.isdigit() and ch != ' ') or i == len(s) - 1:
+                if sign == '+':
+                    stack.append(num)
+                elif sign == '-':
+                    stack.append(-num)
+                elif sign == '*':
+                    stack.append(stack.pop() * num)
+                elif sign == '/':
+                    stack.append(int(stack.pop() / num))
+                sign = ch
+                num = 0
+        return sum(stack)`
+},
+{
+  id: 'ms-64',
+  title: 'Basic Calculator III',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/basic-calculator-iii/',
+  description: 'Implement a basic calculator to evaluate a string expression containing +, -, *, / and parentheses. Return the result as an integer.',
+  language: 'python',
+  solution: `class Solution:
+    def calculate(self, s: str) -> int:
+        def helper(it):
+            stack = []
+            num = 0
+            sign = '+'
+            while it < len(s):
+                ch = s[it]
+                if ch.isdigit():
+                    num = num * 10 + int(ch)
+                if ch == '(':
+                    num, it = helper(it + 1)
+                if (not ch.isdigit() and ch != ' ') or it == len(s) - 1:
+                    if sign == '+': stack.append(num)
+                    elif sign == '-': stack.append(-num)
+                    elif sign == '*': stack.append(stack.pop() * num)
+                    elif sign == '/': stack.append(int(stack.pop() / num))
+                    sign = ch
+                    num = 0
+                if ch == ')':
+                    return sum(stack), it
+                it += 1
+            return sum(stack), it
+        return helper(0)[0]`
+},
+{
+  id: 'ms-65',
+  title: 'Minimum Cost to Merge Stones',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-merge-stones/',
+  description: 'There are n piles of stones. Move exactly k consecutive piles into one pile, costing the sum of those piles. Return the minimum cost to merge all into one pile, or -1 if impossible.',
+  language: 'python',
+  solution: `class Solution:
+    def mergeStones(self, stones: List[int], k: int) -> int:
+        n = len(stones)
+        if (n - 1) % (k - 1) != 0:
+            return -1
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + stones[i]
+        from functools import lru_cache
+        @lru_cache(None)
+        def dp(i, j):
+            if j - i + 1 < k:
+                return 0
+            res = min(dp(i, m) + dp(m + 1, j) for m in range(i, j, k - 1))
+            if (j - i) % (k - 1) == 0:
+                res += prefix[j + 1] - prefix[i]
+            return res
+        return dp(0, n - 1)`
+},
+{
+  id: 'ms-66',
+  title: 'Robot Collisions',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/robot-collisions/',
+  description: 'Given robots on a number line with positions, healths and directions (L/R), robots moving toward each other collide and the weaker one is removed. Return healths of surviving robots in original order.',
+  language: 'python',
+  solution: `class Solution:
+    def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:
+        n = len(positions)
+        robots = sorted(range(n), key=lambda i: positions[i])
+        stack = []
+        for i in robots:
+            if directions[i] == 'R':
+                stack.append(i)
+            else:
+                while stack and directions[stack[-1]] == 'R' and healths[i] > 0:
+                    top = stack[-1]
+                    if healths[top] > healths[i]:
+                        healths[top] -= 1
+                        healths[i] = 0
+                    elif healths[top] < healths[i]:
+                        healths[i] -= 1
+                        healths[stack.pop()] = 0
+                    else:
+                        healths[stack.pop()] = 0
+                        healths[i] = 0
+                if healths[i] > 0 and (not stack or directions[stack[-1]] == 'L'):
+                    stack.append(i)
+        return [healths[i] for i in range(n) if healths[i] > 0]`
+},
+{
+  id: 'ms-67',
+  title: 'Minimum Elements to Remove for Valid Array',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique/',
+  description: 'A string is good if no two different characters have the same frequency. Given string s, return the minimum number of character deletions to make it good.',
+  language: 'python',
+  solution: `class Solution:
+    def minDeletions(self, s: str) -> int:
+        from collections import Counter
+        freq = sorted(Counter(s).values(), reverse=True)
+        used = set()
+        deletions = 0
+        for f in freq:
+            while f > 0 and f in used:
+                f -= 1
+                deletions += 1
+            if f > 0:
+                used.add(f)
+        return deletions`
+},
+{
+  id: 'ms-68',
+  title: 'Minimum Insertions to Balance Parentheses',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/',
+  description: 'Given a string s of ( and ), every ( needs )) to balance. Return the minimum number of insertions to balance the string.',
+  language: 'python',
+  solution: `class Solution:
+    def minInsertions(self, s: str) -> int:
+        result = 0
+        open_count = 0
+        i = 0
+        while i < len(s):
+            ch = s[i]
+            if ch == '(':
+                open_count += 1
+            else:
+                if i + 1 < len(s) and s[i + 1] == ')':
+                    i += 1
+                else:
+                    result += 1
+                if open_count > 0:
+                    open_count -= 1
+                else:
+                    result += 1
+            i += 1
+        return result + open_count * 2`
+},
+{
+  id: 'ms-69',
+  title: 'Number of Atoms',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-atoms/',
+  description: 'Given a chemical formula string, return the count of each atom in sorted order. Handle nested parentheses with multipliers.',
+  language: 'python',
+  solution: `class Solution:
+    def countOfAtoms(self, formula: str) -> str:
+        from collections import defaultdict
+        stack = [defaultdict(int)]
+        i = 0
+        n = len(formula)
+        while i < n:
+            if formula[i] == '(':
+                stack.append(defaultdict(int))
+                i += 1
+            elif formula[i] == ')':
+                i += 1
+                start = i
+                while i < n and formula[i].isdigit():
+                    i += 1
+                mult = int(formula[start:i]) if start < i else 1
+                top = stack.pop()
+                for elem, cnt in top.items():
+                    stack[-1][elem] += cnt * mult
+            elif formula[i].isupper():
+                start = i
+                i += 1
+                while i < n and formula[i].islower():
+                    i += 1
+                elem = formula[start:i]
+                start = i
+                while i < n and formula[i].isdigit():
+                    i += 1
+                cnt = int(formula[start:i]) if start < i else 1
+                stack[-1][elem] += cnt
+        total = stack[0]
+        return ''.join(f"{elem}{cnt if cnt > 1 else ''}" for elem, cnt in sorted(total.items()))`
+},
+{
+  id: 'ms-70',
+  title: 'Largest Rectangle in Histogram — One Pass',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
+  description: 'Find the largest rectangle in a histogram in a single pass using a monotonic increasing stack. When a shorter bar is found, pop and calculate area using the popped bar as the shortest.',
+  language: 'python',
+  solution: `class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        stack = []
+        max_area = 0
+        for i, h in enumerate(heights):
+            start = i
+            while stack and stack[-1][1] > h:
+                idx, height = stack.pop()
+                max_area = max(max_area, height * (i - idx))
+                start = idx
+            stack.append((start, h))
+        for idx, height in stack:
+            max_area = max(max_area, height * (len(heights) - idx))
+        return max_area`
+},
     ]
   }
 ];
