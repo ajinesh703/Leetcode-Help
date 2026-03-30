@@ -3611,6 +3611,250 @@ export const patterns: Pattern[] = [
                 result.append(nums[dq[0]])
         return result`
 },
+{
+  id: 'ms-51',
+  title: 'Largest Rectangle in Histogram — Divide and Conquer',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
+  description: 'Find the largest rectangle in a histogram using a monotonic stack to track indices of bars in increasing order of height.',
+  language: 'python',
+  solution: `class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        stack = []
+        max_area = 0
+        heights.append(0)
+        for i in range(len(heights)):
+            start = i
+            while stack and stack[-1][1] >= heights[i]:
+                idx, h = stack.pop()
+                max_area = max(max_area, h * (i - idx))
+                start = idx
+            stack.append((start, heights[i]))
+        return max_area`
+},
+{
+  id: 'ms-52',
+  title: 'Maximum Width of Binary Tree',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-width-of-binary-tree/',
+  description: 'Given the root of a binary tree, return the maximum width of the tree. Width of a level is the length between the leftmost and rightmost non-null nodes including nulls in between.',
+  language: 'python',
+  solution: `class Solution:
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        from collections import deque
+        if not root:
+            return 0
+        dq = deque([(root, 0)])
+        max_width = 0
+        while dq:
+            level_len = len(dq)
+            _, first_pos = dq[0]
+            for _ in range(level_len):
+                node, pos = dq.popleft()
+                if node.left:
+                    dq.append((node.left, 2 * pos))
+                if node.right:
+                    dq.append((node.right, 2 * pos + 1))
+            max_width = max(max_width, pos - first_pos + 1)
+        return max_width`
+},
+{
+  id: 'ms-53',
+  title: 'Next Greater Node in Linked List',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/next-greater-node-in-linked-list/',
+  description: 'Given the head of a linked list, return an array of the next greater node values for each node. If no greater node exists, output 0.',
+  language: 'python',
+  solution: `class Solution:
+    def nextLargerNodes(self, head: Optional[ListNode]) -> List[int]:
+        nums = []
+        while head:
+            nums.append(head.val)
+            head = head.next
+        result = [0] * len(nums)
+        stack = []
+        for i, val in enumerate(nums):
+            while stack and nums[stack[-1]] < val:
+                result[stack.pop()] = val
+            stack.append(i)
+        return result`
+},
+{
+  id: 'ms-54',
+  title: 'Find the Most Competitive Subsequence',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-the-most-competitive-subsequence/',
+  description: 'Given an integer array nums and a positive integer k, return the most competitive subsequence of nums of size k. A subsequence is more competitive if it is lexicographically smaller.',
+  language: 'python',
+  solution: `class Solution:
+    def mostCompetitive(self, nums: List[int], k: int) -> List[int]:
+        stack = []
+        n = len(nums)
+        for i, num in enumerate(nums):
+            while stack and stack[-1] > num and len(stack) + (n - i) > k:
+                stack.pop()
+            if len(stack) < k:
+                stack.append(num)
+        return stack`
+},
+{
+  id: 'ms-55',
+  title: 'Minimum Number of Swaps to Make String Balanced',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/',
+  description: 'Given a string s of brackets that is balanced except for order, return the minimum number of swaps to make it balanced.',
+  language: 'python',
+  solution: `class Solution:
+    def minSwaps(self, s: str) -> int:
+        stack = 0
+        for ch in s:
+            if ch == '[':
+                stack += 1
+            elif stack > 0:
+                stack -= 1
+        return (stack + 1) // 2`
+},
+{
+  id: 'ms-56',
+  title: 'Reverse Substrings Between Each Pair of Parentheses',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/',
+  description: 'Given a string s that consists of letters and parentheses, reverse the substrings in each pair of matching parentheses from innermost to outermost. Return the result with parentheses removed.',
+  language: 'python',
+  solution: `class Solution:
+    def reverseParentheses(self, s: str) -> str:
+        stack = []
+        curr = []
+        for ch in s:
+            if ch == '(':
+                stack.append(curr)
+                curr = []
+            elif ch == ')':
+                curr = stack.pop() + curr[::-1]
+            else:
+                curr.append(ch)
+        return ''.join(curr)`
+},
+{
+  id: 'ms-57',
+  title: 'Number of People That Can Be Seen Seeing Each Other',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-visible-people-in-a-queue/',
+  description: 'Each person stands in a row and can see the next person to the right if no one taller stands between them. Use a monotonic decreasing stack to count visible pairs.',
+  language: 'python',
+  solution: `class Solution:
+    def canSeePersonsCount(self, heights: List[int]) -> List[int]:
+        n = len(heights)
+        ans = [0] * n
+        stack = []
+        for i in range(n - 1, -1, -1):
+            while stack and heights[i] > stack[-1]:
+                stack.pop()
+                ans[i] += 1
+            if stack:
+                ans[i] += 1
+            stack.append(heights[i])
+        return ans`
+},
+{
+  id: 'ms-58',
+  title: 'Minimum Difficulty of a Job Schedule',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/',
+  description: 'You need to schedule jobs over d days. Each day you must do at least one job in order. The difficulty of a day is the max job difficulty that day. Minimize total difficulty across all days.',
+  language: 'python',
+  solution: `class Solution:
+    def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
+        n = len(jobDifficulty)
+        if n < d:
+            return -1
+        dp = [[float('inf')] * n for _ in range(d)]
+        dp[0][0] = jobDifficulty[0]
+        for i in range(1, n):
+            dp[0][i] = max(dp[0][i-1], jobDifficulty[i])
+        for day in range(1, d):
+            for i in range(day, n):
+                stack = []
+                for j in range(day - 1, i + 1):
+                    cost = dp[day-1][j-1] if j > 0 else 0
+                    curr = cost + jobDifficulty[j]
+                    while stack and jobDifficulty[stack[-1]] <= jobDifficulty[j]:
+                        top = stack.pop()
+                        curr = min(curr, dp[day][top] - jobDifficulty[top] + jobDifficulty[j])
+                    if stack:
+                        curr = min(curr, dp[day][stack[-1]])
+                    dp[day][j] = curr
+                    stack.append(j)
+        return dp[d-1][n-1]`
+},
+{
+  id: 'ms-59',
+  title: 'Dinner Plate Stacks',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/dinner-plate-stacks/',
+  description: 'Implement a DinnerPlates class with a capacity limit per stack. push() adds to the leftmost non-full stack, pop() removes from the rightmost non-empty stack, popAtStack() removes from a specific stack.',
+  language: 'python',
+  solution: `class DinnerPlates:
+    def __init__(self, capacity: int):
+        self.cap = capacity
+        self.stacks = []
+        self.available = []  # min-heap of available stack indices
+
+    def push(self, val: int) -> None:
+        import heapq
+        while self.available and self.available[0] < len(self.stacks) and len(self.stacks[self.available[0]]) >= self.cap:
+            heapq.heappop(self.available)
+        if not self.available or (self.available and self.available[0] >= len(self.stacks)):
+            self.stacks.append([])
+            heapq.heappush(self.available, len(self.stacks) - 1)
+        idx = self.available[0]
+        self.stacks[idx].append(val)
+        if len(self.stacks[idx]) == self.cap:
+            heapq.heappop(self.available)
+
+    def pop(self) -> int:
+        while self.stacks and not self.stacks[-1]:
+            self.stacks.pop()
+        if not self.stacks:
+            return -1
+        return self.popAtStack(len(self.stacks) - 1)
+
+    def popAtStack(self, index: int) -> int:
+        import heapq
+        if index >= len(self.stacks) or not self.stacks[index]:
+            return -1
+        val = self.stacks[index].pop()
+        heapq.heappush(self.available, index)
+        return val`
+},
+{
+  id: 'ms-60',
+  title: 'Maximum Frequency Stack',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-frequency-stack/',
+  description: 'Design a stack-like data structure that pushes and pops elements. Pop always removes the most frequent element. If tied, remove the element closest to the top of the stack.',
+  language: 'python',
+  solution: `class FreqStack:
+    def __init__(self):
+        self.freq = {}
+        self.group = {}
+        self.max_freq = 0
+
+    def push(self, val: int) -> None:
+        f = self.freq.get(val, 0) + 1
+        self.freq[val] = f
+        self.max_freq = max(self.max_freq, f)
+        if f not in self.group:
+            self.group[f] = []
+        self.group[f].append(val)
+
+    def pop(self) -> int:
+        val = self.group[self.max_freq].pop()
+        self.freq[val] -= 1
+        if not self.group[self.max_freq]:
+            self.max_freq -= 1
+        return val`
+},
     ]
   }
 ];
