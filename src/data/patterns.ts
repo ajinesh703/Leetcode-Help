@@ -2725,6 +2725,148 @@ export const patterns: Pattern[] = [
         self.stack.append((price, span))
         return span`
 },
+{
+  id: 'ms-11',
+  title: 'Car Fleet',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/car-fleet/',
+  description: 'N cars are going to the same destination. Given arrays position and speed, return the number of car fleets that will arrive at the destination.',
+  language: 'python',
+  solution: `class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        pairs = sorted(zip(position, speed), reverse=True)
+        stack = []
+        for pos, spd in pairs:
+            time = (target - pos) / spd
+            if not stack or time > stack[-1]:
+                stack.append(time)
+        return len(stack)`
+},
+{
+  id: 'ms-12',
+  title: 'Asteroid Collision',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/asteroid-collision/',
+  description: 'Given an array asteroids of integers representing asteroids in a row, find out the state after all collisions. Positive = moving right, Negative = moving left. Same direction never collide.',
+  language: 'python',
+  solution: `class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        stack = []
+        for a in asteroids:
+            alive = True
+            while alive and a < 0 and stack and stack[-1] > 0:
+                if stack[-1] < -a:
+                    stack.pop()
+                elif stack[-1] == -a:
+                    stack.pop()
+                    alive = False
+                else:
+                    alive = False
+            if alive:
+                stack.append(a)
+        return stack`
+},
+{
+  id: 'ms-13',
+  title: 'Maximum Width Ramp',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-width-ramp/',
+  description: 'Given an integer array nums, a ramp is a pair (i, j) where i < j and nums[i] <= nums[j]. Return the maximum width j - i of such a ramp.',
+  language: 'python',
+  solution: `class Solution:
+    def maxWidthRamp(self, nums: List[int]) -> int:
+        n = len(nums)
+        stack = []
+        for i in range(n):
+            if not stack or nums[stack[-1]] > nums[i]:
+                stack.append(i)
+        result = 0
+        for j in range(n - 1, -1, -1):
+            while stack and nums[stack[-1]] <= nums[j]:
+                result = max(result, j - stack.pop())
+        return result`
+},
+{
+  id: 'ms-14',
+  title: 'Minimum Number of Visible People to Stand in Queue',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-visible-people-in-a-queue/',
+  description: 'There are n people standing in a queue. Return an array answer where answer[i] is the number of people the ith person can see to their right in the queue.',
+  language: 'python',
+  solution: `class Solution:
+    def canSeePersonsCount(self, heights: List[int]) -> List[int]:
+        n = len(heights)
+        result = [0] * n
+        stack = []
+        for i in range(n - 1, -1, -1):
+            count = 0
+            while stack and stack[-1] < heights[i]:
+                stack.pop()
+                count += 1
+            if stack:
+                count += 1
+            result[i] = count
+            stack.append(heights[i])
+        return result`
+},
+{
+  id: 'ms-15',
+  title: 'Maximum Score of a Good Subarray',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-score-of-a-good-subarray/',
+  description: 'Given an array nums and index k, find the maximum score of a good subarray where score = min(nums[i],...,nums[j]) * (j - i + 1) and i <= k <= j.',
+  language: 'python',
+  solution: `class Solution:
+    def maximumScore(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        stack = []
+        result = 0
+        for i in range(n + 1):
+            while stack and (i == n or nums[stack[-1]] >= nums[i]):
+                mid = stack.pop()
+                left = stack[-1] if stack else -1
+                right = i
+                if left < k < right:
+                    result = max(result, nums[mid] * (right - left - 1))
+            stack.append(i)
+        return result`
+},
+{
+  id: 'ms-16',
+  title: 'Maximal Rectangle',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/maximal-rectangle/',
+  description: 'Given a rows x cols binary matrix filled with 0s and 1s, find the largest rectangle containing only 1s and return its area.',
+  language: 'python',
+  solution: `class Solution:
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        if not matrix:
+            return 0
+        n = len(matrix[0])
+        heights = [0] * n
+        max_area = 0
+
+        def largestInHistogram(heights):
+            stack = [-1]
+            max_a = 0
+            for i in range(len(heights)):
+                while stack[-1] != -1 and heights[stack[-1]] >= heights[i]:
+                    h = heights[stack.pop()]
+                    w = i - stack[-1] - 1
+                    max_a = max(max_a, h * w)
+                stack.append(i)
+            while stack[-1] != -1:
+                h = heights[stack.pop()]
+                w = len(heights) - stack[-1] - 1
+                max_a = max(max_a, h * w)
+            return max_a
+
+        for row in matrix:
+            for j in range(n):
+                heights[j] = heights[j] + 1 if row[j] == '1' else 0
+            max_area = max(max_area, largestInHistogram(heights))
+        return max_area`
+},
     ]
   }
 ];
