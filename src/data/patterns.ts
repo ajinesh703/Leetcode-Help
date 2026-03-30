@@ -353,7 +353,7 @@ export const patterns: Pattern[] = [
         for price in prices:
             min_price = min(min_price, price)
             max_profit = max(max_profit, price - min_price)
-        return max_profit`
+        return max_profit`,
       },
       {
         id: 'sw-2',
@@ -373,7 +373,7 @@ export const patterns: Pattern[] = [
                 left += 1
             char_set.add(s[right])
             max_len = max(max_len, right - left + 1)
-        return max_len`
+        return max_len`,
       },
       {
         id: 'sw-3',
@@ -401,7 +401,7 @@ export const patterns: Pattern[] = [
                 need[s[left]] += 1
                 missing += 1
                 left += 1
-        return s[start:end]`
+        return s[start:end]`,
       },
       {
         id: 'sw-4',
@@ -421,9 +421,210 @@ export const patterns: Pattern[] = [
                 count[s[left]] -= 1
                 left += 1
             result = max(result, right - left + 1)
-        return result`
-      }
-    ]
+        return result`,
+      },
+      {
+        id: 'sw-5',
+        title: 'Maximum Average Subarray I',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-average-subarray-i/',
+        description: 'You are given an integer array nums consisting of n elements, and an integer k. Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value.',
+        language: 'python',
+        solution: `class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        window_sum = sum(nums[:k])
+        max_sum = window_sum
+        for i in range(k, len(nums)):
+            window_sum += nums[i] - nums[i - k]
+            max_sum = max(max_sum, window_sum)
+        return max_sum / k`,
+      },
+      {
+        id: 'sw-6',
+        title: 'Permutation in String',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/permutation-in-string/',
+        description: "Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise. In other words, return true if one of s1's permutations is a substring of s2.",
+        language: 'python',
+        solution: `class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        from collections import Counter
+        if len(s1) > len(s2):
+            return False
+        need = Counter(s1)
+        window = Counter(s2[:len(s1)])
+        if window == need:
+            return True
+        for i in range(len(s1), len(s2)):
+            window[s2[i]] += 1
+            left_char = s2[i - len(s1)]
+            window[left_char] -= 1
+            if window[left_char] == 0:
+                del window[left_char]
+            if window == need:
+                return True
+        return False`,
+      },
+      {
+        id: 'sw-7',
+        title: 'Sliding Window Maximum',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/sliding-window-maximum/',
+        description: 'You are given an array of integers nums, there is a sliding window of size k which is moving from the very left of the array to the very right. Each time the sliding window moves right by one position, return the max sliding window.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        from collections import deque
+        dq = deque()
+        result = []
+        for i, num in enumerate(nums):
+            while dq and dq[0] < i - k + 1:
+                dq.popleft()
+            while dq and nums[dq[-1]] < num:
+                dq.pop()
+            dq.append(i)
+            if i >= k - 1:
+                result.append(nums[dq[0]])
+        return result`,
+      },
+      {
+        id: 'sw-8',
+        title: 'Fruits Into Baskets',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/fruit-into-baskets/',
+        description: 'You are visiting a farm that has a single row of fruit trees. You only have two baskets, and each basket can only hold a single type of fruit. Return the maximum number of fruits you can pick.',
+        language: 'python',
+        solution: `class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        from collections import defaultdict
+        basket = defaultdict(int)
+        left = result = 0
+        for right in range(len(fruits)):
+            basket[fruits[right]] += 1
+            while len(basket) > 2:
+                basket[fruits[left]] -= 1
+                if basket[fruits[left]] == 0:
+                    del basket[fruits[left]]
+                left += 1
+            result = max(result, right - left + 1)
+        return result`,
+      },
+      {
+        id: 'sw-9',
+        title: 'Count Number of Nice Subarrays',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-number-of-nice-subarrays/',
+        description: 'Given an array of integers nums and an integer k, a continuous subarray is called nice if there are exactly k odd numbers in it. Return the number of nice sub-arrays.',
+        language: 'python',
+        solution: `class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        def atMost(goal: int) -> int:
+            count = left = result = 0
+            for right in range(len(nums)):
+                count += nums[right] % 2
+                while count > goal:
+                    count -= nums[left] % 2
+                    left += 1
+                result += right - left + 1
+            return result
+        return atMost(k) - atMost(k - 1)`,
+      },
+      {
+        id: 'sw-10',
+        title: 'Subarray Product Less Than K',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/subarray-product-less-than-k/',
+        description: 'Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k.',
+        language: 'python',
+        solution: `class Solution:
+    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        if k <= 1:
+            return 0
+        product = 1
+        left = result = 0
+        for right in range(len(nums)):
+            product *= nums[right]
+            while product >= k:
+                product //= nums[left]
+                left += 1
+            result += right - left + 1
+        return result`,
+      },
+      {
+        id: 'sw-11',
+        title: 'Longest Subarray of 1s After Deleting One Element',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/',
+        description: 'Given a binary array nums, you should delete one element from it. Return the size of the longest non-empty subarray containing only 1s in the resulting array. Return 0 if there is no such subarray.',
+        language: 'python',
+        solution: `class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        left = zeros = result = 0
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1
+            while zeros > 1:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+            result = max(result, right - left)
+        return result`,
+      },
+      {
+        id: 'sw-12',
+        title: 'Maximum Number of Vowels in a Substring of Given Length',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
+        description: 'Given a string s and an integer k, return the maximum number of vowel letters in any substring of s with length k.',
+        language: 'python',
+        solution: `class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        vowels = set('aeiou')
+        count = sum(1 for c in s[:k] if c in vowels)
+        max_count = count
+        for i in range(k, len(s)):
+            count += (s[i] in vowels) - (s[i - k] in vowels)
+            max_count = max(max_count, count)
+        return max_count`,
+      },
+      {
+        id: 'sw-13',
+        title: 'Grumpy Bookstore Owner',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/grumpy-bookstore-owner/',
+        description: 'A bookstore owner has customers[i] customers on the i-th minute. The owner knows a secret technique to keep himself not grumpy for minutes consecutive minutes. Return the maximum number of customers that can be satisfied throughout the day.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:
+        base = sum(c for c, g in zip(customers, grumpy) if g == 0)
+        extra = sum(c * g for c, g in zip(customers[:minutes], grumpy[:minutes]))
+        max_extra = extra
+        for i in range(minutes, len(customers)):
+            extra += customers[i] * grumpy[i]
+            extra -= customers[i - minutes] * grumpy[i - minutes]
+            max_extra = max(max_extra, extra)
+        return base + max_extra`,
+      },
+      {
+        id: 'sw-14',
+        title: 'Minimum Size Subarray Sum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-size-subarray-sum/',
+        description: 'Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.',
+        language: 'python',
+        solution: `class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        left = current_sum = 0
+        min_len = float('inf')
+        for right in range(len(nums)):
+            current_sum += nums[right]
+            while current_sum >= target:
+                min_len = min(min_len, right - left + 1)
+                current_sum -= nums[left]
+                left += 1
+        return 0 if min_len == float('inf') else min_len`,
+      },
+    ],
   },
   {
     id: 'binary-search',
@@ -561,7 +762,7 @@ export const patterns: Pattern[] = [
         title: 'First Bad Version',
         difficulty: 'Easy',
         leetcodeUrl: 'https://leetcode.com/problems/first-bad-version/',
-        description: 'You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Since each version is developed based on the previous version, all the versions after a bad version are also bad. Find the first bad version.',
+        description: 'You are a product manager and currently leading a team to develop a new product. Unfortunately, the latest version of your product fails the quality check. Find the first bad version.',
         language: 'python',
         solution: `class Solution:
     def firstBadVersion(self, n: int) -> int:
@@ -599,7 +800,7 @@ export const patterns: Pattern[] = [
         title: 'Find First and Last Position of Element in Sorted Array',
         difficulty: 'Medium',
         leetcodeUrl: 'https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/',
-        description: 'Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value. If target is not found in the array, return [-1, -1]. You must write an algorithm with O(log n) runtime complexity.',
+        description: 'Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value. If target is not found in the array, return [-1, -1].',
         language: 'python',
         solution: `class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
@@ -656,7 +857,7 @@ export const patterns: Pattern[] = [
         title: 'Capacity To Ship Packages Within D Days',
         difficulty: 'Medium',
         leetcodeUrl: 'https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/',
-        description: 'A conveyor belt has packages that must be shipped from one port to another within days days. The ith package on the conveyor belt has a weight of weights[i]. Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within days days.',
+        description: 'A conveyor belt has packages that must be shipped from one port to another within days days. Return the least weight capacity of the ship that will result in all the packages being shipped within days days.',
         language: 'python',
         solution: `class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
@@ -680,7 +881,7 @@ export const patterns: Pattern[] = [
         title: 'Time Based Key-Value Store',
         difficulty: 'Medium',
         leetcodeUrl: 'https://leetcode.com/problems/time-based-key-value-store/',
-        description: 'Design a time-based key-value data structure that can store multiple values for the same key at different time stamps and retrieve the key\'s value at a certain timestamp.',
+        description: "Design a time-based key-value data structure that can store multiple values for the same key at different time stamps and retrieve the key's value at a certain timestamp.",
         language: 'python',
         solution: `class TimeMap:
     def __init__(self):
@@ -711,13 +912,12 @@ export const patterns: Pattern[] = [
         title: 'Find in Mountain Array',
         difficulty: 'Hard',
         leetcodeUrl: 'https://leetcode.com/problems/find-in-mountain-array/',
-        description: 'You may recall that an array arr is a mountain array if it increases to a peak element and then decreases. Given a mountain array mountainArr and an integer target, return the minimum index such that mountainArr.get(index) == target. If such an index does not exist, return -1.',
+        description: 'Given a mountain array mountainArr and an integer target, return the minimum index such that mountainArr.get(index) == target. If such an index does not exist, return -1.',
         language: 'python',
         solution: `class Solution:
     def findInMountainArray(self, target: int, mountain_arr: 'MountainArray') -> int:
         n = mountain_arr.length()
 
-        # Step 1: find peak index
         left, right = 0, n - 1
         while left < right:
             mid = (left + right) // 2
@@ -727,7 +927,6 @@ export const patterns: Pattern[] = [
                 right = mid
         peak = left
 
-        # Step 2: binary search ascending side
         left, right = 0, peak
         while left <= right:
             mid = (left + right) // 2
@@ -739,7 +938,6 @@ export const patterns: Pattern[] = [
             else:
                 right = mid - 1
 
-        # Step 3: binary search descending side
         left, right = peak + 1, n - 1
         while left <= right:
             mid = (left + right) // 2
@@ -782,6 +980,122 @@ export const patterns: Pattern[] = [
                 right = i - 1
             else:
                 left = i + 1`
+      },
+      {
+        id: 'bs-15',
+        title: 'Minimum Speed to Arrive on Time',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-speed-to-arrive-on-time/',
+        description: 'You are given a floating-point number hour, representing the amount of time you have to reach the office. To commute between the two cities, you must take n trains in sequential order. Return the minimum positive integer speed (in km/h) that all the trains must travel at for you to reach the office on time, or -1 if it is impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minSpeedOnTime(self, dist: List[int], hour: float) -> int:
+        import math
+        if hour <= len(dist) - 1:
+            return -1
+        left, right = 1, 10**7
+        while left < right:
+            mid = (left + right) // 2
+            time = sum(math.ceil(d / mid) for d in dist[:-1]) + dist[-1] / mid
+            if time <= hour:
+                right = mid
+            else:
+                left = mid + 1
+        return left`
+      },
+      {
+        id: 'bs-16',
+        title: 'Divide Chocolate',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/divide-chocolate/',
+        description: 'You have a chocolate bar consisting of chunks, each with sweetness[i] sweetness. You want to share it with k friends, so you need to cut k times. Return the maximum total sweetness of the piece with the minimum total sweetness.',
+        language: 'python',
+        solution: `class Solution:
+    def maximizeSweetness(self, sweetness: List[int], k: int) -> int:
+        left, right = min(sweetness), sum(sweetness) // (k + 1)
+        while left < right:
+            mid = (left + right + 1) // 2
+            cuts = total = 0
+            for s in sweetness:
+                total += s
+                if total >= mid:
+                    cuts += 1
+                    total = 0
+            if cuts >= k + 1:
+                left = mid
+            else:
+                right = mid - 1
+        return left`
+      },
+      {
+        id: 'bs-17',
+        title: 'Find the Smallest Divisor Given a Threshold',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/',
+        description: 'Given an array of integers nums and an integer threshold, find the smallest divisor such that the result of dividing all elements by it and summing them up is less than or equal to threshold.',
+        language: 'python',
+        solution: `class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        import math
+        left, right = 1, max(nums)
+        while left < right:
+            mid = (left + right) // 2
+            total = sum(math.ceil(n / mid) for n in nums)
+            if total <= threshold:
+                right = mid
+            else:
+                left = mid + 1
+        return left`
+      },
+      {
+        id: 'bs-18',
+        title: 'Maximum Value at a Given Index in a Bounded Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-value-at-a-given-index-in-a-bounded-array/',
+        description: 'Given n, index, and maxSum, construct an array such that array[index] is maximized, all values are positive integers, adjacent elements differ by at most 1, and the sum does not exceed maxSum.',
+        language: 'python',
+        solution: `class Solution:
+    def maxValue(self, n: int, index: int, maxSum: int) -> int:
+        def calc_sum(val, count):
+            if val >= count:
+                return (val + val - count + 1) * count // 2
+            full = val * (val + 1) // 2
+            remainder = count - val
+            return full + remainder
+
+        left, right = 1, maxSum
+        while left < right:
+            mid = (left + right + 1) // 2
+            total = calc_sum(mid, index + 1) + calc_sum(mid - 1, n - index - 1)
+            if total <= maxSum:
+                left = mid
+            else:
+                right = mid - 1
+        return left`
+      },
+      {
+        id: 'bs-19',
+        title: 'Split Array Largest Sum',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/split-array-largest-sum/',
+        description: 'Given an integer array nums and an integer k, split nums into k non-empty subarrays such that the largest sum of any subarray is minimized. Return the minimized largest sum of the split.',
+        language: 'python',
+        solution: `class Solution:
+    def splitArray(self, nums: List[int], k: int) -> int:
+        left, right = max(nums), sum(nums)
+        while left < right:
+            mid = (left + right) // 2
+            splits = count = 0
+            for num in nums:
+                count += num
+                if count > mid:
+                    splits += 1
+                    count = num
+            if splits + 1 <= k:
+                right = mid
+            else:
+                left = mid + 1
+        return left`
       },
     ]
   },
@@ -866,7 +1180,518 @@ export const patterns: Pattern[] = [
             slow = get_next(slow)
             fast = get_next(get_next(fast))
         return fast == 1`
-      }
+      },
+      {
+        id: 'fsp-5',
+        title: 'Find the Duplicate Number',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-duplicate-number/',
+        description: 'Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n], there is only one repeated number. Find that number without modifying the array.',
+        language: 'python',
+        solution: `class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        slow, fast = nums[0], nums[nums[0]]
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+        slow = 0
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+        return slow`
+      },
+      {
+        id: 'fsp-6',
+        title: 'Palindrome Linked List',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/palindrome-linked-list/',
+        description: 'Given the head of a singly linked list, return true if it is a palindrome or false otherwise.',
+        language: 'python',
+        solution: `class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        prev = None
+        while slow:
+            slow.next, prev, slow = prev, slow, slow.next
+
+        left, right = head, prev
+        while right:
+            if left.val != right.val:
+                return False
+            left, right = left.next, right.next
+        return True`
+      },
+      {
+        id: 'fsp-7',
+        title: 'Reorder List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/reorder-list/',
+        description: 'Given the head of a singly linked list L0 → L1 → … → Ln, reorder it to: L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → …',
+        language: 'python',
+        solution: `class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        second = slow.next
+        slow.next = None
+        prev = None
+        while second:
+            second.next, prev, second = prev, second, second.next
+
+        first = head
+        while prev:
+            first.next, prev.next, first, prev = prev, first.next, first.next, prev.next`
+      },
+      {
+        id: 'fsp-8',
+        title: 'Sort List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/sort-list/',
+        description: 'Given the head of a linked list, return the list after sorting it in ascending order in O(n log n) time and O(1) space.',
+        language: 'python',
+        solution: `class Solution:
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return head
+
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        mid = slow.next
+        slow.next = None
+
+        left = self.sortList(head)
+        right = self.sortList(mid)
+
+        dummy = ListNode(0)
+        cur = dummy
+        while left and right:
+            if left.val <= right.val:
+                cur.next, left = left, left.next
+            else:
+                cur.next, right = right, right.next
+            cur = cur.next
+        cur.next = left or right
+        return dummy.next`
+      },
+      {
+        id: 'fsp-9',
+        title: 'Remove Nth Node From End of List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/remove-nth-node-from-end-of-list/',
+        description: 'Given the head of a linked list, remove the nth node from the end of the list and return its head.',
+        language: 'python',
+        solution: `class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        slow = fast = dummy
+
+        for _ in range(n + 1):
+            fast = fast.next
+
+        while fast:
+            slow = slow.next
+            fast = fast.next
+
+        slow.next = slow.next.next
+        return dummy.next`
+      },
+      {
+        id: 'fsp-10',
+        title: 'Circular Array Loop',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/circular-array-loop/',
+        description: 'You are given a circular array nums of positive and negative integers. Return true if there is a cycle with a length greater than 1 following the movement rules.',
+        language: 'python',
+        solution: `class Solution:
+    def circularArrayLoop(self, nums: List[int]) -> bool:
+        n = len(nums)
+
+        def next_idx(i):
+            return (i + nums[i]) % n
+
+        for i in range(n):
+            slow, fast = i, i
+            while nums[slow] * nums[next_idx(fast)] > 0 and \
+                  nums[slow] * nums[next_idx(next_idx(fast))] > 0:
+                slow = next_idx(slow)
+                fast = next_idx(next_idx(fast))
+                if slow == fast:
+                    if slow == next_idx(slow):
+                        break
+                    return True
+        return False`
+      },
+      {
+        id: 'fsp-11',
+        title: 'Intersection of Two Linked Lists',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/intersection-of-two-linked-lists/',
+        description: 'Given the heads of two singly linked lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.',
+        language: 'python',
+        solution: `class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        a, b = headA, headB
+        while a != b:
+            a = a.next if a else headB
+            b = b.next if b else headA
+        return a`
+      },
+      {
+        id: 'fsp-12',
+        title: 'Linked List Components',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/linked-list-components/',
+        description: 'Given the head of a linked list and an array nums, return the number of connected components in the list where each component contains nodes whose values exist in nums.',
+        language: 'python',
+        solution: `class Solution:
+    def numComponents(self, head: Optional[ListNode], nums: List[int]) -> int:
+        num_set = set(nums)
+        slow = fast = head
+        count = 0
+
+        while fast:
+            while fast and fast.val in num_set:
+                fast = fast.next
+            if slow != fast:
+                count += 1
+            slow = fast
+            while fast and fast.val not in num_set:
+                fast = fast.next
+            slow = fast
+        return count`
+      },
+      {
+        id: 'fsp-13',
+        title: 'Delete the Middle Node of a Linked List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/',
+        description: 'Given the head of a linked list, delete the middle node and return the head. The middle node is the ⌊n / 2⌋th node (0-indexed).',
+        language: 'python',
+        solution: `class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
+            return None
+
+        slow, fast = head, head.next.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        slow.next = slow.next.next
+        return head`
+      },
+      {
+        id: 'fsp-14',
+        title: 'Maximum Twin Sum of a Linked List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/',
+        description: 'In a linked list of even length, the twin of node i is node (n-1-i). Return the maximum twin sum of the linked list.',
+        language: 'python',
+        solution: `class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        prev = None
+        while slow:
+            slow.next, prev, slow = prev, slow, slow.next
+
+        max_sum = 0
+        left, right = head, prev
+        while right:
+            max_sum = max(max_sum, left.val + right.val)
+            left, right = left.next, right.next
+        return max_sum`
+      },
+      {
+        id: 'fsp-15',
+        title: 'Rotate List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/rotate-list/',
+        description: 'Given the head of a linked list, rotate the list to the right by k places.',
+        language: 'python',
+        solution: `class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next or k == 0:
+            return head
+
+        length, fast = 1, head
+        while fast.next:
+            fast = fast.next
+            length += 1
+
+        k = k % length
+        if k == 0:
+            return head
+
+        slow = head
+        for _ in range(length - k - 1):
+            slow = slow.next
+
+        fast.next = head
+        head = slow.next
+        slow.next = None
+        return head`
+      },
+      {
+        id: 'fsp-16',
+        title: 'Length of Longest Cycle in a Graph',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/length-of-longest-cycle-in-a-graph/',
+        description: 'You are given a directed graph with n nodes. Find the length of the longest cycle in the graph. If no cycle exists, return -1.',
+        language: 'python',
+        solution: `class Solution:
+    def longestCycle(self, edges: List[int]) -> int:
+        visited = [False] * len(edges)
+        ans = -1
+
+        for i in range(len(edges)):
+            if visited[i]:
+                continue
+            slow, fast = i, i
+            while fast != -1 and edges[fast] != -1:
+                slow = edges[slow]
+                fast = edges[edges[fast]] if edges[fast] != -1 else -1
+                visited[slow] = True
+                if fast != -1:
+                    visited[fast] = True
+                if slow == fast:
+                    length, node = 1, edges[slow]
+                    while node != slow:
+                        length += 1
+                        node = edges[node]
+                    ans = max(ans, length)
+                    break
+        return ans`
+      },
+      {
+        id: 'fsp-17',
+        title: 'Linked List Random Node',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/linked-list-random-node/',
+        description: 'Given a singly linked list, return a random node value. Each node must have equal probability of being chosen using reservoir sampling.',
+        language: 'python',
+        solution: `class Solution:
+    def __init__(self, head: Optional[ListNode]):
+        self.head = head
+
+    def getRandom(self) -> int:
+        slow, fast = self.head, self.head
+        result, idx = slow.val, 1
+
+        while fast.next:
+            fast = fast.next
+            idx += 1
+            if random.randint(1, idx) == 1:
+                slow = slow.next
+                result = slow.val
+        return result`
+      },
+      {
+        id: 'fsp-18',
+        title: 'Swap Nodes in Pairs',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/swap-nodes-in-pairs/',
+        description: 'Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the nodes.',
+        language: 'python',
+        solution: `class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        slow, fast = dummy, head
+
+        while fast and fast.next:
+            next_pair = fast.next.next
+
+            slow.next = fast.next
+            fast.next.next = fast
+            fast.next = next_pair
+
+            slow = fast
+            fast = next_pair
+        return dummy.next`
+      },
+      {
+        id: 'fsp-19',
+        title: 'Reverse Nodes in k-Group',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/reverse-nodes-in-k-group/',
+        description: 'Given the head of a linked list, reverse the nodes of the list k at a time and return the modified list. If nodes are not a multiple of k, leave the remaining nodes as is.',
+        language: 'python',
+        solution: `class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        group_prev = dummy
+
+        while True:
+            fast = group_prev
+            for _ in range(k):
+                fast = fast.next
+                if not fast:
+                    return dummy.next
+
+            slow = group_prev.next
+            prev = group_prev
+            for _ in range(k):
+                slow.next, prev, slow = prev, slow, slow.next
+
+            group_prev.next.next = slow
+            group_prev.next, group_prev = prev, group_prev.next`
+      },
+      {
+        id: 'fsp-20',
+        title: 'Split Linked List in Parts',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/split-linked-list-in-parts/',
+        description: 'Given the head of a linked list and an integer k, split the list into k consecutive parts. Part lengths should differ by at most 1 and earlier parts should be longer.',
+        language: 'python',
+        solution: `class Solution:
+    def splitListToParts(self, head: Optional[ListNode], k: int) -> List[Optional[ListNode]]:
+        length, fast = 0, head
+        while fast:
+            length += 1
+            fast = fast.next
+
+        part_size, extra = divmod(length, k)
+        result = []
+        slow = head
+
+        for i in range(k):
+            result.append(slow)
+            size = part_size + (1 if i < extra else 0)
+            for _ in range(size - 1):
+                if slow:
+                    slow = slow.next
+            if slow:
+                slow.next, slow = None, slow.next
+        return result`
+      },
+      {
+        id: 'fsp-21',
+        title: 'Odd Even Linked List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/odd-even-linked-list/',
+        description: 'Given the head of a singly linked list, group all odd-indexed nodes together followed by even-indexed nodes and return the reordered list.',
+        language: 'python',
+        solution: `class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return head
+
+        slow, fast = head, head.next
+        even_head = fast
+
+        while fast and fast.next:
+            slow.next = fast.next
+            slow = slow.next
+            fast.next = slow.next
+            fast = fast.next
+
+        slow.next = even_head
+        return head`
+      },
+      {
+        id: 'fsp-22',
+        title: 'Find K-th Node From End',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/kth-node-from-end-of-list-lcci/',
+        description: 'Implement an algorithm to find the kth to last element of a singly linked list. Return the value of that node.',
+        language: 'python',
+        solution: `class Solution:
+    def kthToLast(self, head: ListNode, k: int) -> int:
+        slow, fast = head, head
+
+        for _ in range(k):
+            fast = fast.next
+
+        while fast:
+            slow = slow.next
+            fast = fast.next
+        return slow.val`
+      },
+      {
+        id: 'fsp-23',
+        title: 'Flatten a Multilevel Doubly Linked List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/',
+        description: 'Given a doubly linked list where nodes may have a child pointer to another doubly linked list, flatten the list so all nodes appear in a single-level doubly linked list.',
+        language: 'python',
+        solution: `class Solution:
+    def flatten(self, head: Optional[Node]) -> Optional[Node]:
+        slow = head
+        while slow:
+            if slow.child:
+                fast = slow.child
+
+                while fast.next:
+                    fast = fast.next
+
+                fast.next = slow.next
+                if slow.next:
+                    slow.next.prev = fast
+
+                slow.next = slow.child
+                slow.child.prev = slow
+                slow.child = None
+
+            slow = slow.next
+        return head`
+      },
+      {
+        id: 'fsp-24',
+        title: 'Convert Binary Number in a Linked List to Integer',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/',
+        description: 'Given head which is a reference node to a singly linked list representing a binary number, return the decimal value of the number in the linked list.',
+        language: 'python',
+        solution: `class Solution:
+    def getDecimalValue(self, head: ListNode) -> int:
+        slow, fast = head, head
+
+        length = 0
+        while fast:
+            fast = fast.next
+            length += 1
+
+        result = 0
+        for i in range(length - 1, -1, -1):
+            result += slow.val * (2 ** i)
+            slow = slow.next
+        return result`
+      },
+      {
+        id: 'fsp-25',
+        title: 'Reverse Linked List II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/reverse-linked-list-ii/',
+        description: 'Given the head of a singly linked list and two integers left and right, reverse the nodes of the list from position left to position right, and return the reversed list.',
+        language: 'python',
+        solution: `class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        slow = dummy
+
+        for _ in range(left - 1):
+            slow = slow.next
+
+        fast = slow.next
+        for _ in range(right - left):
+            fast.next, slow.next, fast = slow.next, fast.next, fast.next
+            slow.next.next = fast
+
+        return dummy.next`
+      },
     ]
   },
   {
@@ -1315,7 +2140,6 @@ export const patterns: Pattern[] = [
                     return True
         return False`
       },
-      
     ]
   },
   {

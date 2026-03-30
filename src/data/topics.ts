@@ -1848,6 +1848,123 @@ export const topics: Topic[] = [
                 right = partition1 - 1
             else:
                 left = partition1 + 1`
+},{
+  id: 'hm-32',
+  title: 'Palindrome Linked List',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/palindrome-linked-list/',
+  description: 'Given the head of a singly linked list, return true if it is a palindrome or false otherwise. Must solve in O(n) time and O(1) space.',
+  language: 'python',
+  solution: `class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        prev = None
+        while slow:
+            next_node = slow.next
+            slow.next = prev
+            prev = slow
+            slow = next_node
+        left, right = head, prev
+        while right:
+            if left.val != right.val:
+                return False
+            left = left.next
+            right = right.next
+        return True`
+},
+{
+  id: 'hm-33',
+  title: 'Maximum Product Subarray',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
+  description: 'Given an integer array nums, find a subarray that has the largest product, and return the product.',
+  language: 'python',
+  solution: `class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        max_prod = nums[0]
+        min_prod = nums[0]
+        result = nums[0]
+        for num in nums[1:]:
+            candidates = (num, max_prod * num, min_prod * num)
+            max_prod = max(candidates)
+            min_prod = min(candidates)
+            result = max(result, max_prod)
+        return result`
+},
+{
+  id: 'hm-34',
+  title: 'Generate Parentheses',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/generate-parentheses/',
+  description: 'Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.',
+  language: 'python',
+  solution: `class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        result = []
+        def backtrack(current, open_count, close_count):
+            if len(current) == 2 * n:
+                result.append(current)
+                return
+            if open_count < n:
+                backtrack(current + '(', open_count + 1, close_count)
+            if close_count < open_count:
+                backtrack(current + ')', open_count, close_count + 1)
+        backtrack('', 0, 0)
+        return result`
+},
+{
+  id: 'hm-35',
+  title: 'Decode Ways',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/decode-ways/',
+  description: 'Given a string s containing only digits, return the number of ways to decode it. A → 1, B → 2, ..., Z → 26.',
+  language: 'python',
+  solution: `class Solution:
+    def numDecodings(self, s: str) -> int:
+        if not s or s[0] == '0':
+            return 0
+        n = len(s)
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        dp[1] = 1
+        for i in range(2, n + 1):
+            one_digit = int(s[i - 1])
+            two_digit = int(s[i - 2:i])
+            if one_digit >= 1:
+                dp[i] += dp[i - 1]
+            if 10 <= two_digit <= 26:
+                dp[i] += dp[i - 2]
+        return dp[n]`
+},
+{
+  id: 'hm-36',
+  title: 'Pacific Atlantic Water Flow',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/pacific-atlantic-water-flow/',
+  description: 'Given an m x n matrix of heights, return a list of grid coordinates where water can flow to both the Pacific and Atlantic oceans.',
+  language: 'python',
+  solution: `class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        rows, cols = len(heights), len(heights[0])
+        pacific, atlantic = set(), set()
+        def dfs(r, c, visited, prev_height):
+            if (r, c) in visited or r < 0 or c < 0 or r >= rows or c >= cols:
+                return
+            if heights[r][c] < prev_height:
+                return
+            visited.add((r, c))
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                dfs(r + dr, c + dc, visited, heights[r][c])
+        for r in range(rows):
+            dfs(r, 0, pacific, heights[r][0])
+            dfs(r, cols - 1, atlantic, heights[r][cols - 1])
+        for c in range(cols):
+            dfs(0, c, pacific, heights[0][c])
+            dfs(rows - 1, c, atlantic, heights[rows - 1][c])
+        return [[r, c] for r, c in pacific & atlantic]`
 },
     ]
   },
@@ -2076,7 +2193,113 @@ export const topics: Topic[] = [
             if node.next:
                 heapq.heappush(heap, (node.next.val, i, node.next))
         return dummy.next`
-      }
+      },
+      {
+  id: 'heap-4',
+  title: 'Top K Frequent Elements',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/top-k-frequent-elements/',
+  description: 'Given an integer array nums and an integer k, return the k most frequent elements.',
+  language: 'python',
+  solution: `class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        import heapq
+        from collections import Counter
+        count = Counter(nums)
+        return heapq.nlargest(k, count.keys(), key=lambda x: count[x])`
+},
+{
+  id: 'heap-5',
+  title: 'K Closest Points to Origin',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/k-closest-points-to-origin/',
+  description: 'Given an array of points, return the k closest points to the origin (0, 0).',
+  language: 'python',
+  solution: `class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        import heapq
+        heap = []
+        for x, y in points:
+            dist = x*x + y*y
+            heapq.heappush(heap, (dist, x, y))
+        return [[x, y] for dist, x, y in heapq.nsmallest(k, heap)]`
+},
+{
+  id: 'heap-6',
+  title: 'Task Scheduler',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/task-scheduler/',
+  description: 'Given a list of tasks and a cooldown n, return the minimum number of intervals needed to finish all tasks.',
+  language: 'python',
+  solution: `class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        import heapq
+        from collections import Counter, deque
+        count = Counter(tasks)
+        maxHeap = [-cnt for cnt in count.values()]
+        heapq.heapify(maxHeap)
+        time = 0
+        queue = deque()  # [-cnt, availableAt]
+        while maxHeap or queue:
+            time += 1
+            if maxHeap:
+                cnt = 1 + heapq.heappop(maxHeap)
+                if cnt:
+                    queue.append([cnt, time + n])
+            if queue and queue[0][1] == time:
+                heapq.heappush(maxHeap, queue.popleft()[0])
+        return time`
+},
+{
+  id: 'heap-7',
+  title: 'Find K Pairs with Smallest Sums',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-k-pairs-with-smallest-sums/',
+  description: 'Given two sorted arrays nums1 and nums2, return the k pairs (u, v) with the smallest sums.',
+  language: 'python',
+  solution: `class Solution:
+    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
+        import heapq
+        if not nums1 or not nums2:
+            return []
+        heap = [(nums1[i] + nums2[0], i, 0) for i in range(min(k, len(nums1)))]
+        heapq.heapify(heap)
+        result = []
+        while heap and len(result) < k:
+            s, i, j = heapq.heappop(heap)
+            result.append([nums1[i], nums2[j]])
+            if j + 1 < len(nums2):
+                heapq.heappush(heap, (nums1[i] + nums2[j+1], i, j+1))
+        return result`
+},
+{
+  id: 'heap-8',
+  title: 'Reorganize String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/reorganize-string/',
+  description: 'Rearrange characters of string s so that no two adjacent characters are the same. Return empty string if impossible.',
+  language: 'python',
+  solution: `class Solution:
+    def reorganizeString(self, s: str) -> str:
+        import heapq
+        from collections import Counter
+        count = Counter(s)
+        maxHeap = [(-cnt, ch) for ch, cnt in count.items()]
+        heapq.heapify(maxHeap)
+        result = []
+        prev = None
+        while maxHeap or prev:
+            if prev and not maxHeap:
+                return ""
+            cnt, ch = heapq.heappop(maxHeap)
+            result.append(ch)
+            if prev:
+                heapq.heappush(maxHeap, prev)
+                prev = None
+            if cnt + 1 != 0:
+                prev = (cnt + 1, ch)
+        return "".join(result)`
+},
     ]
   }
 ];
