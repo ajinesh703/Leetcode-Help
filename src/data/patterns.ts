@@ -2587,7 +2587,144 @@ export const patterns: Pattern[] = [
             w = len(heights) - stack[-1] - 1
             max_area = max(max_area, h * w)
         return max_area`
-      }
+      },
+      {
+  id: 'ms-4',
+  title: 'Next Greater Element II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/next-greater-element-ii/',
+  description: 'Given a circular integer array nums, return the next greater number for every element in nums.',
+  language: 'python',
+  solution: `class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        result = [-1] * n
+        stack = []
+        for i in range(2 * n):
+            while stack and nums[stack[-1]] < nums[i % n]:
+                result[stack.pop()] = nums[i % n]
+            if i < n:
+                stack.append(i)
+        return result`
+},
+{
+  id: 'ms-5',
+  title: 'Trapping Rain Water',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/trapping-rain-water/',
+  description: 'Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.',
+  language: 'python',
+  solution: `class Solution:
+    def trap(self, height: List[int]) -> int:
+        stack = []
+        water = 0
+        for i in range(len(height)):
+            while stack and height[i] > height[stack[-1]]:
+                top = stack.pop()
+                if not stack:
+                    break
+                distance = i - stack[-1] - 1
+                bounded_height = min(height[i], height[stack[-1]]) - height[top]
+                water += distance * bounded_height
+            stack.append(i)
+        return water`
+},
+{
+  id: 'ms-6',
+  title: 'Sum of Subarray Minimums',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/sum-of-subarray-minimums/',
+  description: 'Given an array of integers arr, find the sum of min(b) for every subarray b of arr.',
+  language: 'python',
+  solution: `class Solution:
+    def sumSubarrayMins(self, arr: List[int]) -> int:
+        MOD = 10**9 + 7
+        stack = []
+        result = 0
+        for i in range(len(arr) + 1):
+            while stack and (i == len(arr) or arr[stack[-1]] >= arr[i]):
+                mid = stack.pop()
+                left = stack[-1] if stack else -1
+                right = i
+                count = (mid - left) * (right - mid)
+                result += arr[mid] * count
+            stack.append(i)
+        return result % MOD`
+},
+{
+  id: 'ms-7',
+  title: 'Remove K Digits',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/remove-k-digits/',
+  description: 'Given string num representing a non-negative integer and an integer k, return the smallest possible integer after removing k digits from num.',
+  language: 'python',
+  solution: `class Solution:
+    def removeKdigits(self, num: str, k: int) -> str:
+        stack = []
+        for digit in num:
+            while k and stack and stack[-1] > digit:
+                stack.pop()
+                k -= 1
+            stack.append(digit)
+        if k:
+            stack = stack[:-k]
+        return ''.join(stack).lstrip('0') or '0'`
+},
+{
+  id: 'ms-8',
+  title: 'Validate Stack Sequences',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/validate-stack-sequences/',
+  description: 'Given two integer arrays pushed and popped, return true if this could have been the result of a sequence of push and pop operations on an initially empty stack.',
+  language: 'python',
+  solution: `class Solution:
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+        stack = []
+        j = 0
+        for val in pushed:
+            stack.append(val)
+            while stack and stack[-1] == popped[j]:
+                stack.pop()
+                j += 1
+        return not stack`
+},
+{
+  id: 'ms-9',
+  title: '132 Pattern',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/132-pattern/',
+  description: 'Given an array of n integers nums, return true if there is a 132 pattern in nums — indices i < j < k such that nums[i] < nums[k] < nums[j].',
+  language: 'python',
+  solution: `class Solution:
+    def find132pattern(self, nums: List[int]) -> bool:
+        stack = []
+        third = float('-inf')  # This is nums[k] (the "2" in 132)
+        for i in range(len(nums) - 1, -1, -1):
+            if nums[i] < third:
+                return True
+            while stack and stack[-1] < nums[i]:
+                third = stack.pop()
+            stack.append(nums[i])
+        return False`
+},
+{
+  id: 'ms-10',
+  title: 'Online Stock Span',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/online-stock-span/',
+  description: 'Design a class that collects daily price quotes for a stock and returns the span of that stock\'s price for the current day — the number of consecutive days the price was less than or equal to today\'s price.',
+  language: 'python',
+  solution: `class StockSpanner:
+    def __init__(self):
+        self.stack = []  # (price, span)
+
+    def next(self, price: int) -> int:
+        span = 1
+        while self.stack and self.stack[-1][0] <= price:
+            span += self.stack.pop()[1]
+        self.stack.append((price, span))
+        return span`
+},
     ]
   }
 ];
