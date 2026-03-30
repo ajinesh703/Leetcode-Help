@@ -2203,7 +2203,133 @@ export const patterns: Pattern[] = [
             else:
                 tails[pos] = num
         return len(tails)`
-      }
+      },
+      {
+  id: 'dp-4',
+  title: 'Coin Change',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/coin-change/',
+  description: 'Given an array of coins and an amount, return the fewest number of coins needed to make up that amount. Return -1 if not possible.',
+  language: 'python',
+  solution: `class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0
+        for coin in coins:
+            for x in range(coin, amount + 1):
+                dp[x] = min(dp[x], dp[x - coin] + 1)
+        return dp[amount] if dp[amount] != float('inf') else -1`
+},
+{
+  id: 'dp-5',
+  title: 'Unique Paths',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/unique-paths/',
+  description: 'A robot is on an m x n grid at the top-left corner. It can only move right or down. Count the number of unique paths to reach the bottom-right corner.',
+  language: 'python',
+  solution: `class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp = [1] * n
+        for i in range(1, m):
+            for j in range(1, n):
+                dp[j] += dp[j - 1]
+        return dp[n - 1]`
+},
+{
+  id: 'dp-6',
+  title: 'Jump Game',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/jump-game/',
+  description: 'Given an integer array nums where each element represents your max jump length at that position, return true if you can reach the last index.',
+  language: 'python',
+  solution: `class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        max_reach = 0
+        for i, num in enumerate(nums):
+            if i > max_reach:
+                return False
+            max_reach = max(max_reach, i + num)
+        return True`
+},
+{
+  id: 'dp-7',
+  title: 'Longest Common Subsequence',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-common-subsequence/',
+  description: 'Given two strings text1 and text2, return the length of their longest common subsequence. Return 0 if there is none.',
+  language: 'python',
+  solution: `class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        m, n = len(text1), len(text2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if text1[i - 1] == text2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                else:
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+        return dp[m][n]`
+},
+{
+  id: 'dp-8',
+  title: 'Word Break',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/word-break/',
+  description: 'Given a string s and a dictionary wordDict, return true if s can be segmented into a space-separated sequence of dictionary words.',
+  language: 'python',
+  solution: `class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        word_set = set(wordDict)
+        dp = [False] * (len(s) + 1)
+        dp[0] = True
+        for i in range(1, len(s) + 1):
+            for j in range(i):
+                if dp[j] and s[j:i] in word_set:
+                    dp[i] = True
+                    break
+        return dp[len(s)]`
+},
+{
+  id: 'dp-9',
+  title: '0/1 Knapsack (Partition Equal Subset Sum)',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/partition-equal-subset-sum/',
+  description: 'Given an integer array nums, return true if you can partition it into two subsets such that the sum of elements in both subsets is equal.',
+  language: 'python',
+  solution: `class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        total = sum(nums)
+        if total % 2 != 0:
+            return False
+        target = total // 2
+        dp = {0}
+        for num in nums:
+            dp = {s + num for s in dp} | dp
+        return target in dp`
+},
+{
+  id: 'dp-10',
+  title: 'Edit Distance',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/edit-distance/',
+  description: 'Given two strings word1 and word2, return the minimum number of operations (insert, delete, replace) required to convert word1 to word2.',
+  language: 'python',
+  solution: `class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        m, n = len(word1), len(word2)
+        dp = list(range(n + 1))
+        for i in range(1, m + 1):
+            prev = dp[0]
+            dp[0] = i
+            for j in range(1, n + 1):
+                temp = dp[j]
+                if word1[i - 1] == word2[j - 1]:
+                    dp[j] = prev
+                else:
+                    dp[j] = 1 + min(prev, dp[j], dp[j - 1])
+                prev = temp
+        return dp[n]`
+},
     ]
   },
   {
