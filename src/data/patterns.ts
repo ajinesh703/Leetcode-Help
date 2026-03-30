@@ -3384,6 +3384,233 @@ export const patterns: Pattern[] = [
             max_area = max(max_area, heights[i] * width)
         return max_area`
 },
+{
+  id: 'ms-40',
+  title: 'Check if Word is Valid After Substitutions',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/',
+  description: 'Given a string s, determine if it is valid. A string is valid if it can be formed by repeatedly inserting "abc" into an empty string.',
+  language: 'python',
+  solution: `class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        for ch in s:
+            stack.append(ch)
+            if len(stack) >= 3 and stack[-3:] == ['a', 'b', 'c']:
+                stack.pop()
+                stack.pop()
+                stack.pop()
+        return not stack`
+},
+{
+  id: 'ms-41',
+  title: 'Minimum Add to Make Parentheses Valid',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/',
+  description: 'Given a string s of parentheses, return the minimum number of parentheses you must add to make the string valid.',
+  language: 'python',
+  solution: `class Solution:
+    def minAddToMakeValid(self, s: str) -> int:
+        stack = []
+        unmatched = 0
+        for ch in s:
+            if ch == '(':
+                stack.append(ch)
+            elif stack:
+                stack.pop()
+            else:
+                unmatched += 1
+        return unmatched + len(stack)`
+},
+{
+  id: 'ms-42',
+  title: 'Longest Valid Parentheses',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-valid-parentheses/',
+  description: 'Given a string containing just the characters ( and ), return the length of the longest valid (well-formed) parentheses substring.',
+  language: 'python',
+  solution: `class Solution:
+    def longestValidParentheses(self, s: str) -> int:
+        stack = [-1]
+        max_len = 0
+        for i, ch in enumerate(s):
+            if ch == '(':
+                stack.append(i)
+            else:
+                stack.pop()
+                if not stack:
+                    stack.append(i)
+                else:
+                    max_len = max(max_len, i - stack[-1])
+        return max_len`
+},
+{
+  id: 'ms-43',
+  title: 'Number of Valid Subarrays',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-valid-subarrays/',
+  description: 'Given an integer array nums, return the number of non-empty subarrays where the leftmost element is not larger than any other element in the subarray.',
+  language: 'python',
+  solution: `class Solution:
+    def validSubarrays(self, nums: List[int]) -> int:
+        stack = []
+        result = 0
+        for i in range(len(nums)):
+            while stack and nums[stack[-1]] > nums[i]:
+                result += i - stack.pop()
+            stack.append(i)
+        while stack:
+            result += len(nums) - stack.pop()
+        return result`
+},
+{
+  id: 'ms-44',
+  title: 'Count Visible Persons in a Queue',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-visible-people-in-a-queue/',
+  description: 'There are n people in a queue each with unique heights. Person i can see person j if everyone between them is shorter than both. Return count of visible people for each person.',
+  language: 'python',
+  solution: `class Solution:
+    def canSeePersonsCount(self, heights: List[int]) -> List[int]:
+        n = len(heights)
+        result = [0] * n
+        stack = []
+        for i in range(n - 1, -1, -1):
+            count = 0
+            while stack and heights[i] > stack[-1]:
+                stack.pop()
+                count += 1
+            if stack:
+                count += 1
+            result[i] = count
+            stack.append(heights[i])
+        return result`
+},
+{
+  id: 'ms-45',
+  title: 'Minimum Cost to Hire K Workers',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-hire-k-workers/',
+  description: 'There are n workers each with a quality and minimum wage. Hire exactly k workers such that every worker is paid at least their minimum wage and wages are proportional to quality. Return minimum cost.',
+  language: 'python',
+  solution: `class Solution:
+    def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -> float:
+        import heapq
+        workers = sorted((w / q, q) for w, q in zip(wage, quality))
+        heap = []
+        quality_sum = 0
+        result = float('inf')
+        for ratio, q in workers:
+            heapq.heappush(heap, -q)
+            quality_sum += q
+            if len(heap) > k:
+                quality_sum += heapq.heappop(heap)
+            if len(heap) == k:
+                result = min(result, ratio * quality_sum)
+        return result`
+},
+{
+  id: 'ms-46',
+  title: 'Maximum Chunks to Make Sorted',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-chunks-to-make-sorted/',
+  description: 'Given an array arr that is a permutation of [0, n-1], split it into the maximum number of chunks such that sorting each chunk individually makes the whole array sorted.',
+  language: 'python',
+  solution: `class Solution:
+    def maxChunksToSorted(self, arr: List[int]) -> int:
+        stack = []
+        for num in arr:
+            max_val = num
+            while stack and stack[-1] > num:
+                max_val = max(max_val, stack.pop())
+            stack.append(max_val)
+        return len(stack)`
+},
+{
+  id: 'ms-47',
+  title: 'Maximum Chunks to Make Sorted II',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/max-chunks-to-make-sorted-ii/',
+  description: 'Given an integer array arr (may contain duplicates), return the maximum number of chunks we can split it into such that sorting each chunk and concatenating gives a sorted array.',
+  language: 'python',
+  solution: `class Solution:
+    def maxChunksToSorted(self, arr: List[int]) -> int:
+        stack = []
+        for num in arr:
+            max_val = num
+            while stack and stack[-1] > num:
+                max_val = max(max_val, stack.pop())
+            stack.append(max_val)
+        return len(stack)`
+},
+{
+  id: 'ms-48',
+  title: 'Constrained Subsequence Sum',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/constrained-subsequence-sum/',
+  description: 'Given an integer array nums and integer k, return the maximum sum of a non-empty subsequence such that for every two consecutive integers in the subsequence, their indices are at most k apart.',
+  language: 'python',
+  solution: `class Solution:
+    def constrainedSubsetSum(self, nums: List[int], k: int) -> int:
+        from collections import deque
+        dq = deque()
+        dp = nums[:]
+        for i in range(len(nums)):
+            if dq and dq[0] < i - k:
+                dq.popleft()
+            if dq:
+                dp[i] = max(dp[i], dp[dq[0]] + nums[i])
+            while dq and dp[dq[-1]] <= dp[i]:
+                dq.pop()
+            if dp[i] > 0:
+                dq.append(i)
+        return max(dp)`
+},
+{
+  id: 'ms-49',
+  title: 'Jump Game VI',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/jump-game-vi/',
+  description: 'You start at index 0 of an integer array nums. In one move you can jump at most k steps forward. You want to reach the last index. Return the maximum score you can get where score is the sum of all nums at visited indices.',
+  language: 'python',
+  solution: `class Solution:
+    def maxResult(self, nums: List[int], k: int) -> int:
+        from collections import deque
+        n = len(nums)
+        dp = [0] * n
+        dp[0] = nums[0]
+        dq = deque([0])
+        for i in range(1, n):
+            while dq and dq[0] < i - k:
+                dq.popleft()
+            dp[i] = nums[i] + dp[dq[0]]
+            while dq and dp[dq[-1]] <= dp[i]:
+                dq.pop()
+            dq.append(i)
+        return dp[-1]`
+},
+{
+  id: 'ms-50',
+  title: 'Sliding Window Maximum',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/sliding-window-maximum/',
+  description: 'Given an integer array nums and a sliding window of size k, return the max value in each window as it slides from left to right.',
+  language: 'python',
+  solution: `class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        from collections import deque
+        dq = deque()
+        result = []
+        for i in range(len(nums)):
+            while dq and dq[0] < i - k + 1:
+                dq.popleft()
+            while dq and nums[dq[-1]] < nums[i]:
+                dq.pop()
+            dq.append(i)
+            if i >= k - 1:
+                result.append(nums[dq[0]])
+        return result`
+},
     ]
   }
 ];
