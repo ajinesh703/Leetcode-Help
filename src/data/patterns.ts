@@ -4378,6 +4378,339 @@ export const patterns: Pattern[] = [
             return result
         return count(right) - count(left - 1)`
 },
+{
+  id: 'ms-81',
+  title: 'Maximum Erasure Value',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-erasure-value/',
+  description: 'Given an array nums, find the maximum sum of a subarray with all unique elements.',
+  language: 'python',
+  solution: `class Solution:
+    def maximumUniqueSubarray(self, nums: List[int]) -> int:
+        seen = {}
+        left = 0
+        curr_sum = 0
+        result = 0
+        for right, num in enumerate(nums):
+            if num in seen and seen[num] >= left:
+                left = seen[num] + 1
+            curr_sum = sum(nums[left:right + 1])
+            result = max(result, curr_sum)
+            seen[num] = right
+        return result`
+},
+{
+  id: 'ms-82',
+  title: 'Minimum Window Substring',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-window-substring/',
+  description: 'Given strings s and t, return the minimum window substring of s that contains all characters of t. If no such window exists return empty string.',
+  language: 'python',
+  solution: `class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        from collections import Counter
+        need = Counter(t)
+        missing = len(t)
+        left = 0
+        start = 0
+        end = 0
+        result = ""
+        for right, ch in enumerate(s):
+            if need[ch] > 0:
+                missing -= 1
+            need[ch] -= 1
+            if missing == 0:
+                while need[s[left]] < 0:
+                    need[s[left]] += 1
+                    left += 1
+                if not result or right - left + 1 < len(result):
+                    result = s[left:right + 1]
+                need[s[left]] += 1
+                missing += 1
+                left += 1
+        return result`
+},
+{
+  id: 'ms-83',
+  title: 'Fruit Into Baskets',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/fruit-into-baskets/',
+  description: 'Given an array fruits where fruits[i] is the type of fruit on tree i, you have two baskets and each basket can hold only one type of fruit. Return the maximum number of fruits you can pick from a subarray using at most 2 types.',
+  language: 'python',
+  solution: `class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        from collections import defaultdict
+        basket = defaultdict(int)
+        left = 0
+        result = 0
+        for right, fruit in enumerate(fruits):
+            basket[fruit] += 1
+            while len(basket) > 2:
+                basket[fruits[left]] -= 1
+                if basket[fruits[left]] == 0:
+                    del basket[fruits[left]]
+                left += 1
+            result = max(result, right - left + 1)
+        return result`
+},
+{
+  id: 'ms-84',
+  title: 'Subarray Product Less Than K',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/subarray-product-less-than-k/',
+  description: 'Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements is strictly less than k.',
+  language: 'python',
+  solution: `class Solution:
+    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        if k <= 1:
+            return 0
+        prod = 1
+        left = 0
+        result = 0
+        for right, num in enumerate(nums):
+            prod *= num
+            while prod >= k:
+                prod //= nums[left]
+                left += 1
+            result += right - left + 1
+        return result`
+},
+{
+  id: 'ms-85',
+  title: 'Count Number of Nice Subarrays',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/count-number-of-nice-subarrays/',
+  description: 'Given an array nums of integers and integer k, a subarray is nice if there are exactly k odd numbers in it. Return the number of nice subarrays.',
+  language: 'python',
+  solution: `class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        count[0] = 1
+        odd_count = 0
+        result = 0
+        for num in nums:
+            odd_count += num % 2
+            result += count[odd_count - k]
+            count[odd_count] += 1
+        return result`
+},
+{
+  id: 'ms-86',
+  title: 'Maximum Points You Can Obtain from Cards',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/',
+  description: 'Given an array cardPoints and integer k, you can take k cards from the beginning or end of the array. Return the maximum score you can obtain.',
+  language: 'python',
+  solution: `class Solution:
+    def maxScore(self, cardPoints: List[int], k: int) -> int:
+        n = len(cardPoints)
+        window = n - k
+        curr_sum = sum(cardPoints[:window])
+        min_sum = curr_sum
+        for i in range(window, n):
+            curr_sum += cardPoints[i] - cardPoints[i - window]
+            min_sum = min(min_sum, curr_sum)
+        return sum(cardPoints) - min_sum`
+},
+{
+  id: 'ms-87',
+  title: 'Minimum Size Subarray Sum',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-size-subarray-sum/',
+  description: 'Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray return 0.',
+  language: 'python',
+  solution: `class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        left = 0
+        curr_sum = 0
+        result = float('inf')
+        for right in range(len(nums)):
+            curr_sum += nums[right]
+            while curr_sum >= target:
+                result = min(result, right - left + 1)
+                curr_sum -= nums[left]
+                left += 1
+        return 0 if result == float('inf') else result`
+},
+{
+  id: 'ms-88',
+  title: 'Longest Substring with At Most K Distinct Characters',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/',
+  description: 'Given a string s and integer k, return the length of the longest substring that contains at most k distinct characters.',
+  language: 'python',
+  solution: `class Solution:
+    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
+        from collections import defaultdict
+        freq = defaultdict(int)
+        left = 0
+        result = 0
+        for right, ch in enumerate(s):
+            freq[ch] += 1
+            while len(freq) > k:
+                freq[s[left]] -= 1
+                if freq[s[left]] == 0:
+                    del freq[s[left]]
+                left += 1
+            result = max(result, right - left + 1)
+        return result`
+},
+{
+  id: 'ms-89',
+  title: 'Grumpy Bookstore Owner',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/grumpy-bookstore-owner/',
+  description: 'A bookstore owner has customers array and grumpy array. When grumpy[i]=1, customers are lost. Owner can suppress grumpiness for minutes consecutive minutes. Return maximum satisfied customers.',
+  language: 'python',
+  solution: `class Solution:
+    def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:
+        base = sum(c for c, g in zip(customers, grumpy) if g == 0)
+        gain = sum(customers[:minutes][i] * grumpy[:minutes][i] for i in range(minutes))
+        max_gain = gain
+        for i in range(minutes, len(customers)):
+            gain += customers[i] * grumpy[i]
+            gain -= customers[i - minutes] * grumpy[i - minutes]
+            max_gain = max(max_gain, gain)
+        return base + max_gain`
+},
+{
+  id: 'ms-90',
+  title: 'Maximum Average Subarray I',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-average-subarray-i/',
+  description: 'Given an integer array nums and integer k, find the contiguous subarray of length k that has the maximum average value and return this value.',
+  language: 'python',
+  solution: `class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        curr_sum = sum(nums[:k])
+        max_sum = curr_sum
+        for i in range(k, len(nums)):
+            curr_sum += nums[i] - nums[i - k]
+            max_sum = max(max_sum, curr_sum)
+        return max_sum / k`
+},
+{
+  id: 'ms-91',
+  title: 'Permutation in String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/permutation-in-string/',
+  description: 'Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise. In other words, return true if one of s1 permutations is a substring of s2.',
+  language: 'python',
+  solution: `class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        from collections import Counter
+        need = Counter(s1)
+        window = Counter()
+        left = 0
+        matches = 0
+        for right, ch in enumerate(s2):
+            window[ch] += 1
+            if window[ch] == need[ch]:
+                matches += 1
+            if right - left + 1 > len(s1):
+                left_ch = s2[left]
+                if window[left_ch] == need[left_ch]:
+                    matches -= 1
+                window[left_ch] -= 1
+                left += 1
+        return matches == len(need)`
+},
+{
+  id: 'ms-92',
+  title: 'Find All Anagrams in a String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-all-anagrams-in-a-string/',
+  description: 'Given strings s and p, return an array of all the start indices of p anagrams in s. An anagram is a permutation of characters.',
+  language: 'python',
+  solution: `class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        from collections import Counter
+        need = Counter(p)
+        window = Counter()
+        left = 0
+        matches = 0
+        result = []
+        for right, ch in enumerate(s):
+            window[ch] += 1
+            if window[ch] == need[ch]:
+                matches += 1
+            if right - left + 1 > len(p):
+                left_ch = s[left]
+                if window[left_ch] == need[left_ch]:
+                    matches -= 1
+                window[left_ch] -= 1
+                left += 1
+            if matches == len(need):
+                result.append(left)
+        return result`
+},
+{
+  id: 'ms-93',
+  title: 'Longest Repeating Character Replacement',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-repeating-character-replacement/',
+  description: 'Given a string s and integer k, you can replace at most k characters. Return the length of the longest substring containing the same letter after replacements.',
+  language: 'python',
+  solution: `class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        from collections import defaultdict
+        freq = defaultdict(int)
+        left = 0
+        max_freq = 0
+        result = 0
+        for right, ch in enumerate(s):
+            freq[ch] += 1
+            max_freq = max(max_freq, freq[ch])
+            while (right - left + 1) - max_freq > k:
+                freq[s[left]] -= 1
+                left += 1
+            result = max(result, right - left + 1)
+        return result`
+},
+{
+  id: 'ms-94',
+  title: 'Minimum Operations to Reduce X to Zero',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/',
+  description: 'Given an integer array nums and integer x, remove the minimum number of elements from the front or back of the array such that the remaining elements sum equals sum(nums) - x. Return minimum operations or -1.',
+  language: 'python',
+  solution: `class Solution:
+    def minOperations(self, nums: List[int], x: int) -> int:
+        target = sum(nums) - x
+        if target < 0:
+            return -1
+        if target == 0:
+            return len(nums)
+        left = 0
+        curr_sum = 0
+        max_len = -1
+        for right in range(len(nums)):
+            curr_sum += nums[right]
+            while curr_sum > target and left <= right:
+                curr_sum -= nums[left]
+                left += 1
+            if curr_sum == target:
+                max_len = max(max_len, right - left + 1)
+        return -1 if max_len == -1 else len(nums) - max_len`
+},
+{
+  id: 'ms-95',
+  title: 'Maximum Number of Vowels in a Substring of Given Length',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
+  description: 'Given a string s and integer k, return the maximum number of vowel letters in any substring of s with length k.',
+  language: 'python',
+  solution: `class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        vowels = set('aeiou')
+        curr = sum(1 for ch in s[:k] if ch in vowels)
+        result = curr
+        for i in range(k, len(s)):
+            curr += (s[i] in vowels) - (s[i - k] in vowels)
+            result = max(result, curr)
+        return result`
+},
     ]
   }
 ];
