@@ -3083,6 +3083,307 @@ export const patterns: Pattern[] = [
             result += stack.pop() * stack[-1]
         return result`
 },
+{
+  id: 'ms-27',
+  title: 'Remove Duplicate Letters',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/remove-duplicate-letters/',
+  description: 'Given a string s, remove duplicate letters so that every letter appears once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.',
+  language: 'python',
+  solution: `class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        count = {}
+        for ch in s:
+            count[ch] = count.get(ch, 0) + 1
+        stack = []
+        seen = set()
+        for ch in s:
+            count[ch] -= 1
+            if ch in seen:
+                continue
+            while stack and stack[-1] > ch and count[stack[-1]] > 0:
+                seen.remove(stack.pop())
+            stack.append(ch)
+            seen.add(ch)
+        return ''.join(stack)`
+},
+{
+  id: 'ms-28',
+  title: 'Largest Rectangle in Histogram II',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
+  description: 'Given an array of integers heights representing histogram bar heights where width of each bar is 1, return the area of the largest rectangle using left and right boundary tracking.',
+  language: 'python',
+  solution: `class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        n = len(heights)
+        left = [0] * n
+        right = [n] * n
+        stack = []
+        for i in range(n):
+            while stack and heights[stack[-1]] >= heights[i]:
+                stack.pop()
+            left[i] = stack[-1] + 1 if stack else 0
+            stack.append(i)
+        stack = []
+        for i in range(n - 1, -1, -1):
+            while stack and heights[stack[-1]] >= heights[i]:
+                stack.pop()
+            right[i] = stack[-1] if stack else n
+            stack.append(i)
+        return max(heights[i] * (right[i] - left[i]) for i in range(n))`
+},
+{
+  id: 'ms-29',
+  title: 'Shortest Unsorted Continuous Subarray',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/shortest-unsorted-continuous-subarray/',
+  description: 'Given an integer array nums, find the shortest subarray that if sorted, makes the whole array sorted. Return the length of that subarray.',
+  language: 'python',
+  solution: `class Solution:
+    def findUnsortedSubarray(self, nums: List[int]) -> int:
+        n = len(nums)
+        left, right = -1, -2
+        stack = []
+        for i in range(n):
+            while stack and nums[stack[-1]] > nums[i]:
+                left = min(left if left != -1 else i, stack.pop())
+            stack.append(i)
+        stack = []
+        for i in range(n - 1, -1, -1):
+            while stack and nums[stack[-1]] < nums[i]:
+                right = max(right, stack.pop())
+            stack.append(i)
+        return right - left + 1`
+},
+{
+  id: 'ms-30',
+  title: 'Score of Parentheses',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/score-of-parentheses/',
+  description: 'Given a balanced parentheses string s, compute the score based on rules: () has score 1, AB has score A+B, (A) has score 2*A.',
+  language: 'python',
+  solution: `class Solution:
+    def scoreOfParentheses(self, s: str) -> int:
+        stack = [0]
+        for ch in s:
+            if ch == '(':
+                stack.append(0)
+            else:
+                top = stack.pop()
+                stack[-1] += max(2 * top, 1)
+        return stack[0]`
+},
+{
+  id: 'ms-31',
+  title: 'Minimum Stack',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/min-stack/',
+  description: 'Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.',
+  language: 'python',
+  solution: `class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+
+    def push(self, val: int) -> None:
+        self.stack.append(val)
+        min_val = min(val, self.min_stack[-1] if self.min_stack else val)
+        self.min_stack.append(min_val)
+
+    def pop(self) -> None:
+        self.stack.pop()
+        self.min_stack.pop()
+
+    def top(self) -> int:
+        return self.stack[-1]
+
+    def getMin(self) -> int:
+        return self.min_stack[-1]`
+},
+{
+  id: 'ms-32',
+  title: 'Largest Rectangle in Matrix of 1s',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/maximal-rectangle/',
+  description: 'Given a binary matrix, for each row build a histogram of consecutive 1s and apply the largest rectangle in histogram algorithm to find the maximum area.',
+  language: 'python',
+  solution: `class Solution:
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        if not matrix or not matrix[0]:
+            return 0
+        cols = len(matrix[0])
+        heights = [0] * (cols + 1)
+        max_area = 0
+        for row in matrix:
+            for j in range(cols):
+                heights[j] = heights[j] + 1 if row[j] == '1' else 0
+            stack = [-1]
+            for i in range(cols + 1):
+                while stack[-1] != -1 and heights[stack[-1]] >= heights[i]:
+                    h = heights[stack.pop()]
+                    w = i - stack[-1] - 1
+                    max_area = max(max_area, h * w)
+                stack.append(i)
+        return max_area`
+},
+{
+  id: 'ms-33',
+  title: 'Flatten Nested List Iterator',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/flatten-nested-list-iterator/',
+  description: 'Implement an iterator to flatten a nested list of integers. Each element is either an integer or a list whose elements may also be integers or other lists.',
+  language: 'python',
+  solution: `class NestedIterator:
+    def __init__(self, nestedList):
+        self.stack = []
+        self._flatten(nestedList)
+
+    def _flatten(self, lst):
+        for item in reversed(lst):
+            self.stack.append(item)
+
+    def next(self) -> int:
+        return self.stack.pop().getInteger()
+
+    def hasNext(self) -> bool:
+        while self.stack:
+            top = self.stack[-1]
+            if top.isInteger():
+                return True
+            self.stack.pop()
+            self._flatten(top.getList())
+        return False`
+},
+{
+  id: 'ms-34',
+  title: 'Exclusive Time of Functions',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/exclusive-time-of-functions/',
+  description: 'Given the running logs of n functions on a single-threaded CPU, return the exclusive time of each function. Each log is start/end with a timestamp.',
+  language: 'python',
+  solution: `class Solution:
+    def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
+        result = [0] * n
+        stack = []
+        prev_time = 0
+        for log in logs:
+            fn_id, typ, time = log.split(':')
+            fn_id, time = int(fn_id), int(time)
+            if typ == 'start':
+                if stack:
+                    result[stack[-1]] += time - prev_time
+                stack.append(fn_id)
+                prev_time = time
+            else:
+                result[stack.pop()] += time - prev_time + 1
+                prev_time = time + 1
+        return result`
+},
+{
+  id: 'ms-35',
+  title: 'Maximum Binary Tree',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-binary-tree/',
+  description: 'Given an array nums with no duplicates, build a maximum binary tree where root is the max element, left subtree is built from left part, right subtree from right part. Return the root.',
+  language: 'python',
+  solution: `class Solution:
+    def constructMaximumBinaryTree(self, nums: List[int]) -> Optional[TreeNode]:
+        stack = []
+        for num in nums:
+            node = TreeNode(num)
+            last = None
+            while stack and stack[-1].val < num:
+                last = stack.pop()
+            node.left = last
+            if stack:
+                stack[-1].right = node
+            stack.append(node)
+        return stack[0]`
+},
+{
+  id: 'ms-36',
+  title: 'Remove All Adjacent Duplicates In String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/',
+  description: 'Given a string s, repeatedly remove adjacent duplicate characters until no more can be removed. Return the final string.',
+  language: 'python',
+  solution: `class Solution:
+    def removeDuplicates(self, s: str) -> str:
+        stack = []
+        for ch in s:
+            if stack and stack[-1] == ch:
+                stack.pop()
+            else:
+                stack.append(ch)
+        return ''.join(stack)`
+},
+{
+  id: 'ms-37',
+  title: 'Remove All Adjacent Duplicates in String II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/',
+  description: 'Given a string s and integer k, repeatedly remove k adjacent duplicate characters until no more can be removed. Return the final string.',
+  language: 'python',
+  solution: `class Solution:
+    def removeDuplicates(self, s: str, k: int) -> str:
+        stack = []  # (char, count)
+        for ch in s:
+            if stack and stack[-1][0] == ch:
+                stack[-1] = (ch, stack[-1][1] + 1)
+                if stack[-1][1] == k:
+                    stack.pop()
+            else:
+                stack.append((ch, 1))
+        return ''.join(ch * cnt for ch, cnt in stack)`
+},
+{
+  id: 'ms-38',
+  title: 'Minimum Remove to Make Valid Parentheses',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/',
+  description: 'Given a string s of parentheses and lowercase letters, remove the minimum number of parentheses to make the string valid. Return any valid result.',
+  language: 'python',
+  solution: `class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        s = list(s)
+        stack = []
+        for i, ch in enumerate(s):
+            if ch == '(':
+                stack.append(i)
+            elif ch == ')':
+                if stack:
+                    stack.pop()
+                else:
+                    s[i] = ''
+        for i in stack:
+            s[i] = ''
+        return ''.join(s)`
+},
+{
+  id: 'ms-39',
+  title: 'Largest Rectangle in Histogram — Left Right Boundaries',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
+  description: 'For each bar in a histogram, precompute the left and right boundaries (indices of nearest smaller bars) using two separate monotonic stack passes, then compute max area.',
+  language: 'python',
+  solution: `class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        n = len(heights)
+        left_boundary = [0] * n
+        right_boundary = [n - 1] * n
+        stack = []
+        for i in range(n):
+            while stack and heights[stack[-1]] >= heights[i]:
+                right_boundary[stack.pop()] = i - 1
+            left_boundary[i] = stack[-1] + 1 if stack else 0
+            stack.append(i)
+        max_area = 0
+        for i in range(n):
+            width = right_boundary[i] - left_boundary[i] + 1
+            max_area = max(max_area, heights[i] * width)
+        return max_area`
+},
     ]
   }
 ];
