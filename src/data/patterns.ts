@@ -4711,6 +4711,106 @@ export const patterns: Pattern[] = [
             result = max(result, curr)
         return result`
 },
+{
+  id: 'ms-96',
+  title: 'Longest Subarray of 1s After Deleting One Element',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/',
+  description: 'Given a binary array nums, you must delete exactly one element. Return the size of the longest non-empty subarray containing only 1s in the resulting array.',
+  language: 'python',
+  solution: `class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        left = 0
+        zeros = 0
+        result = 0
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1
+            while zeros > 1:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+            result = max(result, right - left)
+        return result`
+},
+{
+  id: 'ms-97',
+  title: 'Max Consecutive Ones III',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/max-consecutive-ones-iii/',
+  description: 'Given a binary array nums and an integer k, return the maximum number of consecutive 1s in the array if you can flip at most k 0s.',
+  language: 'python',
+  solution: `class Solution:
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        left = 0
+        zeros = 0
+        result = 0
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1
+            while zeros > k:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+            result = max(result, right - left + 1)
+        return result`
+},
+{
+  id: 'ms-98',
+  title: 'Number of Substrings Containing All Three Characters',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/',
+  description: 'Given a string s consisting only of characters a, b and c, return the number of substrings containing at least one occurrence of all these characters.',
+  language: 'python',
+  solution: `class Solution:
+    def numberOfSubstrings(self, s: str) -> int:
+        last = {'a': -1, 'b': -1, 'c': -1}
+        result = 0
+        for i, ch in enumerate(s):
+            last[ch] = i
+            result += 1 + min(last['a'], last['b'], last['c'])
+        return result`
+},
+{
+  id: 'ms-99',
+  title: 'Binary Subarrays With Sum',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/binary-subarrays-with-sum/',
+  description: 'Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum equal to goal.',
+  language: 'python',
+  solution: `class Solution:
+    def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
+        from collections import defaultdict
+        prefix = defaultdict(int)
+        prefix[0] = 1
+        curr_sum = 0
+        result = 0
+        for num in nums:
+            curr_sum += num
+            result += prefix[curr_sum - goal]
+            prefix[curr_sum] += 1
+        return result`
+},
+{
+  id: 'ms-100',
+  title: 'Longest Nice Subarray',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-nice-subarray/',
+  description: 'Given an array nums of positive integers, a subarray is nice if the bitwise AND of every pair of elements in different positions is 0. Return the length of the longest nice subarray.',
+  language: 'python',
+  solution: `class Solution:
+    def longestNiceSubarray(self, nums: List[int]) -> int:
+        left = 0
+        used_bits = 0
+        result = 0
+        for right in range(len(nums)):
+            while used_bits & nums[right]:
+                used_bits ^= nums[left]
+                left += 1
+            used_bits |= nums[right]
+            result = max(result, right - left + 1)
+        return result`
+},
     ]
   }
 ];
