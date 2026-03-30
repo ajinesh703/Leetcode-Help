@@ -2867,6 +2867,222 @@ export const patterns: Pattern[] = [
             max_area = max(max_area, largestInHistogram(heights))
         return max_area`
 },
+{
+  id: 'ms-17',
+  title: 'Previous Smaller Element',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-atoms/',
+  description: 'For each element in the array, find the nearest smaller element to its left. Return -1 if no such element exists.',
+  language: 'python',
+  solution: `class Solution:
+    def previousSmallerElement(self, nums: List[int]) -> List[int]:
+        stack = []
+        result = []
+        for num in nums:
+            while stack and stack[-1] >= num:
+                stack.pop()
+            result.append(stack[-1] if stack else -1)
+            stack.append(num)
+        return result`
+},
+{
+  id: 'ms-18',
+  title: 'Final Prices With a Special Discount in a Shop',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/',
+  description: 'Given an array prices, for each item find the first item to the right with a price <= current price and subtract it as a discount. Return the final prices.',
+  language: 'python',
+  solution: `class Solution:
+    def finalPrices(self, prices: List[int]) -> List[int]:
+        stack = []
+        result = prices[:]
+        for i in range(len(prices)):
+            while stack and prices[stack[-1]] >= prices[i]:
+                result[stack.pop()] -= prices[i]
+            stack.append(i)
+        return result`
+},
+{
+  id: 'ms-19',
+  title: 'Longest Well-Performing Interval',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-well-performing-interval/',
+  description: 'A day is a tiring day if hours worked > 8. A well-performing interval has more tiring days than non-tiring. Return the length of the longest such interval.',
+  language: 'python',
+  solution: `class Solution:
+    def longestWPI(self, hours: List[int]) -> int:
+        score = 0
+        seen = {}
+        result = 0
+        for i, h in enumerate(hours):
+            score += 1 if h > 8 else -1
+            if score > 0:
+                result = i + 1
+            else:
+                if score - 1 in seen:
+                    result = max(result, i - seen[score - 1])
+            if score not in seen:
+                seen[score] = i
+        return result`
+},
+{
+  id: 'ms-20',
+  title: 'Steps to Make Array Non-decreasing',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/steps-to-make-array-non-decreasing/',
+  description: 'In one step, remove all elements nums[i] where nums[i-1] > nums[i]. Return the number of steps to make the array non-decreasing.',
+  language: 'python',
+  solution: `class Solution:
+    def totalSteps(self, nums: List[int]) -> int:
+        stack = []  # (value, steps_to_remove)
+        result = 0
+        for num in nums:
+            steps = 0
+            while stack and stack[-1][0] <= num:
+                steps = max(steps, stack.pop()[1])
+            if stack:
+                steps += 1
+            else:
+                steps = 0
+            result = max(result, steps)
+            stack.append((num, steps))
+        return result`
+},
+{
+  id: 'ms-21',
+  title: 'Sum of Subarray Ranges',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/sum-of-subarray-ranges/',
+  description: 'The range of a subarray is the difference between the largest and smallest element. Return the sum of all subarray ranges of nums.',
+  language: 'python',
+  solution: `class Solution:
+    def subArrayRanges(self, nums: List[int]) -> int:
+        n = len(nums)
+        result = 0
+        for i in range(n):
+            min_val = max_val = nums[i]
+            for j in range(i, n):
+                min_val = min(min_val, nums[j])
+                max_val = max(max_val, nums[j])
+                result += max_val - min_val
+        return result`
+},
+{
+  id: 'ms-22',
+  title: 'Maximum Subarray Min-Product',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-subarray-min-product/',
+  description: 'The min-product of an array is equal to the minimum value multiplied by the arrays sum. Return the maximum min-product of any non-empty subarray of nums modulo 1e9+7.',
+  language: 'python',
+  solution: `class Solution:
+    def maxSumMinProduct(self, nums: List[int]) -> int:
+        MOD = 10**9 + 7
+        n = len(nums)
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + nums[i]
+        
+        stack = []
+        result = 0
+        for i in range(n + 1):
+            while stack and (i == n or nums[stack[-1]] >= nums[i]):
+                mid = stack.pop()
+                left = stack[-1] if stack else -1
+                total = prefix[i] - prefix[left + 1]
+                result = max(result, nums[mid] * total)
+            stack.append(i)
+        return result % MOD`
+},
+{
+  id: 'ms-23',
+  title: 'Buildings With an Ocean View',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/buildings-with-an-ocean-view/',
+  description: 'There are n buildings in a line. Ocean is to the right. A building has an ocean view if all buildings to its right are smaller. Return indices of buildings with ocean view in increasing order.',
+  language: 'python',
+  solution: `class Solution:
+    def findBuildings(self, heights: List[int]) -> List[int]:
+        stack = []
+        for i in range(len(heights)):
+            while stack and heights[stack[-1]] <= heights[i]:
+                stack.pop()
+            stack.append(i)
+        return stack`
+},
+{
+  id: 'ms-24',
+  title: 'Maximum Number of Visible Points',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-visible-points/',
+  description: 'Given points on a 2D plane and a location, return the maximum number of points visible from the location within a given angle of view.',
+  language: 'python',
+  solution: `class Solution:
+    def visiblePoints(self, points: List[List[int]], angle: int, location: List[int]) -> int:
+        import math
+        angles = []
+        bonus = 0
+        for x, y in points:
+            dx, dy = x - location[0], y - location[1]
+            if dx == 0 and dy == 0:
+                bonus += 1
+                continue
+            angles.append(math.degrees(math.atan2(dy, dx)))
+        angles.sort()
+        angles += [a + 360 for a in angles]
+        max_visible = 0
+        left = 0
+        for right in range(len(angles)):
+            while angles[right] - angles[left] > angle:
+                left += 1
+            max_visible = max(max_visible, right - left + 1)
+        return max_visible + bonus`
+},
+{
+  id: 'ms-25',
+  title: 'Decode String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/decode-string/',
+  description: 'Given an encoded string like 3[a2[c]], return its decoded version. The encoding rule is k[encoded_string] meaning the encoded_string is repeated exactly k times.',
+  language: 'python',
+  solution: `class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        curr_str = ""
+        curr_num = 0
+        for ch in s:
+            if ch.isdigit():
+                curr_num = curr_num * 10 + int(ch)
+            elif ch == '[':
+                stack.append((curr_str, curr_num))
+                curr_str = ""
+                curr_num = 0
+            elif ch == ']':
+                prev_str, num = stack.pop()
+                curr_str = prev_str + num * curr_str
+            else:
+                curr_str += ch
+        return curr_str`
+},
+{
+  id: 'ms-26',
+  title: 'Minimum Cost Tree From Leaf Values',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/',
+  description: 'Given an array arr of positive integers, find the minimum possible sum of all non-leaf node values when building a binary tree where arr represents the leaves left to right.',
+  language: 'python',
+  solution: `class Solution:
+    def mctFromLeafValues(self, arr: List[int]) -> int:
+        stack = [float('inf')]
+        result = 0
+        for num in arr:
+            while stack[-1] <= num:
+                mid = stack.pop()
+                result += mid * min(stack[-1], num)
+            stack.append(num)
+        while len(stack) > 2:
+            result += stack.pop() * stack[-1]
+        return result`
+},
     ]
   }
 ];
