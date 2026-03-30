@@ -1314,7 +1314,8 @@ export const patterns: Pattern[] = [
                 if dfs(r, c, 0):
                     return True
         return False`
-      }
+      },
+      
     ]
   },
   {
