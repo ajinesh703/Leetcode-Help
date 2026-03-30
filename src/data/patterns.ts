@@ -4148,6 +4148,236 @@ export const patterns: Pattern[] = [
             max_area = max(max_area, height * (len(heights) - idx))
         return max_area`
 },
+{
+  id: 'ms-71',
+  title: 'Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/',
+  description: 'Given an array nums and an integer limit, return the size of the longest subarray such that the absolute difference between any two elements is less than or equal to limit.',
+  language: 'python',
+  solution: `class Solution:
+    def longestSubarray(self, nums: List[int], limit: int) -> int:
+        from collections import deque
+        max_dq = deque()
+        min_dq = deque()
+        left = 0
+        result = 0
+        for right in range(len(nums)):
+            while max_dq and nums[max_dq[-1]] <= nums[right]:
+                max_dq.pop()
+            while min_dq and nums[min_dq[-1]] >= nums[right]:
+                min_dq.pop()
+            max_dq.append(right)
+            min_dq.append(right)
+            while nums[max_dq[0]] - nums[min_dq[0]] > limit:
+                left += 1
+                if max_dq[0] < left:
+                    max_dq.popleft()
+                if min_dq[0] < left:
+                    min_dq.popleft()
+            result = max(result, right - left + 1)
+        return result`
+},
+{
+  id: 'ms-72',
+  title: 'Shortest Subarray with Sum at Least K',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/',
+  description: 'Given an integer array nums and an integer k, return the length of the shortest non-empty subarray with a sum of at least k. If no such subarray exists, return -1.',
+  language: 'python',
+  solution: `class Solution:
+    def shortestSubarray(self, nums: List[int], k: int) -> int:
+        from collections import deque
+        n = len(nums)
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + nums[i]
+        dq = deque()
+        result = n + 1
+        for i in range(n + 1):
+            while dq and prefix[i] - prefix[dq[0]] >= k:
+                result = min(result, i - dq.popleft())
+            while dq and prefix[dq[-1]] >= prefix[i]:
+                dq.pop()
+            dq.append(i)
+        return result if result <= n else -1`
+},
+{
+  id: 'ms-73',
+  title: 'Maximum Sum of Two Non-Overlapping Subarrays',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/',
+  description: 'Given an integer array nums and two integers firstLen and secondLen, return the maximum sum of elements in two non-overlapping subarrays with lengths firstLen and secondLen.',
+  language: 'python',
+  solution: `class Solution:
+    def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:
+        def helper(L, M):
+            n = len(nums)
+            prefix = [0] * (n + 1)
+            for i in range(n):
+                prefix[i + 1] = prefix[i] + nums[i]
+            result = 0
+            max_L = 0
+            for i in range(L + M, n + 1):
+                max_L = max(max_L, prefix[i - M] - prefix[i - M - L])
+                result = max(result, max_L + prefix[i] - prefix[i - M])
+            return result
+        return max(helper(firstLen, secondLen), helper(secondLen, firstLen))`
+},
+{
+  id: 'ms-74',
+  title: 'Maximum Product Subarray',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
+  description: 'Given an integer array nums, find a subarray that has the largest product and return the product. The answer will fit in a 32-bit integer.',
+  language: 'python',
+  solution: `class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        max_prod = min_prod = result = nums[0]
+        for num in nums[1:]:
+            candidates = (num, max_prod * num, min_prod * num)
+            max_prod = max(candidates)
+            min_prod = min(candidates)
+            result = max(result, max_prod)
+        return result`
+},
+{
+  id: 'ms-75',
+  title: 'Odd Even Jump',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/odd-even-jump/',
+  description: 'You are given an integer array arr. From each index i you can jump to j where arr[j] is the smallest value >= arr[i] on odd jumps, or largest value <= arr[i] on even jumps. Return how many indices allow you to reach the end.',
+  language: 'python',
+  solution: `class Solution:
+    def oddEvenJumps(self, arr: List[int]) -> int:
+        n = len(arr)
+        def make_next(sorted_indices):
+            result = [None] * n
+            stack = []
+            for i in sorted_indices:
+                while stack and stack[-1] < i:
+                    result[stack.pop()] = i
+                stack.append(i)
+            return result
+        odd_next = make_next(sorted(range(n), key=lambda i: (arr[i], i)))
+        even_next = make_next(sorted(range(n), key=lambda i: (-arr[i], i)))
+        odd = [False] * n
+        even = [False] * n
+        odd[-1] = even[-1] = True
+        for i in range(n - 2, -1, -1):
+            if odd_next[i] is not None:
+                odd[i] = even[odd_next[i]]
+            if even_next[i] is not None:
+                even[i] = odd[even_next[i]]
+        return sum(odd)`
+},
+{
+  id: 'ms-76',
+  title: 'Minimum Number of Increments on Subarrays',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-increments-on-subarrays/',
+  description: 'Given an array target, you start with an all-zero array. In one operation you can increment any contiguous subarray by 1. Return the minimum number of operations to form target.',
+  language: 'python',
+  solution: `class Solution:
+    def minNumberOperations(self, target: List[int]) -> int:
+        result = target[0]
+        for i in range(1, len(target)):
+            if target[i] > target[i - 1]:
+                result += target[i] - target[i - 1]
+        return result`
+},
+{
+  id: 'ms-77',
+  title: 'Maximum Number of Robots Within Budget',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-robots-within-budget/',
+  description: 'You have n robots each with chargeTimes and runningCosts. The total cost of running k consecutive robots is max(chargeTimes) + k * sum(runningCosts). Return the max k robots you can run within budget.',
+  language: 'python',
+  solution: `class Solution:
+    def maximumRobots(self, chargeTimes: List[int], runningCosts: List[int], budget: int) -> int:
+        from collections import deque
+        dq = deque()
+        result = 0
+        total = 0
+        left = 0
+        for right in range(len(chargeTimes)):
+            total += runningCosts[right]
+            while dq and chargeTimes[dq[-1]] <= chargeTimes[right]:
+                dq.pop()
+            dq.append(right)
+            k = right - left + 1
+            while dq and chargeTimes[dq[0]] + k * total > budget:
+                total -= runningCosts[left]
+                if dq[0] == left:
+                    dq.popleft()
+                left += 1
+                k -= 1
+            result = max(result, right - left + 1)
+        return result`
+},
+{
+  id: 'ms-78',
+  title: 'Minimum Cost to Cut a Stick',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-cut-a-stick/',
+  description: 'Given a stick of length n and an array cuts, you can perform cuts in any order. The cost of a cut is the length of the stick being cut. Return the minimum total cost to make all cuts.',
+  language: 'python',
+  solution: `class Solution:
+    def minCost(self, n: int, cuts: List[int]) -> int:
+        cuts = sorted([0] + cuts + [n])
+        m = len(cuts)
+        from functools import lru_cache
+        @lru_cache(None)
+        def dp(i, j):
+            if j - i <= 1:
+                return 0
+            return min(
+                cuts[j] - cuts[i] + dp(i, k) + dp(k, j)
+                for k in range(i + 1, j)
+            )
+        return dp(0, m - 1)`
+},
+{
+  id: 'ms-79',
+  title: 'Maximum Score From Performing Multiplication Operations',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/',
+  description: 'Given arrays nums and multipliers, at each step pick the first or last element of nums, multiply it with multipliers[i], add to score, and remove it. Return the maximum score after multipliers.length operations.',
+  language: 'python',
+  solution: `class Solution:
+    def maximumScore(self, nums: List[int], multipliers: List[int]) -> int:
+        from functools import lru_cache
+        n = len(nums)
+        m = len(multipliers)
+        @lru_cache(None)
+        def dp(i, left):
+            if i == m:
+                return 0
+            right = n - 1 - (i - left)
+            mult = multipliers[i]
+            pick_left = mult * nums[left] + dp(i + 1, left + 1)
+            pick_right = mult * nums[right] + dp(i + 1, left)
+            return max(pick_left, pick_right)
+        return dp(0, 0)`
+},
+{
+  id: 'ms-80',
+  title: 'Number of Subarrays with Bounded Maximum',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/',
+  description: 'Given an integer array nums and two integers left and right, return the number of contiguous non-empty subarrays such that the maximum element is in the range [left, right].',
+  language: 'python',
+  solution: `class Solution:
+    def numSubarrayBoundedMax(self, nums: List[int], left: int, right: int) -> int:
+        def count(bound):
+            result = 0
+            curr = 0
+            for num in nums:
+                curr = curr + 1 if num <= bound else 0
+                result += curr
+            return result
+        return count(right) - count(left - 1)`
+},
     ]
   }
 ];
