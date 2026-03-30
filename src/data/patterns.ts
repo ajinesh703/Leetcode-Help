@@ -1201,6 +1201,114 @@ export const patterns: Pattern[] = [
                 right = mid - 1
         return right`
 },
+{
+  id: 'bs-23',
+  title: 'Search in Rotated Sorted Array',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/search-in-rotated-sorted-array/',
+  description: 'There is an integer array nums sorted in ascending order (with distinct values), which is possibly rotated at an unknown pivot index. Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.',
+  language: 'python',
+  solution: `class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return mid
+            if nums[left] <= nums[mid]:
+                if nums[left] <= target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                if nums[mid] < target <= nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+        return -1`
+},
+
+{
+  id: 'bs-24',
+  title: 'Find Minimum in Rotated Sorted Array',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/',
+  description: 'Suppose an array of length n sorted in ascending order is rotated between 1 and n times. Given the sorted rotated array nums of unique elements, return the minimum element of this array. You must write an algorithm that runs in O(log n) time.',
+  language: 'python',
+  solution: `class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[right]:
+                left = mid + 1
+            else:
+                right = mid
+        return nums[left]`
+},
+
+{
+  id: 'bs-25',
+  title: 'Koko Eating Bananas',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/koko-eating-bananas/',
+  description: 'Koko loves to eat bananas. There are n piles of bananas, the ith pile has piles[i] bananas. Koko can decide her bananas-per-hour eating speed of k. Each hour, she chooses some pile of bananas and eats k bananas from that pile. Return the minimum integer k such that she can eat all the bananas within h hours.',
+  language: 'python',
+  solution: `class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        import math
+        left, right = 1, max(piles)
+        while left < right:
+            mid = (left + right) // 2
+            hours = sum(math.ceil(p / mid) for p in piles)
+            if hours <= h:
+                right = mid
+            else:
+                left = mid + 1
+        return left`
+},
+
+{
+  id: 'bs-26',
+  title: 'Find Peak Element',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-peak-element/',
+  description: 'A peak element is an element that is strictly greater than its neighbors. Given a 0-indexed integer array nums, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peak elements. You must write an algorithm that runs in O(log n) time.',
+  language: 'python',
+  solution: `class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[mid + 1]:
+                right = mid
+            else:
+                left = mid + 1
+        return left`
+},
+
+{
+  id: 'bs-27',
+  title: 'Search a 2D Matrix',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/search-a-2d-matrix/',
+  description: 'You are given an m x n integer matrix with the following properties: each row is sorted in non-decreasing order, and the first integer of each row is greater than the last integer of the previous row. Given an integer target, return true if target is in the matrix or false otherwise. You must write a solution in O(log(m * n)) time.',
+  language: 'python',
+  solution: `class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        m, n = len(matrix), len(matrix[0])
+        left, right = 0, m * n - 1
+        while left <= right:
+            mid = (left + right) // 2
+            val = matrix[mid // n][mid % n]
+            if val == target:
+                return True
+            elif val < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return False`
+},
     ]
   },
   {
