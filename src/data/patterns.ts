@@ -2330,6 +2330,196 @@ export const patterns: Pattern[] = [
                 prev = temp
         return dp[n]`
 },
+{
+  id: 'dp-11',
+  title: 'Maximum Product Subarray',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
+  description: 'Given an integer array nums, find a subarray that has the largest product and return the product.',
+  language: 'python',
+  solution: `class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums)
+        curMin, curMax = 1, 1
+        for n in nums:
+            if n == 0:
+                curMin, curMax = 1, 1
+                continue
+            tmp = curMax * n
+            curMax = max(n * curMax, n * curMin, n)
+            curMin = min(tmp, n * curMin, n)
+            res = max(res, curMax)
+        return res`
+},
+{
+  id: 'dp-12',
+  title: 'Decode Ways',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/decode-ways/',
+  description: 'Given a string s containing only digits, return the number of ways to decode it where A=1, B=2, ..., Z=26.',
+  language: 'python',
+  solution: `class Solution:
+    def numDecodings(self, s: str) -> int:
+        if not s or s[0] == '0':
+            return 0
+        n = len(s)
+        dp = [0] * (n + 1)
+        dp[0], dp[1] = 1, 1
+        for i in range(2, n + 1):
+            if s[i - 1] != '0':
+                dp[i] += dp[i - 1]
+            two_digit = int(s[i - 2:i])
+            if 10 <= two_digit <= 26:
+                dp[i] += dp[i - 2]
+        return dp[n]`
+},
+{
+  id: 'dp-13',
+  title: 'Palindromic Substrings',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/palindromic-substrings/',
+  description: 'Given a string s, return the number of palindromic substrings in it. A string is a palindrome when it reads the same backward as forward.',
+  language: 'python',
+  solution: `class Solution:
+    def countSubstrings(self, s: str) -> int:
+        count = 0
+        for i in range(len(s)):
+            for odd in [True, False]:
+                l, r = i, i if odd else i + 1
+                while l >= 0 and r < len(s) and s[l] == s[r]:
+                    count += 1
+                    l -= 1
+                    r += 1
+        return count`
+},
+{
+  id: 'dp-14',
+  title: 'Longest Palindromic Substring',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-palindromic-substring/',
+  description: 'Given a string s, return the longest palindromic substring in s.',
+  language: 'python',
+  solution: `class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        res, resLen = "", 0
+        for i in range(len(s)):
+            for l, r in [(i, i), (i, i + 1)]:
+                while l >= 0 and r < len(s) and s[l] == s[r]:
+                    if (r - l + 1) > resLen:
+                        res = s[l:r + 1]
+                        resLen = r - l + 1
+                    l -= 1
+                    r += 1
+        return res`
+},
+{
+  id: 'dp-15',
+  title: 'Triangle Minimum Path Sum',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/triangle/',
+  description: 'Given a triangle array, return the minimum path sum from top to bottom. At each step you may move to an adjacent number in the row below.',
+  language: 'python',
+  solution: `class Solution:
+    def minimumTotal(self, triangle: List[List[int]]) -> int:
+        dp = triangle[-1][:]
+        for row in range(len(triangle) - 2, -1, -1):
+            for col in range(len(triangle[row])):
+                dp[col] = triangle[row][col] + min(dp[col], dp[col + 1])
+        return dp[0]`
+},
+{
+  id: 'dp-16',
+  title: 'Best Time to Buy and Sell Stock with Cooldown',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/',
+  description: 'Given stock prices, find the maximum profit with a cooldown of 1 day after selling before you can buy again.',
+  language: 'python',
+  solution: `class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        hold, sold, rest = -prices[0], 0, 0
+        for price in prices[1:]:
+            prev_sold = sold
+            sold = hold + price
+            hold = max(hold, rest - price)
+            rest = max(rest, prev_sold)
+        return max(sold, rest)`
+},
+{
+  id: 'dp-17',
+  title: 'Minimum Cost Climbing Stairs',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/min-cost-climbing-stairs/',
+  description: 'Given an array cost where cost[i] is the cost of the ith step, return the minimum cost to reach the top of the floor.',
+  language: 'python',
+  solution: `class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        for i in range(2, len(cost)):
+            cost[i] += min(cost[i - 1], cost[i - 2])
+        return min(cost[-1], cost[-2])`
+},
+{
+  id: 'dp-18',
+  title: 'Integer Break',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/integer-break/',
+  description: 'Given an integer n, break it into the sum of k positive integers (k >= 2) and maximize the product of those integers.',
+  language: 'python',
+  solution: `class Solution:
+    def integerBreak(self, n: int) -> int:
+        dp = [0] * (n + 1)
+        dp[1] = 1
+        for i in range(2, n + 1):
+            for j in range(1, i):
+                dp[i] = max(dp[i], j * (i - j), j * dp[i - j])
+        return dp[n]`
+},
+{
+  id: 'dp-19',
+  title: 'Burst Balloons',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/burst-balloons/',
+  description: 'Given n balloons with values, burst them to maximize coins collected. Bursting balloon i gives nums[i-1]*nums[i]*nums[i+1] coins.',
+  language: 'python',
+  solution: `class Solution:
+    def maxCoins(self, nums: List[int]) -> int:
+        nums = [1] + nums + [1]
+        n = len(nums)
+        dp = [[0] * n for _ in range(n)]
+        for length in range(2, n):
+            for left in range(0, n - length):
+                right = left + length
+                for k in range(left + 1, right):
+                    dp[left][right] = max(
+                        dp[left][right],
+                        nums[left] * nums[k] * nums[right] + dp[left][k] + dp[k][right]
+                    )
+        return dp[0][n - 1]`
+},
+{
+  id: 'dp-20',
+  title: 'Regular Expression Matching',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/regular-expression-matching/',
+  description: 'Given an input string s and a pattern p, implement regular expression matching with support for . (any char) and * (zero or more of preceding).',
+  language: 'python',
+  solution: `class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
+        m, n = len(s), len(p)
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = True
+        for j in range(1, n + 1):
+            if p[j - 1] == '*':
+                dp[0][j] = dp[0][j - 2]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if p[j - 1] == '*':
+                    dp[i][j] = dp[i][j - 2]
+                    if p[j - 2] == '.' or p[j - 2] == s[i - 1]:
+                        dp[i][j] |= dp[i - 1][j]
+                elif p[j - 1] == '.' or p[j - 1] == s[i - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]
+        return dp[m][n]`
+},
     ]
   },
   {
