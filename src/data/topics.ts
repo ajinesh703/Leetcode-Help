@@ -2934,9 +2934,188 @@ class SmallestInfiniteSet:
                     heapq.heappush(heap, nxt)
         
         return val`
+},
+
+{
+  id: 'heap-34',
+  title: 'Furthest Building You Can Reach',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/furthest-building-you-can-reach/',
+  description: 'Use min-heap to optimally use bricks and ladders.',
+  language: 'python',
+  solution: `class Solution:
+    def furthestBuilding(self, heights: List[int], bricks: int, ladders: int) -> int:
+        import heapq
+        heap = []
+        
+        for i in range(len(heights) - 1):
+            diff = heights[i+1] - heights[i]
+            if diff > 0:
+                heapq.heappush(heap, diff)
+                if len(heap) > ladders:
+                    bricks -= heapq.heappop(heap)
+                if bricks < 0:
+                    return i
+        return len(heights) - 1`
+},
+
+{
+  id: 'heap-35',
+  title: 'Minimum Cost to Connect Sticks',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-connect-sticks/',
+  description: 'Combine smallest sticks first using min-heap.',
+  language: 'python',
+  solution: `class Solution:
+    def connectSticks(self, sticks: List[int]) -> int:
+        import heapq
+        heapq.heapify(sticks)
+        cost = 0
+        
+        while len(sticks) > 1:
+            a = heapq.heappop(sticks)
+            b = heapq.heappop(sticks)
+            total = a + b
+            cost += total
+            heapq.heappush(sticks, total)
+        
+        return cost`
+},
+
+{
+  id: 'heap-36',
+  title: 'Maximum Frequency Stack',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-frequency-stack/',
+  description: 'Simulate stack with frequency using heap.',
+  language: 'python',
+  solution: `import heapq
+
+class FreqStack:
+
+    def __init__(self):
+        self.freq = {}
+        self.heap = []
+        self.time = 0
+
+    def push(self, val: int) -> None:
+        self.freq[val] = self.freq.get(val, 0) + 1
+        heapq.heappush(self.heap, (-self.freq[val], -self.time, val))
+        self.time += 1
+
+    def pop(self) -> int:
+        freq, time, val = heapq.heappop(self.heap)
+        self.freq[val] -= 1
+        return val`
+},
+
+{
+  id: 'heap-37',
+  title: 'K Pairs with Smallest Sums',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-k-pairs-with-smallest-sums/',
+  description: 'Use heap to track smallest sum pairs.',
+  language: 'python',
+  solution: `class Solution:
+    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
+        import heapq
+        heap = []
+        
+        for i in range(min(k, len(nums1))):
+            heapq.heappush(heap, (nums1[i] + nums2[0], i, 0))
+        
+        result = []
+        
+        while heap and len(result) < k:
+            total, i, j = heapq.heappop(heap)
+            result.append([nums1[i], nums2[j]])
+            
+            if j + 1 < len(nums2):
+                heapq.heappush(heap, (nums1[i] + nums2[j+1], i, j+1))
+        
+        return result`
+},
+
+{
+  id: 'heap-38',
+  title: 'Sort Characters By Frequency',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/sort-characters-by-frequency/',
+  description: 'Sort characters using max heap by frequency.',
+  language: 'python',
+  solution: `class Solution:
+    def frequencySort(self, s: str) -> str:
+        from collections import Counter
+        import heapq
+        
+        count = Counter(s)
+        heap = [(-freq, char) for char, freq in count.items()]
+        heapq.heapify(heap)
+        
+        result = []
+        while heap:
+            freq, char = heapq.heappop(heap)
+            result.append(char * (-freq))
+        
+        return ''.join(result)`
+},
+
+{
+  id: 'heap-39',
+  title: 'Minimum Number of Refueling Stops',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-refueling-stops/',
+  description: 'Use max heap to greedily refuel.',
+  language: 'python',
+  solution: `class Solution:
+    def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
+        import heapq
+        heap = []
+        stations.append([target, 0])
+        fuel = startFuel
+        prev = 0
+        res = 0
+        
+        for location, capacity in stations:
+            fuel -= location - prev
+            while heap and fuel < 0:
+                fuel += -heapq.heappop(heap)
+                res += 1
+            if fuel < 0:
+                return -1
+            heapq.heappush(heap, -capacity)
+            prev = location
+        
+        return res`
+},
+
+{
+  id: 'heap-40',
+  title: 'Sliding Window Maximum',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/sliding-window-maximum/',
+  description: 'Use heap to track maximum in window.',
+  language: 'python',
+  solution: `class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        import heapq
+        heap = []
+        result = []
+        
+        for i in range(len(nums)):
+            heapq.heappush(heap, (-nums[i], i))
+            
+            while heap[0][1] <= i - k:
+                heapq.heappop(heap)
+            
+            if i >= k - 1:
+                result.append(-heap[0][0])
+        
+        return result`
 }
+
 ]
 
-    ]
+    
   }
 ];
