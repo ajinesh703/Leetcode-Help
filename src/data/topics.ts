@@ -2695,6 +2695,247 @@ export const topics: Topic[] = [
         return total`
 },
 
+{
+  id: 'heap-24',
+  title: 'Kth Largest Element in an Array',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/kth-largest-element-in-an-array/',
+  description: 'Find the kth largest element using a min-heap of size k.',
+  language: 'python',
+  solution: `class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        import heapq
+        heap = []
+        for num in nums:
+            heapq.heappush(heap, num)
+            if len(heap) > k:
+                heapq.heappop(heap)
+        return heap[0]`
+},
+
+{
+  id: 'heap-25',
+  title: 'Top K Frequent Elements',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/top-k-frequent-elements/',
+  description: 'Return k most frequent elements using heap.',
+  language: 'python',
+  solution: `class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        from collections import Counter
+        import heapq
+        count = Counter(nums)
+        return heapq.nlargest(k, count.keys(), key=count.get)`
+},
+
+{
+  id: 'heap-26',
+  title: 'Find Median from Data Stream',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/find-median-from-data-stream/',
+  description: 'Maintain two heaps to get median in O(log n).',
+  language: 'python',
+  solution: `import heapq
+
+class MedianFinder:
+
+    def __init__(self):
+        self.small = []
+        self.large = []
+
+    def addNum(self, num: int) -> None:
+        heapq.heappush(self.small, -num)
+        heapq.heappush(self.large, -heapq.heappop(self.small))
+        if len(self.large) > len(self.small):
+            heapq.heappush(self.small, -heapq.heappop(self.large))
+
+    def findMedian(self) -> float:
+        if len(self.small) > len(self.large):
+            return -self.small[0]
+        return (-self.small[0] + self.large[0]) / 2`
+},
+
+{
+  id: 'heap-27',
+  title: 'Last Stone Weight',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/last-stone-weight/',
+  description: 'Use max heap to simulate smashing stones.',
+  language: 'python',
+  solution: `class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        import heapq
+        stones = [-s for s in stones]
+        heapq.heapify(stones)
+        while len(stones) > 1:
+            a = -heapq.heappop(stones)
+            b = -heapq.heappop(stones)
+            if a != b:
+                heapq.heappush(stones, -(a - b))
+        return -stones[0] if stones else 0`
+},
+
+{
+  id: 'heap-28',
+  title: 'K Closest Points to Origin',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/k-closest-points-to-origin/',
+  description: 'Use heap based on distance.',
+  language: 'python',
+  solution: `class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        import heapq
+        heap = []
+        for x, y in points:
+            dist = x*x + y*y
+            heapq.heappush(heap, (dist, x, y))
+        return [[x, y] for (_, x, y) in heapq.nsmallest(k, heap)]`
+},
+
+{
+  id: 'heap-29',
+  title: 'Task Scheduler',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/task-scheduler/',
+  description: 'Schedule tasks with cooling time using max heap.',
+  language: 'python',
+  solution: `class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        from collections import Counter
+        import heapq
+        count = Counter(tasks)
+        heap = [-c for c in count.values()]
+        heapq.heapify(heap)
+        time = 0
+        queue = []
+        
+        while heap or queue:
+            time += 1
+            if heap:
+                cnt = heapq.heappop(heap) + 1
+                if cnt:
+                    queue.append((cnt, time + n))
+            if queue and queue[0][1] == time:
+                heapq.heappush(heap, queue.pop(0)[0])
+        return time`
+},
+
+{
+  id: 'heap-30',
+  title: 'Merge K Sorted Lists',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/merge-k-sorted-lists/',
+  description: 'Merge k sorted linked lists using heap.',
+  language: 'python',
+  solution: `class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        import heapq
+        heap = []
+        for i, node in enumerate(lists):
+            if node:
+                heapq.heappush(heap, (node.val, i, node))
+        
+        dummy = ListNode(0)
+        curr = dummy
+        
+        while heap:
+            val, i, node = heapq.heappop(heap)
+            curr.next = node
+            curr = curr.next
+            if node.next:
+                heapq.heappush(heap, (node.next.val, i, node.next))
+        
+        return dummy.next`
+},
+
+{
+  id: 'heap-31',
+  title: 'Smallest Number in Infinite Set',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/smallest-number-in-infinite-set/',
+  description: 'Use min heap to track added-back elements.',
+  language: 'python',
+  solution: `import heapq
+
+class SmallestInfiniteSet:
+
+    def __init__(self):
+        self.curr = 1
+        self.heap = set()
+        self.minHeap = []
+
+    def popSmallest(self) -> int:
+        if self.minHeap:
+            val = heapq.heappop(self.minHeap)
+            self.heap.remove(val)
+            return val
+        self.curr += 1
+        return self.curr - 1
+
+    def addBack(self, num: int) -> None:
+        if num < self.curr and num not in self.heap:
+            heapq.heappush(self.minHeap, num)
+            self.heap.add(num)`
+},
+
+{
+  id: 'heap-32',
+  title: 'Reorganize String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/reorganize-string/',
+  description: 'Rearrange string so no adjacent chars are same using heap.',
+  language: 'python',
+  solution: `class Solution:
+    def reorganizeString(self, s: str) -> str:
+        from collections import Counter
+        import heapq
+        
+        count = Counter(s)
+        heap = [(-freq, char) for char, freq in count.items()]
+        heapq.heapify(heap)
+        
+        prev = (0, '')
+        result = []
+        
+        while heap:
+            freq, char = heapq.heappop(heap)
+            result.append(char)
+            
+            if prev[0] < 0:
+                heapq.heappush(heap, prev)
+            
+            freq += 1
+            prev = (freq, char)
+        
+        res = ''.join(result)
+        return res if len(res) == len(s) else ""`
+},
+
+{
+  id: 'heap-33',
+  title: 'Ugly Number II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/ugly-number-ii/',
+  description: 'Generate nth ugly number using heap.',
+  language: 'python',
+  solution: `class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        import heapq
+        
+        heap = [1]
+        seen = {1}
+        
+        for _ in range(n):
+            val = heapq.heappop(heap)
+            for mul in [2, 3, 5]:
+                nxt = val * mul
+                if nxt not in seen:
+                    seen.add(nxt)
+                    heapq.heappush(heap, nxt)
+        
+        return val`
+}
+]
 
     ]
   }
