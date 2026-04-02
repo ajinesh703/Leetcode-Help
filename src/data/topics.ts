@@ -2300,6 +2300,7 @@ export const topics: Topic[] = [
                 prev = (cnt + 1, ch)
         return "".join(result)`
 },
+
 {
   id: 'heap-9',
   title: 'Find K Pairs with Smallest Sums',
@@ -2693,6 +2694,8 @@ export const topics: Topic[] = [
                     right -= 1
         return total`
 },
+
+
     ]
   }
 ];
