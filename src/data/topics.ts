@@ -384,7 +384,229 @@ export const topics: Topic[] = [
                 if not prefix:
                     return ""
         return prefix`
-      }
+      },
+      {
+  id: 'str-5',
+  title: 'Valid Anagram',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/valid-anagram/',
+  description: 'Check if two strings are anagrams.',
+  language: 'python',
+  solution: `class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        from collections import Counter
+        return Counter(s) == Counter(t)`
+},
+
+{
+  id: 'str-6',
+  title: 'First Unique Character in a String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/first-unique-character-in-a-string/',
+  description: 'Find the first non-repeating character index.',
+  language: 'python',
+  solution: `class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        from collections import Counter
+        count = Counter(s)
+        for i, ch in enumerate(s):
+            if count[ch] == 1:
+                return i
+        return -1`
+},
+
+{
+  id: 'str-7',
+  title: 'Valid Palindrome',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/valid-palindrome/',
+  description: 'Check if string is palindrome ignoring non-alphanumeric.',
+  language: 'python',
+  solution: `class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        filtered = [c.lower() for c in s if c.isalnum()]
+        return filtered == filtered[::-1]`
+},
+
+{
+  id: 'str-8',
+  title: 'Longest Substring Without Repeating Characters',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-substring-without-repeating-characters/',
+  description: 'Sliding window to find longest substring with unique characters.',
+  language: 'python',
+  solution: `class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        seen = set()
+        left = 0
+        res = 0
+        
+        for right in range(len(s)):
+            while s[right] in seen:
+                seen.remove(s[left])
+                left += 1
+            seen.add(s[right])
+            res = max(res, right - left + 1)
+        
+        return res`
+},
+
+{
+  id: 'str-9',
+  title: 'Group Anagrams',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/group-anagrams/',
+  description: 'Group strings that are anagrams.',
+  language: 'python',
+  solution: `class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        from collections import defaultdict
+        mp = defaultdict(list)
+        
+        for s in strs:
+            key = tuple(sorted(s))
+            mp[key].append(s)
+        
+        return list(mp.values())`
+},
+
+{
+  id: 'str-10',
+  title: 'Longest Palindromic Substring',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-palindromic-substring/',
+  description: 'Expand around center to find longest palindrome.',
+  language: 'python',
+  solution: `class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        res = ""
+        
+        def expand(l, r):
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                l -= 1
+                r += 1
+            return s[l+1:r]
+        
+        for i in range(len(s)):
+            res = max(res, expand(i, i), expand(i, i+1), key=len)
+        
+        return res`
+},
+
+{
+  id: 'str-11',
+  title: 'Minimum Window Substring',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-window-substring/',
+  description: 'Find minimum substring containing all characters of target.',
+  language: 'python',
+  solution: `class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        from collections import Counter
+        need = Counter(t)
+        missing = len(t)
+        left = start = end = 0
+        
+        for right, ch in enumerate(s, 1):
+            if need[ch] > 0:
+                missing -= 1
+            need[ch] -= 1
+            
+            if missing == 0:
+                while left < right and need[s[left]] < 0:
+                    need[s[left]] += 1
+                    left += 1
+                if end == 0 or right - left < end - start:
+                    start, end = left, right
+                need[s[left]] += 1
+                missing += 1
+                left += 1
+        
+        return s[start:end]`
+},
+
+{
+  id: 'str-12',
+  title: 'String to Integer (atoi)',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/string-to-integer-atoi/',
+  description: 'Convert string to integer following rules.',
+  language: 'python',
+  solution: `class Solution:
+    def myAtoi(self, s: str) -> int:
+        s = s.strip()
+        if not s:
+            return 0
+        
+        sign = 1
+        i = 0
+        
+        if s[0] in ['-', '+']:
+            sign = -1 if s[0] == '-' else 1
+            i += 1
+        
+        num = 0
+        while i < len(s) and s[i].isdigit():
+            num = num * 10 + int(s[i])
+            i += 1
+        
+        num *= sign
+        INT_MAX, INT_MIN = 2**31 - 1, -2**31
+        
+        return max(min(num, INT_MAX), INT_MIN)`
+},
+
+{
+  id: 'str-13',
+  title: 'Multiply Strings',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/multiply-strings/',
+  description: 'Multiply two numbers represented as strings.',
+  language: 'python',
+  solution: `class Solution:
+    def multiply(self, num1: str, num2: str) -> str:
+        if num1 == "0" or num2 == "0":
+            return "0"
+        
+        res = [0] * (len(num1) + len(num2))
+        
+        for i in reversed(range(len(num1))):
+            for j in reversed(range(len(num2))):
+                mul = int(num1[i]) * int(num2[j])
+                sum_ = mul + res[i + j + 1]
+                
+                res[i + j + 1] = sum_ % 10
+                res[i + j] += sum_ // 10
+        
+        result = ''.join(map(str, res)).lstrip('0')
+        return result`
+},
+
+{
+  id: 'str-14',
+  title: 'Zigzag Conversion',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/zigzag-conversion/',
+  description: 'Convert string into zigzag pattern.',
+  language: 'python',
+  solution: `class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows == 1:
+            return s
+        
+        rows = [""] * numRows
+        curr, step = 0, 1
+        
+        for char in s:
+            rows[curr] += char
+            if curr == 0:
+                step = 1
+            elif curr == numRows - 1:
+                step = -1
+            curr += step
+        
+        return "".join(rows)`
+}
     ]
   },
   {
