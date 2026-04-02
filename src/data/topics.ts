@@ -2300,6 +2300,402 @@ export const topics: Topic[] = [
                 prev = (cnt + 1, ch)
         return "".join(result)`
 },
+
+{
+  id: 'heap-9',
+  title: 'Find K Pairs with Smallest Sums',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-k-pairs-with-smallest-sums/',
+  description: 'Given two integer arrays nums1 and nums2 sorted in ascending order and an integer k, return the k pairs (u, v) with the smallest sums.',
+  language: 'python',
+  solution: `class Solution:
+    def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
+        import heapq
+        heap = [(nums1[i] + nums2[0], i, 0) for i in range(min(k, len(nums1)))]
+        heapq.heapify(heap)
+        result = []
+        while heap and len(result) < k:
+            val, i, j = heapq.heappop(heap)
+            result.append([nums1[i], nums2[j]])
+            if j + 1 < len(nums2):
+                heapq.heappush(heap, (nums1[i] + nums2[j + 1], i, j + 1))
+        return result`
+},
+
+{
+  id: 'heap-10',
+  title: 'Smallest Range Covering Elements from K Lists',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/',
+  description: 'Given k sorted lists of integers, find the smallest range that includes at least one number from each list.',
+  language: 'python',
+  solution: `class Solution:
+    def smallestRange(self, nums: List[List[int]]) -> List[int]:
+        import heapq
+        heap = [(row[0], i, 0) for i, row in enumerate(nums)]
+        heapq.heapify(heap)
+        curMax = max(row[0] for row in nums)
+        resLeft, resRight = -10**5, 10**5
+        while heap:
+            curMin, i, j = heapq.heappop(heap)
+            if curMax - curMin < resRight - resLeft:
+                resLeft, resRight = curMin, curMax
+            if j + 1 == len(nums[i]):
+                break
+            nextVal = nums[i][j + 1]
+            heapq.heappush(heap, (nextVal, i, j + 1))
+            curMax = max(curMax, nextVal)
+        return [resLeft, resRight]`
+},
+
+{
+  id: 'heap-11',
+  title: 'IPO',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/ipo/',
+  description: 'Given k projects you can complete and initial capital w, maximize capital by picking at most k projects. Each project has a profit and minimum capital requirement.',
+  language: 'python',
+  solution: `class Solution:
+    def findMaximizedCapital(self, k: int, w: int, profits: List[int], capital: List[int]) -> int:
+        import heapq
+        minCapital = [(c, p) for c, p in zip(capital, profits)]
+        heapq.heapify(minCapital)
+        maxProfit = []
+        for _ in range(k):
+            while minCapital and minCapital[0][0] <= w:
+                c, p = heapq.heappop(minCapital)
+                heapq.heappush(maxProfit, -p)
+            if not maxProfit:
+                break
+            w += -heapq.heappop(maxProfit)
+        return w`
+},
+
+{
+  id: 'heap-12',
+  title: 'Design Twitter',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/design-twitter/',
+  description: 'Design a simplified Twitter where users can post tweets, follow/unfollow others, and see the 10 most recent tweets in their news feed.',
+  language: 'python',
+  solution: `class Twitter:
+    def __init__(self):
+        import heapq
+        from collections import defaultdict
+        self.count = 0
+        self.tweetMap = defaultdict(list)
+        self.followMap = defaultdict(set)
+
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        self.tweetMap[userId].append((self.count, tweetId))
+        self.count -= 1
+
+    def getNewsFeed(self, userId: int) -> List[int]:
+        import heapq
+        result = []
+        heap = []
+        self.followMap[userId].add(userId)
+        for followeeId in self.followMap[userId]:
+            if followeeId in self.tweetMap:
+                idx = len(self.tweetMap[followeeId]) - 1
+                cnt, tweetId = self.tweetMap[followeeId][idx]
+                heap.append((cnt, tweetId, followeeId, idx - 1))
+        heapq.heapify(heap)
+        while heap and len(result) < 10:
+            cnt, tweetId, followeeId, idx = heapq.heappop(heap)
+            result.append(tweetId)
+            if idx >= 0:
+                cnt, tweetId = self.tweetMap[followeeId][idx]
+                heapq.heappush(heap, (cnt, tweetId, followeeId, idx - 1))
+        return result
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        self.followMap[followerId].add(followeeId)
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        if followeeId in self.followMap[followerId]:
+            self.followMap[followerId].remove(followeeId)`
+},
+
+{
+  id: 'heap-13',
+  title: 'Seat Reservation Manager',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/seat-reservation-manager/',
+  description: 'Design a seat reservation manager that manages n seats numbered 1 to n. Support reserving the smallest available seat and unreserving a specific seat.',
+  language: 'python',
+  solution: `class SeatManager:
+    def __init__(self, n: int):
+        import heapq
+        self.available = list(range(1, n + 1))
+        heapq.heapify(self.available)
+
+    def reserve(self) -> int:
+        import heapq
+        return heapq.heappop(self.available)
+
+    def unreserve(self, seatNumber: int) -> None:
+        import heapq
+        heapq.heappush(self.available, seatNumber)`
+},
+{
+  id: 'heap-14',
+  title: 'Kth Largest Element in a Stream',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/kth-largest-element-in-a-stream/',
+  description: 'Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.',
+  language: 'python',
+  solution: `class KthLargest:
+    def __init__(self, k: int, nums: List[int]):
+        import heapq
+        self.k = k
+        self.heap = nums
+        heapq.heapify(self.heap)
+        while len(self.heap) > k:
+            heapq.heappop(self.heap)
+
+    def add(self, val: int) -> int:
+        import heapq
+        heapq.heappush(self.heap, val)
+        if len(self.heap) > self.k:
+            heapq.heappop(self.heap)
+        return self.heap[0]`
+},
+
+{
+  id: 'heap-15',
+  title: 'Last Stone Weight',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/last-stone-weight/',
+  description: 'Given an array of stones where stones[i] is the weight of the ith stone, smash the two heaviest stones each turn. Return the weight of the last remaining stone or 0.',
+  language: 'python',
+  solution: `class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        import heapq
+        heap = [-s for s in stones]
+        heapq.heapify(heap)
+        while len(heap) > 1:
+            first = heapq.heappop(heap)
+            second = heapq.heappop(heap)
+            if first != second:
+                heapq.heappush(heap, first - second)
+        return -heap[0] if heap else 0`
+},
+
+{
+  id: 'heap-16',
+  title: 'K Closest Points to Origin',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/k-closest-points-to-origin/',
+  description: 'Given an array of points on the X-Y plane and an integer k, return the k closest points to the origin (0, 0).',
+  language: 'python',
+  solution: `class Solution:
+    def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+        import heapq
+        heap = []
+        for x, y in points:
+            dist = x**2 + y**2
+            heapq.heappush(heap, (dist, x, y))
+        result = []
+        for _ in range(k):
+            dist, x, y = heapq.heappop(heap)
+            result.append([x, y])
+        return result`
+},
+
+{
+  id: 'heap-17',
+  title: 'Task Scheduler',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/task-scheduler/',
+  description: 'Given a list of tasks and a cooldown interval n, return the minimum number of intervals needed to finish all tasks with the same task needing n intervals of cooldown.',
+  language: 'python',
+  solution: `class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        import heapq
+        from collections import Counter, deque
+        count = Counter(tasks)
+        maxHeap = [-cnt for cnt in count.values()]
+        heapq.heapify(maxHeap)
+        time = 0
+        queue = deque()
+        while maxHeap or queue:
+            time += 1
+            if maxHeap:
+                cnt = heapq.heappop(maxHeap) + 1
+                if cnt:
+                    queue.append((cnt, time + n))
+            if queue and queue[0][1] == time:
+                heapq.heappush(maxHeap, queue.popleft()[0])
+        return time`
+},
+
+{
+  id: 'heap-18',
+  title: 'Find Median from Data Stream',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/find-median-from-data-stream/',
+  description: 'Design a data structure that supports adding integers from a data stream and finding the median of all elements so far.',
+  language: 'python',
+  solution: `class MedianFinder:
+    def __init__(self):
+        import heapq
+        self.small = []  # max heap (negated)
+        self.large = []  # min heap
+
+    def addNum(self, num: int) -> None:
+        import heapq
+        heapq.heappush(self.small, -num)
+        if self.small and self.large and (-self.small[0] > self.large[0]):
+            val = -heapq.heappop(self.small)
+            heapq.heappush(self.large, val)
+        if len(self.small) > len(self.large) + 1:
+            val = -heapq.heappop(self.small)
+            heapq.heappush(self.large, val)
+        if len(self.large) > len(self.small):
+            val = heapq.heappop(self.large)
+            heapq.heappush(self.small, -val)
+
+    def findMedian(self) -> float:
+        if len(self.small) > len(self.large):
+            return -self.small[0]
+        return (-self.small[0] + self.large[0]) / 2`
+},
+
+{
+  id: 'heap-19',
+  title: 'Merge K Sorted Lists',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/merge-k-sorted-lists/',
+  description: 'Given an array of k linked-lists, each sorted in ascending order, merge all the linked-lists into one sorted linked-list and return it.',
+  language: 'python',
+  solution: `class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        import heapq
+        heap = []
+        for i, node in enumerate(lists):
+            if node:
+                heapq.heappush(heap, (node.val, i, node))
+        dummy = ListNode(0)
+        curr = dummy
+        while heap:
+            val, i, node = heapq.heappop(heap)
+            curr.next = node
+            curr = curr.next
+            if node.next:
+                heapq.heappush(heap, (node.next.val, i, node.next))
+        return dummy.next`
+},
+
+{
+  id: 'heap-20',
+  title: 'Single-Threaded CPU',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/single-threaded-cpu/',
+  description: 'Given tasks with enqueue times and processing times, simulate a single-threaded CPU that picks the available task with shortest processing time. Return the order tasks are processed.',
+  language: 'python',
+  solution: `class Solution:
+    def getOrder(self, tasks: List[List[int]]) -> List[int]:
+        import heapq
+        indexed = sorted([(t[0], t[1], i) for i, t in enumerate(tasks)])
+        heap = []
+        result = []
+        time = 0
+        idx = 0
+        while len(result) < len(tasks):
+            while idx < len(indexed) and indexed[idx][0] <= time:
+                enqueue, process, i = indexed[idx]
+                heapq.heappush(heap, (process, i))
+                idx += 1
+            if heap:
+                process, i = heapq.heappop(heap)
+                time += process
+                result.append(i)
+            elif idx < len(indexed):
+                time = indexed[idx][0]
+        return result`
+},
+
+{
+  id: 'heap-21',
+  title: 'Minimum Cost to Connect Sticks',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-connect-sticks/',
+  description: 'Given n sticks, combine any two sticks into one at a cost equal to their sum. Return the minimum cost to connect all sticks into one.',
+  language: 'python',
+  solution: `class Solution:
+    def connectSticks(self, sticks: List[int]) -> int:
+        import heapq
+        heapq.heapify(sticks)
+        total_cost = 0
+        while len(sticks) > 1:
+            first = heapq.heappop(sticks)
+            second = heapq.heappop(sticks)
+            cost = first + second
+            total_cost += cost
+            heapq.heappush(sticks, cost)
+        return total_cost`
+},
+
+{
+  id: 'heap-22',
+  title: 'Maximum Subsequence Score',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-subsequence-score/',
+  description: 'Given two integer arrays nums1 and nums2 of equal length and an integer k, pick k indices to maximize the sum of selected nums1 elements multiplied by the minimum of selected nums2 elements.',
+  language: 'python',
+  solution: `class Solution:
+    def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:
+        import heapq
+        pairs = sorted(zip(nums1, nums2), key=lambda p: -p[1])
+        minHeap = []
+        result = 0
+        total = 0
+        for n1, n2 in pairs:
+            heapq.heappush(minHeap, n1)
+            total += n1
+            if len(minHeap) > k:
+                total -= heapq.heappop(minHeap)
+            if len(minHeap) == k:
+                result = max(result, total * n2)
+        return result`
+},
+
+{
+  id: 'heap-23',
+  title: 'Total Cost to Hire K Workers',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/total-cost-to-hire-k-workers/',
+  description: 'Given a costs array and integers k and candidates, hire k workers with minimum total cost by always picking the cheapest from the first or last candidates workers.',
+  language: 'python',
+  solution: `class Solution:
+    def totalCost(self, costs: List[int], k: int, candidates: int) -> int:
+        import heapq
+        heap = []
+        left, right = 0, len(costs) - 1
+        for i in range(candidates):
+            if left <= right:
+                heapq.heappush(heap, (costs[left], left))
+                left += 1
+        for i in range(right, max(right - candidates, left - 1), -1):
+            if left <= i:
+                heapq.heappush(heap, (costs[i], i))
+                right -= 1
+        total = 0
+        for _ in range(k):
+            cost, idx = heapq.heappop(heap)
+            total += cost
+            if left <= right:
+                if idx < left:
+                    heapq.heappush(heap, (costs[left], left))
+                    left += 1
+                else:
+                    heapq.heappush(heap, (costs[right], right))
+                    right -= 1
+        return total`
+},
+
+
     ]
   }
 ];
