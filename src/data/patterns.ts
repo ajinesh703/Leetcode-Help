@@ -2424,6 +2424,310 @@ export const patterns: Pattern[] = [
                 dfs(r, c, trie)
         return result`
       },
+      {
+    id: 'bt-15',
+    title: 'Serialize and Deserialize Binary Tree',
+    difficulty: 'Hard',
+    leetcodeUrl: 'https://leetcode.com/problems/serialize-and-deserialize-binary-tree/',
+    description: 'Design an algorithm to serialize and deserialize a binary tree. Serialization is the process of converting a data structure into a sequence of bits so that it can be stored or reconstructed later.',
+    language: 'python',
+    solution: `class Codec:
+    def serialize(self, root):
+        if not root:
+            return 'N'
+        return str(root.val) + ',' + self.serialize(root.left) + ',' + self.serialize(root.right)
+
+    def deserialize(self, data):
+        vals = iter(data.split(','))
+        def build():
+            val = next(vals)
+            if val == 'N':
+                return None
+            node = TreeNode(int(val))
+            node.left = build()
+            node.right = build()
+            return node
+        return build()`
+},
+
+{
+    id: 'bt-16',
+    title: 'Binary Tree Maximum Path Sum',
+    difficulty: 'Hard',
+    leetcodeUrl: 'https://leetcode.com/problems/binary-tree-maximum-path-sum/',
+    description: 'A path in a binary tree is a sequence of nodes where each pair of adjacent nodes has an edge. The path does not need to pass through the root. Return the maximum path sum of any non-empty path.',
+    language: 'python',
+    solution: `class Solution:
+    def maxPathSum(self, root: TreeNode) -> int:
+        self.max_sum = float('-inf')
+
+        def dfs(node):
+            if not node:
+                return 0
+            left = max(dfs(node.left), 0)
+            right = max(dfs(node.right), 0)
+            self.max_sum = max(self.max_sum, node.val + left + right)
+            return node.val + max(left, right)
+
+        dfs(root)
+        return self.max_sum`
+},
+
+{
+    id: 'bt-17',
+    title: 'Longest Consecutive Sequence',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/longest-consecutive-sequence/',
+    description: 'Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence. You must write an algorithm that runs in O(n) time.',
+    language: 'python',
+    solution: `class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        num_set = set(nums)
+        best = 0
+
+        for num in num_set:
+            if num - 1 not in num_set:
+                current = num
+                streak = 1
+                while current + 1 in num_set:
+                    current += 1
+                    streak += 1
+                best = max(best, streak)
+
+        return best`
+},
+
+{
+    id: 'bt-18',
+    title: 'Course Schedule II',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/course-schedule-ii/',
+    description: 'There are numCourses courses labeled from 0 to numCourses - 1. Given prerequisites pairs, return the ordering of courses you should take to finish all courses. If impossible, return an empty array.',
+    language: 'python',
+    solution: `class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        graph = defaultdict(list)
+        for a, b in prerequisites:
+            graph[b].append(a)
+
+        UNVISITED, VISITING, VISITED = 0, 1, 2
+        state = [UNVISITED] * numCourses
+        order = []
+
+        def dfs(node):
+            if state[node] == VISITING:
+                return False
+            if state[node] == VISITED:
+                return True
+            state[node] = VISITING
+            for nei in graph[node]:
+                if not dfs(nei):
+                    return False
+            state[node] = VISITED
+            order.append(node)
+            return True
+
+        for i in range(numCourses):
+            if not dfs(i):
+                return []
+        return order`
+},
+
+{
+    id: 'bt-19',
+    title: 'Median of Two Sorted Arrays',
+    difficulty: 'Hard',
+    leetcodeUrl: 'https://leetcode.com/problems/median-of-two-sorted-arrays/',
+    description: 'Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log(m+n)).',
+    language: 'python',
+    solution: `class Solution:
+    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        A, B = nums1, nums2
+        if len(A) > len(B):
+            A, B = B, A
+        total = len(A) + len(B)
+        half = total // 2
+        lo, hi = 0, len(A)
+
+        while lo <= hi:
+            i = (lo + hi) // 2
+            j = half - i
+            Aleft = A[i-1] if i > 0 else float('-inf')
+            Aright = A[i] if i < len(A) else float('inf')
+            Bleft = B[j-1] if j > 0 else float('-inf')
+            Bright = B[j] if j < len(B) else float('inf')
+
+            if Aleft <= Bright and Bleft <= Aright:
+                if total % 2:
+                    return min(Aright, Bright)
+                return (max(Aleft, Bleft) + min(Aright, Bright)) / 2
+            elif Aleft > Bright:
+                hi = i - 1
+            else:
+                lo = i + 1`
+},
+
+{
+    id: 'bt-20',
+    title: 'Trapping Rain Water',
+    difficulty: 'Hard',
+    leetcodeUrl: 'https://leetcode.com/problems/trapping-rain-water/',
+    description: 'Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.',
+    language: 'python',
+    solution: `class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+        l, r = 0, len(height) - 1
+        left_max, right_max = height[l], height[r]
+        water = 0
+
+        while l < r:
+            if left_max <= right_max:
+                l += 1
+                left_max = max(left_max, height[l])
+                water += left_max - height[l]
+            else:
+                r -= 1
+                right_max = max(right_max, height[r])
+                water += right_max - height[r]
+
+        return water`
+},
+
+{
+    id: 'bt-21',
+    title: 'LRU Cache',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/lru-cache/',
+    description: 'Design a data structure that follows the constraints of a Least Recently Used (LRU) cache. Implement the LRUCache class with get and put operations, each running in O(1) time.',
+    language: 'python',
+    solution: `class LRUCache:
+    def __init__(self, capacity: int):
+        self.cap = capacity
+        self.cache = {}
+        self.left = Node(0, 0)   # LRU end
+        self.right = Node(0, 0)  # MRU end
+        self.left.next = self.right
+        self.right.prev = self.left
+
+    def remove(self, node):
+        node.prev.next = node.next
+        node.next.prev = node.prev
+
+    def insert(self, node):
+        node.prev = self.right.prev
+        node.next = self.right
+        self.right.prev.next = node
+        self.right.prev = node
+
+    def get(self, key: int) -> int:
+        if key in self.cache:
+            self.remove(self.cache[key])
+            self.insert(self.cache[key])
+            return self.cache[key].val
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.remove(self.cache[key])
+        self.cache[key] = Node(key, value)
+        self.insert(self.cache[key])
+        if len(self.cache) > self.cap:
+            lru = self.left.next
+            self.remove(lru)
+            del self.cache[lru.key]`
+},
+
+{
+    id: 'bt-22',
+    title: 'Minimum Window Substring',
+    difficulty: 'Hard',
+    leetcodeUrl: 'https://leetcode.com/problems/minimum-window-substring/',
+    description: 'Given two strings s and t, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. Return empty string if no such window exists.',
+    language: 'python',
+    solution: `class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        if not t or not s:
+            return ''
+        need = Counter(t)
+        have, total = 0, len(need)
+        window = {}
+        res, res_len = [-1, -1], float('inf')
+        l = 0
+
+        for r, ch in enumerate(s):
+            window[ch] = window.get(ch, 0) + 1
+            if ch in need and window[ch] == need[ch]:
+                have += 1
+            while have == total:
+                if (r - l + 1) < res_len:
+                    res = [l, r]
+                    res_len = r - l + 1
+                window[s[l]] -= 1
+                if s[l] in need and window[s[l]] < need[s[l]]:
+                    have -= 1
+                l += 1
+
+        l, r = res
+        return s[l:r+1] if res_len != float('inf') else ''`
+},
+
+{
+    id: 'bt-23',
+    title: 'Number of Islands',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/number-of-islands/',
+    description: 'Given an m x n 2D binary grid which represents a map of land and water, return the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.',
+    language: 'python',
+    solution: `class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        if not grid:
+            return 0
+        rows, cols = len(grid), len(grid[0])
+        count = 0
+
+        def dfs(r, c):
+            if r < 0 or r >= rows or c < 0 or c >= cols or grid[r][c] != '1':
+                return
+            grid[r][c] = '0'
+            dfs(r+1, c)
+            dfs(r-1, c)
+            dfs(r, c+1)
+            dfs(r, c-1)
+
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == '1':
+                    dfs(r, c)
+                    count += 1
+
+        return count`
+},
+
+{
+    id: 'bt-24',
+    title: 'Jump Game II',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/jump-game-ii/',
+    description: 'Given a 0-indexed array of integers nums where nums[i] represents the maximum jump length from index i, return the minimum number of jumps to reach nums[n-1]. You can always reach the last index.',
+    language: 'python',
+    solution: `class Solution:
+    def jump(self, nums: List[int]) -> int:
+        jumps = 0
+        current_end = 0
+        farthest = 0
+
+        for i in range(len(nums) - 1):
+            farthest = max(farthest, i + nums[i])
+            if i == current_end:
+                jumps += 1
+                current_end = farthest
+                if current_end >= len(nums) - 1:
+                    break
+
+        return jumps`
+},
     
     ]
   },
