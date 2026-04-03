@@ -3210,6 +3210,134 @@ export const patterns: Pattern[] = [
 
         return dp[m][n]`
 },
+{
+    id: 'bt-45',
+    title: 'Palindrome Partitioning',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/palindrome-partitioning/',
+    description: 'Given a string s, partition s such that every substring of the partition is a palindrome. Return all possible palindrome partitioning of s.',
+    language: 'python',
+    solution: `class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        res = []
+
+        def isPalin(sub):
+            return sub == sub[::-1]
+
+        def backtrack(start, current):
+            if start == len(s):
+                res.append(current[:])
+                return
+            for end in range(start + 1, len(s) + 1):
+                if isPalin(s[start:end]):
+                    current.append(s[start:end])
+                    backtrack(end, current)
+                    current.pop()
+
+        backtrack(0, [])
+        return res`
+},
+
+{
+    id: 'bt-46',
+    title: 'Largest Rectangle in Histogram',
+    difficulty: 'Hard',
+    leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
+    description: 'Given an array of integers heights representing the histogram bar heights where the width of each bar is 1, return the area of the largest rectangle in the histogram.',
+    language: 'python',
+    solution: `class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        stack = []  # (index, height)
+        max_area = 0
+
+        for i, h in enumerate(heights):
+            start = i
+            while stack and stack[-1][1] > h:
+                idx, height = stack.pop()
+                max_area = max(max_area, height * (i - idx))
+                start = idx
+            stack.append((start, h))
+
+        for idx, height in stack:
+            max_area = max(max_area, height * (len(heights) - idx))
+
+        return max_area`
+},
+
+{
+    id: 'bt-47',
+    title: 'Binary Tree Level Order Traversal',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/binary-tree-level-order-traversal/',
+    description: 'Given the root of a binary tree, return the level order traversal of its nodes values (i.e., from left to right, level by level).',
+    language: 'python',
+    solution: `class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root:
+            return []
+        res = []
+        queue = deque([root])
+
+        while queue:
+            level = []
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                level.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            res.append(level)
+
+        return res`
+},
+
+{
+    id: 'bt-48',
+    title: 'Maximum Product Subarray',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
+    description: 'Given an integer array nums, find a subarray that has the largest product, and return the product. The test cases are generated so that the answer will fit in a 32-bit integer.',
+    language: 'python',
+    solution: `class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        res = max(nums)
+        cur_min, cur_max = 1, 1
+
+        for n in nums:
+            if n == 0:
+                cur_min, cur_max = 1, 1
+                continue
+            tmp = cur_max * n
+            cur_max = max(n * cur_max, n * cur_min, n)
+            cur_min = min(tmp, n * cur_min, n)
+            res = max(res, cur_max)
+
+        return res`
+},
+
+{
+    id: 'bt-49',
+    title: 'Word Break',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/word-break/',
+    description: 'Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.',
+    language: 'python',
+    solution: `class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        word_set = set(wordDict)
+        n = len(s)
+        dp = [False] * (n + 1)
+        dp[0] = True
+
+        for i in range(1, n + 1):
+            for j in range(i):
+                if dp[j] and s[j:i] in word_set:
+                    dp[i] = True
+                    break
+
+        return dp[n]`
+},
     
     ]
   },
