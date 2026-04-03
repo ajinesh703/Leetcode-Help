@@ -528,19 +528,6 @@ export const patterns: Pattern[] = [
                 result += right - left + 1
             return result
         return atMost(k) - atMost(k - 1)`,
-<<<<<<< HEAD
-    },
-    {
-      id: 'sw-10',
-      title: 'Subarray Product Less Than K',
-      difficulty: 'Medium',
-      leetcodeUrl:
-        'https://leetcode.com/problems/subarray-product-less-than-k/',
-      description:
-        'Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k.',
-      language: 'python',
-      solution: `class Solution:
-=======
       },
       {
         id: 'sw-10',
@@ -550,7 +537,6 @@ export const patterns: Pattern[] = [
         description: 'Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k.',
         language: 'python',
         solution: `class Solution:
->>>>>>> c5f5be026944720cd32be7922e9d6ea54a0ab0d3
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
         if k <= 1:
             return 0
@@ -561,22 +547,6 @@ export const patterns: Pattern[] = [
             while product >= k:
                 product //= nums[left]
                 left += 1
-<<<<<<< HEAD
-            # Every window ending at 'right' contributes (right - left + 1) subarrays
-            result += right - left + 1
-        return result`,
-    },
-    {
-      id: 'sw-11',
-      title: 'Longest Subarray of 1s After Deleting One Element',
-      difficulty: 'Medium',
-      leetcodeUrl:
-        'https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/',
-      description:
-        'Given a binary array nums, you should delete one element from it. Return the size of the longest non-empty subarray containing only 1s in the resulting array. Return 0 if there is no such subarray.',
-      language: 'python',
-      solution: `class Solution:
-=======
             result += right - left + 1
         return result`,
       },
@@ -588,7 +558,6 @@ export const patterns: Pattern[] = [
         description: 'Given a binary array nums, you should delete one element from it. Return the size of the longest non-empty subarray containing only 1s in the resulting array. Return 0 if there is no such subarray.',
         language: 'python',
         solution: `class Solution:
->>>>>>> c5f5be026944720cd32be7922e9d6ea54a0ab0d3
     def longestSubarray(self, nums: List[int]) -> int:
         left = zeros = result = 0
         for right in range(len(nums)):
@@ -598,22 +567,6 @@ export const patterns: Pattern[] = [
                 if nums[left] == 0:
                     zeros -= 1
                 left += 1
-<<<<<<< HEAD
-            # Subtract 1 because we must delete exactly one element
-            result = max(result, right - left)
-        return result`,
-    },
-    {
-      id: 'sw-12',
-      title: 'Maximum Number of Vowels in a Substring of Given Length',
-      difficulty: 'Medium',
-      leetcodeUrl:
-        'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
-      description:
-        'Given a string s and an integer k, return the maximum number of vowel letters in any substring of s with length k. Vowel letters in English are a, e, i, o, and u.',
-      language: 'python',
-      solution: `class Solution:
-=======
             result = max(result, right - left)
         return result`,
       },
@@ -622,10 +575,9 @@ export const patterns: Pattern[] = [
         title: 'Maximum Number of Vowels in a Substring of Given Length',
         difficulty: 'Medium',
         leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
-        description: 'Given a string s and an integer k, return the maximum number of vowel letters in any substring of s with length k.',
+        description: 'Given a string s and an integer k, return the maximum number of vowel letters in any substring of s with length k. Vowel letters in English are a, e, i, o, and u.',
         language: 'python',
         solution: `class Solution:
->>>>>>> c5f5be026944720cd32be7922e9d6ea54a0ab0d3
     def maxVowels(self, s: str, k: int) -> int:
         vowels = set('aeiou')
         count = sum(1 for c in s[:k] if c in vowels)
@@ -634,35 +586,17 @@ export const patterns: Pattern[] = [
             count += (s[i] in vowels) - (s[i - k] in vowels)
             max_count = max(max_count, count)
         return max_count`,
-<<<<<<< HEAD
-    },
-    {
-      id: 'sw-13',
-      title: 'Grumpy Bookstore Owner',
-      difficulty: 'Medium',
-      leetcodeUrl:
-        'https://leetcode.com/problems/grumpy-bookstore-owner/',
-      description:
-        'A bookstore owner has customers[i] customers on the i-th minute. The owner knows a secret technique to keep himself not grumpy for minutes consecutive minutes, but can only use it once. Return the maximum number of customers that can be satisfied throughout the day.',
-      language: 'python',
-      solution: `class Solution:
-    def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:
-        # Always-satisfied customers (when owner is not grumpy)
-        base = sum(c for c, g in zip(customers, grumpy) if g == 0)
-        # Extra customers gained during the secret-technique window
-=======
       },
       {
         id: 'sw-13',
         title: 'Grumpy Bookstore Owner',
         difficulty: 'Medium',
         leetcodeUrl: 'https://leetcode.com/problems/grumpy-bookstore-owner/',
-        description: 'A bookstore owner has customers[i] customers on the i-th minute. The owner knows a secret technique to keep himself not grumpy for minutes consecutive minutes. Return the maximum number of customers that can be satisfied throughout the day.',
+        description: 'A bookstore owner has customers[i] customers on the i-th minute. The owner knows a secret technique to keep himself not grumpy for minutes consecutive minutes, but can only use it once. Return the maximum number of customers that can be satisfied throughout the day.',
         language: 'python',
         solution: `class Solution:
     def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:
         base = sum(c for c, g in zip(customers, grumpy) if g == 0)
->>>>>>> c5f5be026944720cd32be7922e9d6ea54a0ab0d3
         extra = sum(c * g for c, g in zip(customers[:minutes], grumpy[:minutes]))
         max_extra = extra
         for i in range(minutes, len(customers)):
@@ -670,19 +604,6 @@ export const patterns: Pattern[] = [
             extra -= customers[i - minutes] * grumpy[i - minutes]
             max_extra = max(max_extra, extra)
         return base + max_extra`,
-<<<<<<< HEAD
-    },
-    {
-      id: 'sw-14',
-      title: 'Minimum Size Subarray Sum',
-      difficulty: 'Medium',
-      leetcodeUrl:
-        'https://leetcode.com/problems/minimum-size-subarray-sum/',
-      description:
-        'Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.',
-      language: 'python',
-      solution: `class Solution:
-=======
       },
       {
         id: 'sw-14',
@@ -692,7 +613,6 @@ export const patterns: Pattern[] = [
         description: 'Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.',
         language: 'python',
         solution: `class Solution:
->>>>>>> c5f5be026944720cd32be7922e9d6ea54a0ab0d3
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
         left = current_sum = 0
         min_len = float('inf')
@@ -703,15 +623,9 @@ export const patterns: Pattern[] = [
                 current_sum -= nums[left]
                 left += 1
         return 0 if min_len == float('inf') else min_len`,
-<<<<<<< HEAD
-    },
-  ],
-},
-=======
       },
     ],
   },
->>>>>>> c5f5be026944720cd32be7922e9d6ea54a0ab0d3
   {
     id: 'binary-search',
     name: 'Binary Search',
@@ -2226,6 +2140,291 @@ export const patterns: Pattern[] = [
                     return True
         return False`
       },
+      {
+        id: 'bt-5',
+        title: 'Subsets II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/subsets-ii/',
+        description: 'Given an integer array nums that may contain duplicates, return all possible subsets (the power set). The solution set must not contain duplicate subsets.',
+        language: 'python',
+        solution: `class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        result = []
+        def backtrack(start, current):
+            result.append(current[:])
+            for i in range(start, len(nums)):
+                if i > start and nums[i] == nums[i - 1]:
+                    continue
+                current.append(nums[i])
+                backtrack(i + 1, current)
+                current.pop()
+        backtrack(0, [])
+        return result`
+      },
+      {
+        id: 'bt-6',
+        title: 'Permutations II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/permutations-ii/',
+        description: 'Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order.',
+        language: 'python',
+        solution: `class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        result = []
+        used = [False] * len(nums)
+        def backtrack(current):
+            if len(current) == len(nums):
+                result.append(current[:])
+                return
+            for i in range(len(nums)):
+                if used[i]:
+                    continue
+                if i > 0 and nums[i] == nums[i - 1] and not used[i - 1]:
+                    continue
+                used[i] = True
+                current.append(nums[i])
+                backtrack(current)
+                current.pop()
+                used[i] = False
+        backtrack([])
+        return result`
+      },
+      {
+        id: 'bt-7',
+        title: 'Combination Sum II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/combination-sum-ii/',
+        description: 'Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target. Each number in candidates may only be used once.',
+        language: 'python',
+        solution: `class Solution:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        candidates.sort()
+        result = []
+        def backtrack(start, current, total):
+            if total == target:
+                result.append(current[:])
+                return
+            if total > target:
+                return
+            for i in range(start, len(candidates)):
+                if i > start and candidates[i] == candidates[i - 1]:
+                    continue
+                current.append(candidates[i])
+                backtrack(i + 1, current, total + candidates[i])
+                current.pop()
+        backtrack(0, [], 0)
+        return result`
+      },
+      {
+        id: 'bt-8',
+        title: 'N-Queens',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/n-queens/',
+        description: 'The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other. Given an integer n, return all distinct solutions to the n-queens puzzle.',
+        language: 'python',
+        solution: `class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        result = []
+        cols = set()
+        diag1 = set()  # row - col
+        diag2 = set()  # row + col
+        board = [['.' ] * n for _ in range(n)]
+        def backtrack(row):
+            if row == n:
+                result.append([''.join(r) for r in board])
+                return
+            for col in range(n):
+                if col in cols or (row - col) in diag1 or (row + col) in diag2:
+                    continue
+                cols.add(col)
+                diag1.add(row - col)
+                diag2.add(row + col)
+                board[row][col] = 'Q'
+                backtrack(row + 1)
+                cols.remove(col)
+                diag1.remove(row - col)
+                diag2.remove(row + col)
+                board[row][col] = '.'
+        backtrack(0)
+        return result`
+      },
+      {
+        id: 'bt-9',
+        title: 'Palindrome Partitioning',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/palindrome-partitioning/',
+        description: 'Given a string s, partition s such that every substring of the partition is a palindrome. Return all possible palindrome partitioning of s.',
+        language: 'python',
+        solution: `class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        result = []
+        def is_palindrome(sub):
+            return sub == sub[::-1]
+        def backtrack(start, current):
+            if start == len(s):
+                result.append(current[:])
+                return
+            for end in range(start + 1, len(s) + 1):
+                substr = s[start:end]
+                if is_palindrome(substr):
+                    current.append(substr)
+                    backtrack(end, current)
+                    current.pop()
+        backtrack(0, [])
+        return result`
+      },
+      {
+        id: 'bt-10',
+        title: 'Letter Combinations of a Phone Number',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/letter-combinations-of-a-phone-number/',
+        description: 'Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. Return the answer in any order.',
+        language: 'python',
+        solution: `class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
+        phone_map = {
+            '2': 'abc', '3': 'def', '4': 'ghi', '5': 'jkl',
+            '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'
+        }
+        result = []
+        def backtrack(index, current):
+            if index == len(digits):
+                result.append(''.join(current))
+                return
+            for letter in phone_map[digits[index]]:
+                current.append(letter)
+                backtrack(index + 1, current)
+                current.pop()
+        backtrack(0, [])
+        return result`
+      },
+      {
+        id: 'bt-11',
+        title: 'Generate Parentheses',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/generate-parentheses/',
+        description: 'Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.',
+        language: 'python',
+        solution: `class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        result = []
+        def backtrack(current, open_count, close_count):
+            if len(current) == 2 * n:
+                result.append(''.join(current))
+                return
+            if open_count < n:
+                current.append('(')
+                backtrack(current, open_count + 1, close_count)
+                current.pop()
+            if close_count < open_count:
+                current.append(')')
+                backtrack(current, open_count, close_count + 1)
+                current.pop()
+        backtrack([], 0, 0)
+        return result`
+      },
+      {
+        id: 'bt-12',
+        title: 'Sudoku Solver',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/sudoku-solver/',
+        description: 'Write a program to solve a Sudoku puzzle by filling the empty cells. A sudoku solution must satisfy all of the rules of sudoku.',
+        language: 'python',
+        solution: `class Solution:
+    def solveSudoku(self, board: List[List[str]]) -> None:
+        def is_valid(row, col, num):
+            for i in range(9):
+                if board[row][i] == num:
+                    return False
+                if board[i][col] == num:
+                    return False
+                r = 3 * (row // 3) + i // 3
+                c = 3 * (col // 3) + i % 3
+                if board[r][c] == num:
+                    return False
+            return True
+        def backtrack():
+            for r in range(9):
+                for c in range(9):
+                    if board[r][c] == '.':
+                        for num in '123456789':
+                            if is_valid(r, c, num):
+                                board[r][c] = num
+                                if backtrack():
+                                    return True
+                                board[r][c] = '.'
+                        return False
+            return True
+        backtrack()`
+      },
+      {
+        id: 'bt-13',
+        title: 'Combination Sum III',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/combination-sum-iii/',
+        description: 'Find all valid combinations of k numbers that sum up to n such that only numbers 1 through 9 are used and each number is used at most once.',
+        language: 'python',
+        solution: `class Solution:
+    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
+        result = []
+        def backtrack(start, current, total):
+            if len(current) == k and total == n:
+                result.append(current[:])
+                return
+            if len(current) == k or total >= n:
+                return
+            for i in range(start, 10):
+                current.append(i)
+                backtrack(i + 1, current, total + i)
+                current.pop()
+        backtrack(1, [], 0)
+        return result`
+      },
+      {
+        id: 'bt-14',
+        title: 'Word Search II',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/word-search-ii/',
+        description: 'Given an m x n board of characters and a list of strings words, return all words on the board. Each word must be constructed from letters of sequentially adjacent cells.',
+        language: 'python',
+        solution: `class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        # Build a Trie from the word list
+        trie = {}
+        for word in words:
+            node = trie
+            for ch in word:
+                node = node.setdefault(ch, {})
+            node['$'] = word  # mark end of word
+
+        rows, cols = len(board), len(board[0])
+        result = []
+
+        def dfs(r, c, node):
+            ch = board[r][c]
+            if ch not in node:
+                return
+            next_node = node[ch]
+            if '$' in next_node:
+                result.append(next_node['$'])
+                del next_node['$']  # avoid duplicates
+            board[r][c] = '#'  # mark visited
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < rows and 0 <= nc < cols and board[nr][nc] != '#':
+                    dfs(nr, nc, next_node)
+            board[r][c] = ch  # restore
+
+        for r in range(rows):
+            for c in range(cols):
+                dfs(r, c, trie)
+        return result`
+      },
+    
     ]
   },
   {
@@ -2291,13 +2490,13 @@ export const patterns: Pattern[] = [
         return len(tails)`
       },
       {
-  id: 'dp-4',
-  title: 'Coin Change',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/coin-change/',
-  description: 'Given an array of coins and an amount, return the fewest number of coins needed to make up that amount. Return -1 if not possible.',
-  language: 'python',
-  solution: `class Solution:
+        id: 'dp-4',
+        title: 'Coin Change',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/coin-change/',
+        description: 'Given an array of coins and an amount, return the fewest number of coins needed to make up that amount. Return -1 if not possible.',
+        language: 'python',
+        solution: `class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         dp = [float('inf')] * (amount + 1)
         dp[0] = 0
@@ -2305,30 +2504,30 @@ export const patterns: Pattern[] = [
             for x in range(coin, amount + 1):
                 dp[x] = min(dp[x], dp[x - coin] + 1)
         return dp[amount] if dp[amount] != float('inf') else -1`
-},
-{
-  id: 'dp-5',
-  title: 'Unique Paths',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/unique-paths/',
-  description: 'A robot is on an m x n grid at the top-left corner. It can only move right or down. Count the number of unique paths to reach the bottom-right corner.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-5',
+        title: 'Unique Paths',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/unique-paths/',
+        description: 'A robot is on an m x n grid at the top-left corner. It can only move right or down. Count the number of unique paths to reach the bottom-right corner.',
+        language: 'python',
+        solution: `class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         dp = [1] * n
         for i in range(1, m):
             for j in range(1, n):
                 dp[j] += dp[j - 1]
         return dp[n - 1]`
-},
-{
-  id: 'dp-6',
-  title: 'Jump Game',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/jump-game/',
-  description: 'Given an integer array nums where each element represents your max jump length at that position, return true if you can reach the last index.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-6',
+        title: 'Jump Game',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/jump-game/',
+        description: 'Given an integer array nums where each element represents your max jump length at that position, return true if you can reach the last index.',
+        language: 'python',
+        solution: `class Solution:
     def canJump(self, nums: List[int]) -> bool:
         max_reach = 0
         for i, num in enumerate(nums):
@@ -2336,15 +2535,15 @@ export const patterns: Pattern[] = [
                 return False
             max_reach = max(max_reach, i + num)
         return True`
-},
-{
-  id: 'dp-7',
-  title: 'Longest Common Subsequence',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/longest-common-subsequence/',
-  description: 'Given two strings text1 and text2, return the length of their longest common subsequence. Return 0 if there is none.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-7',
+        title: 'Longest Common Subsequence',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-common-subsequence/',
+        description: 'Given two strings text1 and text2, return the length of their longest common subsequence. Return 0 if there is none.',
+        language: 'python',
+        solution: `class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         m, n = len(text1), len(text2)
         dp = [[0] * (n + 1) for _ in range(m + 1)]
@@ -2355,15 +2554,15 @@ export const patterns: Pattern[] = [
                 else:
                     dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
         return dp[m][n]`
-},
-{
-  id: 'dp-8',
-  title: 'Word Break',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/word-break/',
-  description: 'Given a string s and a dictionary wordDict, return true if s can be segmented into a space-separated sequence of dictionary words.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-8',
+        title: 'Word Break',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/word-break/',
+        description: 'Given a string s and a dictionary wordDict, return true if s can be segmented into a space-separated sequence of dictionary words.',
+        language: 'python',
+        solution: `class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         word_set = set(wordDict)
         dp = [False] * (len(s) + 1)
@@ -2374,15 +2573,15 @@ export const patterns: Pattern[] = [
                     dp[i] = True
                     break
         return dp[len(s)]`
-},
-{
-  id: 'dp-9',
-  title: '0/1 Knapsack (Partition Equal Subset Sum)',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/partition-equal-subset-sum/',
-  description: 'Given an integer array nums, return true if you can partition it into two subsets such that the sum of elements in both subsets is equal.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-9',
+        title: '0/1 Knapsack (Partition Equal Subset Sum)',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/partition-equal-subset-sum/',
+        description: 'Given an integer array nums, return true if you can partition it into two subsets such that the sum of elements in both subsets is equal.',
+        language: 'python',
+        solution: `class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         total = sum(nums)
         if total % 2 != 0:
@@ -2392,15 +2591,15 @@ export const patterns: Pattern[] = [
         for num in nums:
             dp = {s + num for s in dp} | dp
         return target in dp`
-},
-{
-  id: 'dp-10',
-  title: 'Edit Distance',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/edit-distance/',
-  description: 'Given two strings word1 and word2, return the minimum number of operations (insert, delete, replace) required to convert word1 to word2.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-10',
+        title: 'Edit Distance',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/edit-distance/',
+        description: 'Given two strings word1 and word2, return the minimum number of operations (insert, delete, replace) required to convert word1 to word2.',
+        language: 'python',
+        solution: `class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
         m, n = len(word1), len(word2)
         dp = list(range(n + 1))
@@ -2415,15 +2614,15 @@ export const patterns: Pattern[] = [
                     dp[j] = 1 + min(prev, dp[j], dp[j - 1])
                 prev = temp
         return dp[n]`
-},
-{
-  id: 'dp-11',
-  title: 'Maximum Product Subarray',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
-  description: 'Given an integer array nums, find a subarray that has the largest product and return the product.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-11',
+        title: 'Maximum Product Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
+        description: 'Given an integer array nums, find a subarray that has the largest product and return the product.',
+        language: 'python',
+        solution: `class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         res = max(nums)
         curMin, curMax = 1, 1
@@ -2436,15 +2635,15 @@ export const patterns: Pattern[] = [
             curMin = min(tmp, n * curMin, n)
             res = max(res, curMax)
         return res`
-},
-{
-  id: 'dp-12',
-  title: 'Decode Ways',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/decode-ways/',
-  description: 'Given a string s containing only digits, return the number of ways to decode it where A=1, B=2, ..., Z=26.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-12',
+        title: 'Decode Ways',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/decode-ways/',
+        description: 'Given a string s containing only digits, return the number of ways to decode it where A=1, B=2, ..., Z=26.',
+        language: 'python',
+        solution: `class Solution:
     def numDecodings(self, s: str) -> int:
         if not s or s[0] == '0':
             return 0
@@ -2458,15 +2657,15 @@ export const patterns: Pattern[] = [
             if 10 <= two_digit <= 26:
                 dp[i] += dp[i - 2]
         return dp[n]`
-},
-{
-  id: 'dp-13',
-  title: 'Palindromic Substrings',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/palindromic-substrings/',
-  description: 'Given a string s, return the number of palindromic substrings in it. A string is a palindrome when it reads the same backward as forward.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-13',
+        title: 'Palindromic Substrings',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/palindromic-substrings/',
+        description: 'Given a string s, return the number of palindromic substrings in it. A string is a palindrome when it reads the same backward as forward.',
+        language: 'python',
+        solution: `class Solution:
     def countSubstrings(self, s: str) -> int:
         count = 0
         for i in range(len(s)):
@@ -2477,15 +2676,15 @@ export const patterns: Pattern[] = [
                     l -= 1
                     r += 1
         return count`
-},
-{
-  id: 'dp-14',
-  title: 'Longest Palindromic Substring',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/longest-palindromic-substring/',
-  description: 'Given a string s, return the longest palindromic substring in s.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-14',
+        title: 'Longest Palindromic Substring',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-palindromic-substring/',
+        description: 'Given a string s, return the longest palindromic substring in s.',
+        language: 'python',
+        solution: `class Solution:
     def longestPalindrome(self, s: str) -> str:
         res, resLen = "", 0
         for i in range(len(s)):
@@ -2497,30 +2696,30 @@ export const patterns: Pattern[] = [
                     l -= 1
                     r += 1
         return res`
-},
-{
-  id: 'dp-15',
-  title: 'Triangle Minimum Path Sum',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/triangle/',
-  description: 'Given a triangle array, return the minimum path sum from top to bottom. At each step you may move to an adjacent number in the row below.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-15',
+        title: 'Triangle Minimum Path Sum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/triangle/',
+        description: 'Given a triangle array, return the minimum path sum from top to bottom. At each step you may move to an adjacent number in the row below.',
+        language: 'python',
+        solution: `class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
         dp = triangle[-1][:]
         for row in range(len(triangle) - 2, -1, -1):
             for col in range(len(triangle[row])):
                 dp[col] = triangle[row][col] + min(dp[col], dp[col + 1])
         return dp[0]`
-},
-{
-  id: 'dp-16',
-  title: 'Best Time to Buy and Sell Stock with Cooldown',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/',
-  description: 'Given stock prices, find the maximum profit with a cooldown of 1 day after selling before you can buy again.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-16',
+        title: 'Best Time to Buy and Sell Stock with Cooldown',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/',
+        description: 'Given stock prices, find the maximum profit with a cooldown of 1 day after selling before you can buy again.',
+        language: 'python',
+        solution: `class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         hold, sold, rest = -prices[0], 0, 0
         for price in prices[1:]:
@@ -2529,28 +2728,28 @@ export const patterns: Pattern[] = [
             hold = max(hold, rest - price)
             rest = max(rest, prev_sold)
         return max(sold, rest)`
-},
-{
-  id: 'dp-17',
-  title: 'Minimum Cost Climbing Stairs',
-  difficulty: 'Easy',
-  leetcodeUrl: 'https://leetcode.com/problems/min-cost-climbing-stairs/',
-  description: 'Given an array cost where cost[i] is the cost of the ith step, return the minimum cost to reach the top of the floor.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-17',
+        title: 'Minimum Cost Climbing Stairs',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/min-cost-climbing-stairs/',
+        description: 'Given an array cost where cost[i] is the cost of the ith step, return the minimum cost to reach the top of the floor.',
+        language: 'python',
+        solution: `class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         for i in range(2, len(cost)):
             cost[i] += min(cost[i - 1], cost[i - 2])
         return min(cost[-1], cost[-2])`
-},
-{
-  id: 'dp-18',
-  title: 'Integer Break',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/integer-break/',
-  description: 'Given an integer n, break it into the sum of k positive integers (k >= 2) and maximize the product of those integers.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-18',
+        title: 'Integer Break',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/integer-break/',
+        description: 'Given an integer n, break it into the sum of k positive integers (k >= 2) and maximize the product of those integers.',
+        language: 'python',
+        solution: `class Solution:
     def integerBreak(self, n: int) -> int:
         dp = [0] * (n + 1)
         dp[1] = 1
@@ -2558,15 +2757,15 @@ export const patterns: Pattern[] = [
             for j in range(1, i):
                 dp[i] = max(dp[i], j * (i - j), j * dp[i - j])
         return dp[n]`
-},
-{
-  id: 'dp-19',
-  title: 'Burst Balloons',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/burst-balloons/',
-  description: 'Given n balloons with values, burst them to maximize coins collected. Bursting balloon i gives nums[i-1]*nums[i]*nums[i+1] coins.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-19',
+        title: 'Burst Balloons',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/burst-balloons/',
+        description: 'Given n balloons with values, burst them to maximize coins collected. Bursting balloon i gives nums[i-1]*nums[i]*nums[i+1] coins.',
+        language: 'python',
+        solution: `class Solution:
     def maxCoins(self, nums: List[int]) -> int:
         nums = [1] + nums + [1]
         n = len(nums)
@@ -2580,15 +2779,15 @@ export const patterns: Pattern[] = [
                         nums[left] * nums[k] * nums[right] + dp[left][k] + dp[k][right]
                     )
         return dp[0][n - 1]`
-},
-{
-  id: 'dp-20',
-  title: 'Regular Expression Matching',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/regular-expression-matching/',
-  description: 'Given an input string s and a pattern p, implement regular expression matching with support for . (any char) and * (zero or more of preceding).',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'dp-20',
+        title: 'Regular Expression Matching',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/regular-expression-matching/',
+        description: 'Given an input string s and a pattern p, implement regular expression matching with support for . (any char) and * (zero or more of preceding).',
+        language: 'python',
+        solution: `class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         m, n = len(s), len(p)
         dp = [[False] * (n + 1) for _ in range(m + 1)]
@@ -2605,7 +2804,7 @@ export const patterns: Pattern[] = [
                 elif p[j - 1] == '.' or p[j - 1] == s[i - 1]:
                     dp[i][j] = dp[i - 1][j - 1]
         return dp[m][n]`
-},
+      },
     ]
   },
   {
@@ -2675,13 +2874,13 @@ export const patterns: Pattern[] = [
         return max_area`
       },
       {
-  id: 'ms-4',
-  title: 'Next Greater Element II',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/next-greater-element-ii/',
-  description: 'Given a circular integer array nums, return the next greater number for every element in nums.',
-  language: 'python',
-  solution: `class Solution:
+        id: 'ms-4',
+        title: 'Next Greater Element II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/next-greater-element-ii/',
+        description: 'Given a circular integer array nums, return the next greater number for every element in nums.',
+        language: 'python',
+        solution: `class Solution:
     def nextGreaterElements(self, nums: List[int]) -> List[int]:
         n = len(nums)
         result = [-1] * n
@@ -2692,15 +2891,15 @@ export const patterns: Pattern[] = [
             if i < n:
                 stack.append(i)
         return result`
-},
-{
-  id: 'ms-5',
-  title: 'Trapping Rain Water',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/trapping-rain-water/',
-  description: 'Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-5',
+        title: 'Trapping Rain Water',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/trapping-rain-water/',
+        description: 'Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.',
+        language: 'python',
+        solution: `class Solution:
     def trap(self, height: List[int]) -> int:
         stack = []
         water = 0
@@ -2714,15 +2913,15 @@ export const patterns: Pattern[] = [
                 water += distance * bounded_height
             stack.append(i)
         return water`
-},
-{
-  id: 'ms-6',
-  title: 'Sum of Subarray Minimums',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/sum-of-subarray-minimums/',
-  description: 'Given an array of integers arr, find the sum of min(b) for every subarray b of arr.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-6',
+        title: 'Sum of Subarray Minimums',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/sum-of-subarray-minimums/',
+        description: 'Given an array of integers arr, find the sum of min(b) for every subarray b of arr.',
+        language: 'python',
+        solution: `class Solution:
     def sumSubarrayMins(self, arr: List[int]) -> int:
         MOD = 10**9 + 7
         stack = []
@@ -2736,15 +2935,15 @@ export const patterns: Pattern[] = [
                 result += arr[mid] * count
             stack.append(i)
         return result % MOD`
-},
-{
-  id: 'ms-7',
-  title: 'Remove K Digits',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/remove-k-digits/',
-  description: 'Given string num representing a non-negative integer and an integer k, return the smallest possible integer after removing k digits from num.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-7',
+        title: 'Remove K Digits',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/remove-k-digits/',
+        description: 'Given string num representing a non-negative integer and an integer k, return the smallest possible integer after removing k digits from num.',
+        language: 'python',
+        solution: `class Solution:
     def removeKdigits(self, num: str, k: int) -> str:
         stack = []
         for digit in num:
@@ -2755,15 +2954,15 @@ export const patterns: Pattern[] = [
         if k:
             stack = stack[:-k]
         return ''.join(stack).lstrip('0') or '0'`
-},
-{
-  id: 'ms-8',
-  title: 'Validate Stack Sequences',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/validate-stack-sequences/',
-  description: 'Given two integer arrays pushed and popped, return true if this could have been the result of a sequence of push and pop operations on an initially empty stack.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-8',
+        title: 'Validate Stack Sequences',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/validate-stack-sequences/',
+        description: 'Given two integer arrays pushed and popped, return true if this could have been the result of a sequence of push and pop operations on an initially empty stack.',
+        language: 'python',
+        solution: `class Solution:
     def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
         stack = []
         j = 0
@@ -2773,18 +2972,18 @@ export const patterns: Pattern[] = [
                 stack.pop()
                 j += 1
         return not stack`
-},
-{
-  id: 'ms-9',
-  title: '132 Pattern',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/132-pattern/',
-  description: 'Given an array of n integers nums, return true if there is a 132 pattern in nums — indices i < j < k such that nums[i] < nums[k] < nums[j].',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-9',
+        title: '132 Pattern',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/132-pattern/',
+        description: 'Given an array of n integers nums, return true if there is a 132 pattern in nums — indices i < j < k such that nums[i] < nums[k] < nums[j].',
+        language: 'python',
+        solution: `class Solution:
     def find132pattern(self, nums: List[int]) -> bool:
         stack = []
-        third = float('-inf')  # This is nums[k] (the "2" in 132)
+        third = float('-inf')
         for i in range(len(nums) - 1, -1, -1):
             if nums[i] < third:
                 return True
@@ -2792,17 +2991,17 @@ export const patterns: Pattern[] = [
                 third = stack.pop()
             stack.append(nums[i])
         return False`
-},
-{
-  id: 'ms-10',
-  title: 'Online Stock Span',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/online-stock-span/',
-  description: 'Design a class that collects daily price quotes for a stock and returns the span of that stock\'s price for the current day — the number of consecutive days the price was less than or equal to today\'s price.',
-  language: 'python',
-  solution: `class StockSpanner:
+      },
+      {
+        id: 'ms-10',
+        title: 'Online Stock Span',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/online-stock-span/',
+        description: "Design a class that collects daily price quotes for a stock and returns the span of that stock's price for the current day.",
+        language: 'python',
+        solution: `class StockSpanner:
     def __init__(self):
-        self.stack = []  # (price, span)
+        self.stack = []
 
     def next(self, price: int) -> int:
         span = 1
@@ -2810,15 +3009,15 @@ export const patterns: Pattern[] = [
             span += self.stack.pop()[1]
         self.stack.append((price, span))
         return span`
-},
-{
-  id: 'ms-11',
-  title: 'Car Fleet',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/car-fleet/',
-  description: 'N cars are going to the same destination. Given arrays position and speed, return the number of car fleets that will arrive at the destination.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-11',
+        title: 'Car Fleet',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/car-fleet/',
+        description: 'N cars are going to the same destination. Given arrays position and speed, return the number of car fleets that will arrive at the destination.',
+        language: 'python',
+        solution: `class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
         pairs = sorted(zip(position, speed), reverse=True)
         stack = []
@@ -2827,15 +3026,15 @@ export const patterns: Pattern[] = [
             if not stack or time > stack[-1]:
                 stack.append(time)
         return len(stack)`
-},
-{
-  id: 'ms-12',
-  title: 'Asteroid Collision',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/asteroid-collision/',
-  description: 'Given an array asteroids of integers representing asteroids in a row, find out the state after all collisions. Positive = moving right, Negative = moving left. Same direction never collide.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-12',
+        title: 'Asteroid Collision',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/asteroid-collision/',
+        description: 'Given an array asteroids of integers representing asteroids in a row, find out the state after all collisions. Positive = moving right, Negative = moving left. Same direction never collide.',
+        language: 'python',
+        solution: `class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
         stack = []
         for a in asteroids:
@@ -2851,15 +3050,15 @@ export const patterns: Pattern[] = [
             if alive:
                 stack.append(a)
         return stack`
-},
-{
-  id: 'ms-13',
-  title: 'Maximum Width Ramp',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-width-ramp/',
-  description: 'Given an integer array nums, a ramp is a pair (i, j) where i < j and nums[i] <= nums[j]. Return the maximum width j - i of such a ramp.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-13',
+        title: 'Maximum Width Ramp',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-width-ramp/',
+        description: 'Given an integer array nums, a ramp is a pair (i, j) where i < j and nums[i] <= nums[j]. Return the maximum width j - i of such a ramp.',
+        language: 'python',
+        solution: `class Solution:
     def maxWidthRamp(self, nums: List[int]) -> int:
         n = len(nums)
         stack = []
@@ -2871,15 +3070,15 @@ export const patterns: Pattern[] = [
             while stack and nums[stack[-1]] <= nums[j]:
                 result = max(result, j - stack.pop())
         return result`
-},
-{
-  id: 'ms-14',
-  title: 'Minimum Number of Visible People to Stand in Queue',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/number-of-visible-people-in-a-queue/',
-  description: 'There are n people standing in a queue. Return an array answer where answer[i] is the number of people the ith person can see to their right in the queue.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-14',
+        title: 'Minimum Number of Visible People to Stand in Queue',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-visible-people-in-a-queue/',
+        description: 'There are n people standing in a queue. Return an array answer where answer[i] is the number of people the ith person can see to their right in the queue.',
+        language: 'python',
+        solution: `class Solution:
     def canSeePersonsCount(self, heights: List[int]) -> List[int]:
         n = len(heights)
         result = [0] * n
@@ -2894,15 +3093,15 @@ export const patterns: Pattern[] = [
             result[i] = count
             stack.append(heights[i])
         return result`
-},
-{
-  id: 'ms-15',
-  title: 'Maximum Score of a Good Subarray',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-score-of-a-good-subarray/',
-  description: 'Given an array nums and index k, find the maximum score of a good subarray where score = min(nums[i],...,nums[j]) * (j - i + 1) and i <= k <= j.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-15',
+        title: 'Maximum Score of a Good Subarray',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-score-of-a-good-subarray/',
+        description: 'Given an array nums and index k, find the maximum score of a good subarray where score = min(nums[i],...,nums[j]) * (j - i + 1) and i <= k <= j.',
+        language: 'python',
+        solution: `class Solution:
     def maximumScore(self, nums: List[int], k: int) -> int:
         n = len(nums)
         stack = []
@@ -2916,15 +3115,15 @@ export const patterns: Pattern[] = [
                     result = max(result, nums[mid] * (right - left - 1))
             stack.append(i)
         return result`
-},
-{
-  id: 'ms-16',
-  title: 'Maximal Rectangle',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/maximal-rectangle/',
-  description: 'Given a rows x cols binary matrix filled with 0s and 1s, find the largest rectangle containing only 1s and return its area.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-16',
+        title: 'Maximal Rectangle',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximal-rectangle/',
+        description: 'Given a rows x cols binary matrix filled with 0s and 1s, find the largest rectangle containing only 1s and return its area.',
+        language: 'python',
+        solution: `class Solution:
     def maximalRectangle(self, matrix: List[List[str]]) -> int:
         if not matrix:
             return 0
@@ -2952,15 +3151,15 @@ export const patterns: Pattern[] = [
                 heights[j] = heights[j] + 1 if row[j] == '1' else 0
             max_area = max(max_area, largestInHistogram(heights))
         return max_area`
-},
-{
-  id: 'ms-17',
-  title: 'Previous Smaller Element',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/number-of-atoms/',
-  description: 'For each element in the array, find the nearest smaller element to its left. Return -1 if no such element exists.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-17',
+        title: 'Previous Smaller Element',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-atoms/',
+        description: 'For each element in the array, find the nearest smaller element to its left. Return -1 if no such element exists.',
+        language: 'python',
+        solution: `class Solution:
     def previousSmallerElement(self, nums: List[int]) -> List[int]:
         stack = []
         result = []
@@ -2970,15 +3169,15 @@ export const patterns: Pattern[] = [
             result.append(stack[-1] if stack else -1)
             stack.append(num)
         return result`
-},
-{
-  id: 'ms-18',
-  title: 'Final Prices With a Special Discount in a Shop',
-  difficulty: 'Easy',
-  leetcodeUrl: 'https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/',
-  description: 'Given an array prices, for each item find the first item to the right with a price <= current price and subtract it as a discount. Return the final prices.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-18',
+        title: 'Final Prices With a Special Discount in a Shop',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/',
+        description: 'Given an array prices, for each item find the first item to the right with a price <= current price and subtract it as a discount. Return the final prices.',
+        language: 'python',
+        solution: `class Solution:
     def finalPrices(self, prices: List[int]) -> List[int]:
         stack = []
         result = prices[:]
@@ -2987,15 +3186,15 @@ export const patterns: Pattern[] = [
                 result[stack.pop()] -= prices[i]
             stack.append(i)
         return result`
-},
-{
-  id: 'ms-19',
-  title: 'Longest Well-Performing Interval',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/longest-well-performing-interval/',
-  description: 'A day is a tiring day if hours worked > 8. A well-performing interval has more tiring days than non-tiring. Return the length of the longest such interval.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-19',
+        title: 'Longest Well-Performing Interval',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-well-performing-interval/',
+        description: 'A day is a tiring day if hours worked > 8. A well-performing interval has more tiring days than non-tiring. Return the length of the longest such interval.',
+        language: 'python',
+        solution: `class Solution:
     def longestWPI(self, hours: List[int]) -> int:
         score = 0
         seen = {}
@@ -3010,17 +3209,17 @@ export const patterns: Pattern[] = [
             if score not in seen:
                 seen[score] = i
         return result`
-},
-{
-  id: 'ms-20',
-  title: 'Steps to Make Array Non-decreasing',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/steps-to-make-array-non-decreasing/',
-  description: 'In one step, remove all elements nums[i] where nums[i-1] > nums[i]. Return the number of steps to make the array non-decreasing.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-20',
+        title: 'Steps to Make Array Non-decreasing',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/steps-to-make-array-non-decreasing/',
+        description: 'In one step, remove all elements nums[i] where nums[i-1] > nums[i]. Return the number of steps to make the array non-decreasing.',
+        language: 'python',
+        solution: `class Solution:
     def totalSteps(self, nums: List[int]) -> int:
-        stack = []  # (value, steps_to_remove)
+        stack = []
         result = 0
         for num in nums:
             steps = 0
@@ -3033,15 +3232,15 @@ export const patterns: Pattern[] = [
             result = max(result, steps)
             stack.append((num, steps))
         return result`
-},
-{
-  id: 'ms-21',
-  title: 'Sum of Subarray Ranges',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/sum-of-subarray-ranges/',
-  description: 'The range of a subarray is the difference between the largest and smallest element. Return the sum of all subarray ranges of nums.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-21',
+        title: 'Sum of Subarray Ranges',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/sum-of-subarray-ranges/',
+        description: 'The range of a subarray is the difference between the largest and smallest element. Return the sum of all subarray ranges of nums.',
+        language: 'python',
+        solution: `class Solution:
     def subArrayRanges(self, nums: List[int]) -> int:
         n = len(nums)
         result = 0
@@ -3052,15 +3251,15 @@ export const patterns: Pattern[] = [
                 max_val = max(max_val, nums[j])
                 result += max_val - min_val
         return result`
-},
-{
-  id: 'ms-22',
-  title: 'Maximum Subarray Min-Product',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-subarray-min-product/',
-  description: 'The min-product of an array is equal to the minimum value multiplied by the arrays sum. Return the maximum min-product of any non-empty subarray of nums modulo 1e9+7.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-22',
+        title: 'Maximum Subarray Min-Product',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-subarray-min-product/',
+        description: 'The min-product of an array is equal to the minimum value multiplied by the array\'s sum. Return the maximum min-product of any non-empty subarray of nums modulo 1e9+7.',
+        language: 'python',
+        solution: `class Solution:
     def maxSumMinProduct(self, nums: List[int]) -> int:
         MOD = 10**9 + 7
         n = len(nums)
@@ -3078,15 +3277,15 @@ export const patterns: Pattern[] = [
                 result = max(result, nums[mid] * total)
             stack.append(i)
         return result % MOD`
-},
-{
-  id: 'ms-23',
-  title: 'Buildings With an Ocean View',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/buildings-with-an-ocean-view/',
-  description: 'There are n buildings in a line. Ocean is to the right. A building has an ocean view if all buildings to its right are smaller. Return indices of buildings with ocean view in increasing order.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-23',
+        title: 'Buildings With an Ocean View',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/buildings-with-an-ocean-view/',
+        description: 'There are n buildings in a line. Ocean is to the right. A building has an ocean view if all buildings to its right are smaller. Return indices of buildings with ocean view in increasing order.',
+        language: 'python',
+        solution: `class Solution:
     def findBuildings(self, heights: List[int]) -> List[int]:
         stack = []
         for i in range(len(heights)):
@@ -3094,15 +3293,15 @@ export const patterns: Pattern[] = [
                 stack.pop()
             stack.append(i)
         return stack`
-},
-{
-  id: 'ms-24',
-  title: 'Maximum Number of Visible Points',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-visible-points/',
-  description: 'Given points on a 2D plane and a location, return the maximum number of points visible from the location within a given angle of view.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-24',
+        title: 'Maximum Number of Visible Points',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-visible-points/',
+        description: 'Given points on a 2D plane and a location, return the maximum number of points visible from the location within a given angle of view.',
+        language: 'python',
+        solution: `class Solution:
     def visiblePoints(self, points: List[List[int]], angle: int, location: List[int]) -> int:
         import math
         angles = []
@@ -3122,15 +3321,15 @@ export const patterns: Pattern[] = [
                 left += 1
             max_visible = max(max_visible, right - left + 1)
         return max_visible + bonus`
-},
-{
-  id: 'ms-25',
-  title: 'Decode String',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/decode-string/',
-  description: 'Given an encoded string like 3[a2[c]], return its decoded version. The encoding rule is k[encoded_string] meaning the encoded_string is repeated exactly k times.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-25',
+        title: 'Decode String',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/decode-string/',
+        description: 'Given an encoded string like 3[a2[c]], return its decoded version. The encoding rule is k[encoded_string] meaning the encoded_string is repeated exactly k times.',
+        language: 'python',
+        solution: `class Solution:
     def decodeString(self, s: str) -> str:
         stack = []
         curr_str = ""
@@ -3148,15 +3347,15 @@ export const patterns: Pattern[] = [
             else:
                 curr_str += ch
         return curr_str`
-},
-{
-  id: 'ms-26',
-  title: 'Minimum Cost Tree From Leaf Values',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/',
-  description: 'Given an array arr of positive integers, find the minimum possible sum of all non-leaf node values when building a binary tree where arr represents the leaves left to right.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-26',
+        title: 'Minimum Cost Tree From Leaf Values',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/',
+        description: 'Given an array arr of positive integers, find the minimum possible sum of all non-leaf node values when building a binary tree where arr represents the leaves left to right.',
+        language: 'python',
+        solution: `class Solution:
     def mctFromLeafValues(self, arr: List[int]) -> int:
         stack = [float('inf')]
         result = 0
@@ -3168,15 +3367,15 @@ export const patterns: Pattern[] = [
         while len(stack) > 2:
             result += stack.pop() * stack[-1]
         return result`
-},
-{
-  id: 'ms-27',
-  title: 'Remove Duplicate Letters',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/remove-duplicate-letters/',
-  description: 'Given a string s, remove duplicate letters so that every letter appears once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-27',
+        title: 'Remove Duplicate Letters',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/remove-duplicate-letters/',
+        description: 'Given a string s, remove duplicate letters so that every letter appears once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.',
+        language: 'python',
+        solution: `class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
         count = {}
         for ch in s:
@@ -3192,15 +3391,15 @@ export const patterns: Pattern[] = [
             stack.append(ch)
             seen.add(ch)
         return ''.join(stack)`
-},
-{
-  id: 'ms-28',
-  title: 'Largest Rectangle in Histogram II',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
-  description: 'Given an array of integers heights representing histogram bar heights where width of each bar is 1, return the area of the largest rectangle using left and right boundary tracking.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-28',
+        title: 'Largest Rectangle in Histogram II',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
+        description: 'Given an array of integers heights representing histogram bar heights where width of each bar is 1, return the area of the largest rectangle using left and right boundary tracking.',
+        language: 'python',
+        solution: `class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         n = len(heights)
         left = [0] * n
@@ -3218,15 +3417,15 @@ export const patterns: Pattern[] = [
             right[i] = stack[-1] if stack else n
             stack.append(i)
         return max(heights[i] * (right[i] - left[i]) for i in range(n))`
-},
-{
-  id: 'ms-29',
-  title: 'Shortest Unsorted Continuous Subarray',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/shortest-unsorted-continuous-subarray/',
-  description: 'Given an integer array nums, find the shortest subarray that if sorted, makes the whole array sorted. Return the length of that subarray.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-29',
+        title: 'Shortest Unsorted Continuous Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-unsorted-continuous-subarray/',
+        description: 'Given an integer array nums, find the shortest subarray that if sorted, makes the whole array sorted. Return the length of that subarray.',
+        language: 'python',
+        solution: `class Solution:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
         n = len(nums)
         left, right = -1, -2
@@ -3241,15 +3440,15 @@ export const patterns: Pattern[] = [
                 right = max(right, stack.pop())
             stack.append(i)
         return right - left + 1`
-},
-{
-  id: 'ms-30',
-  title: 'Score of Parentheses',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/score-of-parentheses/',
-  description: 'Given a balanced parentheses string s, compute the score based on rules: () has score 1, AB has score A+B, (A) has score 2*A.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-30',
+        title: 'Score of Parentheses',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/score-of-parentheses/',
+        description: 'Given a balanced parentheses string s, compute the score based on rules: () has score 1, AB has score A+B, (A) has score 2*A.',
+        language: 'python',
+        solution: `class Solution:
     def scoreOfParentheses(self, s: str) -> int:
         stack = [0]
         for ch in s:
@@ -3259,15 +3458,15 @@ export const patterns: Pattern[] = [
                 top = stack.pop()
                 stack[-1] += max(2 * top, 1)
         return stack[0]`
-},
-{
-  id: 'ms-31',
-  title: 'Minimum Stack',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/min-stack/',
-  description: 'Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.',
-  language: 'python',
-  solution: `class MinStack:
+      },
+      {
+        id: 'ms-31',
+        title: 'Minimum Stack',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/min-stack/',
+        description: 'Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.',
+        language: 'python',
+        solution: `class MinStack:
     def __init__(self):
         self.stack = []
         self.min_stack = []
@@ -3286,15 +3485,15 @@ export const patterns: Pattern[] = [
 
     def getMin(self) -> int:
         return self.min_stack[-1]`
-},
-{
-  id: 'ms-32',
-  title: 'Largest Rectangle in Matrix of 1s',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/maximal-rectangle/',
-  description: 'Given a binary matrix, for each row build a histogram of consecutive 1s and apply the largest rectangle in histogram algorithm to find the maximum area.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-32',
+        title: 'Largest Rectangle in Matrix of 1s',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximal-rectangle/',
+        description: 'Given a binary matrix, for each row build a histogram of consecutive 1s and apply the largest rectangle in histogram algorithm to find the maximum area.',
+        language: 'python',
+        solution: `class Solution:
     def maximalRectangle(self, matrix: List[List[str]]) -> int:
         if not matrix or not matrix[0]:
             return 0
@@ -3312,15 +3511,15 @@ export const patterns: Pattern[] = [
                     max_area = max(max_area, h * w)
                 stack.append(i)
         return max_area`
-},
-{
-  id: 'ms-33',
-  title: 'Flatten Nested List Iterator',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/flatten-nested-list-iterator/',
-  description: 'Implement an iterator to flatten a nested list of integers. Each element is either an integer or a list whose elements may also be integers or other lists.',
-  language: 'python',
-  solution: `class NestedIterator:
+      },
+      {
+        id: 'ms-33',
+        title: 'Flatten Nested List Iterator',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/flatten-nested-list-iterator/',
+        description: 'Implement an iterator to flatten a nested list of integers. Each element is either an integer or a list whose elements may also be integers or other lists.',
+        language: 'python',
+        solution: `class NestedIterator:
     def __init__(self, nestedList):
         self.stack = []
         self._flatten(nestedList)
@@ -3340,15 +3539,15 @@ export const patterns: Pattern[] = [
             self.stack.pop()
             self._flatten(top.getList())
         return False`
-},
-{
-  id: 'ms-34',
-  title: 'Exclusive Time of Functions',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/exclusive-time-of-functions/',
-  description: 'Given the running logs of n functions on a single-threaded CPU, return the exclusive time of each function. Each log is start/end with a timestamp.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-34',
+        title: 'Exclusive Time of Functions',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/exclusive-time-of-functions/',
+        description: 'Given the running logs of n functions on a single-threaded CPU, return the exclusive time of each function. Each log is start/end with a timestamp.',
+        language: 'python',
+        solution: `class Solution:
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
         result = [0] * n
         stack = []
@@ -3365,15 +3564,15 @@ export const patterns: Pattern[] = [
                 result[stack.pop()] += time - prev_time + 1
                 prev_time = time + 1
         return result`
-},
-{
-  id: 'ms-35',
-  title: 'Maximum Binary Tree',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-binary-tree/',
-  description: 'Given an array nums with no duplicates, build a maximum binary tree where root is the max element, left subtree is built from left part, right subtree from right part. Return the root.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-35',
+        title: 'Maximum Binary Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-binary-tree/',
+        description: 'Given an array nums with no duplicates, build a maximum binary tree where root is the max element, left subtree is built from left part, right subtree from right part. Return the root.',
+        language: 'python',
+        solution: `class Solution:
     def constructMaximumBinaryTree(self, nums: List[int]) -> Optional[TreeNode]:
         stack = []
         for num in nums:
@@ -3386,15 +3585,15 @@ export const patterns: Pattern[] = [
                 stack[-1].right = node
             stack.append(node)
         return stack[0]`
-},
-{
-  id: 'ms-36',
-  title: 'Remove All Adjacent Duplicates In String',
-  difficulty: 'Easy',
-  leetcodeUrl: 'https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/',
-  description: 'Given a string s, repeatedly remove adjacent duplicate characters until no more can be removed. Return the final string.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-36',
+        title: 'Remove All Adjacent Duplicates In String',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/',
+        description: 'Given a string s, repeatedly remove adjacent duplicate characters until no more can be removed. Return the final string.',
+        language: 'python',
+        solution: `class Solution:
     def removeDuplicates(self, s: str) -> str:
         stack = []
         for ch in s:
@@ -3403,17 +3602,17 @@ export const patterns: Pattern[] = [
             else:
                 stack.append(ch)
         return ''.join(stack)`
-},
-{
-  id: 'ms-37',
-  title: 'Remove All Adjacent Duplicates in String II',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/',
-  description: 'Given a string s and integer k, repeatedly remove k adjacent duplicate characters until no more can be removed. Return the final string.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-37',
+        title: 'Remove All Adjacent Duplicates in String II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/',
+        description: 'Given a string s and integer k, repeatedly remove k adjacent duplicate characters until no more can be removed. Return the final string.',
+        language: 'python',
+        solution: `class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
-        stack = []  # (char, count)
+        stack = []
         for ch in s:
             if stack and stack[-1][0] == ch:
                 stack[-1] = (ch, stack[-1][1] + 1)
@@ -3422,15 +3621,15 @@ export const patterns: Pattern[] = [
             else:
                 stack.append((ch, 1))
         return ''.join(ch * cnt for ch, cnt in stack)`
-},
-{
-  id: 'ms-38',
-  title: 'Minimum Remove to Make Valid Parentheses',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/',
-  description: 'Given a string s of parentheses and lowercase letters, remove the minimum number of parentheses to make the string valid. Return any valid result.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-38',
+        title: 'Minimum Remove to Make Valid Parentheses',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/',
+        description: 'Given a string s of parentheses and lowercase letters, remove the minimum number of parentheses to make the string valid. Return any valid result.',
+        language: 'python',
+        solution: `class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
         s = list(s)
         stack = []
@@ -3445,15 +3644,15 @@ export const patterns: Pattern[] = [
         for i in stack:
             s[i] = ''
         return ''.join(s)`
-},
-{
-  id: 'ms-39',
-  title: 'Largest Rectangle in Histogram — Left Right Boundaries',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
-  description: 'For each bar in a histogram, precompute the left and right boundaries (indices of nearest smaller bars) using two separate monotonic stack passes, then compute max area.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-39',
+        title: 'Largest Rectangle in Histogram — Left Right Boundaries',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
+        description: 'For each bar in a histogram, precompute the left and right boundaries (indices of nearest smaller bars) using two separate monotonic stack passes, then compute max area.',
+        language: 'python',
+        solution: `class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         n = len(heights)
         left_boundary = [0] * n
@@ -3469,15 +3668,15 @@ export const patterns: Pattern[] = [
             width = right_boundary[i] - left_boundary[i] + 1
             max_area = max(max_area, heights[i] * width)
         return max_area`
-},
-{
-  id: 'ms-40',
-  title: 'Check if Word is Valid After Substitutions',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/',
-  description: 'Given a string s, determine if it is valid. A string is valid if it can be formed by repeatedly inserting "abc" into an empty string.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-40',
+        title: 'Check if Word is Valid After Substitutions',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/check-if-word-is-valid-after-substitutions/',
+        description: 'Given a string s, determine if it is valid. A string is valid if it can be formed by repeatedly inserting "abc" into an empty string.',
+        language: 'python',
+        solution: `class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
         for ch in s:
@@ -3487,15 +3686,15 @@ export const patterns: Pattern[] = [
                 stack.pop()
                 stack.pop()
         return not stack`
-},
-{
-  id: 'ms-41',
-  title: 'Minimum Add to Make Parentheses Valid',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/',
-  description: 'Given a string s of parentheses, return the minimum number of parentheses you must add to make the string valid.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-41',
+        title: 'Minimum Add to Make Parentheses Valid',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/',
+        description: 'Given a string s of parentheses, return the minimum number of parentheses you must add to make the string valid.',
+        language: 'python',
+        solution: `class Solution:
     def minAddToMakeValid(self, s: str) -> int:
         stack = []
         unmatched = 0
@@ -3507,15 +3706,15 @@ export const patterns: Pattern[] = [
             else:
                 unmatched += 1
         return unmatched + len(stack)`
-},
-{
-  id: 'ms-42',
-  title: 'Longest Valid Parentheses',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/longest-valid-parentheses/',
-  description: 'Given a string containing just the characters ( and ), return the length of the longest valid (well-formed) parentheses substring.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-42',
+        title: 'Longest Valid Parentheses',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-valid-parentheses/',
+        description: 'Given a string containing just the characters ( and ), return the length of the longest valid (well-formed) parentheses substring.',
+        language: 'python',
+        solution: `class Solution:
     def longestValidParentheses(self, s: str) -> int:
         stack = [-1]
         max_len = 0
@@ -3529,15 +3728,15 @@ export const patterns: Pattern[] = [
                 else:
                     max_len = max(max_len, i - stack[-1])
         return max_len`
-},
-{
-  id: 'ms-43',
-  title: 'Number of Valid Subarrays',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/number-of-valid-subarrays/',
-  description: 'Given an integer array nums, return the number of non-empty subarrays where the leftmost element is not larger than any other element in the subarray.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-43',
+        title: 'Number of Valid Subarrays',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-valid-subarrays/',
+        description: 'Given an integer array nums, return the number of non-empty subarrays where the leftmost element is not larger than any other element in the subarray.',
+        language: 'python',
+        solution: `class Solution:
     def validSubarrays(self, nums: List[int]) -> int:
         stack = []
         result = 0
@@ -3548,15 +3747,15 @@ export const patterns: Pattern[] = [
         while stack:
             result += len(nums) - stack.pop()
         return result`
-},
-{
-  id: 'ms-44',
-  title: 'Count Visible Persons in a Queue',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/number-of-visible-people-in-a-queue/',
-  description: 'There are n people in a queue each with unique heights. Person i can see person j if everyone between them is shorter than both. Return count of visible people for each person.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-44',
+        title: 'Count Visible Persons in a Queue',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-visible-people-in-a-queue/',
+        description: 'There are n people in a queue each with unique heights. Person i can see person j if everyone between them is shorter than both. Return count of visible people for each person.',
+        language: 'python',
+        solution: `class Solution:
     def canSeePersonsCount(self, heights: List[int]) -> List[int]:
         n = len(heights)
         result = [0] * n
@@ -3571,15 +3770,15 @@ export const patterns: Pattern[] = [
             result[i] = count
             stack.append(heights[i])
         return result`
-},
-{
-  id: 'ms-45',
-  title: 'Minimum Cost to Hire K Workers',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-hire-k-workers/',
-  description: 'There are n workers each with a quality and minimum wage. Hire exactly k workers such that every worker is paid at least their minimum wage and wages are proportional to quality. Return minimum cost.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-45',
+        title: 'Minimum Cost to Hire K Workers',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-hire-k-workers/',
+        description: 'There are n workers each with a quality and minimum wage. Hire exactly k workers such that every worker is paid at least their minimum wage and wages are proportional to quality. Return minimum cost.',
+        language: 'python',
+        solution: `class Solution:
     def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -> float:
         import heapq
         workers = sorted((w / q, q) for w, q in zip(wage, quality))
@@ -3594,15 +3793,15 @@ export const patterns: Pattern[] = [
             if len(heap) == k:
                 result = min(result, ratio * quality_sum)
         return result`
-},
-{
-  id: 'ms-46',
-  title: 'Maximum Chunks to Make Sorted',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-chunks-to-make-sorted/',
-  description: 'Given an array arr that is a permutation of [0, n-1], split it into the maximum number of chunks such that sorting each chunk individually makes the whole array sorted.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-46',
+        title: 'Maximum Chunks to Make Sorted',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-chunks-to-make-sorted/',
+        description: 'Given an array arr that is a permutation of [0, n-1], split it into the maximum number of chunks such that sorting each chunk individually makes the whole array sorted.',
+        language: 'python',
+        solution: `class Solution:
     def maxChunksToSorted(self, arr: List[int]) -> int:
         stack = []
         for num in arr:
@@ -3611,15 +3810,15 @@ export const patterns: Pattern[] = [
                 max_val = max(max_val, stack.pop())
             stack.append(max_val)
         return len(stack)`
-},
-{
-  id: 'ms-47',
-  title: 'Maximum Chunks to Make Sorted II',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/max-chunks-to-make-sorted-ii/',
-  description: 'Given an integer array arr (may contain duplicates), return the maximum number of chunks we can split it into such that sorting each chunk and concatenating gives a sorted array.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-47',
+        title: 'Maximum Chunks to Make Sorted II',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/max-chunks-to-make-sorted-ii/',
+        description: 'Given an integer array arr (may contain duplicates), return the maximum number of chunks we can split it into such that sorting each chunk and concatenating gives a sorted array.',
+        language: 'python',
+        solution: `class Solution:
     def maxChunksToSorted(self, arr: List[int]) -> int:
         stack = []
         for num in arr:
@@ -3628,15 +3827,15 @@ export const patterns: Pattern[] = [
                 max_val = max(max_val, stack.pop())
             stack.append(max_val)
         return len(stack)`
-},
-{
-  id: 'ms-48',
-  title: 'Constrained Subsequence Sum',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/constrained-subsequence-sum/',
-  description: 'Given an integer array nums and integer k, return the maximum sum of a non-empty subsequence such that for every two consecutive integers in the subsequence, their indices are at most k apart.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-48',
+        title: 'Constrained Subsequence Sum',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/constrained-subsequence-sum/',
+        description: 'Given an integer array nums and integer k, return the maximum sum of a non-empty subsequence such that for every two consecutive integers in the subsequence, their indices are at most k apart.',
+        language: 'python',
+        solution: `class Solution:
     def constrainedSubsetSum(self, nums: List[int], k: int) -> int:
         from collections import deque
         dq = deque()
@@ -3651,15 +3850,15 @@ export const patterns: Pattern[] = [
             if dp[i] > 0:
                 dq.append(i)
         return max(dp)`
-},
-{
-  id: 'ms-49',
-  title: 'Jump Game VI',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/jump-game-vi/',
-  description: 'You start at index 0 of an integer array nums. In one move you can jump at most k steps forward. You want to reach the last index. Return the maximum score you can get where score is the sum of all nums at visited indices.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-49',
+        title: 'Jump Game VI',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/jump-game-vi/',
+        description: 'You start at index 0 of an integer array nums. In one move you can jump at most k steps forward. You want to reach the last index. Return the maximum score you can get where score is the sum of all nums at visited indices.',
+        language: 'python',
+        solution: `class Solution:
     def maxResult(self, nums: List[int], k: int) -> int:
         from collections import deque
         n = len(nums)
@@ -3674,15 +3873,15 @@ export const patterns: Pattern[] = [
                 dq.pop()
             dq.append(i)
         return dp[-1]`
-},
-{
-  id: 'ms-50',
-  title: 'Sliding Window Maximum',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/sliding-window-maximum/',
-  description: 'Given an integer array nums and a sliding window of size k, return the max value in each window as it slides from left to right.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-50',
+        title: 'Sliding Window Maximum',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/sliding-window-maximum/',
+        description: 'Given an integer array nums and a sliding window of size k, return the max value in each window as it slides from left to right.',
+        language: 'python',
+        solution: `class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         from collections import deque
         dq = deque()
@@ -3696,15 +3895,15 @@ export const patterns: Pattern[] = [
             if i >= k - 1:
                 result.append(nums[dq[0]])
         return result`
-},
-{
-  id: 'ms-51',
-  title: 'Largest Rectangle in Histogram — Divide and Conquer',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
-  description: 'Find the largest rectangle in a histogram using a monotonic stack to track indices of bars in increasing order of height.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-51',
+        title: 'Largest Rectangle in Histogram — Divide and Conquer',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
+        description: 'Find the largest rectangle in a histogram using a monotonic stack to track indices of bars in increasing order of height.',
+        language: 'python',
+        solution: `class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         stack = []
         max_area = 0
@@ -3717,15 +3916,15 @@ export const patterns: Pattern[] = [
                 start = idx
             stack.append((start, heights[i]))
         return max_area`
-},
-{
-  id: 'ms-52',
-  title: 'Maximum Width of Binary Tree',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-width-of-binary-tree/',
-  description: 'Given the root of a binary tree, return the maximum width of the tree. Width of a level is the length between the leftmost and rightmost non-null nodes including nulls in between.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-52',
+        title: 'Maximum Width of Binary Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-width-of-binary-tree/',
+        description: 'Given the root of a binary tree, return the maximum width of the tree. Width of a level is the length between the leftmost and rightmost non-null nodes including nulls in between.',
+        language: 'python',
+        solution: `class Solution:
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         from collections import deque
         if not root:
@@ -3743,15 +3942,15 @@ export const patterns: Pattern[] = [
                     dq.append((node.right, 2 * pos + 1))
             max_width = max(max_width, pos - first_pos + 1)
         return max_width`
-},
-{
-  id: 'ms-53',
-  title: 'Next Greater Node in Linked List',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/next-greater-node-in-linked-list/',
-  description: 'Given the head of a linked list, return an array of the next greater node values for each node. If no greater node exists, output 0.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-53',
+        title: 'Next Greater Node in Linked List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/next-greater-node-in-linked-list/',
+        description: 'Given the head of a linked list, return an array of the next greater node values for each node. If no greater node exists, output 0.',
+        language: 'python',
+        solution: `class Solution:
     def nextLargerNodes(self, head: Optional[ListNode]) -> List[int]:
         nums = []
         while head:
@@ -3764,15 +3963,15 @@ export const patterns: Pattern[] = [
                 result[stack.pop()] = val
             stack.append(i)
         return result`
-},
-{
-  id: 'ms-54',
-  title: 'Find the Most Competitive Subsequence',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/find-the-most-competitive-subsequence/',
-  description: 'Given an integer array nums and a positive integer k, return the most competitive subsequence of nums of size k. A subsequence is more competitive if it is lexicographically smaller.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-54',
+        title: 'Find the Most Competitive Subsequence',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-most-competitive-subsequence/',
+        description: 'Given an integer array nums and a positive integer k, return the most competitive subsequence of nums of size k. A subsequence is more competitive if it is lexicographically smaller.',
+        language: 'python',
+        solution: `class Solution:
     def mostCompetitive(self, nums: List[int], k: int) -> List[int]:
         stack = []
         n = len(nums)
@@ -3782,15 +3981,15 @@ export const patterns: Pattern[] = [
             if len(stack) < k:
                 stack.append(num)
         return stack`
-},
-{
-  id: 'ms-55',
-  title: 'Minimum Number of Swaps to Make String Balanced',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/',
-  description: 'Given a string s of brackets that is balanced except for order, return the minimum number of swaps to make it balanced.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-55',
+        title: 'Minimum Number of Swaps to Make String Balanced',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/',
+        description: 'Given a string s of brackets that is balanced except for order, return the minimum number of swaps to make it balanced.',
+        language: 'python',
+        solution: `class Solution:
     def minSwaps(self, s: str) -> int:
         stack = 0
         for ch in s:
@@ -3799,15 +3998,15 @@ export const patterns: Pattern[] = [
             elif stack > 0:
                 stack -= 1
         return (stack + 1) // 2`
-},
-{
-  id: 'ms-56',
-  title: 'Reverse Substrings Between Each Pair of Parentheses',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/',
-  description: 'Given a string s that consists of letters and parentheses, reverse the substrings in each pair of matching parentheses from innermost to outermost. Return the result with parentheses removed.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-56',
+        title: 'Reverse Substrings Between Each Pair of Parentheses',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/reverse-substrings-between-each-pair-of-parentheses/',
+        description: 'Given a string s that consists of letters and parentheses, reverse the substrings in each pair of matching parentheses from innermost to outermost. Return the result with parentheses removed.',
+        language: 'python',
+        solution: `class Solution:
     def reverseParentheses(self, s: str) -> str:
         stack = []
         curr = []
@@ -3820,15 +4019,15 @@ export const patterns: Pattern[] = [
             else:
                 curr.append(ch)
         return ''.join(curr)`
-},
-{
-  id: 'ms-57',
-  title: 'Number of People That Can Be Seen Seeing Each Other',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/number-of-visible-people-in-a-queue/',
-  description: 'Each person stands in a row and can see the next person to the right if no one taller stands between them. Use a monotonic decreasing stack to count visible pairs.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-57',
+        title: 'Number of People That Can Be Seen Seeing Each Other',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-visible-people-in-a-queue/',
+        description: 'Each person stands in a row and can see the next person to the right if no one taller stands between them. Use a monotonic decreasing stack to count visible pairs.',
+        language: 'python',
+        solution: `class Solution:
     def canSeePersonsCount(self, heights: List[int]) -> List[int]:
         n = len(heights)
         ans = [0] * n
@@ -3841,15 +4040,15 @@ export const patterns: Pattern[] = [
                 ans[i] += 1
             stack.append(heights[i])
         return ans`
-},
-{
-  id: 'ms-58',
-  title: 'Minimum Difficulty of a Job Schedule',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/',
-  description: 'You need to schedule jobs over d days. Each day you must do at least one job in order. The difficulty of a day is the max job difficulty that day. Minimize total difficulty across all days.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-58',
+        title: 'Minimum Difficulty of a Job Schedule',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-difficulty-of-a-job-schedule/',
+        description: 'You need to schedule jobs over d days. Each day you must do at least one job in order. The difficulty of a day is the max job difficulty that day. Minimize total difficulty across all days.',
+        language: 'python',
+        solution: `class Solution:
     def minDifficulty(self, jobDifficulty: List[int], d: int) -> int:
         n = len(jobDifficulty)
         if n < d:
@@ -3872,19 +4071,19 @@ export const patterns: Pattern[] = [
                     dp[day][j] = curr
                     stack.append(j)
         return dp[d-1][n-1]`
-},
-{
-  id: 'ms-59',
-  title: 'Dinner Plate Stacks',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/dinner-plate-stacks/',
-  description: 'Implement a DinnerPlates class with a capacity limit per stack. push() adds to the leftmost non-full stack, pop() removes from the rightmost non-empty stack, popAtStack() removes from a specific stack.',
-  language: 'python',
-  solution: `class DinnerPlates:
+      },
+      {
+        id: 'ms-59',
+        title: 'Dinner Plate Stacks',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/dinner-plate-stacks/',
+        description: 'Implement a DinnerPlates class with a capacity limit per stack. push() adds to the leftmost non-full stack, pop() removes from the rightmost non-empty stack, popAtStack() removes from a specific stack.',
+        language: 'python',
+        solution: `class DinnerPlates:
     def __init__(self, capacity: int):
         self.cap = capacity
         self.stacks = []
-        self.available = []  # min-heap of available stack indices
+        self.available = []
 
     def push(self, val: int) -> None:
         import heapq
@@ -3912,15 +4111,15 @@ export const patterns: Pattern[] = [
         val = self.stacks[index].pop()
         heapq.heappush(self.available, index)
         return val`
-},
-{
-  id: 'ms-60',
-  title: 'Maximum Frequency Stack',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-frequency-stack/',
-  description: 'Design a stack-like data structure that pushes and pops elements. Pop always removes the most frequent element. If tied, remove the element closest to the top of the stack.',
-  language: 'python',
-  solution: `class FreqStack:
+      },
+      {
+        id: 'ms-60',
+        title: 'Maximum Frequency Stack',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-frequency-stack/',
+        description: 'Design a stack-like data structure that pushes and pops elements. Pop always removes the most frequent element. If tied, remove the element closest to the top of the stack.',
+        language: 'python',
+        solution: `class FreqStack:
     def __init__(self):
         self.freq = {}
         self.group = {}
@@ -3940,15 +4139,15 @@ export const patterns: Pattern[] = [
         if not self.group[self.max_freq]:
             self.max_freq -= 1
         return val`
-},
-{
-  id: 'ms-61',
-  title: 'Parsing A Boolean Expression',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/parsing-a-boolean-expression/',
-  description: 'Given a boolean expression as a string, evaluate and return its value. Expressions can be t, f, !(expr), &(expr1,expr2,...), |(expr1,expr2,...)',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-61',
+        title: 'Parsing A Boolean Expression',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/parsing-a-boolean-expression/',
+        description: 'Given a boolean expression as a string, evaluate and return its value. Expressions can be t, f, !(expr), &(expr1,expr2,...), |(expr1,expr2,...)',
+        language: 'python',
+        solution: `class Solution:
     def parseBoolExpr(self, expression: str) -> bool:
         stack = []
         for ch in expression:
@@ -3960,7 +4159,7 @@ export const patterns: Pattern[] = [
                 seen = set()
                 while stack[-1] != '(':
                     seen.add(stack.pop())
-                stack.pop()  # pop '('
+                stack.pop()
                 op = stack.pop()
                 if op == '!':
                     stack.append('f' if 't' in seen else 't')
@@ -3969,15 +4168,15 @@ export const patterns: Pattern[] = [
                 elif op == '|':
                     stack.append('t' if 't' in seen else 'f')
         return stack[0] == 't'`
-},
-{
-  id: 'ms-62',
-  title: 'Basic Calculator',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/basic-calculator/',
-  description: 'Given a string s representing a valid expression with +, -, (, ), and spaces, implement a basic calculator to evaluate it and return its result.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-62',
+        title: 'Basic Calculator',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/basic-calculator/',
+        description: 'Given a string s representing a valid expression with +, -, (, ), and spaces, implement a basic calculator to evaluate it and return its result.',
+        language: 'python',
+        solution: `class Solution:
     def calculate(self, s: str) -> int:
         stack = []
         result = 0
@@ -4005,15 +4204,15 @@ export const patterns: Pattern[] = [
                 result *= stack.pop()
                 result += stack.pop()
         return result + sign * num`
-},
-{
-  id: 'ms-63',
-  title: 'Basic Calculator II',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/basic-calculator-ii/',
-  description: 'Given a string s representing an expression with +, -, *, / and spaces (no parentheses), evaluate and return the result as an integer.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-63',
+        title: 'Basic Calculator II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/basic-calculator-ii/',
+        description: 'Given a string s representing an expression with +, -, *, / and spaces (no parentheses), evaluate and return the result as an integer.',
+        language: 'python',
+        solution: `class Solution:
     def calculate(self, s: str) -> int:
         stack = []
         num = 0
@@ -4033,15 +4232,15 @@ export const patterns: Pattern[] = [
                 sign = ch
                 num = 0
         return sum(stack)`
-},
-{
-  id: 'ms-64',
-  title: 'Basic Calculator III',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/basic-calculator-iii/',
-  description: 'Implement a basic calculator to evaluate a string expression containing +, -, *, / and parentheses. Return the result as an integer.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-64',
+        title: 'Basic Calculator III',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/basic-calculator-iii/',
+        description: 'Implement a basic calculator to evaluate a string expression containing +, -, *, / and parentheses. Return the result as an integer.',
+        language: 'python',
+        solution: `class Solution:
     def calculate(self, s: str) -> int:
         def helper(it):
             stack = []
@@ -4065,15 +4264,15 @@ export const patterns: Pattern[] = [
                 it += 1
             return sum(stack), it
         return helper(0)[0]`
-},
-{
-  id: 'ms-65',
-  title: 'Minimum Cost to Merge Stones',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-merge-stones/',
-  description: 'There are n piles of stones. Move exactly k consecutive piles into one pile, costing the sum of those piles. Return the minimum cost to merge all into one pile, or -1 if impossible.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-65',
+        title: 'Minimum Cost to Merge Stones',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-merge-stones/',
+        description: 'There are n piles of stones. Move exactly k consecutive piles into one pile, costing the sum of those piles. Return the minimum cost to merge all into one pile, or -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
     def mergeStones(self, stones: List[int], k: int) -> int:
         n = len(stones)
         if (n - 1) % (k - 1) != 0:
@@ -4091,15 +4290,15 @@ export const patterns: Pattern[] = [
                 res += prefix[j + 1] - prefix[i]
             return res
         return dp(0, n - 1)`
-},
-{
-  id: 'ms-66',
-  title: 'Robot Collisions',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/robot-collisions/',
-  description: 'Given robots on a number line with positions, healths and directions (L/R), robots moving toward each other collide and the weaker one is removed. Return healths of surviving robots in original order.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-66',
+        title: 'Robot Collisions',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/robot-collisions/',
+        description: 'Given robots on a number line with positions, healths and directions (L/R), robots moving toward each other collide and the weaker one is removed. Return healths of surviving robots in original order.',
+        language: 'python',
+        solution: `class Solution:
     def survivedRobotsHealths(self, positions: List[int], healths: List[int], directions: str) -> List[int]:
         n = len(positions)
         robots = sorted(range(n), key=lambda i: positions[i])
@@ -4122,15 +4321,15 @@ export const patterns: Pattern[] = [
                 if healths[i] > 0 and (not stack or directions[stack[-1]] == 'L'):
                     stack.append(i)
         return [healths[i] for i in range(n) if healths[i] > 0]`
-},
-{
-  id: 'ms-67',
-  title: 'Minimum Elements to Remove for Valid Array',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique/',
-  description: 'A string is good if no two different characters have the same frequency. Given string s, return the minimum number of character deletions to make it good.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-67',
+        title: 'Minimum Elements to Remove for Valid Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique/',
+        description: 'A string is good if no two different characters have the same frequency. Given string s, return the minimum number of character deletions to make it good.',
+        language: 'python',
+        solution: `class Solution:
     def minDeletions(self, s: str) -> int:
         from collections import Counter
         freq = sorted(Counter(s).values(), reverse=True)
@@ -4143,15 +4342,15 @@ export const patterns: Pattern[] = [
             if f > 0:
                 used.add(f)
         return deletions`
-},
-{
-  id: 'ms-68',
-  title: 'Minimum Insertions to Balance Parentheses',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/',
-  description: 'Given a string s of ( and ), every ( needs )) to balance. Return the minimum number of insertions to balance the string.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-68',
+        title: 'Minimum Insertions to Balance Parentheses',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/',
+        description: 'Given a string s of ( and ), every ( needs )) to balance. Return the minimum number of insertions to balance the string.',
+        language: 'python',
+        solution: `class Solution:
     def minInsertions(self, s: str) -> int:
         result = 0
         open_count = 0
@@ -4171,15 +4370,15 @@ export const patterns: Pattern[] = [
                     result += 1
             i += 1
         return result + open_count * 2`
-},
-{
-  id: 'ms-69',
-  title: 'Number of Atoms',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/number-of-atoms/',
-  description: 'Given a chemical formula string, return the count of each atom in sorted order. Handle nested parentheses with multipliers.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-69',
+        title: 'Number of Atoms',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-atoms/',
+        description: 'Given a chemical formula string, return the count of each atom in sorted order. Handle nested parentheses with multipliers.',
+        language: 'python',
+        solution: `class Solution:
     def countOfAtoms(self, formula: str) -> str:
         from collections import defaultdict
         stack = [defaultdict(int)]
@@ -4211,15 +4410,15 @@ export const patterns: Pattern[] = [
                 stack[-1][elem] += cnt
         total = stack[0]
         return ''.join(f"{elem}{cnt if cnt > 1 else ''}" for elem, cnt in sorted(total.items()))`
-},
-{
-  id: 'ms-70',
-  title: 'Largest Rectangle in Histogram — One Pass',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
-  description: 'Find the largest rectangle in a histogram in a single pass using a monotonic increasing stack. When a shorter bar is found, pop and calculate area using the popped bar as the shortest.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-70',
+        title: 'Largest Rectangle in Histogram — One Pass',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/largest-rectangle-in-histogram/',
+        description: 'Find the largest rectangle in a histogram in a single pass using a monotonic increasing stack. When a shorter bar is found, pop and calculate area using the popped bar as the shortest.',
+        language: 'python',
+        solution: `class Solution:
     def largestRectangleArea(self, heights: List[int]) -> int:
         stack = []
         max_area = 0
@@ -4233,15 +4432,15 @@ export const patterns: Pattern[] = [
         for idx, height in stack:
             max_area = max(max_area, height * (len(heights) - idx))
         return max_area`
-},
-{
-  id: 'ms-71',
-  title: 'Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/',
-  description: 'Given an array nums and an integer limit, return the size of the longest subarray such that the absolute difference between any two elements is less than or equal to limit.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-71',
+        title: 'Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/',
+        description: 'Given an array nums and an integer limit, return the size of the longest subarray such that the absolute difference between any two elements is less than or equal to limit.',
+        language: 'python',
+        solution: `class Solution:
     def longestSubarray(self, nums: List[int], limit: int) -> int:
         from collections import deque
         max_dq = deque()
@@ -4263,15 +4462,15 @@ export const patterns: Pattern[] = [
                     min_dq.popleft()
             result = max(result, right - left + 1)
         return result`
-},
-{
-  id: 'ms-72',
-  title: 'Shortest Subarray with Sum at Least K',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/',
-  description: 'Given an integer array nums and an integer k, return the length of the shortest non-empty subarray with a sum of at least k. If no such subarray exists, return -1.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-72',
+        title: 'Shortest Subarray with Sum at Least K',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/',
+        description: 'Given an integer array nums and an integer k, return the length of the shortest non-empty subarray with a sum of at least k. If no such subarray exists, return -1.',
+        language: 'python',
+        solution: `class Solution:
     def shortestSubarray(self, nums: List[int], k: int) -> int:
         from collections import deque
         n = len(nums)
@@ -4287,15 +4486,15 @@ export const patterns: Pattern[] = [
                 dq.pop()
             dq.append(i)
         return result if result <= n else -1`
-},
-{
-  id: 'ms-73',
-  title: 'Maximum Sum of Two Non-Overlapping Subarrays',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/',
-  description: 'Given an integer array nums and two integers firstLen and secondLen, return the maximum sum of elements in two non-overlapping subarrays with lengths firstLen and secondLen.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-73',
+        title: 'Maximum Sum of Two Non-Overlapping Subarrays',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/',
+        description: 'Given an integer array nums and two integers firstLen and secondLen, return the maximum sum of elements in two non-overlapping subarrays with lengths firstLen and secondLen.',
+        language: 'python',
+        solution: `class Solution:
     def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:
         def helper(L, M):
             n = len(nums)
@@ -4309,15 +4508,15 @@ export const patterns: Pattern[] = [
                 result = max(result, max_L + prefix[i] - prefix[i - M])
             return result
         return max(helper(firstLen, secondLen), helper(secondLen, firstLen))`
-},
-{
-  id: 'ms-74',
-  title: 'Maximum Product Subarray',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
-  description: 'Given an integer array nums, find a subarray that has the largest product and return the product. The answer will fit in a 32-bit integer.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-74',
+        title: 'Maximum Product Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
+        description: 'Given an integer array nums, find a subarray that has the largest product and return the product. The answer will fit in a 32-bit integer.',
+        language: 'python',
+        solution: `class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         max_prod = min_prod = result = nums[0]
         for num in nums[1:]:
@@ -4326,15 +4525,15 @@ export const patterns: Pattern[] = [
             min_prod = min(candidates)
             result = max(result, max_prod)
         return result`
-},
-{
-  id: 'ms-75',
-  title: 'Odd Even Jump',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/odd-even-jump/',
-  description: 'You are given an integer array arr. From each index i you can jump to j where arr[j] is the smallest value >= arr[i] on odd jumps, or largest value <= arr[i] on even jumps. Return how many indices allow you to reach the end.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-75',
+        title: 'Odd Even Jump',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/odd-even-jump/',
+        description: 'You are given an integer array arr. From each index i you can jump to j where arr[j] is the smallest value >= arr[i] on odd jumps, or largest value <= arr[i] on even jumps. Return how many indices allow you to reach the end.',
+        language: 'python',
+        solution: `class Solution:
     def oddEvenJumps(self, arr: List[int]) -> int:
         n = len(arr)
         def make_next(sorted_indices):
@@ -4356,30 +4555,30 @@ export const patterns: Pattern[] = [
             if even_next[i] is not None:
                 even[i] = odd[even_next[i]]
         return sum(odd)`
-},
-{
-  id: 'ms-76',
-  title: 'Minimum Number of Increments on Subarrays',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-increments-on-subarrays/',
-  description: 'Given an array target, you start with an all-zero array. In one operation you can increment any contiguous subarray by 1. Return the minimum number of operations to form target.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-76',
+        title: 'Minimum Number of Increments on Subarrays',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-increments-on-subarrays/',
+        description: 'Given an array target, you start with an all-zero array. In one operation you can increment any contiguous subarray by 1. Return the minimum number of operations to form target.',
+        language: 'python',
+        solution: `class Solution:
     def minNumberOperations(self, target: List[int]) -> int:
         result = target[0]
         for i in range(1, len(target)):
             if target[i] > target[i - 1]:
                 result += target[i] - target[i - 1]
         return result`
-},
-{
-  id: 'ms-77',
-  title: 'Maximum Number of Robots Within Budget',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-robots-within-budget/',
-  description: 'You have n robots each with chargeTimes and runningCosts. The total cost of running k consecutive robots is max(chargeTimes) + k * sum(runningCosts). Return the max k robots you can run within budget.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-77',
+        title: 'Maximum Number of Robots Within Budget',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-robots-within-budget/',
+        description: 'You have n robots each with chargeTimes and runningCosts. The total cost of running k consecutive robots is max(chargeTimes) + k * sum(runningCosts). Return the max k robots you can run within budget.',
+        language: 'python',
+        solution: `class Solution:
     def maximumRobots(self, chargeTimes: List[int], runningCosts: List[int], budget: int) -> int:
         from collections import deque
         dq = deque()
@@ -4400,15 +4599,15 @@ export const patterns: Pattern[] = [
                 k -= 1
             result = max(result, right - left + 1)
         return result`
-},
-{
-  id: 'ms-78',
-  title: 'Minimum Cost to Cut a Stick',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-cut-a-stick/',
-  description: 'Given a stick of length n and an array cuts, you can perform cuts in any order. The cost of a cut is the length of the stick being cut. Return the minimum total cost to make all cuts.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-78',
+        title: 'Minimum Cost to Cut a Stick',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-cut-a-stick/',
+        description: 'Given a stick of length n and an array cuts, you can perform cuts in any order. The cost of a cut is the length of the stick being cut. Return the minimum total cost to make all cuts.',
+        language: 'python',
+        solution: `class Solution:
     def minCost(self, n: int, cuts: List[int]) -> int:
         cuts = sorted([0] + cuts + [n])
         m = len(cuts)
@@ -4422,15 +4621,15 @@ export const patterns: Pattern[] = [
                 for k in range(i + 1, j)
             )
         return dp(0, m - 1)`
-},
-{
-  id: 'ms-79',
-  title: 'Maximum Score From Performing Multiplication Operations',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/',
-  description: 'Given arrays nums and multipliers, at each step pick the first or last element of nums, multiply it with multipliers[i], add to score, and remove it. Return the maximum score after multipliers.length operations.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-79',
+        title: 'Maximum Score From Performing Multiplication Operations',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-score-from-performing-multiplication-operations/',
+        description: 'Given arrays nums and multipliers, at each step pick the first or last element of nums, multiply it with multipliers[i], add to score, and remove it. Return the maximum score after multipliers.length operations.',
+        language: 'python',
+        solution: `class Solution:
     def maximumScore(self, nums: List[int], multipliers: List[int]) -> int:
         from functools import lru_cache
         n = len(nums)
@@ -4445,15 +4644,15 @@ export const patterns: Pattern[] = [
             pick_right = mult * nums[right] + dp(i + 1, left)
             return max(pick_left, pick_right)
         return dp(0, 0)`
-},
-{
-  id: 'ms-80',
-  title: 'Number of Subarrays with Bounded Maximum',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/',
-  description: 'Given an integer array nums and two integers left and right, return the number of contiguous non-empty subarrays such that the maximum element is in the range [left, right].',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-80',
+        title: 'Number of Subarrays with Bounded Maximum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/',
+        description: 'Given an integer array nums and two integers left and right, return the number of contiguous non-empty subarrays such that the maximum element is in the range [left, right].',
+        language: 'python',
+        solution: `class Solution:
     def numSubarrayBoundedMax(self, nums: List[int], left: int, right: int) -> int:
         def count(bound):
             result = 0
@@ -4463,15 +4662,15 @@ export const patterns: Pattern[] = [
                 result += curr
             return result
         return count(right) - count(left - 1)`
-},
-{
-  id: 'ms-81',
-  title: 'Maximum Erasure Value',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-erasure-value/',
-  description: 'Given an array nums, find the maximum sum of a subarray with all unique elements.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-81',
+        title: 'Maximum Erasure Value',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-erasure-value/',
+        description: 'Given an array nums, find the maximum sum of a subarray with all unique elements.',
+        language: 'python',
+        solution: `class Solution:
     def maximumUniqueSubarray(self, nums: List[int]) -> int:
         seen = {}
         left = 0
@@ -4484,22 +4683,20 @@ export const patterns: Pattern[] = [
             result = max(result, curr_sum)
             seen[num] = right
         return result`
-},
-{
-  id: 'ms-82',
-  title: 'Minimum Window Substring',
-  difficulty: 'Hard',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-window-substring/',
-  description: 'Given strings s and t, return the minimum window substring of s that contains all characters of t. If no such window exists return empty string.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-82',
+        title: 'Minimum Window Substring',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-window-substring/',
+        description: 'Given strings s and t, return the minimum window substring of s that contains all characters of t. If no such window exists return empty string.',
+        language: 'python',
+        solution: `class Solution:
     def minWindow(self, s: str, t: str) -> str:
         from collections import Counter
         need = Counter(t)
         missing = len(t)
         left = 0
-        start = 0
-        end = 0
         result = ""
         for right, ch in enumerate(s):
             if need[ch] > 0:
@@ -4515,15 +4712,15 @@ export const patterns: Pattern[] = [
                 missing += 1
                 left += 1
         return result`
-},
-{
-  id: 'ms-83',
-  title: 'Fruit Into Baskets',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/fruit-into-baskets/',
-  description: 'Given an array fruits where fruits[i] is the type of fruit on tree i, you have two baskets and each basket can hold only one type of fruit. Return the maximum number of fruits you can pick from a subarray using at most 2 types.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-83',
+        title: 'Fruit Into Baskets',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/fruit-into-baskets/',
+        description: 'Given an array fruits where fruits[i] is the type of fruit on tree i, you have two baskets and each basket can hold only one type of fruit. Return the maximum number of fruits you can pick from a subarray using at most 2 types.',
+        language: 'python',
+        solution: `class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
         from collections import defaultdict
         basket = defaultdict(int)
@@ -4538,15 +4735,15 @@ export const patterns: Pattern[] = [
                 left += 1
             result = max(result, right - left + 1)
         return result`
-},
-{
-  id: 'ms-84',
-  title: 'Subarray Product Less Than K',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/subarray-product-less-than-k/',
-  description: 'Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements is strictly less than k.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-84',
+        title: 'Subarray Product Less Than K',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/subarray-product-less-than-k/',
+        description: 'Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements is strictly less than k.',
+        language: 'python',
+        solution: `class Solution:
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
         if k <= 1:
             return 0
@@ -4560,15 +4757,15 @@ export const patterns: Pattern[] = [
                 left += 1
             result += right - left + 1
         return result`
-},
-{
-  id: 'ms-85',
-  title: 'Count Number of Nice Subarrays',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/count-number-of-nice-subarrays/',
-  description: 'Given an array nums of integers and integer k, a subarray is nice if there are exactly k odd numbers in it. Return the number of nice subarrays.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-85',
+        title: 'Count Number of Nice Subarrays',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-number-of-nice-subarrays/',
+        description: 'Given an array nums of integers and integer k, a subarray is nice if there are exactly k odd numbers in it. Return the number of nice subarrays.',
+        language: 'python',
+        solution: `class Solution:
     def numberOfSubarrays(self, nums: List[int], k: int) -> int:
         from collections import defaultdict
         count = defaultdict(int)
@@ -4580,15 +4777,15 @@ export const patterns: Pattern[] = [
             result += count[odd_count - k]
             count[odd_count] += 1
         return result`
-},
-{
-  id: 'ms-86',
-  title: 'Maximum Points You Can Obtain from Cards',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/',
-  description: 'Given an array cardPoints and integer k, you can take k cards from the beginning or end of the array. Return the maximum score you can obtain.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-86',
+        title: 'Maximum Points You Can Obtain from Cards',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/',
+        description: 'Given an array cardPoints and integer k, you can take k cards from the beginning or end of the array. Return the maximum score you can obtain.',
+        language: 'python',
+        solution: `class Solution:
     def maxScore(self, cardPoints: List[int], k: int) -> int:
         n = len(cardPoints)
         window = n - k
@@ -4598,15 +4795,15 @@ export const patterns: Pattern[] = [
             curr_sum += cardPoints[i] - cardPoints[i - window]
             min_sum = min(min_sum, curr_sum)
         return sum(cardPoints) - min_sum`
-},
-{
-  id: 'ms-87',
-  title: 'Minimum Size Subarray Sum',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-size-subarray-sum/',
-  description: 'Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray return 0.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-87',
+        title: 'Minimum Size Subarray Sum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-size-subarray-sum/',
+        description: 'Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray return 0.',
+        language: 'python',
+        solution: `class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
         left = 0
         curr_sum = 0
@@ -4618,15 +4815,15 @@ export const patterns: Pattern[] = [
                 curr_sum -= nums[left]
                 left += 1
         return 0 if result == float('inf') else result`
-},
-{
-  id: 'ms-88',
-  title: 'Longest Substring with At Most K Distinct Characters',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/',
-  description: 'Given a string s and integer k, return the length of the longest substring that contains at most k distinct characters.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-88',
+        title: 'Longest Substring with At Most K Distinct Characters',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/',
+        description: 'Given a string s and integer k, return the length of the longest substring that contains at most k distinct characters.',
+        language: 'python',
+        solution: `class Solution:
     def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
         from collections import defaultdict
         freq = defaultdict(int)
@@ -4641,15 +4838,15 @@ export const patterns: Pattern[] = [
                 left += 1
             result = max(result, right - left + 1)
         return result`
-},
-{
-  id: 'ms-89',
-  title: 'Grumpy Bookstore Owner',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/grumpy-bookstore-owner/',
-  description: 'A bookstore owner has customers array and grumpy array. When grumpy[i]=1, customers are lost. Owner can suppress grumpiness for minutes consecutive minutes. Return maximum satisfied customers.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-89',
+        title: 'Grumpy Bookstore Owner',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/grumpy-bookstore-owner/',
+        description: 'A bookstore owner has customers array and grumpy array. When grumpy[i]=1, customers are lost. Owner can suppress grumpiness for minutes consecutive minutes. Return maximum satisfied customers.',
+        language: 'python',
+        solution: `class Solution:
     def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:
         base = sum(c for c, g in zip(customers, grumpy) if g == 0)
         gain = sum(customers[:minutes][i] * grumpy[:minutes][i] for i in range(minutes))
@@ -4659,15 +4856,15 @@ export const patterns: Pattern[] = [
             gain -= customers[i - minutes] * grumpy[i - minutes]
             max_gain = max(max_gain, gain)
         return base + max_gain`
-},
-{
-  id: 'ms-90',
-  title: 'Maximum Average Subarray I',
-  difficulty: 'Easy',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-average-subarray-i/',
-  description: 'Given an integer array nums and integer k, find the contiguous subarray of length k that has the maximum average value and return this value.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-90',
+        title: 'Maximum Average Subarray I',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-average-subarray-i/',
+        description: 'Given an integer array nums and integer k, find the contiguous subarray of length k that has the maximum average value and return this value.',
+        language: 'python',
+        solution: `class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
         curr_sum = sum(nums[:k])
         max_sum = curr_sum
@@ -4675,15 +4872,15 @@ export const patterns: Pattern[] = [
             curr_sum += nums[i] - nums[i - k]
             max_sum = max(max_sum, curr_sum)
         return max_sum / k`
-},
-{
-  id: 'ms-91',
-  title: 'Permutation in String',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/permutation-in-string/',
-  description: 'Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise. In other words, return true if one of s1 permutations is a substring of s2.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-91',
+        title: 'Permutation in String',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/permutation-in-string/',
+        description: 'Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise. In other words, return true if one of s1 permutations is a substring of s2.',
+        language: 'python',
+        solution: `class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         from collections import Counter
         need = Counter(s1)
@@ -4701,15 +4898,15 @@ export const patterns: Pattern[] = [
                 window[left_ch] -= 1
                 left += 1
         return matches == len(need)`
-},
-{
-  id: 'ms-92',
-  title: 'Find All Anagrams in a String',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/find-all-anagrams-in-a-string/',
-  description: 'Given strings s and p, return an array of all the start indices of p anagrams in s. An anagram is a permutation of characters.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-92',
+        title: 'Find All Anagrams in a String',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-all-anagrams-in-a-string/',
+        description: 'Given strings s and p, return an array of all the start indices of p anagrams in s. An anagram is a permutation of characters.',
+        language: 'python',
+        solution: `class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
         from collections import Counter
         need = Counter(p)
@@ -4730,15 +4927,15 @@ export const patterns: Pattern[] = [
             if matches == len(need):
                 result.append(left)
         return result`
-},
-{
-  id: 'ms-93',
-  title: 'Longest Repeating Character Replacement',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/longest-repeating-character-replacement/',
-  description: 'Given a string s and integer k, you can replace at most k characters. Return the length of the longest substring containing the same letter after replacements.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-93',
+        title: 'Longest Repeating Character Replacement',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-repeating-character-replacement/',
+        description: 'Given a string s and integer k, you can replace at most k characters. Return the length of the longest substring containing the same letter after replacements.',
+        language: 'python',
+        solution: `class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         from collections import defaultdict
         freq = defaultdict(int)
@@ -4753,15 +4950,15 @@ export const patterns: Pattern[] = [
                 left += 1
             result = max(result, right - left + 1)
         return result`
-},
-{
-  id: 'ms-94',
-  title: 'Minimum Operations to Reduce X to Zero',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/',
-  description: 'Given an integer array nums and integer x, remove the minimum number of elements from the front or back of the array such that the remaining elements sum equals sum(nums) - x. Return minimum operations or -1.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-94',
+        title: 'Minimum Operations to Reduce X to Zero',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/',
+        description: 'Given an integer array nums and integer x, remove the minimum number of elements from the front or back of the array such that the remaining elements sum equals sum(nums) - x. Return minimum operations or -1.',
+        language: 'python',
+        solution: `class Solution:
     def minOperations(self, nums: List[int], x: int) -> int:
         target = sum(nums) - x
         if target < 0:
@@ -4779,15 +4976,15 @@ export const patterns: Pattern[] = [
             if curr_sum == target:
                 max_len = max(max_len, right - left + 1)
         return -1 if max_len == -1 else len(nums) - max_len`
-},
-{
-  id: 'ms-95',
-  title: 'Maximum Number of Vowels in a Substring of Given Length',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
-  description: 'Given a string s and integer k, return the maximum number of vowel letters in any substring of s with length k.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-95',
+        title: 'Maximum Number of Vowels in a Substring of Given Length',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
+        description: 'Given a string s and integer k, return the maximum number of vowel letters in any substring of s with length k.',
+        language: 'python',
+        solution: `class Solution:
     def maxVowels(self, s: str, k: int) -> int:
         vowels = set('aeiou')
         curr = sum(1 for ch in s[:k] if ch in vowels)
@@ -4796,15 +4993,15 @@ export const patterns: Pattern[] = [
             curr += (s[i] in vowels) - (s[i - k] in vowels)
             result = max(result, curr)
         return result`
-},
-{
-  id: 'ms-96',
-  title: 'Longest Subarray of 1s After Deleting One Element',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/',
-  description: 'Given a binary array nums, you must delete exactly one element. Return the size of the longest non-empty subarray containing only 1s in the resulting array.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-96',
+        title: 'Longest Subarray of 1s After Deleting One Element',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/',
+        description: 'Given a binary array nums, you must delete exactly one element. Return the size of the longest non-empty subarray containing only 1s in the resulting array.',
+        language: 'python',
+        solution: `class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
         left = 0
         zeros = 0
@@ -4818,15 +5015,15 @@ export const patterns: Pattern[] = [
                 left += 1
             result = max(result, right - left)
         return result`
-},
-{
-  id: 'ms-97',
-  title: 'Max Consecutive Ones III',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/max-consecutive-ones-iii/',
-  description: 'Given a binary array nums and an integer k, return the maximum number of consecutive 1s in the array if you can flip at most k 0s.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-97',
+        title: 'Max Consecutive Ones III',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/max-consecutive-ones-iii/',
+        description: 'Given a binary array nums and an integer k, return the maximum number of consecutive 1s in the array if you can flip at most k 0s.',
+        language: 'python',
+        solution: `class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:
         left = 0
         zeros = 0
@@ -4840,15 +5037,15 @@ export const patterns: Pattern[] = [
                 left += 1
             result = max(result, right - left + 1)
         return result`
-},
-{
-  id: 'ms-98',
-  title: 'Number of Substrings Containing All Three Characters',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/',
-  description: 'Given a string s consisting only of characters a, b and c, return the number of substrings containing at least one occurrence of all these characters.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-98',
+        title: 'Number of Substrings Containing All Three Characters',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/',
+        description: 'Given a string s consisting only of characters a, b and c, return the number of substrings containing at least one occurrence of all these characters.',
+        language: 'python',
+        solution: `class Solution:
     def numberOfSubstrings(self, s: str) -> int:
         last = {'a': -1, 'b': -1, 'c': -1}
         result = 0
@@ -4856,15 +5053,15 @@ export const patterns: Pattern[] = [
             last[ch] = i
             result += 1 + min(last['a'], last['b'], last['c'])
         return result`
-},
-{
-  id: 'ms-99',
-  title: 'Binary Subarrays With Sum',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/binary-subarrays-with-sum/',
-  description: 'Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum equal to goal.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-99',
+        title: 'Binary Subarrays With Sum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/binary-subarrays-with-sum/',
+        description: 'Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum equal to goal.',
+        language: 'python',
+        solution: `class Solution:
     def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
         from collections import defaultdict
         prefix = defaultdict(int)
@@ -4876,15 +5073,15 @@ export const patterns: Pattern[] = [
             result += prefix[curr_sum - goal]
             prefix[curr_sum] += 1
         return result`
-},
-{
-  id: 'ms-100',
-  title: 'Longest Nice Subarray',
-  difficulty: 'Medium',
-  leetcodeUrl: 'https://leetcode.com/problems/longest-nice-subarray/',
-  description: 'Given an array nums of positive integers, a subarray is nice if the bitwise AND of every pair of elements in different positions is 0. Return the length of the longest nice subarray.',
-  language: 'python',
-  solution: `class Solution:
+      },
+      {
+        id: 'ms-100',
+        title: 'Longest Nice Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-nice-subarray/',
+        description: 'Given an array nums of positive integers, a subarray is nice if the bitwise AND of every pair of elements in different positions is 0. Return the length of the longest nice subarray.',
+        language: 'python',
+        solution: `class Solution:
     def longestNiceSubarray(self, nums: List[int]) -> int:
         left = 0
         used_bits = 0
@@ -4896,7 +5093,7 @@ export const patterns: Pattern[] = [
             used_bits |= nums[right]
             result = max(result, right - left + 1)
         return result`
-},
+      },
     ]
   }
 ];
