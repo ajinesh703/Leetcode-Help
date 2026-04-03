@@ -2997,6 +2997,219 @@ export const patterns: Pattern[] = [
 
         return dfs(0, -1) and len(visited) == n`
 },
+{
+    id: 'bt-35',
+    title: 'Climbing Stairs',
+    difficulty: 'Easy',
+    leetcodeUrl: 'https://leetcode.com/problems/climbing-stairs/',
+    description: 'You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?',
+    language: 'python',
+    solution: `class Solution:
+    def climbStairs(self, n: int) -> int:
+        if n <= 2:
+            return n
+        a, b = 1, 2
+        for _ in range(3, n + 1):
+            a, b = b, a + b
+        return b`
+},
+
+{
+    id: 'bt-36',
+    title: 'Maximum Subarray',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/maximum-subarray/',
+    description: 'Given an integer array nums, find the subarray which has the largest sum and return its sum. (Kadane\'s Algorithm)',
+    language: 'python',
+    solution: `class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        max_sum = nums[0]
+        current = nums[0]
+
+        for num in nums[1:]:
+            current = max(num, current + num)
+            max_sum = max(max_sum, current)
+
+        return max_sum`
+},
+
+{
+    id: 'bt-37',
+    title: 'House Robber',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/house-robber/',
+    description: 'You are a robber planning to rob houses along a street. Adjacent houses have security systems. Given an integer array nums representing money in each house, return the maximum amount you can rob without alerting the police.',
+    language: 'python',
+    solution: `class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+        prev2, prev1 = 0, 0
+
+        for num in nums:
+            curr = max(prev1, prev2 + num)
+            prev2 = prev1
+            prev1 = curr
+
+        return prev1`
+},
+
+{
+    id: 'bt-38',
+    title: 'Combination Sum',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/combination-sum/',
+    description: 'Given an array of distinct integers candidates and a target integer, return all unique combinations of candidates where the chosen numbers sum to target. The same number may be chosen from candidates an unlimited number of times.',
+    language: 'python',
+    solution: `class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+
+        def backtrack(start, current, total):
+            if total == target:
+                res.append(current[:])
+                return
+            if total > target:
+                return
+            for i in range(start, len(candidates)):
+                current.append(candidates[i])
+                backtrack(i, current, total + candidates[i])
+                current.pop()
+
+        backtrack(0, [], 0)
+        return res`
+},
+
+{
+    id: 'bt-39',
+    title: 'Validate Binary Search Tree',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/validate-binary-search-tree/',
+    description: 'Given the root of a binary tree, determine if it is a valid binary search tree (BST). A valid BST has left subtree nodes less than the node, right subtree nodes greater, and both subtrees are also valid BSTs.',
+    language: 'python',
+    solution: `class Solution:
+    def isValidBST(self, root: TreeNode) -> bool:
+        def validate(node, min_val, max_val):
+            if not node:
+                return True
+            if node.val <= min_val or node.val >= max_val:
+                return False
+            return (validate(node.left, min_val, node.val) and
+                    validate(node.right, node.val, max_val))
+
+        return validate(root, float('-inf'), float('inf'))`
+},
+
+{
+    id: 'bt-40',
+    title: 'Kth Smallest Element in a BST',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/kth-smallest-element-in-a-bst/',
+    description: 'Given the root of a binary search tree and an integer k, return the kth smallest value (1-indexed) of all the values of the nodes in the tree.',
+    language: 'python',
+    solution: `class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        stack = []
+        curr = root
+
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            k -= 1
+            if k == 0:
+                return curr.val
+            curr = curr.right`
+},
+
+{
+    id: 'bt-41',
+    title: 'Top K Frequent Elements',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/top-k-frequent-elements/',
+    description: 'Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order. Your algorithm must run in better than O(n log n) time complexity.',
+    language: 'python',
+    solution: `class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = Counter(nums)
+        buckets = [[] for _ in range(len(nums) + 1)]
+
+        for num, freq in count.items():
+            buckets[freq].append(num)
+
+        res = []
+        for i in range(len(buckets) - 1, 0, -1):
+            for num in buckets[i]:
+                res.append(num)
+                if len(res) == k:
+                    return res`
+},
+
+{
+    id: 'bt-42',
+    title: 'Unique Paths',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/unique-paths/',
+    description: 'There is a robot on an m x n grid. The robot can only move either down or right. Given two integers m and n, return the number of possible unique paths the robot can take to reach the bottom-right corner.',
+    language: 'python',
+    solution: `class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp = [1] * n
+
+        for _ in range(1, m):
+            for j in range(1, n):
+                dp[j] += dp[j - 1]
+
+        return dp[n - 1]`
+},
+
+{
+    id: 'bt-43',
+    title: 'Meeting Rooms II',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/meeting-rooms-ii/',
+    description: 'Given an array of meeting time intervals where intervals[i] = [start, end], return the minimum number of conference rooms required to hold all meetings.',
+    language: 'python',
+    solution: `class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        if not intervals:
+            return 0
+        start_times = sorted(i[0] for i in intervals)
+        end_times = sorted(i[1] for i in intervals)
+
+        rooms = 0
+        e_ptr = 0
+        for s in start_times:
+            if s < end_times[e_ptr]:
+                rooms += 1
+            else:
+                e_ptr += 1
+
+        return rooms`
+},
+
+{
+    id: 'bt-44',
+    title: 'Longest Common Subsequence',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/longest-common-subsequence/',
+    description: 'Given two strings text1 and text2, return the length of their longest common subsequence. A subsequence is a sequence derived from another string by deleting some characters without changing the relative order of the remaining characters.',
+    language: 'python',
+    solution: `class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        m, n = len(text1), len(text2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if text1[i-1] == text2[j-1]:
+                    dp[i][j] = dp[i-1][j-1] + 1
+                else:
+                    dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+        return dp[m][n]`
+},
     
     ]
   },
