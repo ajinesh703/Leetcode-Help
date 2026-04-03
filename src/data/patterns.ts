@@ -2728,6 +2728,275 @@ export const patterns: Pattern[] = [
 
         return jumps`
 },
+{
+    id: 'bt-25',
+    title: 'Rotate Image',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/rotate-image/',
+    description: 'You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise). You have to rotate the image in-place.',
+    language: 'python',
+    solution: `class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        n = len(matrix)
+        # Transpose
+        for i in range(n):
+            for j in range(i+1, n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        # Reverse each row
+        for i in range(n):
+            matrix[i].reverse()`
+},
+
+{
+    id: 'bt-26',
+    title: 'Spiral Matrix',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/spiral-matrix/',
+    description: 'Given an m x n matrix, return all elements of the matrix in spiral order.',
+    language: 'python',
+    solution: `class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        res = []
+        top, bottom = 0, len(matrix) - 1
+        left, right = 0, len(matrix[0]) - 1
+
+        while top <= bottom and left <= right:
+            for c in range(left, right + 1):
+                res.append(matrix[top][c])
+            top += 1
+            for r in range(top, bottom + 1):
+                res.append(matrix[r][right])
+            right -= 1
+            if top <= bottom:
+                for c in range(right, left - 1, -1):
+                    res.append(matrix[bottom][c])
+                bottom -= 1
+            if left <= right:
+                for r in range(bottom, top - 1, -1):
+                    res.append(matrix[r][left])
+                left += 1
+
+        return res`
+},
+
+{
+    id: 'bt-27',
+    title: 'Container With Most Water',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/container-with-most-water/',
+    description: 'You are given an integer array height of length n. Find two lines that together with the x-axis form a container that holds the most water. Return the maximum amount of water a container can store.',
+    language: 'python',
+    solution: `class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        l, r = 0, len(height) - 1
+        max_water = 0
+
+        while l < r:
+            water = (r - l) * min(height[l], height[r])
+            max_water = max(max_water, water)
+            if height[l] < height[r]:
+                l += 1
+            else:
+                r -= 1
+
+        return max_water`
+},
+
+{
+    id: 'bt-28',
+    title: 'Find Median from Data Stream',
+    difficulty: 'Hard',
+    leetcodeUrl: 'https://leetcode.com/problems/find-median-from-data-stream/',
+    description: 'The MedianFinder class should support adding integers from a data stream and finding the median of all elements so far. Implement addNum and findMedian in O(log n) and O(1) respectively.',
+    language: 'python',
+    solution: `class MedianFinder:
+    def __init__(self):
+        self.small = []  # max-heap (negated)
+        self.large = []  # min-heap
+
+    def addNum(self, num: int) -> None:
+        heapq.heappush(self.small, -num)
+        if self.small and self.large and (-self.small[0] > self.large[0]):
+            heapq.heappush(self.large, -heapq.heappop(self.small))
+        if len(self.small) > len(self.large) + 1:
+            heapq.heappush(self.large, -heapq.heappop(self.small))
+        if len(self.large) > len(self.small):
+            heapq.heappush(self.small, -heapq.heappop(self.large))
+
+    def findMedian(self) -> float:
+        if len(self.small) > len(self.large):
+            return -self.small[0]
+        return (-self.small[0] + self.large[0]) / 2`
+},
+
+{
+    id: 'bt-29',
+    title: 'Subsets II',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/subsets-ii/',
+    description: 'Given an integer array nums that may contain duplicates, return all possible subsets (the power set). The solution set must not contain duplicate subsets.',
+    language: 'python',
+    solution: `class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        res = []
+
+        def backtrack(start, current):
+            res.append(current[:])
+            for i in range(start, len(nums)):
+                if i > start and nums[i] == nums[i-1]:
+                    continue
+                current.append(nums[i])
+                backtrack(i + 1, current)
+                current.pop()
+
+        backtrack(0, [])
+        return res`
+},
+
+{
+    id: 'bt-30',
+    title: 'Decode Ways',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/decode-ways/',
+    description: 'A message containing letters A-Z can be encoded into numbers using a mapping. Given a string s containing only digits, return the number of ways to decode it.',
+    language: 'python',
+    solution: `class Solution:
+    def numDecodings(self, s: str) -> int:
+        if not s or s[0] == '0':
+            return 0
+        n = len(s)
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        dp[1] = 1
+
+        for i in range(2, n + 1):
+            one = int(s[i-1])
+            two = int(s[i-2:i])
+            if one != 0:
+                dp[i] += dp[i-1]
+            if 10 <= two <= 26:
+                dp[i] += dp[i-2]
+
+        return dp[n]`
+},
+
+{
+    id: 'bt-31',
+    title: 'Pacific Atlantic Water Flow',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/pacific-atlantic-water-flow/',
+    description: 'Given an m x n matrix of heights, return a list of grid coordinates where rain water can flow to both the Pacific and Atlantic oceans.',
+    language: 'python',
+    solution: `class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        rows, cols = len(heights), len(heights[0])
+        pac, atl = set(), set()
+
+        def bfs(starts, visited):
+            queue = deque(starts)
+            visited.update(starts)
+            while queue:
+                r, c = queue.popleft()
+                for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                    nr, nc = r+dr, c+dc
+                    if (0 <= nr < rows and 0 <= nc < cols
+                            and (nr, nc) not in visited
+                            and heights[nr][nc] >= heights[r][c]):
+                        visited.add((nr, nc))
+                        queue.append((nr, nc))
+
+        pac_starts = [(r, 0) for r in range(rows)] + [(0, c) for c in range(cols)]
+        atl_starts = [(r, cols-1) for r in range(rows)] + [(rows-1, c) for c in range(cols)]
+        bfs(pac_starts, pac)
+        bfs(atl_starts, atl)
+
+        return [[r, c] for r, c in pac & atl]`
+},
+
+{
+    id: 'bt-32',
+    title: 'Coin Change',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/coin-change/',
+    description: 'Given an array of coin denominations and a total amount, return the fewest number of coins needed to make up that amount. Return -1 if the amount cannot be made up.',
+    language: 'python',
+    solution: `class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0
+
+        for coin in coins:
+            for amt in range(coin, amount + 1):
+                dp[amt] = min(dp[amt], dp[amt - coin] + 1)
+
+        return dp[amount] if dp[amount] != float('inf') else -1`
+},
+
+{
+    id: 'bt-33',
+    title: 'Longest Palindromic Substring',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/longest-palindromic-substring/',
+    description: 'Given a string s, return the longest palindromic substring in s.',
+    language: 'python',
+    solution: `class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        res = ''
+        res_len = 0
+
+        for i in range(len(s)):
+            # Odd length
+            l, r = i, i
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > res_len:
+                    res = s[l:r+1]
+                    res_len = r - l + 1
+                l -= 1
+                r += 1
+            # Even length
+            l, r = i, i + 1
+            while l >= 0 and r < len(s) and s[l] == s[r]:
+                if (r - l + 1) > res_len:
+                    res = s[l:r+1]
+                    res_len = r - l + 1
+                l -= 1
+                r += 1
+
+        return res`
+},
+
+{
+    id: 'bt-34',
+    title: 'Graph Valid Tree',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/graph-valid-tree/',
+    description: 'Given n nodes labeled from 0 to n-1 and a list of undirected edges, write a function to check whether these edges make up a valid tree.',
+    language: 'python',
+    solution: `class Solution:
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        if len(edges) != n - 1:
+            return False
+        adj = defaultdict(list)
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+
+        visited = set()
+
+        def dfs(node, parent):
+            visited.add(node)
+            for nei in adj[node]:
+                if nei == parent:
+                    continue
+                if nei in visited:
+                    return False
+                if not dfs(nei, node):
+                    return False
+            return True
+
+        return dfs(0, -1) and len(visited) == n`
+},
     
     ]
   },
