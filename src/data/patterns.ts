@@ -3128,6 +3128,124 @@ export const patterns: Pattern[] = [
             result.append(n - idx)
         return result`,
       },
+      {
+        id: 'bs-25',
+        title: 'Random Pick with Weight',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/random-pick-with-weight/',
+        description: 'Given an array w of positive integers where w[i] describes the weight of index i, implement pickIndex() which randomly picks an index in proportion to its weight.',
+        language: 'python',
+        solution: `class Solution:
+    def __init__(self, w: List[int]):
+        from itertools import accumulate
+        self.prefix = list(accumulate(w))
+        self.total = self.prefix[-1]
+
+    def pickIndex(self) -> int:
+        import random
+        from bisect import bisect_left
+        target = random.randint(1, self.total)
+        return bisect_left(self.prefix, target)`,
+      },
+      {
+        id: 'bs-26',
+        title: 'Magnetic Force Between Two Balls',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/magnetic-force-between-two-balls/',
+        description: 'Given an array position of n baskets and integer m balls, return the maximum minimum magnetic force between any two balls placed in the baskets.',
+        language: 'python',
+        solution: `class Solution:
+    def maxDistance(self, position: List[int], m: int) -> int:
+        position.sort()
+        def canPlace(force: int) -> bool:
+            count = 1
+            last = position[0]
+            for i in range(1, len(position)):
+                if position[i] - last >= force:
+                    count += 1
+                    last = position[i]
+                    if count == m:
+                        return True
+            return False
+        left, right = 1, position[-1] - position[0]
+        while left < right:
+            mid = (left + right + 1) // 2
+            if canPlace(mid):
+                left = mid
+            else:
+                right = mid - 1
+        return left`,
+      },
+      {
+        id: 'bs-27',
+        title: 'Minimum Limit of Balls in a Bag',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-limit-of-balls-in-a-bag/',
+        description: 'Given an integer array nums and integer maxOperations, split any bag of balls into two bags using at most maxOperations operations. Return the minimum possible penalty (maximum balls in a bag).',
+        language: 'python',
+        solution: `class Solution:
+    def minimumSize(self, nums: List[int], maxOperations: int) -> int:
+        import math
+        left, right = 1, max(nums)
+        while left < right:
+            mid = (left + right) // 2
+            ops = sum(math.ceil(n / mid) - 1 for n in nums)
+            if ops <= maxOperations:
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-28',
+        title: 'Kth Smallest Element in a Sorted Matrix',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/',
+        description: 'Given an n x n matrix where each row and column is sorted in ascending order, return the kth smallest element in the matrix.',
+        language: 'python',
+        solution: `class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        n = len(matrix)
+        def countLessEqual(mid: int) -> int:
+            count = 0
+            row, col = n - 1, 0
+            while row >= 0 and col < n:
+                if matrix[row][col] <= mid:
+                    count += row + 1
+                    col += 1
+                else:
+                    row -= 1
+            return count
+        left, right = matrix[0][0], matrix[n-1][n-1]
+        while left < right:
+            mid = (left + right) // 2
+            if countLessEqual(mid) >= k:
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-29',
+        title: 'Maximum Running Time of N Computers',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-running-time-of-n-computers/',
+        description: 'Given an integer n and a battery array, return the maximum number of minutes you can run n computers simultaneously using the batteries.',
+        language: 'python',
+        solution: `class Solution:
+    def maxRunTime(self, n: int, batteries: List[int]) -> int:
+        def canRun(minutes: int) -> bool:
+            total = sum(min(b, minutes) for b in batteries)
+            return total >= n * minutes
+        left, right = 1, sum(batteries) // n
+        while left < right:
+            mid = (left + right + 1) // 2
+            if canRun(mid):
+                left = mid
+            else:
+                right = mid - 1
+        return left`,
+      },
     ]
   },
   {
