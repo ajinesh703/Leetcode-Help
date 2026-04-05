@@ -1991,6 +1991,202 @@ export const patterns: Pattern[] = [
             result = max(result, min_val * (right - left + 1))
         return result`,
       },
+      {
+        id: 'sw-80',
+        title: 'Minimum Length of String After Deleting Similar Ends',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/',
+        description: 'Given a string s, repeatedly delete the longest prefix and suffix that share the same character. Return the minimum length of the remaining string.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumLength(self, s: str) -> int:
+        left, right = 0, len(s) - 1
+        while left < right and s[left] == s[right]:
+            ch = s[left]
+            while left <= right and s[left] == ch:
+                left += 1
+            while left <= right and s[right] == ch:
+                right -= 1
+        return right - left + 1`,
+      },
+      {
+        id: 'sw-81',
+        title: 'Maximum Absolute Sum of Any Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-absolute-sum-of-any-subarray/',
+        description: 'Given an integer array nums, return the maximum absolute sum of any subarray of nums.',
+        language: 'python',
+        solution: `class Solution:
+    def maxAbsoluteSum(self, nums: List[int]) -> int:
+        max_sum = min_sum = 0
+        curr_max = curr_min = 0
+        for num in nums:
+            curr_max = max(num, curr_max + num)
+            curr_min = min(num, curr_min + num)
+            max_sum = max(max_sum, curr_max)
+            min_sum = min(min_sum, curr_min)
+        return max(max_sum, abs(min_sum))`,
+      },
+      {
+        id: 'sw-82',
+        title: 'Minimum Difference Between Largest and Smallest Value in Three Moves',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-difference-between-largest-and-smallest-value-in-three-moves/',
+        description: 'Given an integer array nums, return the minimum difference between the largest and smallest value of nums after performing at most 3 moves.',
+        language: 'python',
+        solution: `class Solution:
+    def minDifference(self, nums: List[int]) -> int:
+        if len(nums) <= 4:
+            return 0
+        nums.sort()
+        return min(
+            nums[-1] - nums[3],
+            nums[-2] - nums[2],
+            nums[-3] - nums[1],
+            nums[-4] - nums[0]
+        )`,
+      },
+      {
+        id: 'sw-83',
+        title: 'Number of Arithmetic Triplets',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-arithmetic-triplets/',
+        description: 'Given a strictly increasing integer array nums and a positive integer diff, return the number of unique arithmetic triplets where nums[j] - nums[i] == diff and nums[k] - nums[j] == diff.',
+        language: 'python',
+        solution: `class Solution:
+    def arithmeticTriplets(self, nums: List[int], diff: int) -> int:
+        seen = set(nums)
+        result = 0
+        for num in nums:
+            if num + diff in seen and num + 2 * diff in seen:
+                result += 1
+        return result`,
+      },
+      {
+        id: 'sw-84',
+        title: 'Continuous Subarray Sum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/continuous-subarray-sum/',
+        description: 'Given an integer array nums and an integer k, return true if nums has a good subarray — a subarray of length at least 2 whose sum is a multiple of k.',
+        language: 'python',
+        solution: `class Solution:
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+        remainder_map = {0: -1}
+        prefix = 0
+        for i, num in enumerate(nums):
+            prefix = (prefix + num) % k
+            if prefix in remainder_map:
+                if i - remainder_map[prefix] >= 2:
+                    return True
+            else:
+                remainder_map[prefix] = i
+        return False`,
+      },
+      {
+        id: 'sw-85',
+        title: 'Subarray Sum Equals K',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/subarray-sum-equals-k/',
+        description: 'Given an array of integers nums and an integer k, return the total number of subarrays whose sum equals to k.',
+        language: 'python',
+        solution: `class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        count[0] = 1
+        prefix = result = 0
+        for num in nums:
+            prefix += num
+            result += count[prefix - k]
+            count[prefix] += 1
+        return result`,
+      },
+      {
+        id: 'sw-86',
+        title: 'Longest Subarray of 1s After Deleting One Element',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/',
+        description: 'Given a binary array nums, delete one element and return the size of the longest non-empty subarray containing only 1s.',
+        language: 'python',
+        solution: `class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        left = zeros = result = 0
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1
+            while zeros > 1:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+            result = max(result, right - left)
+        return result`,
+      },
+      {
+        id: 'sw-87',
+        title: 'Maximum Number of Non-Overlapping Subarrays With Sum Equals Target',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/',
+        description: 'Given an array nums and an integer target, return the maximum number of non-empty non-overlapping subarrays such that the sum of values equals target.',
+        language: 'python',
+        solution: `class Solution:
+    def maxNonOverlapping(self, nums: List[int], target: int) -> int:
+        seen = {0}
+        prefix = result = 0
+        last_end = -1
+        prefix_map = {0: -1}
+        for i, num in enumerate(nums):
+            prefix += num
+            if prefix - target in prefix_map and prefix_map[prefix - target] >= last_end:
+                result += 1
+                last_end = i
+                prefix_map = {prefix: i}
+            else:
+                prefix_map[prefix] = i
+        return result`,
+      },
+      {
+        id: 'sw-88',
+        title: 'Count Subarrays with Score Less Than K',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/count-subarrays-with-score-less-than-k/',
+        description: 'Given an integer array nums and a long integer k, return the number of non-empty subarrays whose score is strictly less than k. Score is defined as sum * length.',
+        language: 'python',
+        solution: `class Solution:
+    def countSubarrays(self, nums: List[int], k: int) -> int:
+        left = curr_sum = result = 0
+        for right in range(len(nums)):
+            curr_sum += nums[right]
+            while curr_sum * (right - left + 1) >= k:
+                curr_sum -= nums[left]
+                left += 1
+            result += right - left + 1
+        return result`,
+      },
+      {
+        id: 'sw-89',
+        title: 'Maximum Strength of a Group',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-strength-of-a-group/',
+        description: 'Given an integer array nums, return the maximum strength of a non-empty group of students. Strength is the product of all elements in the selected subsequence.',
+        language: 'python',
+        solution: `class Solution:
+    def maxStrength(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return nums[0]
+        nums.sort()
+        result = 1
+        i = 0
+        while i < len(nums) - 1:
+            if nums[i] < 0 and nums[i + 1] < 0:
+                result *= nums[i] * nums[i + 1]
+                i += 2
+            else:
+                i += 1
+        for num in nums:
+            if num > 1:
+                result *= num
+        return result if result != 1 else max(nums)`,
+      },
     ],
   },
   {
