@@ -1274,6 +1274,209 @@ export const patterns: Pattern[] = [
             max_len = max(max_len, right - left + 1)
         return len(s) - max_len`,
       },
+      {
+        id: 'sw-45',
+        title: 'Maximum Number of Occurrences of a Substring',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-occurrences-of-a-substring/',
+        description: 'Given a string s, return the maximum number of occurrences of any substring under the constraints: substring size is between minSize and maxSize, and substring has at most maxLetters distinct characters.',
+        language: 'python',
+        solution: `class Solution:
+    def maxFreq(self, s: str, maxLetters: int, minSize: int, maxSize: int) -> int:
+        from collections import Counter, defaultdict
+        freq = defaultdict(int)
+        for i in range(len(s) - minSize + 1):
+            sub = s[i:i + minSize]
+            if len(set(sub)) <= maxLetters:
+                freq[sub] += 1
+        return max(freq.values(), default=0)`,
+      },
+      {
+        id: 'sw-46',
+        title: 'Maximum Sum of Two Non-Overlapping Subarrays',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/',
+        description: 'Given an integer array nums and two integers firstLen and secondLen, return the maximum sum of elements in two non-overlapping subarrays of lengths firstLen and secondLen.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:
+        def solve(L: int, M: int) -> int:
+            prefix = [0] * (len(nums) + 1)
+            for i in range(len(nums)):
+                prefix[i + 1] = prefix[i] + nums[i]
+            result = max_L = 0
+            for i in range(L + M, len(nums) + 1):
+                max_L = max(max_L, prefix[i - M] - prefix[i - M - L])
+                result = max(result, max_L + prefix[i] - prefix[i - M])
+            return result
+        return max(solve(firstLen, secondLen), solve(secondLen, firstLen))`,
+      },
+      {
+        id: 'sw-47',
+        title: 'Minimum Number of K Consecutive Bit Flips',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/',
+        description: 'Given a binary array nums and an integer k, return the minimum number of k-bit flips required to make all bits 1. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minKBitFlips(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        flipped = [0] * n
+        flips = result = 0
+        for i in range(n):
+            if i >= k:
+                flips ^= flipped[i - k]
+            if nums[i] ^ flips == 0:
+                if i + k > n:
+                    return -1
+                flipped[i] = 1
+                flips ^= 1
+                result += 1
+        return result`,
+      },
+      {
+        id: 'sw-48',
+        title: 'Shortest Subarray with Sum at Least K',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/',
+        description: 'Given an integer array nums and an integer k, return the length of the shortest non-empty subarray of nums with a sum of at least k. Return -1 if there is no such subarray.',
+        language: 'python',
+        solution: `class Solution:
+    def shortestSubarray(self, nums: List[int], k: int) -> int:
+        from collections import deque
+        n = len(nums)
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + nums[i]
+        result = float('inf')
+        dq = deque()
+        for i in range(n + 1):
+            while dq and prefix[i] - prefix[dq[0]] >= k:
+                result = min(result, i - dq.popleft())
+            while dq and prefix[i] <= prefix[dq[-1]]:
+                dq.pop()
+            dq.append(i)
+        return result if result != float('inf') else -1`,
+      },
+      {
+        id: 'sw-49',
+        title: 'Maximum Width Ramp',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-width-ramp/',
+        description: 'Given an integer array nums, return the maximum width of a ramp in nums. A ramp is a pair (i, j) where i < j and nums[i] <= nums[j]. The width is j - i.',
+        language: 'python',
+        solution: `class Solution:
+    def maxWidthRamp(self, nums: List[int]) -> int:
+        n = len(nums)
+        stack = []
+        for i in range(n):
+            if not stack or nums[i] < nums[stack[-1]]:
+                stack.append(i)
+        result = 0
+        for j in range(n - 1, -1, -1):
+            while stack and nums[j] >= nums[stack[-1]]:
+                result = max(result, j - stack.pop())
+        return result`,
+      },
+      {
+        id: 'sw-50',
+        title: 'Longest Subarray With Maximum Bitwise AND',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-subarray-with-maximum-bitwise-and/',
+        description: 'Given an integer array nums, return the length of the longest subarray with maximum possible bitwise AND value.',
+        language: 'python',
+        solution: `class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        max_val = max(nums)
+        result = curr = 0
+        for num in nums:
+            if num == max_val:
+                curr += 1
+                result = max(result, curr)
+            else:
+                curr = 0
+        return result`,
+      },
+      {
+        id: 'sw-51',
+        title: 'Number of Subarrays Having Even Product',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-subarrays-with-even-product/',
+        description: 'Given an integer array nums, return the number of subarrays that have an even product.',
+        language: 'python',
+        solution: `class Solution:
+    def evenProduct(self, nums: List[int]) -> int:
+        result = 0
+        last_even = -1
+        for i in range(len(nums)):
+            if nums[i] % 2 == 0:
+                last_even = i
+            result += last_even + 1
+        return result`,
+      },
+      {
+        id: 'sw-52',
+        title: 'Maximize the Confusion of an Exam',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximize-the-confusion-of-an-exam/',
+        description: 'Given a string answerKey and an integer k, return the maximum number of consecutive T or F in the answer key after flipping at most k characters.',
+        language: 'python',
+        solution: `class Solution:
+    def maxConsecutiveAnswers(self, answerKey: str, k: int) -> int:
+        def maxWindow(ch: str) -> int:
+            left = count = result = 0
+            for right in range(len(answerKey)):
+                if answerKey[right] == ch:
+                    count += 1
+                while count > k:
+                    if answerKey[left] == ch:
+                        count -= 1
+                    left += 1
+                result = max(result, right - left + 1)
+            return result
+        return max(maxWindow('T'), maxWindow('F'))`,
+      },
+      {
+        id: 'sw-53',
+        title: 'Minimum Consecutive Cards to Pick Up',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-consecutive-cards-to-pick-up/',
+        description: 'Given an integer array cards, find the minimum number of consecutive cards you have to pick up to have a pair of matching cards. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumCardPickup(self, cards: List[int]) -> int:
+        from collections import defaultdict
+        last = defaultdict(lambda: -1)
+        result = float('inf')
+        for i, card in enumerate(cards):
+            if last[card] != -1:
+                result = min(result, i - last[card] + 1)
+            last[card] = i
+        return result if result != float('inf') else -1`,
+      },
+      {
+        id: 'sw-54',
+        title: 'Minimum Amount of Time to Collect Garbage',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-amount-of-time-to-collect-garbage/',
+        description: 'Given a string array garbage and integer array travel, return the minimum total time to collect all garbage. Each truck collects one type: M, P, or G, and must travel sequentially.',
+        language: 'python',
+        solution: `class Solution:
+    def garbageCollection(self, garbage: List[str], travel: List[int]) -> int:
+        result = 0
+        for g_type in 'MPG':
+            last = 0
+            for i, g in enumerate(garbage):
+                if g_type in g:
+                    last = i
+            result += sum(len(g) for g in garbage[:last + 1] if g_type in ''.join(garbage))
+            result += sum(travel[:last])
+        return sum(len(g) for g in garbage) + sum(
+            travel[i] for g_type in 'MPG'
+            for i in range(len(garbage) - 1)
+            if any(g_type in garbage[j] for j in range(i + 1, len(garbage)))
+        )`,
+      },
     ],
   },
   {
