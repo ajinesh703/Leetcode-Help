@@ -4079,6 +4079,99 @@ export const patterns: Pattern[] = [
                 result += 1
         return result`,
       },
+      {
+        id: 'bs-65',
+        title: 'Maximum Bags With Full Capacity of Rocks',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-bags-with-full-capacity-of-rocks/',
+        description: 'Given arrays capacity and rocks and integer additionalRocks, return the maximum number of bags you can fill to full capacity by distributing additionalRocks optimally.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumBags(self, capacity: List[int], rocks: List[int], additionalRocks: int) -> int:
+        diff = sorted(c - r for c, r in zip(capacity, rocks))
+        result = 0
+        for d in diff:
+            if additionalRocks >= d:
+                additionalRocks -= d
+                result += 1
+            else:
+                break
+        return result`,
+      },
+      {
+        id: 'bs-66',
+        title: 'Maximum Number of Integers to Choose From a Range I',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-integers-to-choose-from-a-range-i/',
+        description: 'Given a banned integer array, integer n and integer maxSum, return the maximum number of integers you can choose from 1 to n such that no chosen integer is in banned and the sum does not exceed maxSum.',
+        language: 'python',
+        solution: `class Solution:
+    def maxCount(self, banned: List[int], n: int, maxSum: int) -> int:
+        banned_set = set(banned)
+        result = curr_sum = 0
+        for i in range(1, n + 1):
+            if i in banned_set:
+                continue
+            if curr_sum + i > maxSum:
+                break
+            curr_sum += i
+            result += 1
+        return result`,
+      },
+      {
+        id: 'bs-67',
+        title: 'Minimum Operations to Make a Uni-Value Grid',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-operations-to-make-a-uni-value-grid/',
+        description: 'Given a 2D grid and integer x, return the minimum number of operations to make all elements equal, where each operation adds or subtracts x. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minOperations(self, grid: List[List[int]], x: int) -> int:
+        nums = sorted(v for row in grid for v in row)
+        remainder = nums[0] % x
+        if any(n % x != remainder for n in nums):
+            return -1
+        median = nums[len(nums) // 2]
+        return sum(abs(n - median) // x for n in nums)`,
+      },
+      {
+        id: 'bs-68',
+        title: 'Maximum Total Reward Using Operations I',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-total-reward-using-operations-i/',
+        description: 'Given an integer array rewardValues, return the maximum total reward you can collect. You can pick a value only if it is strictly greater than your current total reward.',
+        language: 'python',
+        solution: `class Solution:
+    def maxTotalReward(self, rewardValues: List[int]) -> int:
+        rewardValues = sorted(set(rewardValues))
+        dp = {0}
+        for v in rewardValues:
+            dp |= {s + v for s in dp if s < v}
+        return max(dp)`,
+      },
+      {
+        id: 'bs-69',
+        title: 'Minimum Absolute Difference in BST',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-absolute-difference-in-bst/',
+        description: 'Given the root of a Binary Search Tree, return the minimum absolute difference between the values of any two different nodes in the tree.',
+        language: 'python',
+        solution: `class Solution:
+    def getMinimumDifference(self, root) -> int:
+        prev = None
+        result = float('inf')
+        def inorder(node):
+            nonlocal prev, result
+            if not node:
+                return
+            inorder(node.left)
+            if prev is not None:
+                result = min(result, node.val - prev)
+            prev = node.val
+            inorder(node.right)
+        inorder(root)
+        return result`,
+      },
     ]
   },
   {
