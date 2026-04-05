@@ -3447,6 +3447,257 @@ export const patterns: Pattern[] = [
                 left = mid + 1
         return left`,
       },
+      {
+        id: 'bs-40',
+        title: 'Allocate Minimum Number of Pages',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/allocate-minimum-number-of-pages/',
+        description: 'Given an array of integers denoting the number of pages in n books and integer m students, allocate books to m students such that the maximum number of pages assigned to a student is minimized.',
+        language: 'python',
+        solution: `class Solution:
+    def findPages(self, pages: List[int], m: int) -> int:
+        if m > len(pages):
+            return -1
+        def canAllocate(mid: int) -> bool:
+            students = 1
+            curr = 0
+            for p in pages:
+                if p > mid:
+                    return False
+                if curr + p > mid:
+                    students += 1
+                    curr = p
+                else:
+                    curr += p
+            return students <= m
+        left, right = max(pages), sum(pages)
+        while left < right:
+            mid = (left + right) // 2
+            if canAllocate(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-41',
+        title: 'Aggressive Cows',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/aggressive-cows/',
+        description: 'Given an array of stall positions and integer k cows, place cows in stalls such that the minimum distance between any two cows is maximized. Return that maximum minimum distance.',
+        language: 'python',
+        solution: `class Solution:
+    def aggressiveCows(self, stalls: List[int], k: int) -> int:
+        stalls.sort()
+        def canPlace(mid: int) -> bool:
+            count = 1
+            last = stalls[0]
+            for i in range(1, len(stalls)):
+                if stalls[i] - last >= mid:
+                    count += 1
+                    last = stalls[i]
+                    if count == k:
+                        return True
+            return False
+        left, right = 1, stalls[-1] - stalls[0]
+        while left < right:
+            mid = (left + right + 1) // 2
+            if canPlace(mid):
+                left = mid
+            else:
+                right = mid - 1
+        return left`,
+      },
+      {
+        id: 'bs-42',
+        title: 'Painter Partition Problem',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/painter-partition-problem/',
+        description: 'Given an array boards of board lengths and integer k painters, find the minimum time to paint all boards. Each painter paints contiguous sections and takes 1 unit per board length.',
+        language: 'python',
+        solution: `class Solution:
+    def minTime(self, boards: List[int], k: int) -> int:
+        def canFinish(mid: int) -> bool:
+            painters = 1
+            curr = 0
+            for b in boards:
+                if b > mid:
+                    return False
+                if curr + b > mid:
+                    painters += 1
+                    curr = b
+                else:
+                    curr += b
+            return painters <= k
+        left, right = max(boards), sum(boards)
+        while left < right:
+            mid = (left + right) // 2
+            if canFinish(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-43',
+        title: 'Minimum Cost to Make Array Equal',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-make-array-equal/',
+        description: 'Given two arrays nums and cost, return the minimum total cost to make all elements of nums equal. The cost to change nums[i] by 1 is cost[i].',
+        language: 'python',
+        solution: `class Solution:
+    def minCost(self, nums: List[int], cost: List[int]) -> int:
+        def totalCost(target: int) -> int:
+            return sum(abs(n - target) * c for n, c in zip(nums, cost))
+        left, right = min(nums), max(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if totalCost(mid) <= totalCost(mid + 1):
+                right = mid
+            else:
+                left = mid + 1
+        return totalCost(left)`,
+      },
+      {
+        id: 'bs-44',
+        title: 'Maximize Minimum of Array After K Operations',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximize-the-minimum-powered-city/',
+        description: 'Given an integer array nums and integer k, apply at most k operations where each operation increments any element by 1. Return the maximum possible minimum value of the array.',
+        language: 'python',
+        solution: `class Solution:
+    def maximizeMin(self, nums: List[int], k: int) -> int:
+        def canAchieve(mid: int) -> bool:
+            ops = 0
+            for num in nums:
+                if num < mid:
+                    ops += mid - num
+            return ops <= k
+        left, right = min(nums), min(nums) + k
+        while left < right:
+            mid = (left + right + 1) // 2
+            if canAchieve(mid):
+                left = mid
+            else:
+                right = mid - 1
+        return left`,
+      },
+      {
+        id: 'bs-45',
+        title: 'Find the Kth Largest Integer in the Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/',
+        description: 'Given an array of strings nums representing integers and an integer k, return the kth largest integer in nums as a string.',
+        language: 'python',
+        solution: `class Solution:
+    def kthLargestNumber(self, nums: List[str], k: int) -> str:
+        nums.sort(key=lambda x: (len(x), x), reverse=True)
+        return nums[k - 1]`,
+      },
+      {
+        id: 'bs-46',
+        title: 'House Robber IV',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/house-robber-iv/',
+        description: 'Given an integer array nums and integer k, return the minimum capability of a robber to steal from at least k houses without stealing from adjacent houses.',
+        language: 'python',
+        solution: `class Solution:
+    def minCapability(self, nums: List[int], k: int) -> int:
+        def canSteal(mid: int) -> bool:
+            count = i = 0
+            while i < len(nums):
+                if nums[i] <= mid:
+                    count += 1
+                    i += 2
+                else:
+                    i += 1
+            return count >= k
+        left, right = min(nums), max(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if canSteal(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-47',
+        title: 'Minimum Number of Operations to Make Array Sorted',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-candies-allocated-to-k-children/',
+        description: 'Given a candies array and integer k children, return the maximum number of candies each child can get if you can split any pile but not merge.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumCandies(self, candies: List[int], k: int) -> int:
+        import math
+        def canAllocate(mid: int) -> bool:
+            if mid == 0:
+                return True
+            return sum(c // mid for c in candies) >= k
+        left, right = 0, max(candies)
+        while left < right:
+            mid = (left + right + 1) // 2
+            if canAllocate(mid):
+                left = mid
+            else:
+                right = mid - 1
+        return left`,
+      },
+      {
+        id: 'bs-48',
+        title: 'Minimum Speed to Arrive on Time',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-speed-to-arrive-on-time/',
+        description: 'Given an array dist of train distances and a float hour, return the minimum positive integer speed to reach the office on time, or -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minSpeedOnTime(self, dist: List[int], hour: float) -> int:
+        import math
+        if hour <= len(dist) - 1:
+            return -1
+        def canReach(speed: int) -> bool:
+            time = sum(math.ceil(d / speed) for d in dist[:-1]) + dist[-1] / speed
+            return time <= hour
+        left, right = 1, 10**7
+        while left < right:
+            mid = (left + right) // 2
+            if canReach(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-49',
+        title: 'Smallest Rectangle Enclosing Black Pixels',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/',
+        description: 'Given an image represented by a binary matrix where 0 is white and 1 is black, and a black pixel at (row, col), return the area of the smallest rectangle enclosing all black pixels.',
+        language: 'python',
+        solution: `class Solution:
+    def minArea(self, image: List[List[str]], row: int, col: int) -> int:
+        m, n = len(image), len(image[0])
+        def hasBlackInCol(c): return any(image[r][c] == '1' for r in range(m))
+        def hasBlackInRow(r): return any(image[r][c] == '1' for c in range(n))
+        def searchCol(lo, hi, check):
+            while lo < hi:
+                mid = (lo + hi) // 2
+                if check(mid): hi = mid
+                else: lo = mid + 1
+            return lo
+        def searchRow(lo, hi, check):
+            while lo < hi:
+                mid = (lo + hi) // 2
+                if check(mid): hi = mid
+                else: lo = mid + 1
+            return lo
+        left  = searchCol(0, col, hasBlackInCol)
+        right = searchCol(col, n, lambda c: not hasBlackInCol(c))
+        top   = searchRow(0, row, hasBlackInRow)
+        bot   = searchRow(row, m, lambda r: not hasBlackInRow(r))
+        return (right - left) * (bot - top)`,
+      },
     ]
   },
   {
