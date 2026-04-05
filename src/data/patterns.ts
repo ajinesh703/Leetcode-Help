@@ -4172,6 +4172,228 @@ export const patterns: Pattern[] = [
         inorder(root)
         return result`,
       },
+      {
+        id: 'bs-70',
+        title: 'Find the Longest Valid Obstacle Course at Each Position',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/',
+        description: 'Given an integer array obstacles, return an array where ans[i] is the length of the longest obstacle course ending at index i, where each obstacle is at least as tall as the previous.',
+        language: 'python',
+        solution: `class Solution:
+    def longestObstacleCourseAtEachPosition(self, obstacles: List[int]) -> List[int]:
+        from bisect import bisect_right
+        tails = []
+        result = []
+        for ob in obstacles:
+            idx = bisect_right(tails, ob)
+            if idx == len(tails):
+                tails.append(ob)
+            else:
+                tails[idx] = ob
+            result.append(idx + 1)
+        return result`,
+      },
+      {
+        id: 'bs-71',
+        title: 'Longest Increasing Subsequence',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-increasing-subsequence/',
+        description: 'Given an integer array nums, return the length of the longest strictly increasing subsequence.',
+        language: 'python',
+        solution: `class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        from bisect import bisect_left
+        tails = []
+        for num in nums:
+            idx = bisect_left(tails, num)
+            if idx == len(tails):
+                tails.append(num)
+            else:
+                tails[idx] = num
+        return len(tails)`,
+      },
+      {
+        id: 'bs-72',
+        title: 'Russian Doll Envelopes',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/russian-doll-envelopes/',
+        description: 'Given a 2D array envelopes where envelopes[i] = [wi, hi], return the maximum number of envelopes you can Russian doll (put one inside the other).',
+        language: 'python',
+        solution: `class Solution:
+    def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
+        from bisect import bisect_left
+        envelopes.sort(key=lambda x: (x[0], -x[1]))
+        tails = []
+        for _, h in envelopes:
+            idx = bisect_left(tails, h)
+            if idx == len(tails):
+                tails.append(h)
+            else:
+                tails[idx] = h
+        return len(tails)`,
+      },
+      {
+        id: 'bs-73',
+        title: 'Count of Smaller Numbers After Self',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/count-of-smaller-numbers-after-self/',
+        description: 'Given an integer array nums, return an integer array counts where counts[i] is the number of smaller elements to the right of nums[i].',
+        language: 'python',
+        solution: `class Solution:
+    def countSmaller(self, nums: List[int]) -> List[int]:
+        from bisect import bisect_left, insort
+        result = []
+        sorted_list = []
+        for num in reversed(nums):
+            idx = bisect_left(sorted_list, num)
+            result.append(idx)
+            insort(sorted_list, num)
+        return result[::-1]`,
+      },
+      {
+        id: 'bs-74',
+        title: 'Count of Range Sum',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/count-of-range-sum/',
+        description: 'Given an integer array nums and two integers lower and upper, return the number of range sums that lie in the inclusive range [lower, upper].',
+        language: 'python',
+        solution: `class Solution:
+    def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
+        from sortedcontainers import SortedList
+        sl = SortedList([0])
+        prefix = result = 0
+        for num in nums:
+            prefix += num
+            result += sl.bisect_right(prefix - lower) - sl.bisect_left(prefix - upper)
+            sl.add(prefix)
+        return result`,
+      },
+      {
+        id: 'bs-75',
+        title: 'Minimum Number of Arrows to Burst Balloons',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/',
+        description: 'Given a 2D array points where points[i] = [xstart, xend] represents a balloon, return the minimum number of arrows to burst all balloons.',
+        language: 'python',
+        solution: `class Solution:
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
+        points.sort(key=lambda x: x[1])
+        arrows = 1
+        end = points[0][1]
+        for start, finish in points[1:]:
+            if start > end:
+                arrows += 1
+                end = finish
+        return arrows`,
+      },
+      {
+        id: 'bs-76',
+        title: 'Online Election',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/online-election/',
+        description: 'Given arrays persons and times, implement the TopVotedCandidate class with a q(t) method that returns the person leading the election at time t.',
+        language: 'python',
+        solution: `class TopVotedCandidate:
+    def __init__(self, persons: List[int], times: List[int]):
+        from collections import defaultdict
+        self.times = times
+        self.leaders = []
+        votes = defaultdict(int)
+        leader = -1
+        for p in persons:
+            votes[p] += 1
+            if votes[p] >= votes[leader]:
+                leader = p
+            self.leaders.append(leader)
+
+    def q(self, t: int) -> int:
+        from bisect import bisect_right
+        idx = bisect_right(self.times, t) - 1
+        return self.leaders[idx]`,
+      },
+      {
+        id: 'bs-77',
+        title: 'Maximum Sum of 3 Non-Overlapping Subarrays',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-3-non-overlapping-subarrays/',
+        description: 'Given an integer array nums and integer k, find three non-overlapping subarrays of length k with maximum sum and return their starting indices.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSumOfThreeSubarrays(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        sums = [sum(nums[:k])]
+        for i in range(1, n - k + 1):
+            sums.append(sums[-1] + nums[i + k - 1] - nums[i - 1])
+        left = [0] * n
+        best = 0
+        for i in range(n):
+            if sums[i] > sums[best]:
+                best = i
+            left[i] = best
+        right = [0] * n
+        best = n - k
+        for i in range(n - k, -1, -1):
+            if sums[i] >= sums[best]:
+                best = i
+            right[i] = best
+        result = [-1, -1, -1]
+        for j in range(k, n - 2 * k + 1):
+            l, r = left[j - k], right[j + k]
+            total = sums[l] + sums[j] + sums[r]
+            if result[0] == -1 or total > sums[result[0]] + sums[result[1]] + sums[result[2]]:
+                result = [l, j, r]
+        return result`,
+      },
+      {
+        id: 'bs-78',
+        title: 'Ways to Split Array Into Three Subarrays',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/ways-to-split-array-into-three-subarrays/',
+        description: 'Given an array nums of non-negative integers, return the number of ways to split nums into three non-empty contiguous parts where sum of left <= sum of mid <= sum of right.',
+        language: 'python',
+        solution: `class Solution:
+    def waysToSplit(self, nums: List[int]) -> int:
+        from bisect import bisect_left, bisect_right
+        MOD = 10**9 + 7
+        n = len(nums)
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + nums[i]
+        total = prefix[n]
+        result = 0
+        for i in range(1, n - 1):
+            left_sum = prefix[i]
+            if left_sum * 3 > total:
+                break
+            min_j = bisect_left(prefix, 2 * left_sum, i + 1, n)
+            max_j = bisect_right(prefix, (total + left_sum) // 2, i + 1, n)
+            result = (result + max(0, max_j - min_j)) % MOD
+        return result`,
+      },
+      {
+        id: 'bs-79',
+        title: 'Minimum Interval to Include Each Query',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-interval-to-include-each-query/',
+        description: 'Given a 2D array intervals and an integer array queries, for each query return the size of the smallest interval that contains the query point, or -1 if none exists.',
+        language: 'python',
+        solution: `class Solution:
+    def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+        import heapq
+        intervals.sort()
+        heap = []
+        result = {}
+        i = 0
+        for q in sorted(queries):
+            while i < len(intervals) and intervals[i][0] <= q:
+                l, r = intervals[i]
+                heapq.heappush(heap, (r - l + 1, r))
+                i += 1
+            while heap and heap[0][1] < q:
+                heapq.heappop(heap)
+            result[q] = heap[0][0] if heap else -1
+        return [result[q] for q in queries]`,
+      },
     ]
   },
   {
