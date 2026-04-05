@@ -1694,6 +1694,303 @@ export const patterns: Pattern[] = [
             result = max(result, right - left)
         return n - result`,
       },
+      {
+        id: 'sw-65',
+        title: 'Maximum Sum of Distinct Subarrays With Length K',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/',
+        description: 'Given an integer array nums and an integer k, return the maximum subarray sum of all subarrays of length k that contain only distinct elements. Return 0 if no such subarray exists.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumSubarraySum(self, nums: List[int], k: int) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        window_sum = 0
+        result = 0
+        for i in range(len(nums)):
+            count[nums[i]] += 1
+            window_sum += nums[i]
+            if i >= k:
+                count[nums[i - k]] -= 1
+                if count[nums[i - k]] == 0:
+                    del count[nums[i - k]]
+                window_sum -= nums[i - k]
+            if i >= k - 1 and len(count) == k:
+                result = max(result, window_sum)
+        return result`,
+      },
+      {
+        id: 'sw-66',
+        title: 'Minimum Recolors to Get K Consecutive Black Blocks',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/',
+        description: 'Given a string blocks of W and B characters and an integer k, return the minimum number of recolor operations to get k consecutive B blocks.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumRecolors(self, blocks: str, k: int) -> int:
+        white = blocks[:k].count('W')
+        result = white
+        for i in range(k, len(blocks)):
+            white += (blocks[i] == 'W') - (blocks[i - k] == 'W')
+            result = min(result, white)
+        return result`,
+      },
+      {
+        id: 'sw-67',
+        title: 'Longest Substring Of All Vowels in Order',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-substring-of-all-vowels-in-order/',
+        description: 'Given a string word, return the length of the longest beautiful substring. A beautiful substring contains all 5 vowels in alphabetical order with each vowel appearing at least once.',
+        language: 'python',
+        solution: `class Solution:
+    def longestBeautifulSubstring(self, word: str) -> int:
+        result = length = unique = 1
+        for i in range(1, len(word)):
+            if word[i] >= word[i - 1]:
+                length += 1
+                if word[i] != word[i - 1]:
+                    unique += 1
+            else:
+                length = unique = 1
+            if unique == 5:
+                result = max(result, length)
+        return result`,
+      },
+      {
+        id: 'sw-68',
+        title: 'Max Consecutive Ones',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/max-consecutive-ones/',
+        description: 'Given a binary array nums, return the maximum number of consecutive 1s in the array.',
+        language: 'python',
+        solution: `class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        result = curr = 0
+        for num in nums:
+            if num == 1:
+                curr += 1
+                result = max(result, curr)
+            else:
+                curr = 0
+        return result`,
+      },
+      {
+        id: 'sw-69',
+        title: 'Number of Substrings with Only 1s',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-substrings-with-only-1s/',
+        description: 'Given a binary string s, return the number of substrings with all characters 1s. Since the answer may be too large, return it modulo 10^9 + 7.',
+        language: 'python',
+        solution: `class Solution:
+    def numSub(self, s: str) -> int:
+        MOD = 10**9 + 7
+        result = curr = 0
+        for c in s:
+            if c == '1':
+                curr += 1
+            else:
+                curr = 0
+            result = (result + curr) % MOD
+        return result`,
+      },
+      {
+        id: 'sw-70',
+        title: 'Sum of Beauty of All Substrings',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/sum-of-beauty-of-all-substrings/',
+        description: 'Given a string s, return the sum of beauty of all its substrings. The beauty of a string is the difference between the frequency of the most and least frequent character.',
+        language: 'python',
+        solution: `class Solution:
+    def beautySum(self, s: str) -> int:
+        from collections import defaultdict
+        result = 0
+        for i in range(len(s)):
+            count = defaultdict(int)
+            for j in range(i, len(s)):
+                count[s[j]] += 1
+                result += max(count.values()) - min(count.values())
+        return result`,
+      },
+      {
+        id: 'sw-71',
+        title: 'Find the K-Beauty of a Number',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-k-beauty-of-a-number/',
+        description: 'Given integers num and k, return the number of k-beauty substrings of num. A k-beauty substring is a substring of length k that divides num and is not 0.',
+        language: 'python',
+        solution: `class Solution:
+    def divisorSubstrings(self, num: int, k: int) -> int:
+        s = str(num)
+        result = 0
+        for i in range(len(s) - k + 1):
+            sub = int(s[i:i + k])
+            if sub != 0 and num % sub == 0:
+                result += 1
+        return result`,
+      },
+      {
+        id: 'sw-72',
+        title: 'Minimum Number of Flips to Make Binary Grid Palindrome',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-flips-to-make-binary-grid-palindrome/',
+        description: 'Given an m x n binary grid, return the minimum number of flips to make every row and column a palindrome, and the total number of 1s divisible by 4.',
+        language: 'python',
+        solution: `class Solution:
+    def minFlips(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+        result = 0
+        for i in range(m):
+            for j in range(n // 2):
+                if grid[i][j] != grid[i][n - j - 1]:
+                    result += 1
+        for j in range(n):
+            for i in range(m // 2):
+                if grid[i][j] != grid[m - i - 1][j]:
+                    result += 1
+        if m % 2 == 1 and n % 2 == 1:
+            result += grid[m // 2][n // 2] % 2
+        return result`,
+      },
+      {
+        id: 'sw-73',
+        title: 'Maximum Number of Vowels in a Substring',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
+        description: 'Given a string s and an integer k, return the maximum number of vowel letters in any substring of s with length k.',
+        language: 'python',
+        solution: `class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        vowels = set('aeiou')
+        count = sum(1 for c in s[:k] if c in vowels)
+        result = count
+        for i in range(k, len(s)):
+            count += (s[i] in vowels) - (s[i - k] in vowels)
+            result = max(result, count)
+        return result`,
+      },
+      {
+        id: 'sw-74',
+        title: 'Subarray Sums Divisible by K',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/subarray-sums-divisible-by-k/',
+        description: 'Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.',
+        language: 'python',
+        solution: `class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        count[0] = 1
+        prefix = result = 0
+        for num in nums:
+            prefix = (prefix + num) % k
+            result += count[prefix]
+            count[prefix] += 1
+        return result`,
+      },
+      {
+        id: 'sw-75',
+        title: 'Maximum Length of Repeated Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-length-of-repeated-subarray/',
+        description: 'Given two integer arrays nums1 and nums2, return the maximum length of a subarray that appears in both arrays.',
+        language: 'python',
+        solution: `class Solution:
+    def findLength(self, nums1: List[int], nums2: List[int]) -> int:
+        m, n = len(nums1), len(nums2)
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        result = 0
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if nums1[i - 1] == nums2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                    result = max(result, dp[i][j])
+        return result`,
+      },
+      {
+        id: 'sw-76',
+        title: 'Longest Continuous Increasing Subsequence',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-continuous-increasing-subsequence/',
+        description: 'Given an unsorted array of integers nums, return the length of the longest continuous strictly increasing subsequence.',
+        language: 'python',
+        solution: `class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        result = curr = 1
+        for i in range(1, len(nums)):
+            if nums[i] > nums[i - 1]:
+                curr += 1
+                result = max(result, curr)
+            else:
+                curr = 1
+        return result`,
+      },
+      {
+        id: 'sw-77',
+        title: 'Number of Zero-Filled Subarrays',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-zero-filled-subarrays/',
+        description: 'Given an integer array nums, return the number of subarrays filled with 0.',
+        language: 'python',
+        solution: `class Solution:
+    def zeroFilledSubarray(self, nums: List[int]) -> int:
+        result = curr = 0
+        for num in nums:
+            if num == 0:
+                curr += 1
+            else:
+                curr = 0
+            result += curr
+        return result`,
+      },
+      {
+        id: 'sw-78',
+        title: 'Minimum Operations to Reduce to Zero (Sliding Window)',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/',
+        description: 'Given integer array nums and integer x, return the minimum number of operations to reduce x to 0, where each operation removes leftmost or rightmost element.',
+        language: 'python',
+        solution: `class Solution:
+    def minOperations(self, nums: List[int], x: int) -> int:
+        target = sum(nums) - x
+        if target == 0:
+            return len(nums)
+        left = curr = 0
+        result = -1
+        for right in range(len(nums)):
+            curr += nums[right]
+            while curr > target and left <= right:
+                curr -= nums[left]
+                left += 1
+            if curr == target:
+                result = max(result, right - left + 1)
+        return len(nums) - result if result != -1 else -1`,
+      },
+      {
+        id: 'sw-79',
+        title: 'Maximum Score of a Good Subarray',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-score-of-a-good-subarray/',
+        description: 'Given an array nums and an integer k, return the maximum score of a good subarray. A good subarray is one where i <= k <= j. The score is min(nums[i..j]) * (j - i + 1).',
+        language: 'python',
+        solution: `class Solution:
+    def maximumScore(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        left = right = k
+        min_val = nums[k]
+        result = min_val
+        while left > 0 or right < n - 1:
+            if left == 0:
+                right += 1
+            elif right == n - 1:
+                left -= 1
+            elif nums[left - 1] >= nums[right + 1]:
+                left -= 1
+            else:
+                right += 1
+            min_val = min(min_val, nums[left], nums[right])
+            result = max(result, min_val * (right - left + 1))
+        return result`,
+      },
     ],
   },
   {
