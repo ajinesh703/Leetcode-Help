@@ -1055,6 +1055,225 @@ export const patterns: Pattern[] = [
             last_seen[card] = i
         return result if result != float('inf') else -1`,
       },
+      {
+        id: 'sw-35',
+        title: 'Minimum Difference Between Highest and Lowest of K Scores',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-difference-between-highest-and-lowest-of-k-scores/',
+        description: 'Given a 0-indexed integer array nums and an integer k, return the minimum difference between the highest and lowest of any k scores. You must choose exactly k students.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumDifference(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        result = float('inf')
+        for i in range(len(nums) - k + 1):
+            result = min(result, nums[i + k - 1] - nums[i])
+        return result`,
+      },
+      {
+        id: 'sw-36',
+        title: 'Maximum Sum of Almost Unique Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-almost-unique-subarray/',
+        description: 'Given an integer array nums and integers m and k, return the maximum sum of a subarray of length k that contains at least m distinct elements.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSum(self, nums: List[int], m: int, k: int) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        window_sum = 0
+        result = 0
+        for i in range(len(nums)):
+            count[nums[i]] += 1
+            window_sum += nums[i]
+            if i >= k:
+                count[nums[i - k]] -= 1
+                if count[nums[i - k]] == 0:
+                    del count[nums[i - k]]
+                window_sum -= nums[i - k]
+            if i >= k - 1 and len(count) >= m:
+                result = max(result, window_sum)
+        return result`,
+      },
+      {
+        id: 'sw-37',
+        title: 'Defuse the Bomb',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/defuse-the-bomb/',
+        description: 'Given a circular array code and an integer k, replace every code[i] with the sum of the next k values if k > 0, previous k values if k < 0, or 0 if k == 0.',
+        language: 'python',
+        solution: `class Solution:
+    def decrypt(self, code: List[int], k: int) -> List[int]:
+        n = len(code)
+        result = [0] * n
+        if k == 0:
+            return result
+        code = code + code
+        start = 1 if k > 0 else n + k
+        window = sum(code[start:start + abs(k)])
+        for i in range(n):
+            result[i] = window
+            window += code[start + abs(k) + i] - code[start + i]
+        return result`,
+      },
+      {
+        id: 'sw-38',
+        title: 'Maximum Average Subarray II',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-average-subarray-ii/',
+        description: 'Given an integer array nums and an integer k, return the maximum possible average value of a subarray with length at least k.',
+        language: 'python',
+        solution: `class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        def canAchieve(mid: float) -> bool:
+            adjusted = [x - mid for x in nums]
+            window = sum(adjusted[:k])
+            if window >= 0:
+                return True
+            min_prefix = 0
+            prev_sum = 0
+            for i in range(k, len(nums)):
+                window += adjusted[i]
+                prev_sum += adjusted[i - k]
+                min_prefix = min(min_prefix, prev_sum)
+                if window - min_prefix >= 0:
+                    return True
+            return False
+        lo, hi = min(nums), max(nums)
+        while hi - lo > 1e-5:
+            mid = (lo + hi) / 2
+            if canAchieve(mid):
+                lo = mid
+            else:
+                hi = mid
+        return lo`,
+      },
+      {
+        id: 'sw-39',
+        title: 'Sliding Subarray Beauty',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/sliding-subarray-beauty/',
+        description: 'Given an integer array nums and integers k and x, return an array of the beauty of each subarray of size k, where beauty is the xth smallest negative integer or 0 if none exists.',
+        language: 'python',
+        solution: `class Solution:
+    def getSubarrayBeauty(self, nums: List[int], k: int, x: int) -> List[int]:
+        from sortedcontainers import SortedList
+        sl = SortedList()
+        result = []
+        for i in range(len(nums)):
+            sl.add(nums[i])
+            if i >= k:
+                sl.remove(nums[i - k])
+            if i >= k - 1:
+                val = sl[x - 1]
+                result.append(val if val < 0 else 0)
+        return result`,
+      },
+      {
+        id: 'sw-40',
+        title: 'Number of Subarrays with Bounded Maximum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/',
+        description: 'Given an integer array nums and two integers left and right, return the number of contiguous non-empty subarrays such that the value of the maximum array element is in the range [left, right].',
+        language: 'python',
+        solution: `class Solution:
+    def numSubarrayBoundedMax(self, nums: List[int], left: int, right: int) -> int:
+        def countAtMost(bound: int) -> int:
+            result = count = 0
+            for num in nums:
+                if num <= bound:
+                    count += 1
+                else:
+                    count = 0
+                result += count
+            return result
+        return countAtMost(right) - countAtMost(left - 1)`,
+      },
+      {
+        id: 'sw-41',
+        title: 'Longest Nice Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-nice-subarray/',
+        description: 'Given an array of positive integers nums, return the length of the longest nice subarray. A subarray is nice if the bitwise AND of every pair of elements is 0.',
+        language: 'python',
+        solution: `class Solution:
+    def longestNiceSubarray(self, nums: List[int]) -> int:
+        used_bits = 0
+        left = result = 0
+        for right in range(len(nums)):
+            while used_bits & nums[right]:
+                used_bits ^= nums[left]
+                left += 1
+            used_bits |= nums[right]
+            result = max(result, right - left + 1)
+        return result`,
+      },
+      {
+        id: 'sw-42',
+        title: 'Count Subarrays With Fixed Bounds',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/count-subarrays-with-fixed-bounds/',
+        description: 'Given an integer array nums and two integers minK and maxK, return the number of fixed-bound subarrays. A fixed-bound subarray has minimum equal to minK and maximum equal to maxK.',
+        language: 'python',
+        solution: `class Solution:
+    def countSubarrays(self, nums: List[int], minK: int, maxK: int) -> int:
+        result = 0
+        min_pos = max_pos = bad_pos = -1
+        for i, num in enumerate(nums):
+            if num < minK or num > maxK:
+                bad_pos = i
+            if num == minK:
+                min_pos = i
+            if num == maxK:
+                max_pos = i
+            result += max(0, min(min_pos, max_pos) - bad_pos)
+        return result`,
+      },
+      {
+        id: 'sw-43',
+        title: 'Minimum Swaps to Group All 1s Together II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/',
+        description: 'Given a circular binary array nums, return the minimum number of swaps required to group all 1s present in the array together at any location.',
+        language: 'python',
+        solution: `class Solution:
+    def minSwaps(self, nums: List[int]) -> int:
+        k = sum(nums)
+        if k == 0 or k == len(nums):
+            return 0
+        n = len(nums)
+        nums = nums + nums
+        window_ones = sum(nums[:k])
+        max_ones = window_ones
+        for i in range(k, len(nums)):
+            window_ones += nums[i] - nums[i - k]
+            max_ones = max(max_ones, window_ones)
+        return k - max_ones`,
+      },
+      {
+        id: 'sw-44',
+        title: 'Take K of Each Character From Left and Right',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/',
+        description: 'Given a string s consisting of a, b, c and an integer k, return the minimum number of minutes to take at least k of each character, taking from left or right each minute. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def takeCharacters(self, s: str, k: int) -> int:
+        from collections import Counter
+        total = Counter(s)
+        if any(total[c] < k for c in 'abc'):
+            return -1
+        need = {c: total[c] - k for c in 'abc'}
+        window = Counter()
+        left = max_len = 0
+        for right in range(len(s)):
+            window[s[right]] += 1
+            while window[s[right]] > need[s[right]]:
+                window[s[left]] -= 1
+                left += 1
+            max_len = max(max_len, right - left + 1)
+        return len(s) - max_len`,
+      },
     ],
   },
   {
