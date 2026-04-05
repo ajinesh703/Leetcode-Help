@@ -4394,6 +4394,239 @@ export const patterns: Pattern[] = [
             result[q] = heap[0][0] if heap else -1
         return [result[q] for q in queries]`,
       },
+      {
+        id: 'bs-80',
+        title: 'Median of a Row Wise Sorted Matrix',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/median-of-a-row-wise-sorted-matrix/',
+        description: 'Given a row-wise sorted matrix of odd size, return the median of the matrix.',
+        language: 'python',
+        solution: `class Solution:
+    def matrixMedian(self, grid: List[List[int]]) -> int:
+        from bisect import bisect_right
+        m, n = len(grid), len(grid[0])
+        lo, hi = 1, 10**6
+        desired = (m * n + 1) // 2
+        while lo < hi:
+            mid = (lo + hi) // 2
+            count = sum(bisect_right(row, mid) for row in grid)
+            if count >= desired:
+                hi = mid
+            else:
+                lo = mid + 1
+        return lo`,
+      },
+      {
+        id: 'bs-81',
+        title: 'Find K-th Smallest Pair Distance',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/find-k-th-smallest-pair-distance/',
+        description: 'Given an integer array nums and integer k, return the kth smallest distance among all the pairs nums[i] and nums[j] where i < j.',
+        language: 'python',
+        solution: `class Solution:
+    def smallestDistancePair(self, nums: List[int], k: int) -> int:
+        from bisect import bisect_right
+        nums.sort()
+        def countPairs(mid: int) -> int:
+            count = left = 0
+            for right in range(len(nums)):
+                while nums[right] - nums[left] > mid:
+                    left += 1
+                count += right - left
+            return count
+        left, right = 0, nums[-1] - nums[0]
+        while left < right:
+            mid = (left + right) // 2
+            if countPairs(mid) >= k:
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-82',
+        title: 'Minimize Max Distance to Gas Station',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimize-max-distance-to-gas-station/',
+        description: 'Given an integer array stations of sorted positions and integer k, add k new gas stations to minimize the maximum distance between adjacent stations. Return the answer with 1e-6 precision.',
+        language: 'python',
+        solution: `class Solution:
+    def minmaxGasDist(self, stations: List[int], k: int) -> float:
+        def countStations(dist: float) -> int:
+            return sum(int((stations[i+1] - stations[i]) / dist) for i in range(len(stations) - 1))
+        lo, hi = 0.0, stations[-1] - stations[0]
+        for _ in range(100):
+            mid = (lo + hi) / 2
+            if countStations(mid) <= k:
+                hi = mid
+            else:
+                lo = mid
+        return lo`,
+      },
+      {
+        id: 'bs-83',
+        title: 'Split Array into Consecutive Subsequences',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/split-array-into-consecutive-subsequences/',
+        description: 'Given an integer array nums sorted in non-decreasing order, return true if you can split it into one or more subsequences such that each subsequence consists of consecutive integers and has a length of at least 3.',
+        language: 'python',
+        solution: `class Solution:
+    def isPossible(self, nums: List[int]) -> bool:
+        from collections import Counter
+        freq = Counter(nums)
+        appendfreq = Counter()
+        for num in nums:
+            if freq[num] == 0:
+                continue
+            if appendfreq[num] > 0:
+                appendfreq[num] -= 1
+                appendfreq[num + 1] += 1
+                freq[num] -= 1
+            elif freq[num + 1] > 0 and freq[num + 2] > 0:
+                freq[num] -= 1
+                freq[num + 1] -= 1
+                freq[num + 2] -= 1
+                appendfreq[num + 3] += 1
+            else:
+                return False
+        return True`,
+      },
+      {
+        id: 'bs-84',
+        title: 'Maximum Distance in Arrays',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-distance-in-arrays/',
+        description: 'Given a list of sorted integer arrays, return the maximum distance defined as the absolute difference between elements from two different arrays.',
+        language: 'python',
+        solution: `class Solution:
+    def maxDistance(self, arrays: List[List[int]]) -> int:
+        result = 0
+        min_val = arrays[0][0]
+        max_val = arrays[0][-1]
+        for i in range(1, len(arrays)):
+            result = max(result, abs(arrays[i][-1] - min_val), abs(max_val - arrays[i][0]))
+            min_val = min(min_val, arrays[i][0])
+            max_val = max(max_val, arrays[i][-1])
+        return result`,
+      },
+      {
+        id: 'bs-85',
+        title: 'Minimum Cost to Hire K Workers',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-hire-k-workers/',
+        description: 'Given quality and wage arrays and integer k, return the minimum cost to hire exactly k workers. Each worker must be paid at least their minimum wage expectation and proportional to their quality.',
+        language: 'python',
+        solution: `class Solution:
+    def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -> float:
+        import heapq
+        workers = sorted((w / q, q) for w, q in zip(wage, quality))
+        result = float('inf')
+        pool = []
+        pool_sum = 0
+        for ratio, q in workers:
+            heapq.heappush(pool, -q)
+            pool_sum += q
+            if len(pool) > k:
+                pool_sum += heapq.heappop(pool)
+            if len(pool) == k:
+                result = min(result, ratio * pool_sum)
+        return result`,
+      },
+      {
+        id: 'bs-86',
+        title: 'Find Minimum Time to Finish All Jobs',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/',
+        description: 'Given an integer array jobs and integer k workers, assign all jobs to workers to minimize the maximum working time of any worker.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumTimeRequired(self, jobs: List[int], k: int) -> int:
+        jobs.sort(reverse=True)
+        def canFinish(limit: int) -> bool:
+            workers = [0] * k
+            def backtrack(idx):
+                if idx == len(jobs):
+                    return True
+                seen = set()
+                for i in range(k):
+                    if workers[i] in seen:
+                        continue
+                    if workers[i] + jobs[idx] <= limit:
+                        seen.add(workers[i])
+                        workers[i] += jobs[idx]
+                        if backtrack(idx + 1):
+                            return True
+                        workers[i] -= jobs[idx]
+                return False
+            return backtrack(0)
+        left, right = max(jobs), sum(jobs)
+        while left < right:
+            mid = (left + right) // 2
+            if canFinish(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-87',
+        title: 'Maximum Profit in Job Scheduling II',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-profit-in-job-scheduling/',
+        description: 'Given start, end, and profit arrays, return the maximum profit by scheduling non-overlapping jobs.',
+        language: 'python',
+        solution: `class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        from bisect import bisect_left
+        jobs = sorted(zip(endTime, startTime, profit))
+        dp = [[0, 0]]
+        for end, start, pro in jobs:
+            idx = bisect_left(dp, [start + 1]) - 1
+            if dp[idx][1] + pro > dp[-1][1]:
+                dp.append([end, dp[idx][1] + pro])
+        return dp[-1][1]`,
+      },
+      {
+        id: 'bs-88',
+        title: 'Plates Between Candles',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/plates-between-candles/',
+        description: 'Given a string s of plates and candles and queries array, for each query return the number of plates between the leftmost and rightmost candles in the query range.',
+        language: 'python',
+        solution: `class Solution:
+    def platesBetweenCandles(self, s: str, queries: List[List[int]]) -> List[int]:
+        from bisect import bisect_left, bisect_right
+        n = len(s)
+        candles = [i for i, c in enumerate(s) if c == '|']
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + (s[i] == '*')
+        result = []
+        for l, r in queries:
+            lo = bisect_left(candles, l)
+            hi = bisect_right(candles, r) - 1
+            if lo < hi:
+                left_c = candles[lo]
+                right_c = candles[hi]
+                result.append(prefix[right_c + 1] - prefix[left_c])
+            else:
+                result.append(0)
+        return result`,
+      },
+      {
+        id: 'bs-89',
+        title: 'Number of Flowers in Full Bloom',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-flowers-in-full-bloom/',
+        description: 'Given a 2D array flowers where flowers[i] = [start, end] and an array people, return an array where answer[i] is the number of flowers blooming when person i arrives.',
+        language: 'python',
+        solution: `class Solution:
+    def fullBloomFlowers(self, flowers: List[List[int]], people: List[int]) -> List[int]:
+        from bisect import bisect_right, bisect_left
+        starts = sorted(f[0] for f in flowers)
+        ends = sorted(f[1] for f in flowers)
+        return [bisect_right(starts, p) - bisect_left(ends, p) for p in people]`,
+      },
     ]
   },
   {
