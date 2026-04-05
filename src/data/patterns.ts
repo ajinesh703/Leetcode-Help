@@ -3021,6 +3021,113 @@ export const patterns: Pattern[] = [
                 left = mid + 1
         return left`
       },
+      {
+        id: 'bs-20',
+        title: 'Minimum Number of Days to Make m Bouquets',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/',
+        description: 'Given an integer array bloomDay, integers m and k, return the minimum number of days to make m bouquets. Each bouquet requires k adjacent bloomed flowers. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minDays(self, bloomDay: List[int], m: int, k: int) -> int:
+        if m * k > len(bloomDay):
+            return -1
+        def canMake(day: int) -> bool:
+            bouquets = flowers = 0
+            for b in bloomDay:
+                if b <= day:
+                    flowers += 1
+                    if flowers == k:
+                        bouquets += 1
+                        flowers = 0
+                else:
+                    flowers = 0
+            return bouquets >= m
+        left, right = min(bloomDay), max(bloomDay)
+        while left < right:
+            mid = (left + right) // 2
+            if canMake(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-21',
+        title: 'Nth Root of a Number',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/nth-root-of-a-number/',
+        description: 'Given two integers n and m, find the nth root of m. If the nth root is not an integer, return -1.',
+        language: 'python',
+        solution: `class Solution:
+    def NthRoot(self, n: int, m: int) -> int:
+        left, right = 1, m
+        while left <= right:
+            mid = (left + right) // 2
+            val = mid ** n
+            if val == m:
+                return mid
+            elif val < m:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return -1`,
+      },
+      {
+        id: 'bs-22',
+        title: 'Find the Duplicate Number',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-duplicate-number/',
+        description: 'Given an array of integers nums containing n+1 integers where each integer is in the range [1, n], return the one repeated number. You must solve it without modifying the array and using only constant extra space.',
+        language: 'python',
+        solution: `class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        left, right = 1, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            count = sum(1 for n in nums if n <= mid)
+            if count > mid:
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-23',
+        title: 'Count Negative Numbers in a Sorted Matrix',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/',
+        description: 'Given an m x n matrix grid which is sorted in non-increasing order both row-wise and column-wise, return the number of negative numbers in grid.',
+        language: 'python',
+        solution: `class Solution:
+    def countNegatives(self, grid: List[List[int]]) -> int:
+        from bisect import bisect_left
+        result = 0
+        for row in grid:
+            neg_start = bisect_left([-x for x in row], 1)
+            result += len(row) - neg_start
+        return result`,
+      },
+      {
+        id: 'bs-24',
+        title: 'Successful Pairs of Spells and Potions',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/successful-pairs-of-spells-and-potions/',
+        description: 'Given two arrays spells and potions and a long integer success, return an array where each element is the number of potions that will form a successful pair with the corresponding spell. A pair is successful if spell * potion >= success.',
+        language: 'python',
+        solution: `class Solution:
+    def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
+        from bisect import bisect_left
+        import math
+        potions.sort()
+        result = []
+        n = len(potions)
+        for spell in spells:
+            min_potion = math.ceil(success / spell)
+            idx = bisect_left(potions, min_potion)
+            result.append(n - idx)
+        return result`,
+      },
     ]
   },
   {
