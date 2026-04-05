@@ -3339,6 +3339,114 @@ export const patterns: Pattern[] = [
                 right = mid
         return left`,
       },
+      {
+        id: 'bs-35',
+        title: 'Search in Rotated Sorted Array II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/search-in-rotated-sorted-array-ii/',
+        description: 'Given a rotated sorted array nums which may contain duplicates and an integer target, return true if target is in nums, or false otherwise.',
+        language: 'python',
+        solution: `class Solution:
+    def search(self, nums: List[int], target: int) -> bool:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
+                return True
+            if nums[left] == nums[mid] == nums[right]:
+                left += 1
+                right -= 1
+            elif nums[left] <= nums[mid]:
+                if nums[left] <= target < nums[mid]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            else:
+                if nums[mid] < target <= nums[right]:
+                    left = mid + 1
+                else:
+                    right = mid - 1
+        return False`,
+      },
+      {
+        id: 'bs-36',
+        title: 'Find Minimum in Rotated Sorted Array II',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/',
+        description: 'Given a sorted rotated array nums that may contain duplicates, return the minimum element. You must decrease the overall operation steps as much as possible.',
+        language: 'python',
+        solution: `class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[right]:
+                left = mid + 1
+            elif nums[mid] < nums[right]:
+                right = mid
+            else:
+                right -= 1
+        return nums[left]`,
+      },
+      {
+        id: 'bs-37',
+        title: 'Count of Range Sum',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/count-of-range-sum/',
+        description: 'Given an integer array nums and two integers lower and upper, return the number of range sums that lie in [lower, upper] inclusive.',
+        language: 'python',
+        solution: `class Solution:
+    def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
+        from sortedcontainers import SortedList
+        sl = SortedList([0])
+        prefix = result = 0
+        for num in nums:
+            prefix += num
+            result += sl.bisect_right(prefix - lower) - sl.bisect_left(prefix - upper)
+            sl.add(prefix)
+        return result`,
+      },
+      {
+        id: 'bs-38',
+        title: 'Find Right Interval',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-right-interval/',
+        description: 'Given an array of intervals, for each interval find the minimum start point of an interval such that the start point is greater than or equal to the end point of the given interval.',
+        language: 'python',
+        solution: `class Solution:
+    def findRightInterval(self, intervals: List[List[int]]) -> List[int]:
+        from bisect import bisect_left
+        start_map = {s: i for i, (s, e) in enumerate(intervals)}
+        starts = sorted(start_map.keys())
+        result = []
+        for s, e in intervals:
+            idx = bisect_left(starts, e)
+            if idx < len(starts):
+                result.append(start_map[starts[idx]])
+            else:
+                result.append(-1)
+        return result`,
+      },
+      {
+        id: 'bs-39',
+        title: 'Minimum Time to Repair Cars',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-time-to-repair-cars/',
+        description: 'Given an integer array ranks of mechanics and an integer cars, return the minimum time to repair all cars. A mechanic with rank r takes r * n^2 minutes to repair n cars.',
+        language: 'python',
+        solution: `class Solution:
+    def repairCars(self, ranks: List[int], cars: int) -> int:
+        import math
+        left, right = 1, min(ranks) * cars * cars
+        while left < right:
+            mid = (left + right) // 2
+            total = sum(int(math.sqrt(mid // r)) for r in ranks)
+            if total >= cars:
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
     ]
   },
   {
