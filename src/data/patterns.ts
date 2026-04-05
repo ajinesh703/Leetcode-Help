@@ -3698,6 +3698,143 @@ export const patterns: Pattern[] = [
         bot   = searchRow(row, m, lambda r: not hasBlackInRow(r))
         return (right - left) * (bot - top)`,
       },
+      {
+        id: 'bs-50',
+        title: 'Cutting Ribbons',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/cutting-ribbons/',
+        description: 'Given an integer array ribbons and integer k, return the maximum length you can cut k pieces of ribbon with equal length. Return 0 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def maxLength(self, ribbons: List[int], k: int) -> int:
+        def canCut(length: int) -> bool:
+            return sum(r // length for r in ribbons) >= k
+        left, right = 1, max(ribbons)
+        while left < right:
+            mid = (left + right + 1) // 2
+            if canCut(mid):
+                left = mid
+            else:
+                right = mid - 1
+        return left if canCut(left) else 0`,
+      },
+      {
+        id: 'bs-51',
+        title: 'Maximum Side Length of a Square with Sum <= Threshold',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-side-length-of-a-square-with-sum-less-than-or-equal-to-threshold/',
+        description: 'Given a matrix and integer threshold, return the maximum side length of a square submatrix with sum <= threshold, or 0 if there is no such square.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSideLength(self, mat: List[List[int]], threshold: int) -> int:
+        m, n = len(mat), len(mat[0])
+        prefix = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                prefix[i][j] = mat[i-1][j-1] + prefix[i-1][j] + prefix[i][j-1] - prefix[i-1][j-1]
+        def getSum(r1, c1, r2, c2):
+            return prefix[r2+1][c2+1] - prefix[r1][c2+1] - prefix[r2+1][c1] + prefix[r1][c1]
+        def canAchieve(side: int) -> bool:
+            for i in range(side - 1, m):
+                for j in range(side - 1, n):
+                    if getSum(i - side + 1, j - side + 1, i, j) <= threshold:
+                        return True
+            return False
+        left, right = 1, min(m, n)
+        result = 0
+        while left <= right:
+            mid = (left + right) // 2
+            if canAchieve(mid):
+                result = mid
+                left = mid + 1
+            else:
+                right = mid - 1
+        return result`,
+      },
+      {
+        id: 'bs-52',
+        title: 'Kth Smallest Number in Multiplication Table',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/',
+        description: 'Given three integers m, n, and k, return the kth smallest number in the m x n multiplication table.',
+        language: 'python',
+        solution: `class Solution:
+    def findKthNumber(self, m: int, n: int, k: int) -> int:
+        def countLessEqual(mid: int) -> int:
+            return sum(min(mid // i, n) for i in range(1, m + 1))
+        left, right = 1, m * n
+        while left < right:
+            mid = (left + right) // 2
+            if countLessEqual(mid) >= k:
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-53',
+        title: 'Kth Smallest Prime Fraction',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/k-th-smallest-prime-fraction/',
+        description: 'Given a sorted array arr of prime numbers and 1, and integer k, return the kth smallest fraction from all fractions arr[i]/arr[j] where i < j.',
+        language: 'python',
+        solution: `class Solution:
+    def kthSmallestPrimeFraction(self, arr: List[int], k: int) -> List[int]:
+        n = len(arr)
+        left, right = 0.0, 1.0
+        while True:
+            mid = (left + right) / 2
+            count = 0
+            max_frac = [0, 1]
+            j = 1
+            for i in range(n):
+                while j < n and arr[i] >= mid * arr[j]:
+                    j += 1
+                count += n - j
+                if j < n and arr[i] * max_frac[1] > max_frac[0] * arr[j]:
+                    max_frac = [arr[i], arr[j]]
+            if count == k:
+                return max_frac
+            elif count < k:
+                left = mid
+            else:
+                right = mid`,
+      },
+      {
+        id: 'bs-54',
+        title: 'Swim in Rising Water',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/swim-in-rising-water/',
+        description: 'Given an n x n grid where grid[i][j] is the elevation at (i,j), return the minimum time to swim from top-left to bottom-right. At time t, you can swim to any adjacent square with elevation <= t.',
+        language: 'python',
+        solution: `class Solution:
+    def swimInWater(self, grid: List[List[int]]) -> int:
+        n = len(grid)
+        def canReach(t: int) -> bool:
+            if grid[0][0] > t:
+                return False
+            visited = set()
+            stack = [(0, 0)]
+            visited.add((0, 0))
+            while stack:
+                r, c = stack.pop()
+                if r == n - 1 and c == n - 1:
+                    return True
+                for dr, dc in [(0,1),(1,0),(0,-1),(-1,0)]:
+                    nr, nc = r + dr, c + dc
+                    if 0 <= nr < n and 0 <= nc < n and (nr, nc) not in visited and grid[nr][nc] <= t:
+                        visited.add((nr, nc))
+                        stack.append((nr, nc))
+            return False
+        left, right = grid[0][0], n * n - 1
+        while left < right:
+            mid = (left + right) // 2
+            if canReach(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
     ]
   },
   {
