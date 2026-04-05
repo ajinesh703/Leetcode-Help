@@ -624,6 +624,224 @@ export const patterns: Pattern[] = [
                 left += 1
         return 0 if min_len == float('inf') else min_len`,
       },
+      {
+  id: 'sw-15',
+  title: 'Find All Anagrams in a String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-all-anagrams-in-a-string/',
+  description: 'Given two strings s and p, return an array of all the start indices of p\'s anagrams in s.',
+  language: 'python',
+  solution: `class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        from collections import Counter
+        need = Counter(p)
+        window = Counter(s[:len(p)])
+        result = []
+        if window == need:
+            result.append(0)
+        for i in range(len(p), len(s)):
+            window[s[i]] += 1
+            left_char = s[i - len(p)]
+            window[left_char] -= 1
+            if window[left_char] == 0:
+                del window[left_char]
+            if window == need:
+                result.append(i - len(p) + 1)
+        return result`,
+},
+{
+  id: 'sw-16',
+  title: 'Maximum Points You Can Obtain from Cards',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/',
+  description: 'There are several cards arranged in a row. In each step you can take one card from the beginning or the end. You want to take exactly k cards. Return the maximum score.',
+  language: 'python',
+  solution: `class Solution:
+    def maxScore(self, cardPoints: List[int], k: int) -> int:
+        n = len(cardPoints)
+        window = n - k
+        curr = sum(cardPoints[:window])
+        min_sum = curr
+        for i in range(window, n):
+            curr += cardPoints[i] - cardPoints[i - window]
+            min_sum = min(min_sum, curr)
+        return sum(cardPoints) - min_sum`,
+},
+{
+  id: 'sw-17',
+  title: 'Number of Subarrays of Size K and Average >= Threshold',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/',
+  description: 'Given an array of integers arr and two integers k and threshold, return the number of sub-arrays of size k and average >= threshold.',
+  language: 'python',
+  solution: `class Solution:
+    def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
+        window_sum = sum(arr[:k])
+        result = 0
+        if window_sum >= k * threshold:
+            result += 1
+        for i in range(k, len(arr)):
+            window_sum += arr[i] - arr[i - k]
+            if window_sum >= k * threshold:
+                result += 1
+        return result`,
+},
+{
+  id: 'sw-18',
+  title: 'Longest Continuous Subarray With Absolute Diff <= Limit',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/',
+  description: 'Given an array of integers nums and an integer limit, return the size of the longest non-empty subarray such that the absolute difference between any two elements is <= limit.',
+  language: 'python',
+  solution: `class Solution:
+    def longestSubarray(self, nums: List[int], limit: int) -> int:
+        from collections import deque
+        max_dq, min_dq = deque(), deque()
+        left = result = 0
+        for right, num in enumerate(nums):
+            while max_dq and nums[max_dq[-1]] <= num:
+                max_dq.pop()
+            while min_dq and nums[min_dq[-1]] >= num:
+                min_dq.pop()
+            max_dq.append(right)
+            min_dq.append(right)
+            while nums[max_dq[0]] - nums[min_dq[0]] > limit:
+                if max_dq[0] == left: max_dq.popleft()
+                if min_dq[0] == left: min_dq.popleft()
+                left += 1
+            result = max(result, right - left + 1)
+        return result`,
+},
+{
+  id: 'sw-19',
+  title: 'Diet Plan Performance',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/diet-plan-performance/',
+  description: 'Given calories array and integers k, lower, upper, count the number of diet plan performance points based on sliding window sums.',
+  language: 'python',
+  solution: `class Solution:
+    def dietPlanPerformance(self, calories: List[int], k: int, lower: int, upper: int) -> int:
+        window_sum = sum(calories[:k])
+        result = 0
+        def check(s):
+            if s < lower: return -1
+            if s > upper: return 1
+            return 0
+        result += check(window_sum)
+        for i in range(k, len(calories)):
+            window_sum += calories[i] - calories[i - k]
+            result += check(window_sum)
+        return result`,
+},
+{
+  id: 'sw-20',
+  title: 'Frequency of the Most Frequent Element',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/frequency-of-the-most-frequent-element/',
+  description: 'Given an integer array nums and an integer k, return the maximum possible frequency of an element after performing at most k increments on the array.',
+  language: 'python',
+  solution: `class Solution:
+    def maxFrequency(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        left = result = 0
+        window_sum = 0
+        for right in range(len(nums)):
+            window_sum += nums[right]
+            while nums[right] * (right - left + 1) - window_sum > k:
+                window_sum -= nums[left]
+                left += 1
+            result = max(result, right - left + 1)
+        return result`,
+},
+{
+  id: 'sw-21',
+  title: 'Max Consecutive Ones III',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/max-consecutive-ones-iii/',
+  description: 'Given a binary array nums and an integer k, return the maximum number of consecutive 1s if you can flip at most k 0s.',
+  language: 'python',
+  solution: `class Solution:
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        left = zeros = result = 0
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1
+            while zeros > k:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+            result = max(result, right - left + 1)
+        return result`,
+},
+{
+  id: 'sw-22',
+  title: 'Minimum Operations to Reduce X to Zero',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/',
+  description: 'Given an integer array nums and integer x, return the minimum number of operations to reduce x to exactly 0, or -1 if not possible. Each operation removes the leftmost or rightmost element.',
+  language: 'python',
+  solution: `class Solution:
+    def minOperations(self, nums: List[int], x: int) -> int:
+        target = sum(nums) - x
+        if target < 0: return -1
+        if target == 0: return len(nums)
+        left = curr = max_len = 0
+        result = -1
+        for right in range(len(nums)):
+            curr += nums[right]
+            while curr > target and left <= right:
+                curr -= nums[left]
+                left += 1
+            if curr == target:
+                result = max(result, right - left + 1)
+        return len(nums) - result if result != -1 else -1`,
+},
+{
+  id: 'sw-23',
+  title: 'K Radius Subarray Averages',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/k-radius-subarray-averages/',
+  description: 'Given a 0-indexed array nums and an integer k, build and return an array avgs where avgs[i] is the average of the subarray centered at index i with radius k.',
+  language: 'python',
+  solution: `class Solution:
+    def getAverages(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        avgs = [-1] * n
+        window = 2 * k + 1
+        if window > n:
+            return avgs
+        curr = sum(nums[:window])
+        avgs[k] = curr // window
+        for i in range(window, n):
+            curr += nums[i] - nums[i - window]
+            avgs[i - k] = curr // window
+        return avgs`,
+},
+{
+  id: 'sw-24',
+  title: 'Minimum Number of Flips to Make Binary String Alternating',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-flips-to-make-the-binary-string-alternating/',
+  description: 'Given a binary string s, return the minimum number of character flips to make it alternating, using one cyclic shift and any number of flips.',
+  language: 'python',
+  solution: `class Solution:
+    def minFlips(self, s: str) -> int:
+        n = len(s)
+        s = s + s
+        alt1 = ''.join('01'[i % 2] for i in range(len(s)))
+        alt2 = ''.join('10'[i % 2] for i in range(len(s)))
+        diff1 = diff2 = 0
+        result = float('inf')
+        for i in range(len(s)):
+            if s[i] != alt1[i]: diff1 += 1
+            if s[i] != alt2[i]: diff2 += 1
+            if i >= n:
+                if s[i - n] != alt1[i - n]: diff1 -= 1
+                if s[i - n] != alt2[i - n]: diff2 -= 1
+            if i >= n - 1:
+                result = min(result, diff1, diff2)
+        return result`,
+},
     ],
   },
   {
