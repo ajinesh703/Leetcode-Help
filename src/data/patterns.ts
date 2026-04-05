@@ -2317,6 +2317,104 @@ export const patterns: Pattern[] = [
                 i += 1
         return result`,
       },
+      {
+        id: 'sw-95',
+        title: 'Longest Subarray with Sum Divisible by K',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-subarray-with-sum-divisible-by-k/',
+        description: 'Given an integer array nums and integer k, return the length of the longest subarray with sum divisible by k.',
+        language: 'python',
+        solution: `class Solution:
+    def longestSubarray(self, nums: List[int], k: int) -> int:
+        remainder_map = {0: -1}
+        prefix = result = 0
+        for i, num in enumerate(nums):
+            prefix = (prefix + num) % k
+            if prefix in remainder_map:
+                result = max(result, i - remainder_map[prefix])
+            else:
+                remainder_map[prefix] = i
+        return result`,
+      },
+      {
+        id: 'sw-96',
+        title: 'Maximum Difference Between Increasing Elements',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-difference-between-increasing-elements/',
+        description: 'Given an integer array nums, return the maximum difference nums[j] - nums[i] such that 0 <= i < j <= n-1 and nums[i] < nums[j]. Return -1 if no such pair exists.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumDifference(self, nums: List[int]) -> int:
+        min_val = nums[0]
+        result = -1
+        for i in range(1, len(nums)):
+            if nums[i] > min_val:
+                result = max(result, nums[i] - min_val)
+            else:
+                min_val = nums[i]
+        return result`,
+      },
+      {
+        id: 'sw-97',
+        title: 'Count Number of Texts',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-number-of-texts/',
+        description: 'Given a string pressedKeys of digits, return the number of possible text messages Alice could have sent. Keys 2-6 and 8 map to 3 letters, keys 7 and 9 map to 4 letters.',
+        language: 'python',
+        solution: `class Solution:
+    def countTexts(self, pressedKeys: str) -> int:
+        MOD = 10**9 + 7
+        n = len(pressedKeys)
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        for i in range(1, n + 1):
+            dp[i] = dp[i - 1]
+            if i >= 2 and pressedKeys[i-1] == pressedKeys[i-2]:
+                dp[i] = (dp[i] + dp[i-2]) % MOD
+            if i >= 3 and pressedKeys[i-1] == pressedKeys[i-2] == pressedKeys[i-3]:
+                dp[i] = (dp[i] + dp[i-3]) % MOD
+            if i >= 4 and pressedKeys[i-1] in '79' and pressedKeys[i-1] == pressedKeys[i-2] == pressedKeys[i-3] == pressedKeys[i-4]:
+                dp[i] = (dp[i] + dp[i-4]) % MOD
+        return dp[n]`,
+      },
+      {
+        id: 'sw-98',
+        title: 'Maximum Profit in Job Scheduling',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-profit-in-job-scheduling/',
+        description: 'Given start, end, and profit arrays for n jobs, return the maximum profit you can take such that there are no two jobs with overlapping time ranges.',
+        language: 'python',
+        solution: `class Solution:
+    def jobScheduling(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+        from bisect import bisect_left
+        jobs = sorted(zip(endTime, startTime, profit))
+        dp = [[0, 0]]
+        for end, start, pro in jobs:
+            idx = bisect_left(dp, [start + 1]) - 1
+            if dp[idx][1] + pro > dp[-1][1]:
+                dp.append([end, dp[idx][1] + pro])
+        return dp[-1][1]`,
+      },
+      {
+        id: 'sw-99',
+        title: 'Maximum Beats Per Minute Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-subarray-less-than-or-equal-to-k/',
+        description: 'Given an integer array nums and integer k, return the maximum sum of a contiguous subarray whose sum is less than or equal to k.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSumSubarray(self, nums: List[int], k: int) -> int:
+        from sortedcontainers import SortedList
+        sl = SortedList([0])
+        prefix = result = 0
+        for num in nums:
+            prefix += num
+            idx = sl.bisect_left(prefix - k)
+            if idx < len(sl):
+                result = max(result, prefix - sl[idx])
+            sl.add(prefix)
+        return result`,
+      },
     ],
   },
   {
