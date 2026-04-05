@@ -3246,6 +3246,99 @@ export const patterns: Pattern[] = [
                 right = mid - 1
         return left`,
       },
+      {
+        id: 'bs-30',
+        title: 'Find K Closest Elements',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-k-closest-elements/',
+        description: 'Given a sorted integer array arr, two integers k and x, return the k closest integers to x in the array. The result should also be sorted in ascending order.',
+        language: 'python',
+        solution: `class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        left, right = 0, len(arr) - k
+        while left < right:
+            mid = (left + right) // 2
+            if x - arr[mid] > arr[mid + k] - x:
+                left = mid + 1
+            else:
+                right = mid
+        return arr[left:left + k]`,
+      },
+      {
+        id: 'bs-31',
+        title: 'Single Element in a Sorted Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/single-element-in-a-sorted-array/',
+        description: 'Given a sorted array where every element appears exactly twice except one element which appears once, find and return the single element. Your solution must run in O(log n) time.',
+        language: 'python',
+        solution: `class Solution:
+    def singleNonDuplicate(self, nums: List[int]) -> int:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if mid % 2 == 1:
+                mid -= 1
+            if nums[mid] == nums[mid + 1]:
+                left = mid + 2
+            else:
+                right = mid
+        return nums[left]`,
+      },
+      {
+        id: 'bs-32',
+        title: 'Minimum Time to Complete Trips',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-time-to-complete-trips/',
+        description: 'Given an array time where time[i] is the time taken by the ith bus to complete one trip, and integer totalTrips, return the minimum time required to complete at least totalTrips trips.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumTime(self, time: List[int], totalTrips: int) -> int:
+        left, right = 1, min(time) * totalTrips
+        while left < right:
+            mid = (left + right) // 2
+            trips = sum(mid // t for t in time)
+            if trips >= totalTrips:
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-33',
+        title: 'Kth Missing Positive Number',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/kth-missing-positive-number/',
+        description: 'Given an array arr of positive integers sorted in strictly increasing order, and an integer k, return the kth positive integer that is missing from this array.',
+        language: 'python',
+        solution: `class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+        left, right = 0, len(arr)
+        while left < right:
+            mid = (left + right) // 2
+            if arr[mid] - (mid + 1) >= k:
+                right = mid
+            else:
+                left = mid + 1
+        return left + k`,
+      },
+      {
+        id: 'bs-34',
+        title: 'Peak Index in a Mountain Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/peak-index-in-a-mountain-array/',
+        description: 'Given a mountain array arr, return the index i such that arr[0] < arr[1] < ... < arr[i] > arr[i+1] > ... > arr[arr.length - 1]. Solve it in O(log n) time.',
+        language: 'python',
+        solution: `class Solution:
+    def peakIndexInMountainArray(self, arr: List[int]) -> int:
+        left, right = 0, len(arr) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if arr[mid] < arr[mid + 1]:
+                left = mid + 1
+            else:
+                right = mid
+        return left`,
+      },
     ]
   },
   {
