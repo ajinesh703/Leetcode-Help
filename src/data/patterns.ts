@@ -2415,6 +2415,113 @@ export const patterns: Pattern[] = [
             sl.add(prefix)
         return result`,
       },
+      {
+        id: 'sw-100',
+        title: 'Maximum Number of Balls in a Box',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-balls-in-a-box/',
+        description: 'Given lowLimit and highLimit, return the maximum number of balls in a box. Ball i goes into box with number equal to sum of digits of i.',
+        language: 'python',
+        solution: `class Solution:
+    def countBalls(self, lowLimit: int, highLimit: int) -> int:
+        from collections import defaultdict
+        boxes = defaultdict(int)
+        for i in range(lowLimit, highLimit + 1):
+            boxes[sum(int(d) for d in str(i))] += 1
+        return max(boxes.values())`,
+      },
+      {
+        id: 'sw-101',
+        title: 'Minimum Adjacent Swaps for K Consecutive Ones',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/',
+        description: 'Given a binary array nums and integer k, return the minimum number of adjacent swaps to make k consecutive 1s in the array.',
+        language: 'python',
+        solution: `class Solution:
+    def minMoves(self, nums: List[int], k: int) -> int:
+        ones = [i for i, x in enumerate(nums) if x == 1]
+        n = len(ones)
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + ones[i]
+        result = float('inf')
+        for i in range(n - k + 1):
+            mid = i + k // 2
+            median = ones[mid]
+            left_sum = median * (mid - i) - (prefix[mid] - prefix[i])
+            right_sum = (prefix[i + k] - prefix[mid + 1]) - median * (i + k - mid - 1)
+            result = min(result, left_sum + right_sum)
+        return result`,
+      },
+      {
+        id: 'sw-102',
+        title: 'Maximum White Tiles Covered by a Carpet',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-white-tiles-covered-by-a-carpet/',
+        description: 'Given a 2D array tiles of white tile ranges and integer carpetLen, return the maximum number of white tiles covered by placing one carpet of length carpetLen.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumWhiteTiles(self, tiles: List[List[int]], carpetLen: int) -> int:
+        from bisect import bisect_right
+        tiles.sort()
+        n = len(tiles)
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + tiles[i][1] - tiles[i][0] + 1
+        result = 0
+        for i in range(n):
+            end = tiles[i][0] + carpetLen - 1
+            j = bisect_right(tiles, [end, float('inf')]) - 1
+            covered = prefix[j + 1] - prefix[i]
+            if tiles[j][1] > end:
+                covered -= tiles[j][1] - end
+            result = max(result, covered)
+        return result`,
+      },
+      {
+        id: 'sw-103',
+        title: 'Number of Subarrays with GCD Equal to K',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-subarrays-with-gcd-equal-to-k/',
+        description: 'Given an integer array nums and integer k, return the number of subarrays whose GCD equals k.',
+        language: 'python',
+        solution: `class Solution:
+    def subarrayGCD(self, nums: List[int], k: int) -> int:
+        from math import gcd
+        result = 0
+        for i in range(len(nums)):
+            curr_gcd = 0
+            for j in range(i, len(nums)):
+                curr_gcd = gcd(curr_gcd, nums[j])
+                if curr_gcd == k:
+                    result += 1
+                elif curr_gcd < k:
+                    break
+        return result`,
+      },
+      {
+        id: 'sw-104',
+        title: 'Minimum Operations to Make All Array Elements Equal',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-operations-to-make-all-array-elements-equal/',
+        description: 'Given an integer array nums and queries array, for each query find the minimum operations to make all elements equal to query value, where one operation increments or decrements an element by 1.',
+        language: 'python',
+        solution: `class Solution:
+    def minOperations(self, nums: List[int], queries: List[int]) -> List[int]:
+        from bisect import bisect_left
+        nums.sort()
+        n = len(nums)
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + nums[i]
+        result = []
+        for q in queries:
+            idx = bisect_left(nums, q)
+            left_cost = q * idx - prefix[idx]
+            right_cost = (prefix[n] - prefix[idx]) - q * (n - idx)
+            result.append(left_cost + right_cost)
+        return result`,
+      },
     ],
   },
   {
