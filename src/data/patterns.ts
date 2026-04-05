@@ -3835,6 +3835,250 @@ export const patterns: Pattern[] = [
                 left = mid + 1
         return left`,
       },
+      {
+        id: 'bs-55',
+        title: 'Find the Smallest Divisor Given a Threshold II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/',
+        description: 'Given an array of integers nums and integer threshold, find the smallest divisor such that the sum of divisions is <= threshold. Each division is rounded up.',
+        language: 'python',
+        solution: `class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        import math
+        def getSum(d: int) -> int:
+            return sum(math.ceil(n / d) for n in nums)
+        left, right = 1, max(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if getSum(mid) <= threshold:
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-56',
+        title: 'Maximum Number of Removable Characters',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-removable-characters/',
+        description: 'Given strings s and p, and array removable of indices, return the maximum k such that p is still a subsequence of s after removing the first k indices in removable.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumRemovals(self, s: str, p: str, removable: List[int]) -> int:
+        def isSubseq(k: int) -> bool:
+            removed = set(removable[:k])
+            i = j = 0
+            while i < len(s) and j < len(p):
+                if i not in removed and s[i] == p[j]:
+                    j += 1
+                i += 1
+            return j == len(p)
+        left, right = 0, len(removable)
+        while left < right:
+            mid = (left + right + 1) // 2
+            if isSubseq(mid):
+                left = mid
+            else:
+                right = mid - 1
+        return left`,
+      },
+      {
+        id: 'bs-57',
+        title: 'Maximum Profit From Trading Stocks',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-profit-from-trading-stocks/',
+        description: 'Given arrays present and future prices of stocks and integer budget, return the maximum profit you can make by buying and selling stocks without exceeding the budget.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumProfit(self, present: List[int], future: List[int], budget: int) -> int:
+        profits = sorted(
+            [(future[i] - present[i], present[i])
+             for i in range(len(present))
+             if future[i] > present[i]],
+            reverse=True
+        )
+        result = 0
+        for profit, cost in profits:
+            if budget >= cost:
+                budget -= cost
+                result += profit
+        return result`,
+      },
+      {
+        id: 'bs-58',
+        title: 'Find Target Indices After Sorting Array',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/find-target-indices-after-sorting-array/',
+        description: 'Given an integer array nums and integer target, return a list of target indices after sorting nums in non-decreasing order.',
+        language: 'python',
+        solution: `class Solution:
+    def targetIndices(self, nums: List[int], target: int) -> List[int]:
+        from bisect import bisect_left, bisect_right
+        nums.sort()
+        left = bisect_left(nums, target)
+        right = bisect_right(nums, target)
+        return list(range(left, right))`,
+      },
+      {
+        id: 'bs-59',
+        title: 'Minimum Time to Eat All Grains',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-time-to-eat-all-grains/',
+        description: 'Given arrays hens and grains, return the minimum time for all hens to eat all grains. Each hen eats one grain per unit time and can only move one step at a time.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumTime(self, hens: List[int], grains: List[int]) -> int:
+        from bisect import bisect_left
+        hens.sort()
+        grains.sort()
+        def canFinish(t: int) -> bool:
+            g = 0
+            for h in hens:
+                if g == len(grains):
+                    break
+                if grains[g] > h + t:
+                    return False
+                lo = grains[g]
+                if lo >= h:
+                    g = bisect_right(grains, h + t, g)
+                else:
+                    extra = h - lo
+                    g = bisect_right(grains, h + t, g) if extra >= t else bisect_right(grains, max(lo + t, h + t - extra), g)
+            return g >= len(grains)
+        from bisect import bisect_right
+        left, right = 0, max(abs(hens[-1] - grains[0]), abs(hens[0] - grains[-1])) + max(grains) - min(grains)
+        while left < right:
+            mid = (left + right) // 2
+            if canFinish(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-60',
+        title: 'Maximum Number of Tasks You Can Assign',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-tasks-you-can-assign/',
+        description: 'Given tasks and workers arrays and integers pills and strength, return the maximum number of tasks that can be assigned. Each worker can take a pill to increase strength by strength.',
+        language: 'python',
+        solution: `class Solution:
+    def maxTaskAssign(self, tasks: List[int], workers: List[int], pills: int, strength: int) -> int:
+        from sortedcontainers import SortedList
+        tasks.sort()
+        workers.sort()
+        def canAssign(k: int) -> bool:
+            available = SortedList(workers[len(workers) - k:])
+            p = pills
+            for i in range(k - 1, -1, -1):
+                if available[-1] >= tasks[i]:
+                    available.pop(-1)
+                elif p > 0:
+                    idx = available.bisect_left(tasks[i] - strength)
+                    if idx < len(available):
+                        available.pop(idx)
+                        p -= 1
+                    else:
+                        return False
+                else:
+                    return False
+            return True
+        left, right = 0, min(len(tasks), len(workers))
+        while left < right:
+            mid = (left + right + 1) // 2
+            if canAssign(mid):
+                left = mid
+            else:
+                right = mid - 1
+        return left`,
+      },
+      {
+        id: 'bs-61',
+        title: 'Count Pairs Whose Sum is Less than Target',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/',
+        description: 'Given an integer array nums and integer target, return the number of pairs (i, j) where i < j and nums[i] + nums[j] < target.',
+        language: 'python',
+        solution: `class Solution:
+    def countPairs(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        left, right = 0, len(nums) - 1
+        result = 0
+        while left < right:
+            if nums[left] + nums[right] < target:
+                result += right - left
+                left += 1
+            else:
+                right -= 1
+        return result`,
+      },
+      {
+        id: 'bs-62',
+        title: 'Maximum Value of a String in an Array',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-value-of-a-string-in-an-array/',
+        description: 'Given an array of alphanumeric strings strs, return the maximum value. The value of a string is its numeric value if it consists only of digits, otherwise its length.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumValue(self, strs: List[str]) -> int:
+        def val(s: str) -> int:
+            return int(s) if s.isdigit() else len(s)
+        return max(val(s) for s in strs)`,
+      },
+      {
+        id: 'bs-63',
+        title: 'Minimum Number of Days to Disconnect Island',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/',
+        description: 'Given a binary grid, return the minimum number of days to disconnect the island (make the grid have zero or more than one island) by changing 1s to 0s.',
+        language: 'python',
+        solution: `class Solution:
+    def minDays(self, grid: List[List[int]]) -> int:
+        def countIslands() -> int:
+            visited = set()
+            count = 0
+            def dfs(r, c):
+                if (r, c) in visited or not (0 <= r < len(grid)) or not (0 <= c < len(grid[0])) or grid[r][c] == 0:
+                    return
+                visited.add((r, c))
+                for dr, dc in [(0,1),(1,0),(0,-1),(-1,0)]:
+                    dfs(r + dr, c + dc)
+            for i in range(len(grid)):
+                for j in range(len(grid[0])):
+                    if grid[i][j] == 1 and (i, j) not in visited:
+                        dfs(i, j)
+                        count += 1
+            return count
+        if countIslands() != 1:
+            return 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == 1:
+                    grid[i][j] = 0
+                    if countIslands() != 1:
+                        return 1
+                    grid[i][j] = 1
+        return 2`,
+      },
+      {
+        id: 'bs-64',
+        title: 'Find the Distance Value Between Two Arrays',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-distance-value-between-two-arrays/',
+        description: 'Given two integer arrays arr1 and arr2 and integer d, return the distance value between the two arrays. The distance is the number of elements in arr1 where no element in arr2 has absolute difference <= d.',
+        language: 'python',
+        solution: `class Solution:
+    def findTheDistanceValue(self, arr1: List[int], arr2: List[int], d: int) -> int:
+        from bisect import bisect_left, bisect_right
+        arr2.sort()
+        result = 0
+        for x in arr1:
+            lo = bisect_left(arr2, x - d)
+            hi = bisect_right(arr2, x + d)
+            if lo == hi:
+                result += 1
+        return result`,
+      },
     ]
   },
   {
