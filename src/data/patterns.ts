@@ -2187,6 +2187,136 @@ export const patterns: Pattern[] = [
                 result *= num
         return result if result != 1 else max(nums)`,
       },
+      {
+        id: 'sw-90',
+        title: 'Maximum Tastiness of Candy Basket',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-tastiness-of-candy-basket/',
+        description: 'Given an array price and integer k, return the maximum tastiness of a candy basket. Tastiness is the minimum absolute difference between prices of any two candies in the basket.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumTastiness(self, price: List[int], k: int) -> int:
+        price.sort()
+        def canAchieve(mid: int) -> bool:
+            count = 1
+            last = price[0]
+            for i in range(1, len(price)):
+                if price[i] - last >= mid:
+                    count += 1
+                    last = price[i]
+                    if count >= k:
+                        return True
+            return False
+        lo, hi = 0, price[-1] - price[0]
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if canAchieve(mid):
+                lo = mid
+            else:
+                hi = mid - 1
+        return lo`,
+      },
+      {
+        id: 'sw-91',
+        title: 'Longest Even Odd Subarray With Threshold',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-even-odd-subarray-with-threshold/',
+        description: 'Given an integer array nums and integer threshold, return the length of the longest subarray that satisfies: starts with even number, alternates even/odd, all elements <= threshold.',
+        language: 'python',
+        solution: `class Solution:
+    def longestAlternatingSubarray(self, nums: List[int], threshold: int) -> int:
+        result = 0
+        i = 0
+        while i < len(nums):
+            if nums[i] % 2 == 0 and nums[i] <= threshold:
+                j = i + 1
+                while j < len(nums) and nums[j] <= threshold and nums[j] % 2 != nums[j-1] % 2:
+                    j += 1
+                result = max(result, j - i)
+                i = j
+            else:
+                i += 1
+        return result`,
+      },
+      {
+        id: 'sw-92',
+        title: 'Maximum Sum of Subarray Less Than or Equal to K',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/max-sum-of-rectangle-no-larger-than-k/',
+        description: 'Given an m x n matrix and an integer k, return the max sum of a rectangle in the matrix such that its sum is no larger than k.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSumSubmatrix(self, matrix: List[List[int]], k: int) -> int:
+        from sortedcontainers import SortedList
+        m, n = len(matrix), len(matrix[0])
+        result = float('-inf')
+        for left in range(n):
+            row_sum = [0] * m
+            for right in range(left, n):
+                for i in range(m):
+                    row_sum[i] += matrix[i][right]
+                sl = SortedList([0])
+                prefix = 0
+                for s in row_sum:
+                    prefix += s
+                    idx = sl.bisect_left(prefix - k)
+                    if idx < len(sl):
+                        result = max(result, prefix - sl[idx])
+                    sl.add(prefix)
+        return result`,
+      },
+      {
+        id: 'sw-93',
+        title: 'Find the Longest Semi-Repetitive Substring',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-longest-semi-repetitive-substring/',
+        description: 'Given a digit string s, return the length of the longest semi-repetitive substring. A semi-repetitive substring has at most one consecutive pair of equal digits.',
+        language: 'python',
+        solution: `class Solution:
+    def longestSemiRepetitiveSubstring(self, s: str) -> int:
+        left = result = 1
+        pairs = 0
+        for right in range(1, len(s)):
+            if s[right] == s[right - 1]:
+                pairs += 1
+            while pairs > 1:
+                if s[left] == s[left + 1]:
+                    pairs -= 1
+                left += 1
+            result = max(result, right - left + 1)
+        return result`,
+      },
+      {
+        id: 'sw-94',
+        title: 'Minimum Window Subsequence',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-window-subsequence/',
+        description: 'Given strings s1 and s2, return the minimum contiguous substring of s1 that contains s2 as a subsequence. If no such window exists, return empty string.',
+        language: 'python',
+        solution: `class Solution:
+    def minWindow(self, s1: str, s2: str) -> str:
+        result = ''
+        i = 0
+        while i < len(s1):
+            j = 0
+            while i < len(s1) and j < len(s2):
+                if s1[i] == s2[j]:
+                    j += 1
+                i += 1
+            if j == len(s2):
+                end = i
+                i -= 1
+                j -= 1
+                while j >= 0:
+                    if s1[i] == s2[j]:
+                        j -= 1
+                    i -= 1
+                i += 1
+                if not result or end - i < len(result):
+                    result = s1[i:end]
+                i += 1
+        return result`,
+      },
     ],
   },
   {
