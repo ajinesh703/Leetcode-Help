@@ -842,6 +842,219 @@ export const patterns: Pattern[] = [
                 result = min(result, diff1, diff2)
         return result`,
 },
+{
+        id: 'sw-25',
+        title: 'Longest Turbulent Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-turbulent-subarray/',
+        description: 'Given an integer array arr, return the length of a maximum size turbulent subarray of arr. A subarray is turbulent if the comparison sign flips between each adjacent pair of elements.',
+        language: 'python',
+        solution: `class Solution:
+    def maxTurbulenceSize(self, arr: List[int]) -> int:
+        left = result = 1
+        for right in range(1, len(arr)):
+            if right == 1:
+                if arr[right] != arr[right - 1]:
+                    result = 2
+                left = right if arr[right] == arr[right - 1] else left
+            else:
+                if (arr[right] > arr[right-1]) == (arr[right-1] > arr[right-2]):
+                    left = right
+                elif arr[right] == arr[right - 1]:
+                    left = right
+                result = max(result, right - left + 1)
+        return result`,
+      },
+      {
+        id: 'sw-26',
+        title: 'Binary Subarrays With Sum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/binary-subarrays-with-sum/',
+        description: 'Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum equal to goal.',
+        language: 'python',
+        solution: `class Solution:
+    def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
+        def atMost(k: int) -> int:
+            if k < 0: return 0
+            left = curr = result = 0
+            for right in range(len(nums)):
+                curr += nums[right]
+                while curr > k:
+                    curr -= nums[left]
+                    left += 1
+                result += right - left + 1
+            return result
+        return atMost(goal) - atMost(goal - 1)`,
+      },
+      {
+        id: 'sw-27',
+        title: 'Number of Substrings Containing All Three Characters',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/',
+        description: 'Given a string s consisting only of characters a, b and c, return the number of substrings containing at least one occurrence of all these characters.',
+        language: 'python',
+        solution: `class Solution:
+    def numberOfSubstrings(self, s: str) -> int:
+        count = {'a': 0, 'b': 0, 'c': 0}
+        left = result = 0
+        for right in range(len(s)):
+            count[s[right]] += 1
+            while all(count[c] > 0 for c in 'abc'):
+                result += len(s) - right
+                count[s[left]] -= 1
+                left += 1
+        return result`,
+      },
+      {
+        id: 'sw-28',
+        title: 'Replace the Substring for Balanced String',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/replace-the-substring-for-balanced-string/',
+        description: 'Given a string s of length n containing only Q, W, E, R, find the minimum length of a substring that can be replaced to make each character appear exactly n/4 times.',
+        language: 'python',
+        solution: `class Solution:
+    def balancedString(self, s: str) -> int:
+        from collections import Counter
+        count = Counter(s)
+        n = len(s)
+        k = n // 4
+        result = n
+        left = 0
+        for right in range(n):
+            count[s[right]] -= 1
+            while left <= right and all(count[c] <= k for c in 'QWER'):
+                result = min(result, right - left + 1)
+                count[s[left]] += 1
+                left += 1
+        return result`,
+      },
+      {
+        id: 'sw-29',
+        title: 'Subarrays with K Different Integers',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/subarrays-with-k-different-integers/',
+        description: 'Given an integer array nums and an integer k, return the number of good subarrays of nums. A good array is an array where the number of different integers is exactly k.',
+        language: 'python',
+        solution: `class Solution:
+    def subarraysWithKDistinct(self, nums: List[int], k: int) -> int:
+        from collections import defaultdict
+        def atMost(k: int) -> int:
+            count = defaultdict(int)
+            left = result = 0
+            for right in range(len(nums)):
+                count[nums[right]] += 1
+                while len(count) > k:
+                    count[nums[left]] -= 1
+                    if count[nums[left]] == 0:
+                        del count[nums[left]]
+                    left += 1
+                result += right - left + 1
+            return result
+        return atMost(k) - atMost(k - 1)`,
+      },
+      {
+        id: 'sw-30',
+        title: 'Longest Substring with At Most Two Distinct Characters',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/',
+        description: 'Given a string s, return the length of the longest substring that contains at most two distinct characters.',
+        language: 'python',
+        solution: `class Solution:
+    def lengthOfLongestSubstringTwoDistinct(self, s: str) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        left = result = 0
+        for right in range(len(s)):
+            count[s[right]] += 1
+            while len(count) > 2:
+                count[s[left]] -= 1
+                if count[s[left]] == 0:
+                    del count[s[left]]
+                left += 1
+            result = max(result, right - left + 1)
+        return result`,
+      },
+      {
+        id: 'sw-31',
+        title: 'Longest Substring with At Most K Distinct Characters',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/',
+        description: 'Given a string s and an integer k, return the length of the longest substring that contains at most k distinct characters.',
+        language: 'python',
+        solution: `class Solution:
+    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        left = result = 0
+        for right in range(len(s)):
+            count[s[right]] += 1
+            while len(count) > k:
+                count[s[left]] -= 1
+                if count[s[left]] == 0:
+                    del count[s[left]]
+                left += 1
+            result = max(result, right - left + 1)
+        return result`,
+      },
+      {
+        id: 'sw-32',
+        title: 'Maximum Erasure Value',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-erasure-value/',
+        description: 'Given an array of positive integers nums, return the maximum sum of a subarray with all unique elements.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumUniqueSubarray(self, nums: List[int]) -> int:
+        seen = set()
+        left = curr = result = 0
+        for right in range(len(nums)):
+            while nums[right] in seen:
+                seen.remove(nums[left])
+                curr -= nums[left]
+                left += 1
+            seen.add(nums[right])
+            curr += nums[right]
+            result = max(result, curr)
+        return result`,
+      },
+      {
+        id: 'sw-33',
+        title: 'Count Subarrays Where Max Element Appears at Least K Times',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-subarrays-where-max-element-appears-at-least-k-times/',
+        description: 'Given an integer array nums and a positive integer k, return the number of subarrays where the maximum element of nums appears at least k times in that subarray.',
+        language: 'python',
+        solution: `class Solution:
+    def countSubarrays(self, nums: List[int], k: int) -> int:
+        max_val = max(nums)
+        left = freq = result = 0
+        for right in range(len(nums)):
+            if nums[right] == max_val:
+                freq += 1
+            while freq >= k:
+                result += len(nums) - right
+                if nums[left] == max_val:
+                    freq -= 1
+                left += 1
+        return result`,
+      },
+      {
+        id: 'sw-34',
+        title: 'Minimum Window Substring II (Minimum Window Containing All Characters)',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-consecutive-cards-to-pick-up/',
+        description: 'Given an integer array cards, find the minimum number of consecutive cards you have to pick up to have a pair of matching cards among the picked cards. If it is impossible, return -1.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumCardPickup(self, cards: List[int]) -> int:
+        last_seen = {}
+        result = float('inf')
+        for i, card in enumerate(cards):
+            if card in last_seen:
+                result = min(result, i - last_seen[card] + 1)
+            last_seen[card] = i
+        return result if result != float('inf') else -1`,
+      },
     ],
   },
   {
