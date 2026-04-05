@@ -1477,6 +1477,223 @@ export const patterns: Pattern[] = [
             if any(g_type in garbage[j] for j in range(i + 1, len(garbage)))
         )`,
       },
+      {
+        id: 'sw-55',
+        title: 'Maximum Product Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
+        description: 'Given an integer array nums, find a subarray that has the largest product, and return the product.',
+        language: 'python',
+        solution: `class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        result = max(nums)
+        curr_min = curr_max = 1
+        for num in nums:
+            if num == 0:
+                curr_min = curr_max = 1
+                continue
+            candidates = (num, curr_max * num, curr_min * num)
+            curr_max = max(candidates)
+            curr_min = min(candidates)
+            result = max(result, curr_max)
+        return result`,
+      },
+      {
+        id: 'sw-56',
+        title: 'Minimum Size Subarray in Infinite Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-size-subarray-in-infinite-array/',
+        description: 'Given an integer array nums and an integer target, return the minimum length subarray of the infinite repetition of nums whose sum equals target. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minSizeSubarray(self, nums: List[int], target: int) -> int:
+        n = len(nums)
+        total = sum(nums)
+        extra = target % total
+        base = (target // total) * n
+        if extra == 0:
+            return base
+        doubled = nums + nums
+        left = curr = 0
+        result = float('inf')
+        for right in range(len(doubled)):
+            curr += doubled[right]
+            while curr > extra:
+                curr -= doubled[left]
+                left += 1
+            if curr == extra:
+                result = min(result, right - left + 1)
+        return base + result if result != float('inf') else -1`,
+      },
+      {
+        id: 'sw-57',
+        title: 'Count Complete Subarrays in an Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-complete-subarrays-in-an-array/',
+        description: 'Given an array nums, return the number of complete subarrays. A subarray is complete if the number of distinct elements equals the number of distinct elements in the whole array.',
+        language: 'python',
+        solution: `class Solution:
+    def countCompleteSubarrays(self, nums: List[int]) -> int:
+        from collections import defaultdict
+        total = len(set(nums))
+        count = defaultdict(int)
+        left = result = 0
+        for right in range(len(nums)):
+            count[nums[right]] += 1
+            while len(count) == total:
+                result += len(nums) - right
+                count[nums[left]] -= 1
+                if count[nums[left]] == 0:
+                    del count[nums[left]]
+                left += 1
+        return result`,
+      },
+      {
+        id: 'sw-58',
+        title: 'Number of Equal Count Substrings',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-equal-count-substrings/',
+        description: 'Given a string s and integer count, return the number of substrings where every character that appears does so exactly count times.',
+        language: 'python',
+        solution: `class Solution:
+    def equalCountSubstrings(self, s: str, count: int) -> int:
+        from collections import Counter
+        result = 0
+        for unique in range(1, 27):
+            k = unique * count
+            if k > len(s):
+                break
+            window = Counter(s[:k])
+            if len(window) == unique and all(v == count for v in window.values()):
+                result += 1
+            for i in range(k, len(s)):
+                window[s[i]] += 1
+                window[s[i - k]] -= 1
+                if window[s[i - k]] == 0:
+                    del window[s[i - k]]
+                if len(window) == unique and all(v == count for v in window.values()):
+                    result += 1
+        return result`,
+      },
+      {
+        id: 'sw-59',
+        title: 'Longest Palindromic Substring (Expand Around Center)',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-palindromic-substring/',
+        description: 'Given a string s, return the longest palindromic substring in s.',
+        language: 'python',
+        solution: `class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        result = ''
+        for i in range(len(s)):
+            for odd, even in [(i, i), (i, i + 1)]:
+                l, r = odd, even
+                while l >= 0 and r < len(s) and s[l] == s[r]:
+                    if r - l + 1 > len(result):
+                        result = s[l:r + 1]
+                    l -= 1
+                    r += 1
+        return result`,
+      },
+      {
+        id: 'sw-60',
+        title: 'Get Equal Substrings Within Budget',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/get-equal-substrings-within-budget/',
+        description: 'Given two strings s and t of the same length and an integer maxCost, return the maximum length of a substring of s that can be changed to the same substring of t with cost at most maxCost.',
+        language: 'python',
+        solution: `class Solution:
+    def equalSubstring(self, s: str, t: str, maxCost: int) -> int:
+        left = curr_cost = result = 0
+        for right in range(len(s)):
+            curr_cost += abs(ord(s[right]) - ord(t[right]))
+            while curr_cost > maxCost:
+                curr_cost -= abs(ord(s[left]) - ord(t[left]))
+                left += 1
+            result = max(result, right - left + 1)
+        return result`,
+      },
+      {
+        id: 'sw-61',
+        title: 'Maximum Points You Can Obtain from Cards (Variant)',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-circular-subarray/',
+        description: 'Given a circular integer array nums, return the maximum possible sum of a non-empty subarray of nums.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSubarraySumCircular(self, nums: List[int]) -> int:
+        total = sum(nums)
+        curr_max = curr_min = nums[0]
+        max_sum = min_sum = nums[0]
+        for num in nums[1:]:
+            curr_max = max(num, curr_max + num)
+            max_sum = max(max_sum, curr_max)
+            curr_min = min(num, curr_min + num)
+            min_sum = min(min_sum, curr_min)
+        return max_sum if max_sum < 0 else max(max_sum, total - min_sum)`,
+      },
+      {
+        id: 'sw-62',
+        title: 'Constrained Subsequence Sum',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/constrained-subsequence-sum/',
+        description: 'Given an integer array nums and an integer k, return the maximum sum of a non-empty subsequence such that for every two consecutive integers, their indices differ by at most k.',
+        language: 'python',
+        solution: `class Solution:
+    def constrainedSubsetSum(self, nums: List[int], k: int) -> int:
+        from collections import deque
+        dq = deque()
+        dp = nums[:]
+        for i in range(len(nums)):
+            if dq and dq[0] < i - k:
+                dq.popleft()
+            if dq:
+                dp[i] = max(dp[i], dp[dq[0]] + nums[i])
+            while dq and dp[dq[-1]] <= dp[i]:
+                dq.pop()
+            if dp[i] > 0:
+                dq.append(i)
+        return max(dp)`,
+      },
+      {
+        id: 'sw-63',
+        title: 'Minimum Swaps to Make Strings Equal',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-swaps-to-make-strings-equal/',
+        description: 'Given two strings s1 and s2 of equal length consisting of x and y only, return the minimum number of swaps to make them equal. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumSwap(self, s1: str, s2: str) -> int:
+        xy = yx = 0
+        for a, b in zip(s1, s2):
+            if a != b:
+                if a == 'x':
+                    xy += 1
+                else:
+                    yx += 1
+        if (xy + yx) % 2 != 0:
+            return -1
+        return xy // 2 + yx // 2 + (2 if xy % 2 else 0)`,
+      },
+      {
+        id: 'sw-64',
+        title: 'Minimum Number of Operations to Make Array Continuous',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/',
+        description: 'Given an integer array nums, return the minimum number of operations to make nums continuous. An array is continuous if all elements are distinct and max - min == n - 1.',
+        language: 'python',
+        solution: `class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        n = len(nums)
+        nums = sorted(set(nums))
+        result = 0
+        right = 0
+        for left in range(len(nums)):
+            while right < len(nums) and nums[right] < nums[left] + n:
+                right += 1
+            result = max(result, right - left)
+        return n - result`,
+      },
     ],
   },
   {
