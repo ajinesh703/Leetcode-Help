@@ -4870,6 +4870,22 @@ export const patterns: Pattern[] = [
                 )
         return dp[365]`,
       },
+      {
+        id: 'bs-100',
+        title: 'Reach End of Array With Max Score',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/reach-end-of-array-with-max-score/',
+        description: 'Given an integer array nums, return the maximum score to reach the last index. Score is calculated by multiplying the number of steps taken by the minimum value in those steps.',
+        language: 'python',
+        solution: `class Solution:
+    def findMaximumScore(self, nums: List[int]) -> int:
+        result = 0
+        curr_max = 0
+        for i in range(len(nums) - 1):
+            curr_max = max(curr_max, nums[i])
+            result += curr_max
+        return result`,
+      },
     ]
   },
   {
