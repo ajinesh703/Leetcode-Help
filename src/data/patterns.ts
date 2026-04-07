@@ -4754,6 +4754,122 @@ export const patterns: Pattern[] = [
         ends = sorted(f[1] for f in flowers)
         return [bisect_right(starts, p) - bisect_left(ends, p) for p in people]`,
       },
+      {
+        id: 'bs-95',
+        title: 'Maximum Score From Removing Substrings',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-score-from-removing-substrings/',
+        description: 'Given a string s and integers x and y, return the maximum score from removing substrings "ab" (score x) and "ba" (score y) in any order.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumGain(self, s: str, x: int, y: int) -> int:
+        def remove(s, pair, score):
+            stack = []
+            total = 0
+            for c in s:
+                if stack and stack[-1] == pair[0] and c == pair[1]:
+                    stack.pop()
+                    total += score
+                else:
+                    stack.append(c)
+            return ''.join(stack), total
+        result = 0
+        if x > y:
+            s, points = remove(s, 'ab', x)
+            result += points
+            s, points = remove(s, 'ba', y)
+            result += points
+        else:
+            s, points = remove(s, 'ba', y)
+            result += points
+            s, points = remove(s, 'ab', x)
+            result += points
+        return result`,
+      },
+      {
+        id: 'bs-96',
+        title: 'Minimum Number of Moves to Seat Everyone',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/',
+        description: 'Given two integer arrays seats and students of equal length, return the minimum number of moves to seat every student. A move shifts a student by one position.',
+        language: 'python',
+        solution: `class Solution:
+    def minMovesToSeat(self, seats: List[int], students: List[int]) -> int:
+        seats.sort()
+        students.sort()
+        return sum(abs(s - t) for s, t in zip(seats, students))`,
+      },
+      {
+        id: 'bs-97',
+        title: 'Maximum Product of the Length of Two Palindromic Substrings',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-product-of-the-length-of-two-palindromic-substrings/',
+        description: 'Given a string s, return the maximum product of the lengths of two non-overlapping palindromic substrings of s where both have odd length.',
+        language: 'python',
+        solution: `class Solution:
+    def maxProduct(self, s: str) -> int:
+        n = len(s)
+        p = [0] * n
+        l = r = -1
+        for i in range(n):
+            k = 1 if i > r else min(p[l + r - i], r - i + 1)
+            while i - k >= 0 and i + k < n and s[i - k] == s[i + k]:
+                k += 1
+            p[i] = k - 1
+            if i + p[i] > r:
+                l, r = i - p[i], i + p[i]
+        left = [1] * n
+        cur = 1
+        for i in range(n):
+            cur = max(cur, 2 * p[i] + 1)
+            left[i] = cur
+        right = [1] * n
+        cur = 1
+        for i in range(n - 1, -1, -1):
+            cur = max(cur, 2 * p[i] + 1)
+            right[i] = cur
+        return max(left[i] * right[i + 1] for i in range(n - 1))`,
+      },
+      {
+        id: 'bs-98',
+        title: 'Maximum Profit From Stock With Cooldown',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/',
+        description: 'Given an array prices of stock prices, find the maximum profit with the restriction that after selling you must wait one day before buying again.',
+        language: 'python',
+        solution: `class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        hold = float('-inf')
+        sold = cool = 0
+        for price in prices:
+            prev_sold = sold
+            sold = hold + price
+            hold = max(hold, cool - price)
+            cool = max(cool, prev_sold)
+        return max(sold, cool)`,
+      },
+      {
+        id: 'bs-99',
+        title: 'Minimum Cost For Tickets',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-for-tickets/',
+        description: 'Given an array days of travel days and costs array of 1-day, 7-day, and 30-day passes, return the minimum cost to travel every day in the given list.',
+        language: 'python',
+        solution: `class Solution:
+    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
+        travel = set(days)
+        dp = [0] * 366
+        for i in range(1, 366):
+            if i not in travel:
+                dp[i] = dp[i - 1]
+            else:
+                dp[i] = min(
+                    dp[i - 1] + costs[0],
+                    dp[max(0, i - 7)] + costs[1],
+                    dp[max(0, i - 30)] + costs[2]
+                )
+        return dp[365]`,
+      },
     ]
   },
   {
