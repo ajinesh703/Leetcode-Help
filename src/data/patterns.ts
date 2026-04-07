@@ -4614,6 +4614,133 @@ export const patterns: Pattern[] = [
         return result`,
       },
       {
+        id: 'bs-90',
+        title: 'Maximum Elegance of a K-Length Subsequence',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-elegance-of-a-k-length-subsequence/',
+        description: 'Given a 2D array items where items[i] = [profit, category] and integer k, return the maximum elegance of a k-length subsequence. Elegance is total profit + distinct categories squared.',
+        language: 'python',
+        solution: `class Solution:
+    def findMaximumElegance(self, items: List[List[int]], k: int) -> int:
+        items.sort(key=lambda x: -x[0])
+        total_profit = 0
+        categories = set()
+        dup_profits = []
+        for i in range(k):
+            p, c = items[i]
+            total_profit += p
+            if c in categories:
+                dup_profits.append(p)
+            categories.add(c)
+        result = total_profit + len(categories) ** 2
+        for i in range(k, len(items)):
+            p, c = items[i]
+            if c not in categories and dup_profits:
+                total_profit -= dup_profits.pop()
+                total_profit += p
+                categories.add(c)
+                result = max(result, total_profit + len(categories) ** 2)
+        return result`,
+      },
+      {
+        id: 'bs-91',
+        title: 'Minimum Cost to Cut a Stick',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-cut-a-stick/',
+        description: 'Given a stick of length n and an array cuts, return the minimum total cost to perform all the cuts. The cost of a cut is the length of the stick being cut.',
+        language: 'python',
+        solution: `class Solution:
+    def minCost(self, n: int, cuts: List[int]) -> int:
+        cuts = sorted([0] + cuts + [n])
+        m = len(cuts)
+        dp = [[0] * m for _ in range(m)]
+        for diff in range(2, m):
+            for i in range(m - diff):
+                j = i + diff
+                dp[i][j] = float('inf')
+                for k in range(i + 1, j):
+                    dp[i][j] = min(dp[i][j], cuts[j] - cuts[i] + dp[i][k] + dp[k][j])
+        return dp[0][m - 1]`,
+      },
+      {
+        id: 'bs-92',
+        title: 'Maximum Number of Events That Can Be Attended II',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended-ii/',
+        description: 'Given a 2D array events where events[i] = [startDay, endDay, value] and integer k, return the maximum sum of values of at most k non-overlapping events.',
+        language: 'python',
+        solution: `class Solution:
+    def maxValue(self, events: List[List[int]], k: int) -> int:
+        from bisect import bisect_right
+        events.sort()
+        n = len(events)
+        starts = [e[0] for e in events]
+        from functools import lru_cache
+        @lru_cache(None)
+        def dp(i: int, rem: int) -> int:
+            if i == n or rem == 0:
+                return 0
+            skip = dp(i + 1, rem)
+            next_i = bisect_right(starts, events[i][1])
+            take = events[i][2] + dp(next_i, rem - 1)
+            return max(skip, take)
+        return dp(0, k)`,
+      },
+      {
+        id: 'bs-93',
+        title: 'Minimum Number of Work Sessions to Finish the Tasks',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-work-sessions-to-finish-the-tasks/',
+        description: 'Given an integer array tasks and integer sessionTime, return the minimum number of work sessions to finish all tasks. Each session lasts at most sessionTime.',
+        language: 'python',
+        solution: `class Solution:
+    def minSessions(self, tasks: List[int], sessionTime: int) -> int:
+        tasks.sort(reverse=True)
+        n = len(tasks)
+        def canFinish(k: int) -> bool:
+            sessions = [0] * k
+            def backtrack(idx):
+                if idx == n:
+                    return True
+                seen = set()
+                for i in range(k):
+                    if sessions[i] in seen:
+                        continue
+                    if sessions[i] + tasks[idx] <= sessionTime:
+                        seen.add(sessions[i])
+                        sessions[i] += tasks[idx]
+                        if backtrack(idx + 1):
+                            return True
+                        sessions[i] -= tasks[idx]
+                return False
+            return backtrack(0)
+        left, right = 1, n
+        while left < right:
+            mid = (left + right) // 2
+            if canFinish(mid):
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
+      {
+        id: 'bs-94',
+        title: 'Maximum Number of Consecutive Values You Can Make',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-consecutive-values-you-can-make/',
+        description: 'Given an integer array coins of distinct values, return the maximum number of consecutive integer values starting from 0 that you can make using any combination of coins.',
+        language: 'python',
+        solution: `class Solution:
+    def getMaximumConsecutive(self, coins: List[int]) -> int:
+        coins.sort()
+        result = 0
+        for coin in coins:
+            if coin > result + 1:
+                break
+            result += coin
+        return result + 1`,
+      },
+      {
         id: 'bs-89',
         title: 'Number of Flowers in Full Bloom',
         difficulty: 'Hard',
