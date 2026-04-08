@@ -5481,6 +5481,270 @@ export const patterns: Pattern[] = [
 
         return dummy.next`
       },
+      {
+        id: 'fsp-26',
+        title: 'Reverse Linked List',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/reverse-linked-list/',
+        description: 'Given the head of a singly linked list, reverse the list and return the reversed list.',
+        language: 'python',
+        solution: `class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow, prev = head, None
+        while slow:
+            slow.next, prev, slow = prev, slow, slow.next
+        return prev`,
+      },
+      {
+        id: 'fsp-27',
+        title: 'Add Two Numbers',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/add-two-numbers/',
+        description: 'Given two non-empty linked lists representing two non-negative integers stored in reverse order, add the two numbers and return the sum as a linked list.',
+        language: 'python',
+        solution: `class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0)
+        slow, carry = dummy, 0
+        while l1 or l2 or carry:
+            val = carry
+            if l1:
+                val += l1.val
+                l1 = l1.next
+            if l2:
+                val += l2.val
+                l2 = l2.next
+            carry, val = divmod(val, 10)
+            slow.next = ListNode(val)
+            slow = slow.next
+        return dummy.next`,
+      },
+      {
+        id: 'fsp-28',
+        title: 'Add Two Numbers II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/add-two-numbers-ii/',
+        description: 'Given two non-empty linked lists representing non-negative integers stored in forward order, add the two numbers and return the sum as a linked list.',
+        language: 'python',
+        solution: `class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        s1, s2 = [], []
+        while l1:
+            s1.append(l1.val)
+            l1 = l1.next
+        while l2:
+            s2.append(l2.val)
+            l2 = l2.next
+        carry = 0
+        head = None
+        while s1 or s2 or carry:
+            val = carry
+            if s1: val += s1.pop()
+            if s2: val += s2.pop()
+            carry, val = divmod(val, 10)
+            node = ListNode(val)
+            node.next = head
+            head = node
+        return head`,
+      },
+      {
+        id: 'fsp-29',
+        title: 'Copy List with Random Pointer',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/copy-list-with-random-pointer/',
+        description: 'Given a linked list where each node has a next and random pointer, construct a deep copy of the list.',
+        language: 'python',
+        solution: `class Solution:
+    def copyRandomList(self, head: Optional[Node]) -> Optional[Node]:
+        if not head:
+            return None
+        old_to_new = {}
+        slow = head
+        while slow:
+            old_to_new[slow] = Node(slow.val)
+            slow = slow.next
+        slow = head
+        while slow:
+            if slow.next:
+                old_to_new[slow].next = old_to_new[slow.next]
+            if slow.random:
+                old_to_new[slow].random = old_to_new[slow.random]
+            slow = slow.next
+        return old_to_new[head]`,
+      },
+      {
+        id: 'fsp-30',
+        title: 'LRU Cache',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/lru-cache/',
+        description: 'Design a data structure that follows the Least Recently Used cache constraint with O(1) get and put operations.',
+        language: 'python',
+        solution: `class LRUCache:
+    def __init__(self, capacity: int):
+        from collections import OrderedDict
+        self.cache = OrderedDict()
+        self.cap = capacity
+
+    def get(self, key: int) -> int:
+        if key not in self.cache:
+            return -1
+        self.cache.move_to_end(key)
+        return self.cache[key]
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.cache.move_to_end(key)
+        self.cache[key] = value
+        if len(self.cache) > self.cap:
+            self.cache.popitem(last=False)`,
+      },
+      {
+        id: 'fsp-31',
+        title: 'Merge Two Sorted Lists',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/merge-two-sorted-lists/',
+        description: 'Given the heads of two sorted linked lists, merge them into one sorted linked list and return its head.',
+        language: 'python',
+        solution: `class Solution:
+    def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0)
+        slow = dummy
+        while l1 and l2:
+            if l1.val <= l2.val:
+                slow.next, l1 = l1, l1.next
+            else:
+                slow.next, l2 = l2, l2.next
+            slow = slow.next
+        slow.next = l1 or l2
+        return dummy.next`,
+      },
+      {
+        id: 'fsp-32',
+        title: 'Merge K Sorted Lists',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/merge-k-sorted-lists/',
+        description: 'Given an array of k linked lists, each sorted in ascending order, merge all the linked lists into one sorted linked list and return its head.',
+        language: 'python',
+        solution: `class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        import heapq
+        dummy = ListNode(0)
+        slow = dummy
+        heap = []
+        for i, node in enumerate(lists):
+            if node:
+                heapq.heappush(heap, (node.val, i, node))
+        while heap:
+            val, i, node = heapq.heappop(heap)
+            slow.next = node
+            slow = slow.next
+            if node.next:
+                heapq.heappush(heap, (node.next.val, i, node.next))
+        return dummy.next`,
+      },
+      {
+        id: 'fsp-33',
+        title: 'Reverse Nodes in Even Length Groups',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/reverse-nodes-in-even-length-groups/',
+        description: 'Given the head of a linked list, reverse the nodes in each group of even length and return the modified list.',
+        language: 'python',
+        solution: `class Solution:
+    def reverseEvenLengthGroups(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow = head
+        group = 2
+        while slow.next:
+            fast = slow
+            count = 0
+            while fast.next and count < group:
+                fast = fast.next
+                count += 1
+            if count % 2 == 0:
+                cur = slow.next
+                prev = None
+                for _ in range(count):
+                    cur.next, prev, cur = prev, cur, cur.next
+                slow.next.next = cur
+                slow.next = prev
+            slow = fast
+            group += 1
+        return head`,
+      },
+      {
+        id: 'fsp-34',
+        title: 'Design Linked List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/design-linked-list/',
+        description: 'Design your implementation of a linked list with get, addAtHead, addAtTail, addAtIndex, and deleteAtIndex operations.',
+        language: 'python',
+        solution: `class MyLinkedList:
+    def __init__(self):
+        self.dummy = ListNode(0)
+        self.size = 0
+
+    def get(self, index: int) -> int:
+        if index >= self.size:
+            return -1
+        slow = self.dummy.next
+        for _ in range(index):
+            slow = slow.next
+        return slow.val
+
+    def addAtHead(self, val: int) -> None:
+        node = ListNode(val, self.dummy.next)
+        self.dummy.next = node
+        self.size += 1
+
+    def addAtTail(self, val: int) -> None:
+        slow = self.dummy
+        while slow.next:
+            slow = slow.next
+        slow.next = ListNode(val)
+        self.size += 1
+
+    def addAtIndex(self, index: int, val: int) -> None:
+        if index > self.size:
+            return
+        slow = self.dummy
+        for _ in range(index):
+            slow = slow.next
+        slow.next = ListNode(val, slow.next)
+        self.size += 1
+
+    def deleteAtIndex(self, index: int) -> None:
+        if index >= self.size:
+            return
+        slow = self.dummy
+        for _ in range(index):
+            slow = slow.next
+        slow.next = slow.next.next
+        self.size -= 1`,
+      },
+      {
+        id: 'fsp-35',
+        title: 'Partition List',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/partition-list/',
+        description: 'Given the head of a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x while preserving the original relative order.',
+        language: 'python',
+        solution: `class Solution:
+    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:
+        less_dummy = ListNode(0)
+        greater_dummy = ListNode(0)
+        slow, fast = less_dummy, greater_dummy
+        curr = head
+        while curr:
+            if curr.val < x:
+                slow.next = curr
+                slow = slow.next
+            else:
+                fast.next = curr
+                fast = fast.next
+            curr = curr.next
+        fast.next = None
+        slow.next = greater_dummy.next
+        return less_dummy.next`,
+      },
     ]
   },
   {
