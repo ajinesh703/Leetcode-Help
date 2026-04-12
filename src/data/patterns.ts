@@ -842,6 +842,28 @@ export const patterns: Pattern[] = [
                (i % 2 == 0 and nums[i] > nums[i - 1]):
                 nums[i], nums[i - 1] = nums[i - 1], nums[i]`,
       },
+      {
+        id: 'tp-41',
+        title: 'Minimum Number of Swaps to Make the String Balanced',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/',
+        description: 'Given a 0-indexed string s of even length consisting of [ and ] brackets, return the minimum number of swaps to make the string balanced.',
+        language: 'python',
+        solution: `class Solution:
+    def minSwaps(self, s: str) -> int:
+        left, right = 0, len(s) - 1
+        unmatched = 0
+        swaps = 0
+        while left < right:
+            if s[left] == ']':
+                while left < right and s[right] == ']':
+                    right -= 1
+                if left < right:
+                    swaps += 1
+                    right -= 1
+            left += 1
+        return swaps`,
+      },
     ]
   },
   {
