@@ -864,6 +864,28 @@ export const patterns: Pattern[] = [
             left += 1
         return swaps`,
       },
+      {
+        id: 'tp-42',
+        title: 'Interval List Intersections',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/interval-list-intersections/',
+        description: 'Given two lists of closed intervals firstList and secondList, each list of intervals is pairwise disjoint and in sorted order. Return the intersection of these two interval lists.',
+        language: 'python',
+        solution: `class Solution:
+    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+        left, right = 0, 0
+        result = []
+        while left < len(firstList) and right < len(secondList):
+            lo = max(firstList[left][0], secondList[right][0])
+            hi = min(firstList[left][1], secondList[right][1])
+            if lo <= hi:
+                result.append([lo, hi])
+            if firstList[left][1] < secondList[right][1]:
+                left += 1
+            else:
+                right += 1
+        return result`,
+      },
     ]
   },
   {
