@@ -886,6 +886,25 @@ export const patterns: Pattern[] = [
                 right += 1
         return result`,
       },
+      {
+        id: 'tp-43',
+        title: 'Minimum Common Value',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-common-value/',
+        description: 'Given two integer arrays nums1 and nums2, sorted in non-decreasing order, return the minimum integer common to both arrays. If no common integer exists, return -1.',
+        language: 'python',
+        solution: `class Solution:
+    def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
+        left, right = 0, 0
+        while left < len(nums1) and right < len(nums2):
+            if nums1[left] == nums2[right]:
+                return nums1[left]
+            elif nums1[left] < nums2[right]:
+                left += 1
+            else:
+                right += 1
+        return -1`,
+      },
     ]
   },
   {
