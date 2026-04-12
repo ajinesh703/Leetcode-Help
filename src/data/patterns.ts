@@ -972,6 +972,27 @@ export const patterns: Pattern[] = [
             result += right - left + 1 if nums[right] == 0 else 0
         return result`,
       },
+      {
+        id: 'tp-47',
+        title: 'Maximum Sum of Two Non-Overlapping Subarrays',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/',
+        description: 'Given an integer array nums and two integers firstLen and secondLen, return the maximum sum of elements in two non-overlapping subarrays with lengths firstLen and secondLen.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSumTwoNoOverlap(self, nums: List[int], firstLen: int, secondLen: int) -> int:
+        def solve(L: int, M: int) -> int:
+            n = len(nums)
+            prefix = [0] * (n + 1)
+            for i in range(n):
+                prefix[i + 1] = prefix[i] + nums[i]
+            result = max_L = 0
+            for i in range(L + M, n + 1):
+                max_L = max(max_L, prefix[i - M] - prefix[i - M - L])
+                result = max(result, max_L + prefix[i] - prefix[i - M])
+            return result
+        return max(solve(firstLen, secondLen), solve(secondLen, firstLen))`,
+      },
     ]
   },
   {
