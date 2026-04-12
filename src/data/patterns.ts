@@ -1207,6 +1207,26 @@ export const patterns: Pattern[] = [
             right -= 1
         return ''.join(s)`,
       },
+      {
+        id: 'tp-57',
+        title: 'Array With Elements Not Equal to Average of Neighbors',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/array-with-elements-not-equal-to-average-of-neighbors/',
+        description: 'Given a 0-indexed array nums of distinct integers, rearrange the elements so that no element is equal to the average of its neighbors.',
+        language: 'python',
+        solution: `class Solution:
+    def rearrangeArray(self, nums: List[int]) -> List[int]:
+        nums.sort()
+        left, right = 0, len(nums) - 1
+        result = []
+        while left <= right:
+            result.append(nums[left])
+            if left != right:
+                result.append(nums[right])
+            left += 1
+            right -= 1
+        return result`,
+      },
     ]
   },
   {
