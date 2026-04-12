@@ -1076,6 +1076,25 @@ export const patterns: Pattern[] = [
             result[i] = min(result[i], abs(i - right))
         return result`,
       },
+      {
+        id: 'tp-51',
+        title: 'Partition Labels',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/partition-labels/',
+        description: 'Given a string s, partition it into as many parts as possible so that each letter appears in at most one part. Return a list of integers representing the size of these parts.',
+        language: 'python',
+        solution: `class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        last = {c: i for i, c in enumerate(s)}
+        left = right = 0
+        result = []
+        for i, c in enumerate(s):
+            right = max(right, last[c])
+            if i == right:
+                result.append(right - left + 1)
+                left = right + 1
+        return result`,
+      },
     ]
   },
   {
