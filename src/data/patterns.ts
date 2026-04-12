@@ -1053,6 +1053,29 @@ export const patterns: Pattern[] = [
         result.append(word2[right:])
         return ''.join(result)`,
       },
+      {
+        id: 'tp-50',
+        title: 'Shortest Distance to a Character',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-distance-to-a-character/',
+        description: 'Given a string s and a character c, return an array of integers representing the shortest distance from each index in s to the character c.',
+        language: 'python',
+        solution: `class Solution:
+    def shortestToChar(self, s: str, c: str) -> List[int]:
+        n = len(s)
+        result = [n] * n
+        left = -n
+        for i in range(n):
+            if s[i] == c:
+                left = i
+            result[i] = min(result[i], abs(i - left))
+        right = 2 * n
+        for i in range(n - 1, -1, -1):
+            if s[i] == c:
+                right = i
+            result[i] = min(result[i], abs(i - right))
+        return result`,
+      },
     ]
   },
   {
