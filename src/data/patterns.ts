@@ -1031,6 +1031,28 @@ export const patterns: Pattern[] = [
             j -= 1
         return True`,
       },
+      {
+        id: 'tp-49',
+        title: 'Largest Merge Of Two Strings',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/largest-merge-of-two-strings/',
+        description: 'Given two strings word1 and word2, construct the largest merge by repeatedly choosing the lexicographically larger first character from either string.',
+        language: 'python',
+        solution: `class Solution:
+    def largestMerge(self, word1: str, word2: str) -> str:
+        left, right = 0, 0
+        result = []
+        while left < len(word1) and right < len(word2):
+            if word1[left:] >= word2[right:]:
+                result.append(word1[left])
+                left += 1
+            else:
+                result.append(word2[right])
+                right += 1
+        result.append(word1[left:])
+        result.append(word2[right:])
+        return ''.join(result)`,
+      },
     ]
   },
   {
