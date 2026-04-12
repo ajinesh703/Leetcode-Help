@@ -1121,6 +1121,31 @@ export const patterns: Pattern[] = [
             return i == len(s) and j == len(w)
         return sum(isStretchy(s, w) for w in words)`,
       },
+      {
+        id: 'tp-53',
+        title: 'Find the Closest Palindrome',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-closest-palindrome/',
+        description: 'Given a string n representing an integer, return the closest integer that is a palindrome. If there is a tie, return the smaller one.',
+        language: 'python',
+        solution: `class Solution:
+    def nearestPalindromic(self, n: str) -> str:
+        length = len(n)
+        candidates = set()
+        candidates.add('9' * (length - 1))
+        candidates.add('1' + '0' * (length - 1) + '1')
+        prefix = int(n[:(length + 1) // 2])
+        for diff in [-1, 0, 1]:
+            p = str(prefix + diff)
+            if length % 2 == 0:
+                candidate = p + p[::-1]
+            else:
+                candidate = p + p[-2::-1]
+            candidates.add(candidate)
+        candidates.discard(n)
+        num = int(n)
+        return min(candidates, key=lambda x: (abs(int(x) - num), int(x)))`,
+      },
     ]
   },
   {
