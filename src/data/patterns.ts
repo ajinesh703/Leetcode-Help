@@ -929,6 +929,33 @@ export const patterns: Pattern[] = [
                 right += 1
         return result`,
       },
+      {
+        id: 'tp-45',
+        title: 'Push Dominoes',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/push-dominoes/',
+        description: 'Given a string dominoes representing the initial state of dominoes (L, R, or .), return the final state after all dominoes have fallen.',
+        language: 'python',
+        solution: `class Solution:
+    def pushDominoes(self, dominoes: str) -> str:
+        s = 'L' + dominoes + 'R'
+        result = []
+        left = 0
+        for right in range(1, len(s)):
+            if s[right] == '.':
+                continue
+            gap = right - left - 1
+            if left > 0:
+                result.append(s[left])
+            if s[left] == s[right]:
+                result.append(s[left] * gap)
+            elif s[left] == 'L' and s[right] == 'R':
+                result.append('.' * gap)
+            else:
+                result.append('R' * (gap // 2) + ('.' if gap % 2 else '') + 'L' * (gap // 2))
+            left = right
+        return ''.join(result)`,
+      },
     ]
   },
   {
