@@ -956,6 +956,22 @@ export const patterns: Pattern[] = [
             left = right
         return ''.join(result)`,
       },
+      {
+        id: 'tp-46',
+        title: 'Number of Zero-Filled Subarrays',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-zero-filled-subarrays/',
+        description: 'Given an integer array nums, return the number of subarrays filled with 0.',
+        language: 'python',
+        solution: `class Solution:
+    def zeroFilledSubarray(self, nums: List[int]) -> int:
+        left = result = 0
+        for right in range(len(nums)):
+            if nums[right] != 0:
+                left = right + 1
+            result += right - left + 1 if nums[right] == 0 else 0
+        return result`,
+      },
     ]
   },
   {
