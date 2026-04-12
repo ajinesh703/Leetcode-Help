@@ -457,6 +457,216 @@ export const patterns: Pattern[] = [
         result = max(result, n - 1 - left)
         return result`,
       },
+      {
+        id: 'tp-21',
+        title: 'Largest Container',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/container-with-most-water/',
+        description: 'Given n non-negative integers representing vertical lines at positions 0 to n-1, find two lines that together with the x-axis forms a container holding the most water.',
+        language: 'python',
+        solution: `class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        result = 0
+        while left < right:
+            area = min(height[left], height[right]) * (right - left)
+            result = max(result, area)
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return result`,
+      },
+      {
+        id: 'tp-22',
+        title: '3Sum Closest',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/3sum-closest/',
+        description: 'Given an integer array nums and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers.',
+        language: 'python',
+        solution: `class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        closest = float('inf')
+        for i in range(len(nums) - 2):
+            left, right = i + 1, len(nums) - 1
+            while left < right:
+                total = nums[i] + nums[left] + nums[right]
+                if abs(total - target) < abs(closest - target):
+                    closest = total
+                if total < target:
+                    left += 1
+                elif total > target:
+                    right -= 1
+                else:
+                    return total
+        return closest`,
+      },
+      {
+        id: 'tp-23',
+        title: 'Bag of Tokens',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/bag-of-tokens/',
+        description: 'Given an array tokens and integer power, maximize your score by playing tokens face-up (spend power, gain score) or face-down (spend score, gain power).',
+        language: 'python',
+        solution: `class Solution:
+    def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
+        tokens.sort()
+        left, right = 0, len(tokens) - 1
+        score = result = 0
+        while left <= right:
+            if power >= tokens[left]:
+                power -= tokens[left]
+                score += 1
+                left += 1
+                result = max(result, score)
+            elif score > 0:
+                power += tokens[right]
+                score -= 1
+                right -= 1
+            else:
+                break
+        return result`,
+      },
+      {
+        id: 'tp-24',
+        title: 'Sum of Square Numbers',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/sum-of-square-numbers/',
+        description: 'Given a non-negative integer c, decide whether there are two integers a and b such that a^2 + b^2 = c.',
+        language: 'python',
+        solution: `class Solution:
+    def judgeSquareSum(self, c: int) -> bool:
+        import math
+        left, right = 0, int(math.sqrt(c))
+        while left <= right:
+            total = left * left + right * right
+            if total == c:
+                return True
+            elif total < c:
+                left += 1
+            else:
+                right -= 1
+        return False`,
+      },
+      {
+        id: 'tp-25',
+        title: 'Count Pairs Whose Sum is Less than Target',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/',
+        description: 'Given an integer array nums and integer target, return the number of pairs (i, j) where i < j and nums[i] + nums[j] < target.',
+        language: 'python',
+        solution: `class Solution:
+    def countPairs(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        left, right = 0, len(nums) - 1
+        result = 0
+        while left < right:
+            if nums[left] + nums[right] < target:
+                result += right - left
+                left += 1
+            else:
+                right -= 1
+        return result`,
+      },
+      {
+        id: 'tp-26',
+        title: 'Minimize Maximum Pair Sum in Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/',
+        description: 'Given an array nums of even length n, pair up the elements and return the minimized maximum pair sum.',
+        language: 'python',
+        solution: `class Solution:
+    def minPairSum(self, nums: List[int]) -> int:
+        nums.sort()
+        left, right = 0, len(nums) - 1
+        result = 0
+        while left < right:
+            result = max(result, nums[left] + nums[right])
+            left += 1
+            right -= 1
+        return result`,
+      },
+      {
+        id: 'tp-27',
+        title: 'Find K Closest Elements',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-k-closest-elements/',
+        description: 'Given a sorted integer array arr, two integers k and x, return the k closest integers to x in the array sorted in ascending order.',
+        language: 'python',
+        solution: `class Solution:
+    def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        left, right = 0, len(arr) - k
+        while left < right:
+            mid = (left + right) // 2
+            if x - arr[mid] > arr[mid + k] - x:
+                left = mid + 1
+            else:
+                right = mid
+        return arr[left:left + k]`,
+      },
+      {
+        id: 'tp-28',
+        title: 'Assign Cookies',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/assign-cookies/',
+        description: 'Given arrays g (greed factors of children) and s (cookie sizes), return the maximum number of content children. A child is content if their greed factor is at most the cookie size.',
+        language: 'python',
+        solution: `class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        g.sort()
+        s.sort()
+        child = cookie = 0
+        while child < len(g) and cookie < len(s):
+            if s[cookie] >= g[child]:
+                child += 1
+            cookie += 1
+        return child`,
+      },
+      {
+        id: 'tp-29',
+        title: 'Merge Sorted Array',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/merge-sorted-array/',
+        description: 'Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array in-place.',
+        language: 'python',
+        solution: `class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        left, right = m - 1, n - 1
+        pos = m + n - 1
+        while left >= 0 and right >= 0:
+            if nums1[left] > nums2[right]:
+                nums1[pos] = nums1[left]
+                left -= 1
+            else:
+                nums1[pos] = nums2[right]
+                right -= 1
+            pos -= 1
+        while right >= 0:
+            nums1[pos] = nums2[right]
+            right -= 1
+            pos -= 1`,
+      },
+      {
+        id: 'tp-30',
+        title: 'Long Pressed Name',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/long-pressed-name/',
+        description: 'Given strings name and typed, return true if typed is a long-pressed version of name, where some characters may be repeated.',
+        language: 'python',
+        solution: `class Solution:
+    def isLongPressedName(self, name: str, typed: str) -> bool:
+        i = j = 0
+        while j < len(typed):
+            if i < len(name) and name[i] == typed[j]:
+                i += 1
+                j += 1
+            elif j > 0 and typed[j] == typed[j - 1]:
+                j += 1
+            else:
+                return False
+        return i == len(name)`,
+      },
     ]
   },
   {
