@@ -1146,6 +1146,24 @@ export const patterns: Pattern[] = [
         num = int(n)
         return min(candidates, key=lambda x: (abs(int(x) - num), int(x)))`,
       },
+      {
+        id: 'tp-54',
+        title: 'Missing Ranges',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/missing-ranges/',
+        description: 'Given a sorted integer array nums and two integers lower and upper, return the shortest list of ranges that exactly covers all the missing numbers in the range [lower, upper].',
+        language: 'python',
+        solution: `class Solution:
+    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[List[int]]:
+        result = []
+        left = lower
+        for i in range(len(nums) + 1):
+            right = nums[i] if i < len(nums) else upper + 1
+            if left < right:
+                result.append([left, right - 1])
+            left = right + 1
+        return result`,
+      },
     ]
   },
   {
