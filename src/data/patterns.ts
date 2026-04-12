@@ -905,6 +905,30 @@ export const patterns: Pattern[] = [
                 right += 1
         return -1`,
       },
+      {
+        id: 'tp-44',
+        title: 'Intersection of Two Arrays II',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/intersection-of-two-arrays-ii/',
+        description: 'Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays.',
+        language: 'python',
+        solution: `class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        nums1.sort()
+        nums2.sort()
+        left, right = 0, 0
+        result = []
+        while left < len(nums1) and right < len(nums2):
+            if nums1[left] == nums2[right]:
+                result.append(nums1[left])
+                left += 1
+                right += 1
+            elif nums1[left] < nums2[right]:
+                left += 1
+            else:
+                right += 1
+        return result`,
+      },
     ]
   },
   {
