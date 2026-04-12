@@ -330,6 +330,133 @@ export const patterns: Pattern[] = [
             right += 1
         return right - left + 1`
       },
+      {
+        id: 'tp-16',
+        title: 'Valid Palindrome II',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/valid-palindrome-ii/',
+        description: 'Given a string s, return true if the string can be a palindrome after deleting at most one character from it.',
+        language: 'python',
+        solution: `class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        def isPalin(l, r):
+            while l < r:
+                if s[l] != s[r]:
+                    return False
+                l += 1
+                r -= 1
+            return True
+        left, right = 0, len(s) - 1
+        while left < right:
+            if s[left] != s[right]:
+                return isPalin(left + 1, right) or isPalin(left, right - 1)
+            left += 1
+            right -= 1
+        return True`,
+      },
+      {
+        id: 'tp-17',
+        title: 'Backspace String Compare',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/backspace-string-compare/',
+        description: 'Given two strings s and t, return true if they are equal when both are typed into empty text editors. # means a backspace character.',
+        language: 'python',
+        solution: `class Solution:
+    def backspaceCompare(self, s: str, t: str) -> bool:
+        i, j = len(s) - 1, len(t) - 1
+        skip_s = skip_t = 0
+        while i >= 0 or j >= 0:
+            while i >= 0:
+                if s[i] == '#':
+                    skip_s += 1
+                    i -= 1
+                elif skip_s > 0:
+                    skip_s -= 1
+                    i -= 1
+                else:
+                    break
+            while j >= 0:
+                if t[j] == '#':
+                    skip_t += 1
+                    j -= 1
+                elif skip_t > 0:
+                    skip_t -= 1
+                    j -= 1
+                else:
+                    break
+            if i >= 0 and j >= 0 and s[i] != t[j]:
+                return False
+            if (i >= 0) != (j >= 0):
+                return False
+            i -= 1
+            j -= 1
+        return True`,
+      },
+      {
+        id: 'tp-18',
+        title: 'Number of Subsequences That Satisfy the Given Sum Condition',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/',
+        description: 'Given an integer array nums and an integer target, return the number of non-empty subsequences of nums such that the sum of the minimum and maximum element is less than or equal to target.',
+        language: 'python',
+        solution: `class Solution:
+    def numSubseq(self, nums: List[int], target: int) -> int:
+        MOD = 10**9 + 7
+        nums.sort()
+        n = len(nums)
+        power = [1] * n
+        for i in range(1, n):
+            power[i] = power[i - 1] * 2 % MOD
+        left, right = 0, n - 1
+        result = 0
+        while left <= right:
+            if nums[left] + nums[right] <= target:
+                result = (result + power[right - left]) % MOD
+                left += 1
+            else:
+                right -= 1
+        return result`,
+      },
+      {
+        id: 'tp-19',
+        title: 'Minimum Length of String After Deleting Similar Ends',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/',
+        description: 'Given a string s, repeatedly delete the longest prefix and suffix that share the same character. Return the minimum length of the remaining string.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumLength(self, s: str) -> int:
+        left, right = 0, len(s) - 1
+        while left < right and s[left] == s[right]:
+            ch = s[left]
+            while left <= right and s[left] == ch:
+                left += 1
+            while left <= right and s[right] == ch:
+                right -= 1
+        return right - left + 1`,
+      },
+      {
+        id: 'tp-20',
+        title: 'Maximize Distance to Closest Person',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximize-distance-to-closest-person/',
+        description: 'Given a binary array seats where 1 represents a person sitting and 0 represents an empty seat, return the maximum distance to the closest person if you sit in an empty seat.',
+        language: 'python',
+        solution: `class Solution:
+    def maxDistToClosest(self, seats: List[int]) -> int:
+        left = -1
+        result = 0
+        n = len(seats)
+        for right in range(n):
+            if seats[right] == 1:
+                if left == -1:
+                    result = right
+                else:
+                    result = max(result, (right - left) // 2)
+                left = right
+        result = max(result, n - 1 - left)
+        return result`,
+      },
     ]
   },
   {
