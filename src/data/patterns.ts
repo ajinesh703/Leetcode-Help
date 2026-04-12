@@ -1186,6 +1186,27 @@ export const patterns: Pattern[] = [
                     result += 1
         return result`,
       },
+      {
+        id: 'tp-56',
+        title: 'Reverse Only Letters',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/reverse-only-letters/',
+        description: 'Given a string s, reverse the string according to the following rules: all characters that are not English letters remain in the same position, and all English letters reverse their positions.',
+        language: 'python',
+        solution: `class Solution:
+    def reverseOnlyLetters(self, s: str) -> str:
+        s = list(s)
+        left, right = 0, len(s) - 1
+        while left < right:
+            while left < right and not s[left].isalpha():
+                left += 1
+            while left < right and not s[right].isalpha():
+                right -= 1
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
+        return ''.join(s)`,
+      },
     ]
   },
   {
