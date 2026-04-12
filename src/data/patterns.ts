@@ -1312,6 +1312,47 @@ export const patterns: Pattern[] = [
                 right -= 1
         return ''.join(s)`,
       },
+      {
+        id: 'tp-62',
+        title: 'Three Way Partition',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/sort-colors/',
+        description: 'Given an array nums and a value pivot, partition the array into three sections: elements less than pivot, elements equal to pivot, and elements greater than pivot using Dutch National Flag algorithm.',
+        language: 'python',
+        solution: `class Solution:
+    def threeWayPartition(self, nums: List[int], pivot: int) -> List[int]:
+        low, mid, high = 0, 0, len(nums) - 1
+        while mid <= high:
+            if nums[mid] < pivot:
+                nums[low], nums[mid] = nums[mid], nums[low]
+                low += 1
+                mid += 1
+            elif nums[mid] == pivot:
+                mid += 1
+            else:
+                nums[mid], nums[high] = nums[high], nums[mid]
+                high -= 1
+        return nums`,
+      },
+      {
+        id: 'tp-63',
+        title: 'Palindrome II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/valid-palindrome-iii/',
+        description: 'Given a string s and an integer k, return true if s is a k-palindrome. A k-palindrome transforms into a palindrome by removing at most k characters.',
+        language: 'python',
+        solution: `class Solution:
+    def isValidPalindrome(self, s: str, k: int) -> bool:
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n - 2, -1, -1):
+            for j in range(i + 1, n):
+                if s[i] == s[j]:
+                    dp[i][j] = dp[i + 1][j - 1]
+                else:
+                    dp[i][j] = min(dp[i + 1][j], dp[i][j - 1]) + 1
+        return dp[0][n - 1] <= k`,
+      },
     ]
   },
   {
