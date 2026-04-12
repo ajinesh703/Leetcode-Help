@@ -1227,6 +1227,49 @@ export const patterns: Pattern[] = [
             right -= 1
         return result`,
       },
+      {
+        id: 'tp-58',
+        title: 'Sort Array By Parity',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/sort-array-by-parity/',
+        description: 'Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers. Return any array that satisfies this condition.',
+        language: 'python',
+        solution: `class Solution:
+    def sortArrayByParity(self, nums: List[int]) -> List[int]:
+        left, right = 0, len(nums) - 1
+        while left < right:
+            while left < right and nums[left] % 2 == 0:
+                left += 1
+            while left < right and nums[right] % 2 == 1:
+                right -= 1
+            if left < right:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+                right -= 1
+        return nums`,
+      },
+      {
+        id: 'tp-59',
+        title: 'Sort Array By Parity II',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/sort-array-by-parity-ii/',
+        description: 'Given an array nums of integers where half are odd and half are even, sort the array so that whenever nums[i] is odd, i is odd, and whenever nums[i] is even, i is even.',
+        language: 'python',
+        solution: `class Solution:
+    def sortArrayByParityII(self, nums: List[int]) -> List[int]:
+        left, right = 0, 1
+        n = len(nums)
+        while left < n and right < n:
+            while left < n and nums[left] % 2 == 0:
+                left += 2
+            while right < n and nums[right] % 2 == 1:
+                right += 2
+            if left < n and right < n:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 2
+                right += 2
+        return nums`,
+      },
     ]
   },
   {
