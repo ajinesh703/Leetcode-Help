@@ -1270,6 +1270,48 @@ export const patterns: Pattern[] = [
                 right += 2
         return nums`,
       },
+      {
+        id: 'tp-60',
+        title: 'Flipping an Image',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/flipping-an-image/',
+        description: 'Given an n x n binary matrix image, flip the image horizontally, then invert it, and return the resulting image.',
+        language: 'python',
+        solution: `class Solution:
+    def flipAndInvertImage(self, image: List[List[int]]) -> List[List[int]]:
+        for row in image:
+            left, right = 0, len(row) - 1
+            while left <= right:
+                if row[left] == row[right]:
+                    row[left] ^= 1
+                    row[right] ^= 1
+                left += 1
+                right -= 1
+        return image`,
+      },
+      {
+        id: 'tp-61',
+        title: 'Reverse Vowels of a String',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/reverse-vowels-of-a-string/',
+        description: 'Given a string s, reverse only all the vowels in the string and return it.',
+        language: 'python',
+        solution: `class Solution:
+    def reverseVowels(self, s: str) -> str:
+        vowels = set('aeiouAEIOU')
+        s = list(s)
+        left, right = 0, len(s) - 1
+        while left < right:
+            while left < right and s[left] not in vowels:
+                left += 1
+            while left < right and s[right] not in vowels:
+                right -= 1
+            if left < right:
+                s[left], s[right] = s[right], s[left]
+                left += 1
+                right -= 1
+        return ''.join(s)`,
+      },
     ]
   },
   {
