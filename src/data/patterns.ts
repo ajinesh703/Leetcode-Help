@@ -667,6 +667,181 @@ export const patterns: Pattern[] = [
                 return False
         return i == len(name)`,
       },
+      {
+        id: 'tp-31',
+        title: 'Remove Duplicates from Sorted Array II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/',
+        description: 'Given an integer array nums sorted in non-decreasing order, remove duplicates in-place such that each unique element appears at most twice. Return the number of elements.',
+        language: 'python',
+        solution: `class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        slow = 0
+        for fast in range(len(nums)):
+            if slow < 2 or nums[fast] != nums[slow - 2]:
+                nums[slow] = nums[fast]
+                slow += 1
+        return slow`,
+      },
+      {
+        id: 'tp-32',
+        title: 'Remove Element',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/remove-element/',
+        description: 'Given an integer array nums and an integer val, remove all occurrences of val in-place. Return the number of elements not equal to val.',
+        language: 'python',
+        solution: `class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        slow = 0
+        for fast in range(len(nums)):
+            if nums[fast] != val:
+                nums[slow] = nums[fast]
+                slow += 1
+        return slow`,
+      },
+      {
+        id: 'tp-33',
+        title: 'Rotate Array',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/rotate-array/',
+        description: 'Given an integer array nums, rotate the array to the right by k steps in-place.',
+        language: 'python',
+        solution: `class Solution:
+    def rotate(self, nums: List[int], k: int) -> None:
+        def reverse(left, right):
+            while left < right:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+                right -= 1
+        n = len(nums)
+        k %= n
+        reverse(0, n - 1)
+        reverse(0, k - 1)
+        reverse(k, n - 1)`,
+      },
+      {
+        id: 'tp-34',
+        title: 'Is Subsequence',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/is-subsequence/',
+        description: 'Given two strings s and t, return true if s is a subsequence of t, or false otherwise.',
+        language: 'python',
+        solution: `class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        i = j = 0
+        while i < len(s) and j < len(t):
+            if s[i] == t[j]:
+                i += 1
+            j += 1
+        return i == len(s)`,
+      },
+      {
+        id: 'tp-35',
+        title: 'Sentence Similarity III',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/sentence-similarity-iii/',
+        description: 'Given two sentences sentence1 and sentence2, return true if one sentence can be inserted into the other to make them equal.',
+        language: 'python',
+        solution: `class Solution:
+    def areSentencesSimilar(self, sentence1: str, sentence2: str) -> bool:
+        w1, w2 = sentence1.split(), sentence2.split()
+        l1, l2 = len(w1), len(w2)
+        if l1 < l2:
+            w1, w2 = w2, w1
+            l1, l2 = l2, l1
+        left = right = 0
+        while left < l2 and w1[left] == w2[left]:
+            left += 1
+        while right < l2 and w1[l1 - 1 - right] == w2[l2 - 1 - right]:
+            right += 1
+        return left + right >= l2`,
+      },
+      {
+        id: 'tp-36',
+        title: 'Reverse Words in a String',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/reverse-words-in-a-string/',
+        description: 'Given an input string s, reverse the order of the words. A word is defined as a sequence of non-space characters.',
+        language: 'python',
+        solution: `class Solution:
+    def reverseWords(self, s: str) -> str:
+        words = s.split()
+        left, right = 0, len(words) - 1
+        while left < right:
+            words[left], words[right] = words[right], words[left]
+            left += 1
+            right -= 1
+        return ' '.join(words)`,
+      },
+      {
+        id: 'tp-37',
+        title: 'Partition Array According to Given Pivot',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/partition-array-according-to-given-pivot/',
+        description: 'Given an integer array nums and integer pivot, rearrange nums so elements less than pivot appear first, elements equal to pivot appear next, and elements greater appear last.',
+        language: 'python',
+        solution: `class Solution:
+    def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
+        less = [x for x in nums if x < pivot]
+        equal = [x for x in nums if x == pivot]
+        greater = [x for x in nums if x > pivot]
+        return less + equal + greater`,
+      },
+      {
+        id: 'tp-38',
+        title: 'Rearrange Array Elements by Sign',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/rearrange-array-elements-by-sign/',
+        description: 'Given an array nums of equal positive and negative integers, rearrange so positives and negatives alternate starting with a positive.',
+        language: 'python',
+        solution: `class Solution:
+    def rearrangeArray(self, nums: List[int]) -> List[int]:
+        result = [0] * len(nums)
+        pos, neg = 0, 1
+        for num in nums:
+            if num > 0:
+                result[pos] = num
+                pos += 2
+            else:
+                result[neg] = num
+                neg += 2
+        return result`,
+      },
+      {
+        id: 'tp-39',
+        title: 'Find the Index of the First Occurrence in a String',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/',
+        description: 'Given two strings haystack and needle, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.',
+        language: 'python',
+        solution: `class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        n, m = len(haystack), len(needle)
+        left = right = 0
+        while right < n:
+            if haystack[right] == needle[right - left]:
+                if right - left == m - 1:
+                    return left
+                right += 1
+            else:
+                left += 1
+                right = left
+        return -1`,
+      },
+      {
+        id: 'tp-40',
+        title: 'Wiggle Sort',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/wiggle-sort/',
+        description: 'Given an integer array nums, reorder it in-place such that nums[0] <= nums[1] >= nums[2] <= nums[3]...',
+        language: 'python',
+        solution: `class Solution:
+    def wiggleSort(self, nums: List[int]) -> None:
+        for i in range(1, len(nums)):
+            if (i % 2 == 1 and nums[i] < nums[i - 1]) or \
+               (i % 2 == 0 and nums[i] > nums[i - 1]):
+                nums[i], nums[i - 1] = nums[i - 1], nums[i]`,
+      },
     ]
   },
   {
