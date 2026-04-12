@@ -1095,6 +1095,32 @@ export const patterns: Pattern[] = [
                 left = right + 1
         return result`,
       },
+      {
+        id: 'tp-52',
+        title: 'Expressive Words',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/expressive-words/',
+        description: 'Given a string s and an array of query words, return the number of words that are stretchy. A word is stretchy if it can be made equal to s by extending groups of letters to have length 3 or more.',
+        language: 'python',
+        solution: `class Solution:
+    def expressiveWords(self, s: str, words: List[str]) -> int:
+        def isStretchy(s: str, w: str) -> bool:
+            i, j = 0, 0
+            while i < len(s) and j < len(w):
+                if s[i] != w[j]:
+                    return False
+                left_s, left_w = i, j
+                while i < len(s) and s[i] == s[left_s]:
+                    i += 1
+                while j < len(w) and w[j] == w[left_w]:
+                    j += 1
+                cnt_s = i - left_s
+                cnt_w = j - left_w
+                if cnt_s < cnt_w or (cnt_s < 3 and cnt_s != cnt_w):
+                    return False
+            return i == len(s) and j == len(w)
+        return sum(isStretchy(s, w) for w in words)`,
+      },
     ]
   },
   {
