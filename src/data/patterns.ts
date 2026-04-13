@@ -1553,6 +1553,22 @@ export const patterns: Pattern[] = [
             stack.append(heights[i])
         return result`,
       },
+      {
+        id: 'tp-73',
+        title: 'Minimum Time Visiting All Points',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-time-visiting-all-points/',
+        description: 'Given an array points where points[i] = [xi, yi], return the minimum time in seconds to visit all the points in order. You can move one step in any direction per second.',
+        language: 'python',
+        solution: `class Solution:
+    def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
+        result = 0
+        for i in range(1, len(points)):
+            x1, y1 = points[i - 1]
+            x2, y2 = points[i]
+            result += max(abs(x2 - x1), abs(y2 - y1))
+        return result`,
+      },
     ]
   },
   {
