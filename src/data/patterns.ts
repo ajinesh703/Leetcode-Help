@@ -1472,6 +1472,25 @@ export const patterns: Pattern[] = [
             i += 1
         return result`,
       },
+      {
+        id: 'tp-69',
+        title: 'Non-overlapping Intervals',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/non-overlapping-intervals/',
+        description: 'Given an array of intervals, return the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.',
+        language: 'python',
+        solution: `class Solution:
+    def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+        intervals.sort(key=lambda x: x[1])
+        result = 0
+        prev_end = float('-inf')
+        for start, end in intervals:
+            if start >= prev_end:
+                prev_end = end
+            else:
+                result += 1
+        return result`,
+      },
     ]
   },
   {
