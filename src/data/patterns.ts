@@ -1514,6 +1514,23 @@ export const patterns: Pattern[] = [
             result = max(result, rooms)
         return result`,
       },
+      {
+        id: 'tp-71',
+        title: 'Car Fleet',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/car-fleet/',
+        description: 'Given a target distance, and arrays position and speed of n cars, return the number of car fleets that will arrive at the destination. A fleet is a group of cars that travel together at the same speed.',
+        language: 'python',
+        solution: `class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        pairs = sorted(zip(position, speed), reverse=True)
+        stack = []
+        for pos, spd in pairs:
+            time = (target - pos) / spd
+            if not stack or time > stack[-1]:
+                stack.append(time)
+        return len(stack)`,
+      },
     ]
   },
   {
