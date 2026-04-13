@@ -1383,6 +1383,26 @@ export const patterns: Pattern[] = [
             j += 1
         return True`,
       },
+      {
+        id: 'tp-65',
+        title: 'Number of Pairs of Interchangeable Rectangles',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-pairs-of-interchangeable-rectangles/',
+        description: 'Given a 2D array rectangles where rectangles[i] = [widthi, heighti], return the number of pairs of interchangeable rectangles. Two rectangles are interchangeable if they have the same width-to-height ratio.',
+        language: 'python',
+        solution: `class Solution:
+    def interchangeableRectangles(self, rectangles: List[List[int]]) -> int:
+        from math import gcd
+        from collections import defaultdict
+        ratio_count = defaultdict(int)
+        result = 0
+        for w, h in rectangles:
+            g = gcd(w, h)
+            ratio = (w // g, h // g)
+            result += ratio_count[ratio]
+            ratio_count[ratio] += 1
+        return result`,
+      },
     ]
   },
   {
