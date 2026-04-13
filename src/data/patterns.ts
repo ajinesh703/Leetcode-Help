@@ -1638,6 +1638,24 @@ export const patterns: Pattern[] = [
             right += 1
         return result`,
       },
+      {
+        id: 'tp-78',
+        title: 'Optimal Partition of String',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/optimal-partition-of-string/',
+        description: 'Given a string s, partition it into the minimum number of substrings such that each substring contains no duplicate characters. Return the minimum number of substrings.',
+        language: 'python',
+        solution: `class Solution:
+    def partitionString(self, s: str) -> int:
+        seen = set()
+        result = 1
+        for c in s:
+            if c in seen:
+                result += 1
+                seen = set()
+            seen.add(c)
+        return result`,
+      },
     ]
   },
   {
