@@ -1447,6 +1447,31 @@ export const patterns: Pattern[] = [
                 result.append([start, end])
         return result`,
       },
+      {
+        id: 'tp-68',
+        title: 'Insert Interval',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/insert-interval/',
+        description: 'Given an array of non-overlapping intervals sorted by start time and a new interval, insert the new interval and merge if necessary. Return the resulting array of intervals.',
+        language: 'python',
+        solution: `class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        result = []
+        i = 0
+        n = len(intervals)
+        while i < n and intervals[i][1] < newInterval[0]:
+            result.append(intervals[i])
+            i += 1
+        while i < n and intervals[i][0] <= newInterval[1]:
+            newInterval[0] = min(newInterval[0], intervals[i][0])
+            newInterval[1] = max(newInterval[1], intervals[i][1])
+            i += 1
+        result.append(newInterval)
+        while i < n:
+            result.append(intervals[i])
+            i += 1
+        return result`,
+      },
     ]
   },
   {
