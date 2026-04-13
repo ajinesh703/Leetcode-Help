@@ -1677,6 +1677,38 @@ export const patterns: Pattern[] = [
                     right = left
         return result`,
       },
+      {
+        id: 'tp-80',
+        title: 'Shortest Distance After Road Addition Queries I',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-distance-after-road-addition-queries-i/',
+        description: 'Given an integer n and a 2D array queries where queries[i] = [ui, vi] adds a road from ui to vi, return an array where answer[i] is the minimum number of roads to travel from 0 to n-1 after the ith query.',
+        language: 'python',
+        solution: `class Solution:
+    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
+        from collections import deque
+        graph = {i: [i + 1] for i in range(n - 1)}
+        def bfs() -> int:
+            queue = deque([0])
+            visited = {0}
+            dist = 0
+            while queue:
+                for _ in range(len(queue)):
+                    node = queue.popleft()
+                    if node == n - 1:
+                        return dist
+                    for nei in graph.get(node, []):
+                        if nei not in visited:
+                            visited.add(nei)
+                            queue.append(nei)
+                dist += 1
+            return -1
+        result = []
+        for u, v in queries:
+            graph[u].append(v)
+            result.append(bfs())
+        return result`,
+      },
     ]
   },
   {
