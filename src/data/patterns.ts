@@ -1733,6 +1733,24 @@ export const patterns: Pattern[] = [
             left = right
         return write`,
       },
+      {
+        id: 'tp-82',
+        title: 'Minimum Operations to Make Binary Array Elements Equal to One I',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-i/',
+        description: 'Given a binary array nums, in one operation you can flip 3 consecutive elements. Return the minimum number of operations to make all elements equal to 1, or -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        result = 0
+        for i in range(len(nums) - 2):
+            if nums[i] == 0:
+                nums[i] ^= 1
+                nums[i + 1] ^= 1
+                nums[i + 2] ^= 1
+                result += 1
+        return result if all(n == 1 for n in nums) else -1`,
+      },
     ]
   },
   {
