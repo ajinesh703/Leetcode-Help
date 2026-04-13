@@ -1353,6 +1353,36 @@ export const patterns: Pattern[] = [
                     dp[i][j] = min(dp[i + 1][j], dp[i][j - 1]) + 1
         return dp[0][n - 1] <= k`,
       },
+      {
+        id: 'tp-64',
+        title: 'Swap Adjacent in LR String',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/swap-adjacent-in-lr-string/',
+        description: 'Given two strings start and end of equal length containing L, R, and X, return true if start can be transformed into end by swapping LX to XL or XR to RX any number of times.',
+        language: 'python',
+        solution: `class Solution:
+    def canTransform(self, start: str, end: str) -> bool:
+        n = len(start)
+        i = j = 0
+        while i < n and j < n:
+            while i < n and start[i] == 'X':
+                i += 1
+            while j < n and end[j] == 'X':
+                j += 1
+            if i == n and j == n:
+                return True
+            if i == n or j == n:
+                return False
+            if start[i] != end[j]:
+                return False
+            if start[i] == 'L' and i < j:
+                return False
+            if start[i] == 'R' and i > j:
+                return False
+            i += 1
+            j += 1
+        return True`,
+      },
     ]
   },
   {
