@@ -1491,6 +1491,29 @@ export const patterns: Pattern[] = [
                 result += 1
         return result`,
       },
+      {
+        id: 'tp-70',
+        title: 'Meeting Rooms II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/meeting-rooms-ii/',
+        description: 'Given an array of meeting time intervals where intervals[i] = [starti, endi], return the minimum number of conference rooms required.',
+        language: 'python',
+        solution: `class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        starts = sorted(i[0] for i in intervals)
+        ends = sorted(i[1] for i in intervals)
+        left, right = 0, 0
+        rooms = result = 0
+        while left < len(intervals):
+            if starts[left] < ends[right]:
+                rooms += 1
+                left += 1
+            else:
+                rooms -= 1
+                right += 1
+            result = max(result, rooms)
+        return result`,
+      },
     ]
   },
   {
