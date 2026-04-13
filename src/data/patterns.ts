@@ -1569,6 +1569,18 @@ export const patterns: Pattern[] = [
             result += max(abs(x2 - x1), abs(y2 - y1))
         return result`,
       },
+      {
+        id: 'tp-74',
+        title: 'Maximum Product of Two Elements in an Array',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/',
+        description: 'Given an integer array nums, choose two different indices i and j and return the maximum value of (nums[i]-1)*(nums[j]-1).',
+        language: 'python',
+        solution: `class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        nums.sort()
+        return (nums[-1] - 1) * (nums[-2] - 1)`,
+      },
     ]
   },
   {
