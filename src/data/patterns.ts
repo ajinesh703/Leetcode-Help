@@ -1656,6 +1656,27 @@ export const patterns: Pattern[] = [
             seen.add(c)
         return result`,
       },
+      {
+        id: 'tp-79',
+        title: 'Maximum Distance Between a Pair of Values',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-distance-between-a-pair-of-values/',
+        description: 'Given two non-increasing integer arrays nums1 and nums2, return the maximum value of j - i such that i <= j and nums1[i] <= nums2[j].',
+        language: 'python',
+        solution: `class Solution:
+    def maxDistance(self, nums1: List[int], nums2: List[int]) -> int:
+        left, right = 0, 0
+        result = 0
+        while left < len(nums1) and right < len(nums2):
+            if nums1[left] <= nums2[right]:
+                result = max(result, right - left)
+                right += 1
+            else:
+                left += 1
+                if left > right:
+                    right = left
+        return result`,
+      },
     ]
   },
   {
