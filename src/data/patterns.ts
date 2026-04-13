@@ -1709,6 +1709,30 @@ export const patterns: Pattern[] = [
             result.append(bfs())
         return result`,
       },
+      {
+        id: 'tp-81',
+        title: 'String Compression',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/string-compression/',
+        description: 'Given an array of characters chars, compress it in-place using the following algorithm: begin with an empty string s. For each group of consecutive repeating characters, append the character and the count if count > 1. Return the new length of the array.',
+        language: 'python',
+        solution: `class Solution:
+    def compress(self, chars: List[str]) -> int:
+        left = write = 0
+        while left < len(chars):
+            right = left
+            while right < len(chars) and chars[right] == chars[left]:
+                right += 1
+            chars[write] = chars[left]
+            write += 1
+            count = right - left
+            if count > 1:
+                for c in str(count):
+                    chars[write] = c
+                    write += 1
+            left = right
+        return write`,
+      },
     ]
   },
   {
