@@ -1429,6 +1429,24 @@ export const patterns: Pattern[] = [
                 left = mid + 1
         return left`,
       },
+      {
+        id: 'tp-67',
+        title: 'Merge Intervals',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/merge-intervals/',
+        description: 'Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals and return an array of the non-overlapping intervals.',
+        language: 'python',
+        solution: `class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        intervals.sort(key=lambda x: x[0])
+        result = [intervals[0]]
+        for start, end in intervals[1:]:
+            if start <= result[-1][1]:
+                result[-1][1] = max(result[-1][1], end)
+            else:
+                result.append([start, end])
+        return result`,
+      },
     ]
   },
   {
