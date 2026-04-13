@@ -1581,6 +1581,24 @@ export const patterns: Pattern[] = [
         nums.sort()
         return (nums[-1] - 1) * (nums[-2] - 1)`,
       },
+      {
+        id: 'tp-75',
+        title: 'Largest Perimeter Triangle',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/largest-perimeter-triangle/',
+        description: 'Given an integer array nums, return the largest perimeter of a triangle with a non-zero area, formed from three of these lengths. If impossible, return 0.',
+        language: 'python',
+        solution: `class Solution:
+    def largestPerimeter(self, nums: List[int]) -> int:
+        nums.sort(reverse=True)
+        left, right = 1, 2
+        while right < len(nums):
+            if nums[left - 1] < nums[left] + nums[right]:
+                return nums[left - 1] + nums[left] + nums[right]
+            left += 1
+            right += 1
+        return 0`,
+      },
     ]
   },
   {
