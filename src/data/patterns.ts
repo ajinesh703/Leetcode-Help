@@ -1599,6 +1599,26 @@ export const patterns: Pattern[] = [
             right += 1
         return 0`,
       },
+      {
+        id: 'tp-76',
+        title: 'Score After Flipping Matrix',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/score-after-flipping-matrix/',
+        description: 'Given an m x n binary matrix grid, you can toggle any row or column. Return the highest possible score after making any number of moves. The score is the sum of integers represented by each row in binary.',
+        language: 'python',
+        solution: `class Solution:
+    def matrixScore(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+        for row in grid:
+            if row[0] == 0:
+                for j in range(n):
+                    row[j] ^= 1
+        result = 0
+        for j in range(n):
+            ones = sum(grid[i][j] for i in range(m))
+            result += max(ones, m - ones) * (1 << (n - j - 1))
+        return result`,
+      },
     ]
   },
   {
