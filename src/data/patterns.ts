@@ -1403,6 +1403,32 @@ export const patterns: Pattern[] = [
             ratio_count[ratio] += 1
         return result`,
       },
+      {
+        id: 'tp-66',
+        title: 'Find K-th Smallest Pair Distance',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/find-k-th-smallest-pair-distance/',
+        description: 'Given an integer array nums and integer k, return the kth smallest distance among all pairs nums[i] and nums[j] where i < j.',
+        language: 'python',
+        solution: `class Solution:
+    def smallestDistancePair(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        def countPairs(mid: int) -> int:
+            left = result = 0
+            for right in range(len(nums)):
+                while nums[right] - nums[left] > mid:
+                    left += 1
+                result += right - left
+            return result
+        left, right = 0, nums[-1] - nums[0]
+        while left < right:
+            mid = (left + right) // 2
+            if countPairs(mid) >= k:
+                right = mid
+            else:
+                left = mid + 1
+        return left`,
+      },
     ]
   },
   {
