@@ -1619,6 +1619,25 @@ export const patterns: Pattern[] = [
             result += max(ones, m - ones) * (1 << (n - j - 1))
         return result`,
       },
+      {
+        id: 'tp-77',
+        title: 'Minimum Number of Moves to Seat Everyone',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/',
+        description: 'Given two arrays seats and students of equal length, return the minimum number of moves required so that each student is seated. A move shifts a student by one position.',
+        language: 'python',
+        solution: `class Solution:
+    def minMovesToSeat(self, seats: List[int], students: List[int]) -> int:
+        seats.sort()
+        students.sort()
+        left, right = 0, 0
+        result = 0
+        while left < len(seats) and right < len(students):
+            result += abs(seats[left] - students[right])
+            left += 1
+            right += 1
+        return result`,
+      },
     ]
   },
   {
