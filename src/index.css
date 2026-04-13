@@ -3,26 +3,26 @@
 /* ============ DARK MODE (Default) ============ */
 :root,
 :root[data-theme="dark"] {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-card: #1a1a2e;
-  --bg-card-hover: #22223a;
-  --bg-glass: rgba(26, 26, 46, 0.7);
-  --border-color: rgba(255, 255, 255, 0.06);
-  --border-glow: rgba(108, 99, 255, 0.3);
-  --text-primary: #e8e8f0;
-  --text-secondary: #8888a0;
-  --text-muted: #5a5a72;
-  --accent-primary: #6C63FF;
-  --accent-secondary: #7B73FF;
-  --accent-gradient: linear-gradient(135deg, #6C63FF, #A855F7, #EC4899);
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-card: #111111;
+  --bg-card-hover: #1a1a1a;
+  --bg-glass: rgba(17, 17, 17, 0.85);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(255, 255, 255, 0.15);
+  --text-primary: #ffffff;
+  --text-secondary: #999999;
+  --text-muted: #555555;
+  --accent-primary: #ffffff;
+  --accent-secondary: #cccccc;
+  --accent-gradient: linear-gradient(135deg, #ffffff, #aaaaaa);
   --easy: #4ECDC4;
   --medium: #FFD93D;
   --hard: #FF6B6B;
-  --code-bg: #0d1117;
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 30px rgba(108, 99, 255, 0.15);
-  --header-bg: rgba(10, 10, 15, 0.85);
+  --code-bg: #0a0a0a;
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 30px rgba(255, 255, 255, 0.05);
+  --header-bg: rgba(0, 0, 0, 0.95);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -89,9 +89,8 @@ body::before {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(ellipse 600px 400px at 20% 10%, rgba(108, 99, 255, 0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 500px 300px at 80% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 400px 300px at 50% 50%, rgba(236, 72, 153, 0.04) 0%, transparent 70%);
+    radial-gradient(ellipse 600px 400px at 20% 10%, rgba(255, 255, 255, 0.02) 0%, transparent 70%),
+    radial-gradient(ellipse 500px 300px at 80% 80%, rgba(255, 255, 255, 0.01) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -162,7 +161,7 @@ a {
   align-items: center;
   justify-content: center;
   font-size: 1.1rem;
-  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
 .logo-text span {
@@ -192,7 +191,7 @@ a {
 
 .search-bar input:focus {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
 }
 
 .search-bar input::placeholder {
@@ -231,8 +230,9 @@ a {
 }
 
 .nav-link.active {
-  color: var(--accent-primary);
-  background: rgba(108, 99, 255, 0.1);
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
 }
 
 /* ============ Theme Toggle Button ============ */
@@ -248,15 +248,14 @@ a {
   align-items: center;
   justify-content: center;
   transition: var(--transition);
-  box-shadow: 0 2px 8px var(--shadow-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   flex-shrink: 0;
 }
 
 .theme-toggle:hover {
   background: var(--bg-card-hover);
-  border-color: var(--accent-primary);
+  border-color: var(--text-secondary);
   transform: rotate(20deg) scale(1.1);
-  box-shadow: var(--shadow-glow);
 }
 
 /* ============ Main Layout ============ */
@@ -390,8 +389,8 @@ a {
   font-weight: 600;
   padding: 3px 10px;
   border-radius: 999px;
-  background: rgba(108, 99, 255, 0.15);
-  color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
 }
 
 .category-grid {
@@ -427,8 +426,8 @@ a {
 
 .category-card:hover {
   transform: translateY(-4px);
-  border-color: var(--border-glow);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
   background: var(--bg-card-hover);
 }
 
@@ -470,17 +469,17 @@ a {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(108, 99, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-primary);
+  color: var(--text-secondary);
   font-size: 0.85rem;
   transition: var(--transition);
 }
 
 .category-card:hover .arrow {
-  background: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.15);
   color: white;
   transform: translateX(3px);
 }
@@ -510,7 +509,7 @@ a {
 
 .back-btn:hover {
   background: var(--bg-card-hover);
-  border-color: var(--border-glow);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .problem-list-header .header-info h1 {
@@ -547,9 +546,9 @@ a {
 }
 
 .problem-card:hover {
-  border-color: var(--border-glow);
+  border-color: rgba(255, 255, 255, 0.15);
   background: var(--bg-card-hover);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
   transform: translateX(4px);
 }
 
@@ -610,17 +609,18 @@ a {
 .leetcode-link {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--accent-primary);
+  color: var(--text-secondary);
   padding: 5px 12px;
   border-radius: var(--radius-sm);
-  border: 1px solid rgba(108, 99, 255, 0.3);
+  border: 1px solid var(--border-color);
   transition: var(--transition);
   white-space: nowrap;
 }
 
 .leetcode-link:hover {
-  background: var(--accent-primary);
-  color: white;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
 }
 
 .problem-card .view-arrow {
@@ -630,7 +630,7 @@ a {
 }
 
 .problem-card:hover .view-arrow {
-  color: var(--accent-primary);
+  color: var(--text-primary);
   transform: translateX(3px);
 }
 
@@ -695,14 +695,14 @@ a {
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1.25rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
   border-bottom: 1px solid var(--border-color);
 }
 
 .code-header .lang-badge {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--accent-primary);
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -722,9 +722,9 @@ a {
 }
 
 .code-header .copy-btn:hover {
-  background: var(--accent-primary);
-  color: white;
-  border-color: var(--accent-primary);
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
 }
 
 .code-content {
@@ -761,17 +761,14 @@ a {
 }
 
 .stat-card:hover {
-  border-color: var(--border-glow);
-  box-shadow: var(--shadow-glow);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
 .stat-card .stat-value {
   font-size: 2rem;
   font-weight: 800;
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
 }
 
 .stat-card .stat-label {
