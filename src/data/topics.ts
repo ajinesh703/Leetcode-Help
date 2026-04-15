@@ -2607,6 +2607,53 @@ export const topics: Topic[] = [
 
         return "".join(result) if len(result) == len(in_degree) else ""`
       },
+      {
+        id: 'graph-12',
+        title: 'Minimum Spanning Tree (Kruskal\'s Algorithm)',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/min-cost-to-connect-all-points/',
+        description: 'Given an array of points, return the minimum cost to connect all points where cost is the Manhattan distance between two points.',
+        language: 'python',
+        solution: `class Solution:
+    def minCostConnectPoints(self, points: List[List[int]]) -> int:
+        n = len(points)
+        parent = list(range(n))
+        rank = [0] * n
+
+        def find(x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        def union(x, y):
+            px, py = find(x), find(y)
+            if px == py:
+                return False
+            if rank[px] < rank[py]:
+                px, py = py, px
+            parent[py] = px
+            if rank[px] == rank[py]:
+                rank[px] += 1
+            return True
+
+        edges = []
+        for i in range(n):
+            for j in range(i + 1, n):
+                dist = abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1])
+                edges.append((dist, i, j))
+
+        edges.sort()
+        total, count = 0, 0
+        for dist, u, v in edges:
+            if union(u, v):
+                total += dist
+                count += 1
+                if count == n - 1:
+                    break
+
+        return total`
+      },
     ]
   },
   {
