@@ -2345,7 +2345,108 @@ export const topics: Topic[] = [
                 if in_degree[neighbor] == 0:
                     queue.append(neighbor)
         return count == numCourses`
-      }
+      },
+      {
+        id: 'graph-4',
+        title: 'Pacific Atlantic Water Flow',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/pacific-atlantic-water-flow/',
+        description: 'Given an m x n matrix of heights, return a list of coordinates where water can flow to both the Pacific and Atlantic oceans.',
+        language: 'python',
+        solution: `class Solution:
+    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        if not heights:
+            return []
+        rows, cols = len(heights), len(heights[0])
+        pacific, atlantic = set(), set()
+
+        def dfs(r, c, visited, prev_height):
+            if (r, c) in visited or r < 0 or c < 0 or r >= rows or c >= cols:
+                return
+            if heights[r][c] < prev_height:
+                return
+            visited.add((r, c))
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                dfs(r+dr, c+dc, visited, heights[r][c])
+
+        for r in range(rows):
+            dfs(r, 0, pacific, heights[r][0])
+            dfs(r, cols-1, atlantic, heights[r][cols-1])
+        for c in range(cols):
+            dfs(0, c, pacific, heights[0][c])
+            dfs(rows-1, c, atlantic, heights[rows-1][c])
+
+        return [[r, c] for r, c in pacific & atlantic]`
+      },
+      {
+        id: 'graph-5',
+        title: 'Rotting Oranges',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/rotting-oranges/',
+        description: 'Given a grid where 0=empty, 1=fresh orange, 2=rotten orange, return the minimum minutes until no fresh orange remains, or -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        from collections import deque
+        rows, cols = len(grid), len(grid[0])
+        queue = deque()
+        fresh = 0
+
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == 2:
+                    queue.append((r, c, 0))
+                elif grid[r][c] == 1:
+                    fresh += 1
+
+        minutes = 0
+        while queue:
+            r, c, mins = queue.popleft()
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r+dr, c+dc
+                if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] == 1:
+                    grid[nr][nc] = 2
+                    fresh -= 1
+                    minutes = mins + 1
+                    queue.append((nr, nc, mins+1))
+
+        return minutes if fresh == 0 else -1`
+      },
+      {
+        id: 'graph-6',
+        title: 'Word Ladder',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/word-ladder/',
+        description: 'Given beginWord, endWord, and a wordList, return the number of words in the shortest transformation sequence, or 0 if no such sequence exists.',
+        language: 'python',
+        solution: `class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        from collections import deque, defaultdict
+        if endWord not in wordList:
+            return 0
+
+        L = len(beginWord)
+        pattern_map = defaultdict(list)
+        for word in wordList:
+            for i in range(L):
+                pattern = word[:i] + '*' + word[i+1:]
+                pattern_map[pattern].append(word)
+
+        queue = deque([(beginWord, 1)])
+        visited = {beginWord}
+
+        while queue:
+            word, length = queue.popleft()
+            for i in range(L):
+                pattern = word[:i] + '*' + word[i+1:]
+                for neighbor in pattern_map[pattern]:
+                    if neighbor == endWord:
+                        return length + 1
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        queue.append((neighbor, length + 1))
+        return 0`
+      },
     ]
   },
   {
