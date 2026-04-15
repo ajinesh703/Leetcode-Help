@@ -2447,6 +2447,69 @@ export const topics: Topic[] = [
                         queue.append((neighbor, length + 1))
         return 0`
       },
+      {
+        id: 'graph-7',
+        title: 'Number of Connected Components in an Undirected Graph',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/',
+        description: 'Given n nodes and a list of edges, return the number of connected components in the undirected graph.',
+        language: 'python',
+        solution: `class Solution:
+    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        parent = list(range(n))
+        rank = [0] * n
+
+        def find(x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        def union(x, y):
+            px, py = find(x), find(y)
+            if px == py:
+                return 0
+            if rank[px] < rank[py]:
+                px, py = py, px
+            parent[py] = px
+            if rank[px] == rank[py]:
+                rank[px] += 1
+            return 1
+
+        return n - sum(union(x, y) for x, y in edges)`
+      },
+      {
+        id: 'graph-8',
+        title: 'Graph Valid Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/graph-valid-tree/',
+        description: 'Given n nodes labeled 0 to n-1 and a list of undirected edges, return true if these edges form a valid tree.',
+        language: 'python',
+        solution: `class Solution:
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        if len(edges) != n - 1:
+            return False
+
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+
+        visited = set()
+
+        def dfs(node, prev):
+            if node in visited:
+                return False
+            visited.add(node)
+            for neighbor in adj[node]:
+                if neighbor == prev:
+                    continue
+                if not dfs(neighbor, node):
+                    return False
+            return True
+
+        return dfs(0, -1) and len(visited) == n`
+      },
     ]
   },
   {
