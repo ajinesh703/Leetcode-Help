@@ -1751,6 +1751,24 @@ export const patterns: Pattern[] = [
                 result += 1
         return result if all(n == 1 for n in nums) else -1`,
       },
+      {
+        id: 'tp-83',
+        title: 'Minimum Operations to Make Binary Array Elements Equal to One II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-operations-to-make-binary-array-elements-equal-to-one-ii/',
+        description: 'Given a binary array nums, in one operation you can flip all elements from index i to the end. Return the minimum number of operations to make all elements equal to 1.',
+        language: 'python',
+        solution: `class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        result = 0
+        flip = 0
+        for num in nums:
+            curr = num ^ flip
+            if curr == 0:
+                result += 1
+                flip ^= 1
+        return result`,
+      },
     ]
   },
   {
