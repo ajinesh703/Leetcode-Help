@@ -2654,6 +2654,39 @@ export const topics: Topic[] = [
 
         return total`
       },
+      {
+        id: 'graph-13',
+        title: 'Network Delay Time',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/network-delay-time/',
+        description: 'Given a network of n nodes and travel times for directed edges, return the minimum time for all nodes to receive a signal sent from node k, or -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+        from collections import defaultdict
+        import heapq
+
+        adj = defaultdict(list)
+        for u, v, w in times:
+            adj[u].append((v, w))
+
+        dist = {i: float('inf') for i in range(1, n + 1)}
+        dist[k] = 0
+        heap = [(0, k)]
+
+        while heap:
+            time, node = heapq.heappop(heap)
+            if time > dist[node]:
+                continue
+            for neighbor, weight in adj[node]:
+                new_dist = time + weight
+                if new_dist < dist[neighbor]:
+                    dist[neighbor] = new_dist
+                    heapq.heappush(heap, (new_dist, neighbor))
+
+        max_dist = max(dist.values())
+        return max_dist if max_dist < float('inf') else -1`
+      },
     ]
   },
   {
