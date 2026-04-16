@@ -2743,6 +2743,68 @@ export const topics: Topic[] = [
 
         return False`
       },
+      {
+        id: 'graph-16',
+        title: 'Surrounded Regions',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/surrounded-regions/',
+        description: 'Given an m x n matrix board containing X and O, capture all regions that are surrounded by X. A region is captured by flipping all Os into Xs in that surrounded region.',
+        language: 'python',
+        solution: `class Solution:
+    def solve(self, board: List[List[str]]) -> None:
+        rows, cols = len(board), len(board[0])
+
+        def dfs(r, c):
+            if r < 0 or c < 0 or r >= rows or c >= cols or board[r][c] != 'O':
+                return
+            board[r][c] = 'T'
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                dfs(r + dr, c + dc)
+
+        for r in range(rows):
+            dfs(r, 0)
+            dfs(r, cols - 1)
+        for c in range(cols):
+            dfs(0, c)
+            dfs(rows - 1, c)
+
+        for r in range(rows):
+            for c in range(cols):
+                if board[r][c] == 'O':
+                    board[r][c] = 'X'
+                elif board[r][c] == 'T':
+                    board[r][c] = 'O'`,
+      },
+      {
+        id: 'graph-17',
+        title: 'Course Schedule II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/course-schedule-ii/',
+        description: 'Given numCourses and prerequisites, return the ordering of courses you should take to finish all courses. If impossible, return an empty array.',
+        language: 'python',
+        solution: `class Solution:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+        from collections import defaultdict, deque
+        graph = defaultdict(list)
+        in_degree = [0] * numCourses
+
+        for course, prereq in prerequisites:
+            graph[prereq].append(course)
+            in_degree[course] += 1
+
+        queue = deque([i for i in range(numCourses) if in_degree[i] == 0])
+        result = []
+
+        while queue:
+            node = queue.popleft()
+            result.append(node)
+            for neighbor in graph[node]:
+                in_degree[neighbor] -= 1
+                if in_degree[neighbor] == 0:
+                    queue.append(neighbor)
+
+        return result if len(result) == numCourses else []`,
+      },
     ]
   },
   {
