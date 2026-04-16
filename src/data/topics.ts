@@ -2805,6 +2805,58 @@ export const topics: Topic[] = [
 
         return result if len(result) == numCourses else []`,
       },
+      {
+        id: 'graph-18',
+        title: 'Swim in Rising Water',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/swim-in-rising-water/',
+        description: 'Given an n x n grid where grid[i][j] is the elevation, return the least time until you can reach bottom right from top left, where you can swim to adjacent cells if the elevation is at most t.',
+        language: 'python',
+        solution: `class Solution:
+    def swimInWater(self, grid: List[List[int]]) -> int:
+        import heapq
+        n = len(grid)
+        visited = set()
+        heap = [(grid[0][0], 0, 0)]
+        visited.add((0, 0))
+
+        while heap:
+            t, r, c = heapq.heappop(heap)
+            if r == n - 1 and c == n - 1:
+                return t
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < n and 0 <= nc < n and (nr, nc) not in visited:
+                    visited.add((nr, nc))
+                    heapq.heappush(heap, (max(t, grid[nr][nc]), nr, nc))
+
+        return -1`
+      },
+      {
+        id: 'graph-19',
+        title: 'Reconstruct Itinerary',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/reconstruct-itinerary/',
+        description: 'Given a list of airline tickets represented by pairs of departure and arrival airports, reconstruct the itinerary in order. All tickets must be used and the itinerary must begin with JFK.',
+        language: 'python',
+        solution: `class Solution:
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        from collections import defaultdict
+        graph = defaultdict(list)
+
+        for src, dst in sorted(tickets, reverse=True):
+            graph[src].append(dst)
+
+        result = []
+
+        def dfs(airport):
+            while graph[airport]:
+                dfs(graph[airport].pop())
+            result.append(airport)
+
+        dfs("JFK")
+        return result[::-1]`
+      },
     ]
   },
   {
