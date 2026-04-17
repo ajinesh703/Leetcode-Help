@@ -2931,6 +2931,40 @@ export const topics: Topic[] = [
             leaves = new_leaves
         return list(leaves)`,
       },
+      {
+        id: 'graph-22',
+        title: 'Evaluate Division',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/evaluate-division/',
+        description: 'Given equations and values representing a/b = k, and queries, return the results of the queries. Return -1.0 if the answer does not exist.',
+        language: 'python',
+        solution: `class Solution:
+    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        from collections import defaultdict, deque
+        graph = defaultdict(dict)
+        for (a, b), val in zip(equations, values):
+            graph[a][b] = val
+            graph[b][a] = 1 / val
+
+        def bfs(src, dst):
+            if src not in graph or dst not in graph:
+                return -1.0
+            if src == dst:
+                return 1.0
+            visited = set()
+            queue = deque([(src, 1.0)])
+            while queue:
+                node, prod = queue.popleft()
+                if node == dst:
+                    return prod
+                visited.add(node)
+                for neighbor, val in graph[node].items():
+                    if neighbor not in visited:
+                        queue.append((neighbor, prod * val))
+            return -1.0
+
+        return [bfs(s, d) for s, d in queries]`,
+      },
     ]
   },
   {
