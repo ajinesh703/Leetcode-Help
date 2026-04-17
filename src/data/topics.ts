@@ -3011,6 +3011,40 @@ export const topics: Topic[] = [
                         return False
         return True`,
       },
+      {
+        id: 'graph-25',
+        title: 'Snakes and Ladders',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/snakes-and-ladders/',
+        description: 'Given an n x n board with snakes and ladders, return the minimum number of moves to reach square n^2 starting from square 1. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def snakesAndLadders(self, board: List[List[int]]) -> int:
+        from collections import deque
+        n = len(board)
+        def get_pos(s):
+            r, c = divmod(s - 1, n)
+            if r % 2 == 0:
+                return (n - 1 - r, c)
+            return (n - 1 - r, n - 1 - c)
+        visited = set()
+        queue = deque([(1, 0)])
+        while queue:
+            s, moves = queue.popleft()
+            for dice in range(1, 7):
+                next_s = s + dice
+                if next_s > n * n:
+                    break
+                r, c = get_pos(next_s)
+                if board[r][c] != -1:
+                    next_s = board[r][c]
+                if next_s == n * n:
+                    return moves + 1
+                if next_s not in visited:
+                    visited.add(next_s)
+                    queue.append((next_s, moves + 1))
+        return -1`,
+      },
     ]
   },
   {
