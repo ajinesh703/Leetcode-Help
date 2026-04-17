@@ -2965,6 +2965,52 @@ export const topics: Topic[] = [
 
         return [bfs(s, d) for s, d in queries]`,
       },
+      {
+        id: 'graph-23',
+        title: 'All Paths From Source to Target',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/all-paths-from-source-to-target/',
+        description: 'Given a directed acyclic graph of n nodes, return all possible paths from node 0 to node n-1. The answer can be returned in any order.',
+        language: 'python',
+        solution: `class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        result = []
+        def dfs(node, path):
+            if node == len(graph) - 1:
+                result.append(path[:])
+                return
+            for neighbor in graph[node]:
+                path.append(neighbor)
+                dfs(neighbor, path)
+                path.pop()
+        dfs(0, [0])
+        return result`,
+      },
+      {
+        id: 'graph-24',
+        title: 'Is Graph Bipartite?',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/is-graph-bipartite/',
+        description: 'Given an undirected graph, return true if it is bipartite. A graph is bipartite if we can split its nodes into two independent subsets such that every edge connects a node in one set to a node in the other.',
+        language: 'python',
+        solution: `class Solution:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        color = {}
+        for start in range(len(graph)):
+            if start in color:
+                continue
+            stack = [start]
+            color[start] = 0
+            while stack:
+                node = stack.pop()
+                for neighbor in graph[node]:
+                    if neighbor not in color:
+                        color[neighbor] = 1 - color[node]
+                        stack.append(neighbor)
+                    elif color[neighbor] == color[node]:
+                        return False
+        return True`,
+      },
     ]
   },
   {
