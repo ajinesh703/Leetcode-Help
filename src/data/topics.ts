@@ -3045,6 +3045,31 @@ export const topics: Topic[] = [
                     queue.append((next_s, moves + 1))
         return -1`,
       },
+      {
+        id: 'graph-26',
+        title: 'Jump Game III',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/jump-game-iii/',
+        description: 'Given an array of non-negative integers arr and start index, return true if you can reach any index with value 0. From index i you can jump to i + arr[i] or i - arr[i].',
+        language: 'python',
+        solution: `class Solution:
+    def canReach(self, arr: List[int], start: int) -> bool:
+        from collections import deque
+        n = len(arr)
+        visited = set()
+        queue = deque([start])
+        while queue:
+            i = queue.popleft()
+            if arr[i] == 0:
+                return True
+            if i in visited:
+                continue
+            visited.add(i)
+            for j in [i + arr[i], i - arr[i]]:
+                if 0 <= j < n and j not in visited:
+                    queue.append(j)
+        return False`,
+      },
     ]
   },
   {
