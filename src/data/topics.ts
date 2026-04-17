@@ -2901,6 +2901,36 @@ export const topics: Topic[] = [
 
         return list(result)`,
       },
+      {
+        id: 'graph-21',
+        title: 'Minimum Height Trees',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-height-trees/',
+        description: 'Given a tree of n nodes labeled 0 to n-1 and a list of edges, return a list of all nodes that can be the root of a minimum height tree.',
+        language: 'python',
+        solution: `class Solution:
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        if n == 1:
+            return [0]
+        from collections import deque
+        adj = [set() for _ in range(n)]
+        for u, v in edges:
+            adj[u].add(v)
+            adj[v].add(u)
+        leaves = deque([i for i in range(n) if len(adj[i]) == 1])
+        remaining = n
+        while remaining > 2:
+            remaining -= len(leaves)
+            new_leaves = deque()
+            while leaves:
+                leaf = leaves.popleft()
+                neighbor = adj[leaf].pop()
+                adj[neighbor].remove(leaf)
+                if len(adj[neighbor]) == 1:
+                    new_leaves.append(neighbor)
+            leaves = new_leaves
+        return list(leaves)`,
+      },
     ]
   },
   {
