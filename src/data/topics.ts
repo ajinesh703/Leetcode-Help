@@ -2857,6 +2857,50 @@ export const topics: Topic[] = [
         dfs("JFK")
         return result[::-1]`
       },
+      {
+        id: 'graph-20',
+        title: 'Word Search II',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/word-search-ii/',
+        description: 'Given an m x n board of characters and a list of strings words, return all words on the board. Each word must be constructed from sequentially adjacent cells.',
+        language: 'python',
+        solution: `class Solution:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        class TrieNode:
+            def __init__(self):
+                self.children = {}
+                self.word = None
+
+        root = TrieNode()
+        for word in words:
+            node = root
+            for c in word:
+                node = node.children.setdefault(c, TrieNode())
+            node.word = word
+
+        rows, cols = len(board), len(board[0])
+        result = set()
+
+        def dfs(r, c, node):
+            ch = board[r][c]
+            if ch not in node.children:
+                return
+            next_node = node.children[ch]
+            if next_node.word:
+                result.add(next_node.word)
+            board[r][c] = '#'
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < rows and 0 <= nc < cols and board[nr][nc] != '#':
+                    dfs(nr, nc, next_node)
+            board[r][c] = ch
+
+        for r in range(rows):
+            for c in range(cols):
+                dfs(r, c, root)
+
+        return list(result)`,
+      },
     ]
   },
   {
