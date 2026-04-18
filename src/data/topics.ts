@@ -3165,6 +3165,32 @@ export const topics: Topic[] = [
             return is_sub
         return sum(dfs(r, c) for r in range(rows) for c in range(cols) if grid2[r][c] == 1)`,
       },
+      {
+        id: 'graph-31',
+        title: 'Reorder Routes to Make All Paths Lead to the City Zero',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/',
+        description: 'Given n cities and directed roads connections, return the minimum number of edges that need to be reversed so that every city can reach city 0.',
+        language: 'python',
+        solution: `class Solution:
+    def minReorder(self, n: int, connections: List[List[int]]) -> int:
+        from collections import defaultdict, deque
+        graph = defaultdict(list)
+        for a, b in connections:
+            graph[a].append((b, 1))
+            graph[b].append((a, 0))
+        visited = set([0])
+        queue = deque([0])
+        result = 0
+        while queue:
+            node = queue.popleft()
+            for neighbor, cost in graph[node]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    result += cost
+                    queue.append(neighbor)
+        return result`,
+      },
     ]
   },
   {
