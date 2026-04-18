@@ -3286,6 +3286,38 @@ export const topics: Topic[] = [
                 result = max(result, time - visited[node])
         return result`,
       },
+      {
+        id: 'graph-36',
+        title: 'Detonate the Maximum Bombs',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/detonate-the-maximum-bombs/',
+        description: 'Given a list of bombs where bombs[i] = [xi, yi, ri], return the maximum number of bombs that can be detonated if you detonate one bomb. A bomb detonates another if it is within its blast radius.',
+        language: 'python',
+        solution: `class Solution:
+    def maximumDetonation(self, bombs: List[List[int]]) -> int:
+        from collections import defaultdict, deque
+        n = len(bombs)
+        graph = defaultdict(list)
+        for i in range(n):
+            for j in range(n):
+                if i == j:
+                    continue
+                x1, y1, r1 = bombs[i]
+                x2, y2, _ = bombs[j]
+                if (x2 - x1) ** 2 + (y2 - y1) ** 2 <= r1 ** 2:
+                    graph[i].append(j)
+        def bfs(start):
+            visited = set([start])
+            queue = deque([start])
+            while queue:
+                node = queue.popleft()
+                for neighbor in graph[node]:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        queue.append(neighbor)
+            return len(visited)
+        return max(bfs(i) for i in range(n))`,
+      },
     ]
   },
   {
