@@ -3144,6 +3144,27 @@ export const topics: Topic[] = [
             return 1 + dfs(r+1,c) + dfs(r-1,c) + dfs(r,c+1) + dfs(r,c-1)
         return max(dfs(r, c) for r in range(rows) for c in range(cols))`,
       },
+      {
+        id: 'graph-30',
+        title: 'Count Sub Islands',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-sub-islands/',
+        description: 'Given two binary matrices grid1 and grid2, return the number of islands in grid2 that are sub-islands of grid1. An island in grid2 is a sub-island if all cells are also land in grid1.',
+        language: 'python',
+        solution: `class Solution:
+    def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
+        rows, cols = len(grid2), len(grid2[0])
+        def dfs(r, c) -> bool:
+            if r < 0 or c < 0 or r >= rows or c >= cols or grid2[r][c] == 0:
+                return True
+            grid2[r][c] = 0
+            is_sub = grid1[r][c] == 1
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                if not dfs(r + dr, c + dc):
+                    is_sub = False
+            return is_sub
+        return sum(dfs(r, c) for r in range(rows) for c in range(cols) if grid2[r][c] == 1)`,
+      },
     ]
   },
   {
