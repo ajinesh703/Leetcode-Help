@@ -3260,6 +3260,32 @@ export const topics: Topic[] = [
             return True
         return [i for i in range(n) if dfs(i)]`,
       },
+      {
+        id: 'graph-35',
+        title: 'Longest Cycle in a Graph',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-cycle-in-a-graph/',
+        description: 'Given a directed graph where each node has at most one outgoing edge, return the length of the longest cycle. If no cycle exists, return -1.',
+        language: 'python',
+        solution: `class Solution:
+    def longestCycle(self, edges: List[int]) -> int:
+        n = len(edges)
+        visited = [0] * n
+        result = -1
+        time = 1
+        for i in range(n):
+            if visited[i]:
+                continue
+            start = time
+            node = i
+            while node != -1 and not visited[node]:
+                visited[node] = time
+                time += 1
+                node = edges[node]
+            if node != -1 and visited[node] >= start:
+                result = max(result, time - visited[node])
+        return result`,
+      },
     ]
   },
   {
