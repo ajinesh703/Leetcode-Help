@@ -3191,6 +3191,27 @@ export const topics: Topic[] = [
                     queue.append(neighbor)
         return result`,
       },
+      {
+        id: 'graph-32',
+        title: 'Keys and Rooms',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/keys-and-rooms/',
+        description: 'Given n rooms where rooms[i] contains a list of keys to other rooms, return true if you can visit all rooms starting from room 0.',
+        language: 'python',
+        solution: `class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        visited = set()
+        stack = [0]
+        while stack:
+            room = stack.pop()
+            if room in visited:
+                continue
+            visited.add(room)
+            for key in rooms[room]:
+                if key not in visited:
+                    stack.append(key)
+        return len(visited) == len(rooms)`,
+      },
     ]
   },
   {
