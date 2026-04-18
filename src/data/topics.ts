@@ -3127,6 +3127,23 @@ export const topics: Topic[] = [
                         queue.append((nr, nc, dist + 1))
         return -1`,
       },
+      {
+        id: 'graph-29',
+        title: 'Max Area of Island',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/max-area-of-island/',
+        description: 'Given a binary matrix grid, return the maximum area of an island. An island is a group of 1s connected 4-directionally. The area is the number of cells with value 1.',
+        language: 'python',
+        solution: `class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        rows, cols = len(grid), len(grid[0])
+        def dfs(r, c):
+            if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == 0:
+                return 0
+            grid[r][c] = 0
+            return 1 + dfs(r+1,c) + dfs(r-1,c) + dfs(r,c+1) + dfs(r,c-1)
+        return max(dfs(r, c) for r in range(rows) for c in range(cols))`,
+      },
     ]
   },
   {
