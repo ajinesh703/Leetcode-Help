@@ -3100,6 +3100,33 @@ export const topics: Topic[] = [
                         queue.append((new_state, turns + 1))
         return -1`,
       },
+      {
+        id: 'graph-28',
+        title: 'Shortest Path in Binary Matrix',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-path-in-binary-matrix/',
+        description: 'Given an n x n binary matrix grid, return the length of the shortest clear path from top-left to bottom-right. A clear path only goes through 0 cells. Return -1 if no such path exists.',
+        language: 'python',
+        solution: `class Solution:
+    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+        from collections import deque
+        n = len(grid)
+        if grid[0][0] == 1 or grid[n-1][n-1] == 1:
+            return -1
+        queue = deque([(0, 0, 1)])
+        grid[0][0] = 1
+        while queue:
+            r, c, dist = queue.popleft()
+            if r == n - 1 and c == n - 1:
+                return dist
+            for dr in [-1, 0, 1]:
+                for dc in [-1, 0, 1]:
+                    nr, nc = r + dr, c + dc
+                    if 0 <= nr < n and 0 <= nc < n and grid[nr][nc] == 0:
+                        grid[nr][nc] = 1
+                        queue.append((nr, nc, dist + 1))
+        return -1`,
+      },
     ]
   },
   {
