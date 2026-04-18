@@ -3236,6 +3236,30 @@ export const topics: Topic[] = [
                 provinces += 1
         return provinces`,
       },
+      {
+        id: 'graph-34',
+        title: 'Find Eventual Safe States',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-eventual-safe-states/',
+        description: 'Given a directed graph, return all eventual safe nodes in sorted order. A node is safe if every possible path from that node leads to a terminal node or another safe node.',
+        language: 'python',
+        solution: `class Solution:
+    def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
+        n = len(graph)
+        state = [0] * n  # 0=unvisited, 1=visiting, 2=safe
+        def dfs(node) -> bool:
+            if state[node] == 1:
+                return False
+            if state[node] == 2:
+                return True
+            state[node] = 1
+            for neighbor in graph[node]:
+                if not dfs(neighbor):
+                    return False
+            state[node] = 2
+            return True
+        return [i for i in range(n) if dfs(i)]`,
+      },
     ]
   },
   {
