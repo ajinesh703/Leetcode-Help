@@ -3382,6 +3382,39 @@ export const topics: Topic[] = [
                     ways[neighbor] = (ways[neighbor] + ways[node]) % MOD
         return ways[n - 1]`,
       },
+      {
+        id: 'graph-39',
+        title: 'Bus Routes',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/bus-routes/',
+        description: 'Given an array routes where routes[i] is a bus route, and source and target stops, return the minimum number of buses to take to reach target from source. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+        from collections import defaultdict, deque
+        if source == target:
+            return 0
+        stop_to_routes = defaultdict(set)
+        for i, route in enumerate(routes):
+            for stop in route:
+                stop_to_routes[stop].add(i)
+        visited_stops = {source}
+        visited_routes = set()
+        queue = deque([(source, 0)])
+        while queue:
+            stop, buses = queue.popleft()
+            for route_id in stop_to_routes[stop]:
+                if route_id in visited_routes:
+                    continue
+                visited_routes.add(route_id)
+                for next_stop in routes[route_id]:
+                    if next_stop == target:
+                        return buses + 1
+                    if next_stop not in visited_stops:
+                        visited_stops.add(next_stop)
+                        queue.append((next_stop, buses + 1))
+        return -1`,
+      },
     ]
   },
   {
