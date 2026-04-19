@@ -3758,6 +3758,62 @@ export const topics: Topic[] = [
         components = n - sum(union(u, v) for u, v in connections)
         return components - 1`,
       },
+      {
+        id: 'graph-50',
+        title: 'Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/',
+        description: 'Given a weighted undirected graph, find all critical and pseudo-critical edges in the minimum spanning tree. A critical edge is one whose removal increases the MST weight.',
+        language: 'python',
+        solution: `class Solution:
+    def findCriticalAndPseudoCriticalEdges(self, n: int, edges: List[List[int]]) -> List[List[int]]:
+        edges = [(w, u, v, i) for i, (u, v, w) in enumerate(edges)]
+        edges.sort()
+
+        def find(parent, x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        def union(parent, rank, x, y):
+            px, py = find(parent, x), find(parent, y)
+            if px == py:
+                return 0
+            if rank[px] < rank[py]:
+                px, py = py, px
+            parent[py] = px
+            if rank[px] == rank[py]:
+                rank[px] += 1
+            return 1
+
+        def mst_weight(skip=-1, include=-1):
+            parent = list(range(n))
+            rank = [0] * n
+            weight = 0
+            components = n
+            if include != -1:
+                w, u, v, _ = edges[include]
+                union(parent, rank, u, v)
+                weight += w
+                components -= 1
+            for i, (w, u, v, _) in enumerate(edges):
+                if i == skip:
+                    continue
+                if union(parent, rank, u, v):
+                    weight += w
+                    components -= 1
+            return weight if components == 1 else float('inf')
+
+        base = mst_weight()
+        critical, pseudo = [], []
+        for i in range(len(edges)):
+            if mst_weight(skip=i) > base:
+                critical.append(edges[i][3])
+            elif mst_weight(include=i) == base:
+                pseudo.append(edges[i][3])
+        return [critical, pseudo]`,
+      },
     ]
   },
   {
