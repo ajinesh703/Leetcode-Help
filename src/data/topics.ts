@@ -3588,6 +3588,36 @@ export const topics: Topic[] = [
                 return []
         return result[::-1]`,
       },
+      {
+        id: 'graph-45',
+        title: 'Possible Bipartition',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/possible-bipartition/',
+        description: 'Given n people and a list of dislikes pairs, return true if it is possible to split everyone into two groups such that no two people in the same group dislike each other.',
+        language: 'python',
+        solution: `class Solution:
+    def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
+        from collections import defaultdict, deque
+        graph = defaultdict(list)
+        for a, b in dislikes:
+            graph[a].append(b)
+            graph[b].append(a)
+        color = {}
+        for start in range(1, n + 1):
+            if start in color:
+                continue
+            queue = deque([start])
+            color[start] = 0
+            while queue:
+                node = queue.popleft()
+                for neighbor in graph[node]:
+                    if neighbor not in color:
+                        color[neighbor] = 1 - color[node]
+                        queue.append(neighbor)
+                    elif color[neighbor] == color[node]:
+                        return False
+        return True`,
+      },
     ]
   },
   {
