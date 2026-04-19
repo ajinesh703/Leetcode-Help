@@ -3618,6 +3618,45 @@ export const topics: Topic[] = [
                         return False
         return True`,
       },
+      {
+        id: 'graph-46',
+        title: 'Similar String Groups',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/similar-string-groups/',
+        description: 'Given an array of strings strs, return the number of groups of similar strings. Two strings are similar if they are equal or differ in exactly two positions where the characters are swapped.',
+        language: 'python',
+        solution: `class Solution:
+    def numSimilarGroups(self, strs: List[str]) -> int:
+        n = len(strs)
+        parent = list(range(n))
+
+        def find(x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        def union(x, y):
+            px, py = find(x), find(y)
+            if px != py:
+                parent[px] = py
+
+        def isSimilar(a, b):
+            diff = 0
+            for c1, c2 in zip(a, b):
+                if c1 != c2:
+                    diff += 1
+                if diff > 2:
+                    return False
+            return diff == 0 or diff == 2
+
+        for i in range(n):
+            for j in range(i + 1, n):
+                if isSimilar(strs[i], strs[j]):
+                    union(i, j)
+
+        return len(set(find(i) for i in range(n)))`,
+      },
     ]
   },
   {
