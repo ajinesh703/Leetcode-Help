@@ -3347,6 +3347,41 @@ export const topics: Topic[] = [
                         heapq.heappush(heap, (new_effort, nr, nc))
         return 0`,
       },
+      {
+        id: 'graph-38',
+        title: 'Number of Ways to Arrive at Destination',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-ways-to-arrive-at-destination/',
+        description: 'Given n intersections and roads with travel times, return the number of ways to reach intersection n-1 from 0 in the shortest time. Return the answer modulo 10^9 + 7.',
+        language: 'python',
+        solution: `class Solution:
+    def countPaths(self, n: int, roads: List[List[int]]) -> int:
+        import heapq
+        from collections import defaultdict
+        MOD = 10**9 + 7
+        graph = defaultdict(list)
+        for u, v, w in roads:
+            graph[u].append((v, w))
+            graph[v].append((u, w))
+        dist = [float('inf')] * n
+        ways = [0] * n
+        dist[0] = 0
+        ways[0] = 1
+        heap = [(0, 0)]
+        while heap:
+            d, node = heapq.heappop(heap)
+            if d > dist[node]:
+                continue
+            for neighbor, w in graph[node]:
+                new_dist = d + w
+                if new_dist < dist[neighbor]:
+                    dist[neighbor] = new_dist
+                    ways[neighbor] = ways[node]
+                    heapq.heappush(heap, (new_dist, neighbor))
+                elif new_dist == dist[neighbor]:
+                    ways[neighbor] = (ways[neighbor] + ways[node]) % MOD
+        return ways[n - 1]`,
+      },
     ]
   },
   {
