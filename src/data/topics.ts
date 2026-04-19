@@ -3724,6 +3724,40 @@ export const topics: Topic[] = [
 
         return True`,
       },
+      {
+        id: 'graph-49',
+        title: 'Number of Operations to Make Network Connected',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-operations-to-make-network-connected/',
+        description: 'Given n computers and a list of connections, return the minimum number of cable operations to make all computers connected. Return -1 if not possible.',
+        language: 'python',
+        solution: `class Solution:
+    def makeConnected(self, n: int, connections: List[List[int]]) -> int:
+        if len(connections) < n - 1:
+            return -1
+        parent = list(range(n))
+        rank = [0] * n
+
+        def find(x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        def union(x, y):
+            px, py = find(x), find(y)
+            if px == py:
+                return 0
+            if rank[px] < rank[py]:
+                px, py = py, px
+            parent[py] = px
+            if rank[px] == rank[py]:
+                rank[px] += 1
+            return 1
+
+        components = n - sum(union(u, v) for u, v in connections)
+        return components - 1`,
+      },
     ]
   },
   {
