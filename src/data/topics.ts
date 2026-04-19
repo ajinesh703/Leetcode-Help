@@ -3814,6 +3814,42 @@ export const topics: Topic[] = [
                 pseudo.append(edges[i][3])
         return [critical, pseudo]`,
       },
+      {
+        id: 'graph-51',
+        title: 'Second Minimum Time to Reach Destination',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/second-minimum-time-to-reach-destination/',
+        description: 'Given a graph of n nodes, edges, time per edge, and change interval for traffic lights, return the second minimum time to travel from node 1 to node n.',
+        language: 'python',
+        solution: `class Solution:
+    def secondMinimum(self, n: int, edges: List[List[int]], time: int, change: int) -> int:
+        from collections import defaultdict, deque
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        dist1 = [-1] * (n + 1)
+        dist2 = [-1] * (n + 1)
+        dist1[1] = 0
+        queue = deque([(1, 1)])
+        while queue:
+            node, freq = queue.popleft()
+            d = dist1[node] if freq == 1 else dist2[node]
+            if (d // change) % 2 == 1:
+                d += change - (d % change)
+            d += time
+            for neighbor in graph[node]:
+                if dist1[neighbor] == -1:
+                    dist1[neighbor] = d
+                    queue.append((neighbor, 1))
+                elif dist2[neighbor] == -1 and dist1[neighbor] != d:
+                    dist2[neighbor] = d
+                    if neighbor == n:
+                        return d
+                    queue.append((neighbor, 2))
+        return dist2[n]`,
+      },
+      
     ]
   },
   {
