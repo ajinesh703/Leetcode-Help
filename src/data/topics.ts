@@ -3484,6 +3484,35 @@ export const topics: Topic[] = [
                     queue.append((nr, nc, dist + 1))
         return -1`,
       },
+      {
+        id: 'graph-42',
+        title: 'As Far from Land as Possible',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/as-far-from-land-as-possible/',
+        description: 'Given an n x n grid containing 0s (water) and 1s (land), find the water cell with the maximum Manhattan distance to the nearest land cell. Return -1 if no land or water exists.',
+        language: 'python',
+        solution: `class Solution:
+    def maxDistance(self, grid: List[List[int]]) -> int:
+        from collections import deque
+        n = len(grid)
+        queue = deque()
+        for r in range(n):
+            for c in range(n):
+                if grid[r][c] == 1:
+                    queue.append((r, c))
+        if len(queue) == 0 or len(queue) == n * n:
+            return -1
+        result = -1
+        while queue:
+            r, c = queue.popleft()
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < n and 0 <= nc < n and grid[nr][nc] == 0:
+                    grid[nr][nc] = grid[r][c] + 1
+                    result = max(result, grid[nr][nc] - 1)
+                    queue.append((nr, nc))
+        return result`,
+      },
     ]
   },
   {
