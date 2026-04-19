@@ -3513,6 +3513,49 @@ export const topics: Topic[] = [
                     queue.append((nr, nc))
         return result`,
       },
+      {
+        id: 'graph-43',
+        title: 'Making a Large Island',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/making-a-large-island/',
+        description: 'Given an n x n binary matrix grid, you can change at most one 0 to 1. Return the size of the largest island after applying this operation.',
+        language: 'python',
+        solution: `class Solution:
+    def largestIsland(self, grid: List[List[int]]) -> int:
+        n = len(grid)
+        island_id = 2
+        island_size = {}
+
+        def dfs(r, c, iid):
+            if r < 0 or c < 0 or r >= n or c >= n or grid[r][c] != 1:
+                return 0
+            grid[r][c] = iid
+            return 1 + dfs(r+1,c,iid) + dfs(r-1,c,iid) + dfs(r,c+1,iid) + dfs(r,c-1,iid)
+
+        for r in range(n):
+            for c in range(n):
+                if grid[r][c] == 1:
+                    island_size[island_id] = dfs(r, c, island_id)
+                    island_id += 1
+
+        result = max(island_size.values(), default=0)
+
+        for r in range(n):
+            for c in range(n):
+                if grid[r][c] == 0:
+                    seen = set()
+                    size = 1
+                    for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                        nr, nc = r + dr, c + dc
+                        if 0 <= nr < n and 0 <= nc < n and grid[nr][nc] > 1:
+                            iid = grid[nr][nc]
+                            if iid not in seen:
+                                seen.add(iid)
+                                size += island_size[iid]
+                    result = max(result, size)
+
+        return result`,
+      },
     ]
   },
   {
