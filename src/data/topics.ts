@@ -3415,6 +3415,32 @@ export const topics: Topic[] = [
                         queue.append((next_stop, buses + 1))
         return -1`,
       },
+      {
+        id: 'graph-40',
+        title: 'Swim in Rising Water',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/swim-in-rising-water/',
+        description: 'Given an n x n grid where grid[i][j] is the elevation at position (i,j), return the minimum time to swim from top-left to bottom-right. At time t you can swim to adjacent cells with elevation <= t.',
+        language: 'python',
+        solution: `class Solution:
+    def swimInWater(self, grid: List[List[int]]) -> int:
+        import heapq
+        n = len(grid)
+        visited = set()
+        heap = [(grid[0][0], 0, 0)]
+        while heap:
+            t, r, c = heapq.heappop(heap)
+            if r == n - 1 and c == n - 1:
+                return t
+            if (r, c) in visited:
+                continue
+            visited.add((r, c))
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < n and 0 <= nc < n and (nr, nc) not in visited:
+                    heapq.heappush(heap, (max(t, grid[nr][nc]), nr, nc))
+        return -1`,
+      },
     ]
   },
   {
