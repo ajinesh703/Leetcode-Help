@@ -3657,6 +3657,42 @@ export const topics: Topic[] = [
 
         return len(set(find(i) for i in range(n)))`,
       },
+      {
+        id: 'graph-47',
+        title: 'Accounts Merge',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/accounts-merge/',
+        description: 'Given a list of accounts where each account is a list of strings (name followed by emails), merge accounts that share at least one email. Return the merged accounts with emails sorted.',
+        language: 'python',
+        solution: `class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        from collections import defaultdict
+        parent = {}
+
+        def find(x):
+            if parent[x] != x:
+                parent[x] = find(parent[x])
+            return parent[x]
+
+        def union(x, y):
+            parent[find(x)] = find(y)
+
+        email_to_name = {}
+        for account in accounts:
+            name = account[0]
+            for email in account[1:]:
+                if email not in parent:
+                    parent[email] = email
+                email_to_name[email] = name
+                union(account[1], email)
+
+        groups = defaultdict(list)
+        for email in parent:
+            groups[find(email)].append(email)
+
+        return [[email_to_name[root]] + sorted(emails)
+                for root, emails in groups.items()]`,
+      },
     ]
   },
   {
