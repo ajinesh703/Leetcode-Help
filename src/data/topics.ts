@@ -3441,6 +3441,49 @@ export const topics: Topic[] = [
                     heapq.heappush(heap, (max(t, grid[nr][nc]), nr, nc))
         return -1`,
       },
+      {
+        id: 'graph-41',
+        title: 'Shortest Bridge',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-bridge/',
+        description: 'Given an n x n binary matrix grid containing exactly two islands, return the minimum number of 0s you must flip to connect the two islands.',
+        language: 'python',
+        solution: `class Solution:
+    def shortestBridge(self, grid: List[List[int]]) -> int:
+        from collections import deque
+        n = len(grid)
+        visited = set()
+        queue = deque()
+
+        def dfs(r, c):
+            if r < 0 or c < 0 or r >= n or c >= n or (r,c) in visited or grid[r][c] == 0:
+                return
+            visited.add((r, c))
+            queue.append((r, c, 0))
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                dfs(r + dr, c + dc)
+
+        found = False
+        for r in range(n):
+            if found:
+                break
+            for c in range(n):
+                if grid[r][c] == 1:
+                    dfs(r, c)
+                    found = True
+                    break
+
+        while queue:
+            r, c, dist = queue.popleft()
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < n and 0 <= nc < n and (nr, nc) not in visited:
+                    if grid[nr][nc] == 1:
+                        return dist
+                    visited.add((nr, nc))
+                    queue.append((nr, nc, dist + 1))
+        return -1`,
+      },
     ]
   },
   {
