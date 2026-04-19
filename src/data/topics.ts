@@ -3849,6 +3849,36 @@ export const topics: Topic[] = [
                     queue.append((neighbor, 2))
         return dist2[n]`,
       },
+      {
+        id: 'graph-52',
+        title: 'Minimum Fuel Cost to Report to the Capital',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-fuel-cost-to-report-to-the-capital/',
+        description: 'Given a tree of n cities and integer seats, return the minimum liters of fuel to move all representatives to the capital city 0. Each car has seats capacity and fuel cost is 1 per road.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumFuelCost(self, roads: List[List[int]], seats: int) -> int:
+        from collections import defaultdict
+        import math
+        graph = defaultdict(list)
+        for u, v in roads:
+            graph[u].append(v)
+            graph[v].append(u)
+        fuel = 0
+        def dfs(node, parent):
+            nonlocal fuel
+            people = 1
+            for neighbor in graph[node]:
+                if neighbor == parent:
+                    continue
+                people += dfs(neighbor, node)
+            if node != 0:
+                fuel += math.ceil(people / seats)
+            return people
+        dfs(0, -1)
+        return fuel`,
+      },
+      
       
     ]
   },
