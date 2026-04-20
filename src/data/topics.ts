@@ -4075,6 +4075,35 @@ export const topics: Topic[] = [
             return -1
         return removed`,
       },
+      {
+        id: 'graph-59',
+        title: 'Couples Holding Hands',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/couples-holding-hands/',
+        description: 'Given n couples sitting in 2n seats in a row, return the minimum number of swaps so that every couple sits side by side. A swap consists of choosing any two people and swapping their seats.',
+        language: 'python',
+        solution: `class Solution:
+    def minSwapsCouples(self, row: List[int]) -> int:
+        parent = list(range(len(row) // 2))
+
+        def find(x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        def union(x, y):
+            px, py = find(x), find(y)
+            if px != py:
+                parent[px] = py
+                return 1
+            return 0
+
+        swaps = 0
+        for i in range(0, len(row), 2):
+            swaps += union(row[i] // 2, row[i + 1] // 2)
+        return swaps`,
+      },
       
       
     ]
