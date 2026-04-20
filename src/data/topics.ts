@@ -3878,6 +3878,31 @@ export const topics: Topic[] = [
         dfs(0, -1)
         return fuel`,
       },
+      {
+        id: 'graph-53',
+        title: 'Restore the Array From Adjacent Pairs',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/restore-the-array-from-adjacent-pairs/',
+        description: 'Given a 2D array adjacentPairs where adjacentPairs[i] = [ui, vi] means ui and vi are adjacent in the original array, reconstruct and return the original array.',
+        language: 'python',
+        solution: `class Solution:
+    def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
+        from collections import defaultdict
+        graph = defaultdict(list)
+        for u, v in adjacentPairs:
+            graph[u].append(v)
+            graph[v].append(u)
+        start = next(node for node in graph if len(graph[node]) == 1)
+        result = [start]
+        prev, curr = None, start
+        while len(result) < len(adjacentPairs) + 1:
+            for neighbor in graph[curr]:
+                if neighbor != prev:
+                    result.append(neighbor)
+                    prev, curr = curr, neighbor
+                    break
+        return result`,
+      },
       
       
     ]
