@@ -4134,6 +4134,30 @@ export const topics: Topic[] = [
                 queue.append((nb, prob / len(neighbors), time - 1))
         return 0.0`,
       },
+      {
+        id: 'graph-61',
+        title: 'Count Nodes Equal to Average of Subtree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree/',
+        description: 'Given the root of a binary tree, return the number of nodes where the value equals the average of all values in its subtree (rounded down).',
+        language: 'python',
+        solution: `class Solution:
+    def averageOfSubtree(self, root) -> int:
+        result = 0
+        def dfs(node):
+            nonlocal result
+            if not node:
+                return 0, 0
+            left_sum, left_count = dfs(node.left)
+            right_sum, right_count = dfs(node.right)
+            total_sum = left_sum + right_sum + node.val
+            total_count = left_count + right_count + 1
+            if total_sum // total_count == node.val:
+                result += 1
+            return total_sum, total_count
+        dfs(root)
+        return result`,
+      },
       
       
     ]
