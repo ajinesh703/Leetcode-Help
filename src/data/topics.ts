@@ -3903,6 +3903,28 @@ export const topics: Topic[] = [
                     break
         return result`,
       },
+      {
+        id: 'graph-54',
+        title: 'Check if Move is Legal',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/check-if-move-is-legal/',
+        description: 'Given an 8x8 board of a Reversi-like game, a position to place a piece of given color, return true if the move is legal. A move is legal if it captures at least one opponent piece in any direction.',
+        language: 'python',
+        solution: `class Solution:
+    def checkMove(self, board: List[List[str]], rMove: int, cMove: int, color: str) -> bool:
+        opponent = 'B' if color == 'W' else 'W'
+        directions = [(0,1),(0,-1),(1,0),(-1,0),(1,1),(1,-1),(-1,1),(-1,-1)]
+        for dr, dc in directions:
+            r, c = rMove + dr, cMove + dc
+            length = 1
+            while 0 <= r < 8 and 0 <= c < 8 and board[r][c] == opponent:
+                r += dr
+                c += dc
+                length += 1
+            if length > 1 and 0 <= r < 8 and 0 <= c < 8 and board[r][c] == color:
+                return True
+        return False`,
+      },
       
       
     ]
