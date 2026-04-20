@@ -3951,6 +3951,38 @@ export const topics: Topic[] = [
 
         return len(stones) - len({find(r) for r, c in stones})`,
       },
+      {
+        id: 'graph-56',
+        title: 'Largest Component Size by Common Factor',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/largest-component-size-by-common-factor/',
+        description: 'Given an integer array nums, consider a graph where there is an edge between nums[i] and nums[j] if they share a common factor greater than 1. Return the size of the largest connected component.',
+        language: 'python',
+        solution: `class Solution:
+    def largestComponentSize(self, nums: List[int]) -> int:
+        from collections import Counter
+        parent = list(range(max(nums) + 1))
+
+        def find(x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        def union(x, y):
+            parent[find(x)] = find(y)
+
+        for num in nums:
+            i = 2
+            while i * i <= num:
+                if num % i == 0:
+                    union(num, i)
+                    union(num, num // i)
+                i += 1
+
+        count = Counter(find(num) for num in nums)
+        return max(count.values())`,
+      },
       
       
     ]
