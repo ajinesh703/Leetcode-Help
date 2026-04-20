@@ -3925,6 +3925,32 @@ export const topics: Topic[] = [
                 return True
         return False`,
       },
+      {
+        id: 'graph-55',
+        title: 'Most Stones Removed with Same Row or Column',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/',
+        description: 'Given stones on a 2D plane, a stone can be removed if it shares a row or column with another stone. Return the maximum number of stones that can be removed.',
+        language: 'python',
+        solution: `class Solution:
+    def removeStones(self, stones: List[List[int]]) -> int:
+        parent = {}
+
+        def find(x):
+            if x not in parent:
+                parent[x] = x
+            if parent[x] != x:
+                parent[x] = find(parent[x])
+            return parent[x]
+
+        def union(x, y):
+            parent[find(x)] = find(y)
+
+        for r, c in stones:
+            union(r, ~c)
+
+        return len(stones) - len({find(r) for r, c in stones})`,
+      },
       
       
     ]
