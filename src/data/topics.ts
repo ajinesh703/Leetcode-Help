@@ -4158,6 +4158,41 @@ export const topics: Topic[] = [
         dfs(root)
         return result`,
       },
+      {
+        id: 'graph-62',
+        title: 'Design Graph With Shortest Path Calculator',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/design-graph-with-shortest-path-calculator/',
+        description: 'Design a graph with n nodes, directed weighted edges, ability to add edges, and query the shortest path between two nodes using Dijkstra.',
+        language: 'python',
+        solution: `class Graph:
+    def __init__(self, n: int, edges: List[List[int]]):
+        from collections import defaultdict
+        self.graph = defaultdict(list)
+        for u, v, w in edges:
+            self.graph[u].append((v, w))
+
+    def addEdge(self, edge: List[int]) -> None:
+        u, v, w = edge
+        self.graph[u].append((v, w))
+
+    def shortestPath(self, node1: int, node2: int) -> int:
+        import heapq
+        dist = {node1: 0}
+        heap = [(0, node1)]
+        while heap:
+            d, node = heapq.heappop(heap)
+            if node == node2:
+                return d
+            if d > dist.get(node, float('inf')):
+                continue
+            for neighbor, w in self.graph[node]:
+                new_dist = d + w
+                if new_dist < dist.get(neighbor, float('inf')):
+                    dist[neighbor] = new_dist
+                    heapq.heappush(heap, (new_dist, neighbor))
+        return -1`,
+      },
       
       
     ]
