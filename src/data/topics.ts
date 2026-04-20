@@ -4193,6 +4193,46 @@ export const topics: Topic[] = [
                     heapq.heappush(heap, (new_dist, neighbor))
         return -1`,
       },
+      {
+        id: 'graph-63',
+        title: 'Maximize the Number of Target Nodes After Connecting Trees I',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximize-the-number-of-target-nodes-after-connecting-trees-i/',
+        description: 'Given two trees with edges1 and edges2, and integer k, return an array where answer[i] is the maximum number of nodes reachable within k edges from node i in tree1 after connecting it optimally to tree2.',
+        language: 'python',
+        solution: `class Solution:
+    def maxTargetNodes(self, edges1: List[List[int]], edges2: List[List[int]], k: int) -> List[int]:
+        from collections import defaultdict, deque
+        def build(edges):
+            graph = defaultdict(list)
+            for u, v in edges:
+                graph[u].append(v)
+                graph[v].append(u)
+            return graph
+
+        def count_reachable(graph, start, max_dist):
+            visited = {start}
+            queue = deque([(start, 0)])
+            count = 0
+            while queue:
+                node, dist = queue.popleft()
+                if dist > max_dist:
+                    break
+                count += 1
+                for nb in graph[node]:
+                    if nb not in visited:
+                        visited.add(nb)
+                        queue.append((nb, dist + 1))
+            return count
+
+        g1 = build(edges1)
+        g2 = build(edges2)
+        n1 = len(edges1) + 1
+        n2 = len(edges2) + 1
+
+        best2 = max(count_reachable(g2, j, k - 1) for j in range(n2)) if k > 0 else 0
+        return [count_reachable(g1, i, k) + best2 for i in range(n1)]`,
+      },
       
       
     ]
