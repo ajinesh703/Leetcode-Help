@@ -4010,6 +4010,71 @@ export const topics: Topic[] = [
                     queue.append(neighbor)
         return result`,
       },
+      {
+        id: 'graph-58',
+        title: 'Remove Max Number of Edges to Keep Graph Fully Traversable',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/',
+        description: 'Given a graph with 3 types of edges (Alice only, Bob only, both), return the maximum number of edges that can be removed while keeping the graph fully traversable by both Alice and Bob.',
+        language: 'python',
+        solution: `class Solution:
+    def maxNumEdgesToRemove(self, n: int, edges: List[List[int]]) -> int:
+        def make_uf(n):
+            parent = list(range(n + 1))
+            rank = [0] * (n + 1)
+            def find(x):
+                while parent[x] != x:
+                    parent[x] = parent[parent[x]]
+                    x = parent[x]
+                return x
+            def union(x, y):
+                px, py = find(x), find(y)
+                if px == py:
+                    return 0
+                if rank[px] < rank[py]:
+                    px, py = py, px
+                parent[py] = px
+                if rank[px] == rank[py]:
+                    rank[px] += 1
+                return 1
+            return union, find
+
+        ua, fa = make_uf(n)
+        ub, fb = make_uf(n)
+        added = removed = 0
+
+        for t, u, v in edges:
+            if t == 3:
+                r1 = ua(u, v)
+                r2 = ub(u, v)
+                if r1 or r2:
+                    added += max(r1, r2)
+                    if r1: ua(u, v)
+                    if r2: ub(u, v)
+                else:
+                    removed += 1
+
+        ua2, fa2 = make_uf(n)
+        ub2, fb2 = make_uf(n)
+        for t, u, v in edges:
+            if t == 3:
+                ua2(u, v)
+                ub2(u, v)
+
+        for t, u, v in edges:
+            if t == 1:
+                if not ua2(u, v):
+                    removed += 1
+            elif t == 2:
+                if not ub2(u, v):
+                    removed += 1
+
+        if len({fa2(i) for i in range(1, n+1)}) > 1:
+            return -1
+        if len({fb2(i) for i in range(1, n+1)}) > 1:
+            return -1
+        return removed`,
+      },
       
       
     ]
