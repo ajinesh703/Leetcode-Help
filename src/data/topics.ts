@@ -3983,6 +3983,33 @@ export const topics: Topic[] = [
         count = Counter(find(num) for num in nums)
         return max(count.values())`,
       },
+      {
+        id: 'graph-57',
+        title: 'Minimum Score of a Path Between Two Cities',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-score-of-a-path-between-two-cities/',
+        description: 'Given n cities, roads with distances, find the minimum score of a path between city 1 and city n. The score is the minimum edge distance on the path. The path can visit cities multiple times.',
+        language: 'python',
+        solution: `class Solution:
+    def minScore(self, n: int, roads: List[List[int]]) -> int:
+        from collections import defaultdict, deque
+        graph = defaultdict(list)
+        for u, v, d in roads:
+            graph[u].append((v, d))
+            graph[v].append((u, d))
+        visited = set()
+        queue = deque([1])
+        visited.add(1)
+        result = float('inf')
+        while queue:
+            node = queue.popleft()
+            for neighbor, dist in graph[node]:
+                result = min(result, dist)
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+        return result`,
+      },
       
       
     ]
