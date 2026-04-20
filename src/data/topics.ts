@@ -4104,6 +4104,36 @@ export const topics: Topic[] = [
             swaps += union(row[i] // 2, row[i + 1] // 2)
         return swaps`,
       },
+      {
+        id: 'graph-60',
+        title: 'Frog Position After T Seconds',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/frog-position-after-t-seconds/',
+        description: 'Given a tree of n vertices, a frog starts at vertex 1 and jumps to an unvisited adjacent vertex each second with equal probability. Return the probability that the frog is at vertex target after t seconds.',
+        language: 'python',
+        solution: `class Solution:
+    def frogPosition(self, n: int, edges: List[List[int]], t: int, target: int) -> float:
+        from collections import defaultdict, deque
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        visited = set([1])
+        queue = deque([(1, 1.0, t)])
+        while queue:
+            node, prob, time = queue.popleft()
+            neighbors = [nb for nb in graph[node] if nb not in visited]
+            if node == target:
+                if time == 0 or len(neighbors) == 0:
+                    return prob
+                return 0.0
+            if time == 0 or len(neighbors) == 0:
+                continue
+            for nb in neighbors:
+                visited.add(nb)
+                queue.append((nb, prob / len(neighbors), time - 1))
+        return 0.0`,
+      },
       
       
     ]
