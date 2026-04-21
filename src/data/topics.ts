@@ -4617,6 +4617,34 @@ export const topics: Topic[] = [
             return best
         return max(dfs(r, c) for r in range(rows) for c in range(cols))`,
       },
+      {
+        id: 'graph-77',
+        title: 'Word Ladder II',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/word-ladder-ii/',
+        description: 'Given beginWord, endWord, and a wordList, return all shortest transformation sequences from beginWord to endWord. Each transformed word must exist in the wordList.',
+        language: 'python',
+        solution: `class Solution:
+    def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+        from collections import defaultdict, deque
+        word_set = set(wordList)
+        if endWord not in word_set:
+            return []
+        layer = {beginWord: [[beginWord]]}
+        while layer:
+            word_set -= set(layer.keys())
+            next_layer = defaultdict(list)
+            for word, paths in layer.items():
+                for i in range(len(word)):
+                    for c in 'abcdefghijklmnopqrstuvwxyz':
+                        new_word = word[:i] + c + word[i+1:]
+                        if new_word in word_set:
+                            next_layer[new_word] += [path + [new_word] for path in paths]
+            if endWord in next_layer:
+                return next_layer[endWord]
+            layer = next_layer
+        return []`,
+      },
       
       
     ]
