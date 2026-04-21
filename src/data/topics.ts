@@ -4573,6 +4573,27 @@ export const topics: Topic[] = [
                 result = i
         return result`,
       },
+      {
+        id: 'graph-75',
+        title: 'Bellman Ford Algorithm',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/cheapest-flights-within-k-stops/',
+        description: 'Given n cities, flights with costs, source src, destination dst, and max stops k, return the cheapest price using Bellman-Ford algorithm. Return -1 if no such route exists.',
+        language: 'python',
+        solution: `class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        prices = [float('inf')] * n
+        prices[src] = 0
+        for i in range(k + 1):
+            temp = prices.copy()
+            for u, v, w in flights:
+                if prices[u] == float('inf'):
+                    continue
+                if prices[u] + w < temp[v]:
+                    temp[v] = prices[u] + w
+            prices = temp
+        return prices[dst] if prices[dst] != float('inf') else -1`,
+      },
       
       
     ]
