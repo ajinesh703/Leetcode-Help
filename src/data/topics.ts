@@ -4504,6 +4504,46 @@ export const topics: Topic[] = [
 
         return result`,
       },
+      {
+        id: 'graph-73',
+        title: 'Minimum Cost to Convert String I',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-convert-string-i/',
+        description: 'Given strings source and target, arrays original, changed, and cost, return the minimum cost to convert source to target by changing characters. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumCost(self, source: str, target: str, original: List[str], changed: List[str], cost: List[int]) -> int:
+        import heapq
+        from collections import defaultdict
+        graph = defaultdict(list)
+        for o, c, w in zip(original, changed, cost):
+            graph[ord(o) - ord('a')].append((ord(c) - ord('a'), w))
+
+        def dijkstra(start):
+            dist = [float('inf')] * 26
+            dist[start] = 0
+            heap = [(0, start)]
+            while heap:
+                d, node = heapq.heappop(heap)
+                if d > dist[node]:
+                    continue
+                for neighbor, w in graph[node]:
+                    if dist[node] + w < dist[neighbor]:
+                        dist[neighbor] = dist[node] + w
+                        heapq.heappush(heap, (dist[neighbor], neighbor))
+            return dist
+
+        all_dist = [dijkstra(i) for i in range(26)]
+        result = 0
+        for s, t in zip(source, target):
+            if s == t:
+                continue
+            d = all_dist[ord(s) - ord('a')][ord(t) - ord('a')]
+            if d == float('inf'):
+                return -1
+            result += d
+        return result`,
+      },
       
       
     ]
