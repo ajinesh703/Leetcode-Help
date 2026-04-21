@@ -4645,6 +4645,30 @@ export const topics: Topic[] = [
             layer = next_layer
         return []`,
       },
+      {
+        id: 'graph-78',
+        title: 'Pseudo-Palindromic Paths in a Binary Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/',
+        description: 'Given a binary tree where node values are digits 1-9, return the number of pseudo-palindromic paths from root to leaf. A path is pseudo-palindromic if at least one permutation of the node values is a palindrome.',
+        language: 'python',
+        solution: `class Solution:
+    def pseudoPalindromicPaths(self, root) -> int:
+        result = 0
+        def dfs(node, mask):
+            nonlocal result
+            if not node:
+                return
+            mask ^= (1 << node.val)
+            if not node.left and not node.right:
+                if mask & (mask - 1) == 0:
+                    result += 1
+                return
+            dfs(node.left, mask)
+            dfs(node.right, mask)
+        dfs(root, 0)
+        return result`,
+      },
       
       
     ]
