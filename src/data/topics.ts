@@ -4313,6 +4313,26 @@ export const topics: Topic[] = [
             has_incoming.add(v)
         return [i for i in range(n) if i not in has_incoming]`,
       },
+      {
+        id: 'graph-67',
+        title: 'Time Needed to Inform All Employees',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/time-needed-to-inform-all-employees/',
+        description: 'Given n employees, a head manager, manager array, and informTime array, return the total time needed to inform all employees. Each manager informs all direct subordinates simultaneously.',
+        language: 'python',
+        solution: `class Solution:
+    def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
+        from collections import defaultdict
+        graph = defaultdict(list)
+        for i in range(n):
+            if manager[i] != -1:
+                graph[manager[i]].append(i)
+        def dfs(node):
+            if not graph[node]:
+                return 0
+            return informTime[node] + max(dfs(sub) for sub in graph[node])
+        return dfs(headID)`,
+      },
       
       
     ]
