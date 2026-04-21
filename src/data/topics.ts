@@ -4700,6 +4700,28 @@ export const topics: Topic[] = [
         dfs2(0, -1)
         return result`,
       },
+      {
+        id: 'graph-80',
+        title: 'Maximum Star Sum of a Graph',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-star-sum-of-a-graph/',
+        description: 'Given a graph with node values and edges, and integer k, return the maximum star sum of a star graph with at most k edges. A star graph is a subgraph with one center node connected to neighbors.',
+        language: 'python',
+        solution: `class Solution:
+    def maxStarSum(self, vals: List[int], edges: List[List[int]], k: int) -> int:
+        from collections import defaultdict
+        graph = defaultdict(list)
+        for u, v in edges:
+            if vals[v] > 0:
+                graph[u].append(vals[v])
+            if vals[u] > 0:
+                graph[v].append(vals[u])
+        result = max(vals)
+        for node in range(len(vals)):
+            neighbors = sorted(graph[node], reverse=True)[:k]
+            result = max(result, vals[node] + sum(neighbors))
+        return result`,
+      },
       
       
     ]
