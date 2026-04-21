@@ -4669,6 +4669,37 @@ export const topics: Topic[] = [
         dfs(root, 0)
         return result`,
       },
+      {
+        id: 'graph-79',
+        title: 'Sum of Distances in Tree',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/sum-of-distances-in-tree/',
+        description: 'Given a tree with n nodes, return an array answer where answer[i] is the sum of distances between node i and all other nodes.',
+        language: 'python',
+        solution: `class Solution:
+    def sumOfDistancesInTree(self, n: int, edges: List[List[int]]) -> List[int]:
+        from collections import defaultdict
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        count = [1] * n
+        result = [0] * n
+        def dfs1(node, parent):
+            for child in graph[node]:
+                if child != parent:
+                    dfs1(child, node)
+                    count[node] += count[child]
+                    result[node] += result[child] + count[child]
+        def dfs2(node, parent):
+            for child in graph[node]:
+                if child != parent:
+                    result[child] = result[node] - count[child] + (n - count[child])
+                    dfs2(child, node)
+        dfs1(0, -1)
+        dfs2(0, -1)
+        return result`,
+      },
       
       
     ]
