@@ -4437,6 +4437,37 @@ export const topics: Topic[] = [
                     queue.append(neighbor)
         return max(dp)`,
       },
+      {
+        id: 'graph-71',
+        title: 'Longest Path With Different Adjacent Characters',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-path-with-different-adjacent-characters/',
+        description: 'Given a tree rooted at node 0 with a string s of characters, return the length of the longest path where no two adjacent nodes have the same character.',
+        language: 'python',
+        solution: `class Solution:
+    def longestPath(self, parent: List[int], s: str) -> int:
+        from collections import defaultdict
+        n = len(parent)
+        graph = defaultdict(list)
+        for i in range(1, n):
+            graph[parent[i]].append(i)
+        result = 1
+        def dfs(node) -> int:
+            nonlocal result
+            top2 = [0, 0]
+            for child in graph[node]:
+                child_len = dfs(child)
+                if s[child] != s[node]:
+                    if child_len > top2[0]:
+                        top2[1] = top2[0]
+                        top2[0] = child_len
+                    elif child_len > top2[1]:
+                        top2[1] = child_len
+            result = max(result, top2[0] + top2[1] + 1)
+            return top2[0] + 1
+        dfs(0)
+        return result`,
+      },
       
       
     ]
