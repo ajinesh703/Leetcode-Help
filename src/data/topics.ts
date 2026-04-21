@@ -4268,6 +4268,37 @@ export const topics: Topic[] = [
                 result += 1
         return result`,
       },
+      {
+        id: 'graph-65',
+        title: 'Find Closest Node to Given Two Nodes',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-closest-node-to-given-two-nodes/',
+        description: 'Given a directed graph where each node has at most one outgoing edge, and two nodes node1 and node2, return the index of the node that can be reached from both with minimum max distance. Return -1 if no such node exists.',
+        language: 'python',
+        solution: `class Solution:
+    def closestMeetingNode(self, edges: List[int], node1: int, node2: int) -> int:
+        def get_dist(start):
+            dist = {}
+            node, d = start, 0
+            while node != -1 and node not in dist:
+                dist[node] = d
+                node = edges[node]
+                d += 1
+            return dist
+
+        dist1 = get_dist(node1)
+        dist2 = get_dist(node2)
+
+        result = -1
+        min_dist = float('inf')
+        for node in range(len(edges)):
+            if node in dist1 and node in dist2:
+                max_d = max(dist1[node], dist2[node])
+                if max_d < min_dist:
+                    min_dist = max_d
+                    result = node
+        return result`,
+      },
       
       
     ]
