@@ -4544,6 +4544,35 @@ export const topics: Topic[] = [
             result += d
         return result`,
       },
+      {
+        id: 'graph-74',
+        title: 'Floyd Warshall Algorithm',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/',
+        description: 'Given n cities, edges with weights, and a distance threshold, return the city with the smallest number of reachable cities within the threshold. If tie, return the city with the largest index.',
+        language: 'python',
+        solution: `class Solution:
+    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
+        dist = [[float('inf')] * n for _ in range(n)]
+        for i in range(n):
+            dist[i][i] = 0
+        for u, v, w in edges:
+            dist[u][v] = w
+            dist[v][u] = w
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    if dist[i][k] + dist[k][j] < dist[i][j]:
+                        dist[i][j] = dist[i][k] + dist[k][j]
+        result = -1
+        min_count = float('inf')
+        for i in range(n):
+            count = sum(1 for j in range(n) if i != j and dist[i][j] <= distanceThreshold)
+            if count <= min_count:
+                min_count = count
+                result = i
+        return result`,
+      },
       
       
     ]
