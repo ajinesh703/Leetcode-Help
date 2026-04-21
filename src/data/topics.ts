@@ -4333,6 +4333,38 @@ export const topics: Topic[] = [
             return informTime[node] + max(dfs(sub) for sub in graph[node])
         return dfs(headID)`,
       },
+      {
+        id: 'graph-68',
+        title: 'Dijkstra\'s Algorithm - Shortest Path',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/path-with-maximum-probability/',
+        description: 'Given an undirected weighted graph, a start and end node, and edge probabilities, return the maximum probability of reaching end from start. Return 0 if no path exists.',
+        language: 'python',
+        solution: `class Solution:
+    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:
+        from collections import defaultdict
+        import heapq
+        graph = defaultdict(list)
+        for i, (u, v) in enumerate(edges):
+            graph[u].append((v, succProb[i]))
+            graph[v].append((u, succProb[i]))
+        prob = [0.0] * n
+        prob[start] = 1.0
+        heap = [(-1.0, start)]
+        while heap:
+            p, node = heapq.heappop(heap)
+            p = -p
+            if node == end:
+                return p
+            if p < prob[node]:
+                continue
+            for neighbor, edge_prob in graph[node]:
+                new_prob = p * edge_prob
+                if new_prob > prob[neighbor]:
+                    prob[neighbor] = new_prob
+                    heapq.heappush(heap, (-new_prob, neighbor))
+        return 0.0`,
+      },
       
       
     ]
