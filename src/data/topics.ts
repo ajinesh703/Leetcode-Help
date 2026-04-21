@@ -4233,6 +4233,41 @@ export const topics: Topic[] = [
         best2 = max(count_reachable(g2, j, k - 1) for j in range(n2)) if k > 0 else 0
         return [count_reachable(g1, i, k) + best2 for i in range(n1)]`,
       },
+      {
+        id: 'graph-64',
+        title: 'Count the Number of Complete Components',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-the-number-of-complete-components/',
+        description: 'Given an undirected graph with n vertices and edges, return the number of complete connected components. A complete component is a subgraph where every pair of vertices is connected by an edge.',
+        language: 'python',
+        solution: `class Solution:
+    def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:
+        from collections import defaultdict
+        parent = list(range(n))
+
+        def find(x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        def union(x, y):
+            parent[find(x)] = find(y)
+
+        for u, v in edges:
+            union(u, v)
+
+        from collections import Counter
+        comp_nodes = Counter(find(i) for i in range(n))
+        comp_edges = Counter(find(u) for u, v in edges)
+
+        result = 0
+        for root, node_count in comp_nodes.items():
+            edge_count = comp_edges.get(root, 0)
+            if edge_count == node_count * (node_count - 1) // 2:
+                result += 1
+        return result`,
+      },
       
       
     ]
