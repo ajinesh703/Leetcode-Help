@@ -4468,6 +4468,42 @@ export const topics: Topic[] = [
         dfs(0)
         return result`,
       },
+      {
+        id: 'graph-72',
+        title: 'Number of Good Paths',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-good-paths/',
+        description: 'Given a tree with node values, return the number of good paths. A good path has the same value at start and end nodes, and all intermediate nodes have values less than or equal to the start/end value.',
+        language: 'python',
+        solution: `class Solution:
+    def numberOfGoodPaths(self, vals: List[int], edges: List[List[int]]) -> int:
+        from collections import defaultdict
+        n = len(vals)
+        parent = list(range(n))
+        size = defaultdict(lambda: defaultdict(int))
+        for i in range(n):
+            size[i][vals[i]] = 1
+
+        def find(x):
+            while parent[x] != x:
+                parent[x] = parent[parent[x]]
+                x = parent[x]
+            return x
+
+        result = n
+        edges_by_val = sorted((max(vals[u], vals[v]), u, v) for u, v in edges)
+
+        for _, u, v in edges_by_val:
+            pu, pv = find(u), find(v)
+            val_u, val_v = max(vals[pu], vals[pv]), max(vals[pv], vals[pu])
+            cnt_u = size[pu].get(max(vals[pu], vals[pv]), 0)
+            cnt_v = size[pv].get(max(vals[pu], vals[pv]), 0)
+            result += cnt_u * cnt_v
+            parent[pu] = pv
+            size[pv][max(vals[pu], vals[pv])] = cnt_u + cnt_v
+
+        return result`,
+      },
       
       
     ]
