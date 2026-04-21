@@ -4299,6 +4299,20 @@ export const topics: Topic[] = [
                     result = node
         return result`,
       },
+      {
+        id: 'graph-66',
+        title: 'Minimum Number of Vertices to Reach All Nodes',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/',
+        description: 'Given a directed acyclic graph with n vertices and edges, return the smallest set of vertices from which all nodes in the graph are reachable.',
+        language: 'python',
+        solution: `class Solution:
+    def findSmallestSetOfVertices(self, n: int, edges: List[List[int]]) -> List[int]:
+        has_incoming = set()
+        for _, v in edges:
+            has_incoming.add(v)
+        return [i for i in range(n) if i not in has_incoming]`,
+      },
       
       
     ]
