@@ -4407,6 +4407,36 @@ export const topics: Topic[] = [
                     queue.append((nr, nc, new_keys, moves + 1))
         return -1`,
       },
+      {
+        id: 'graph-70',
+        title: 'Parallel Courses III',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/parallel-courses-iii/',
+        description: 'Given n courses, prerequisites, and time array, return the minimum number of months to complete all courses. Courses with no prerequisites can be taken simultaneously.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumTime(self, n: int, relations: List[List[int]], time: List[int]) -> int:
+        from collections import defaultdict, deque
+        graph = defaultdict(list)
+        in_degree = [0] * (n + 1)
+        for u, v in relations:
+            graph[u].append(v)
+            in_degree[v] += 1
+        dp = [0] * (n + 1)
+        queue = deque()
+        for i in range(1, n + 1):
+            if in_degree[i] == 0:
+                queue.append(i)
+                dp[i] = time[i - 1]
+        while queue:
+            node = queue.popleft()
+            for neighbor in graph[node]:
+                dp[neighbor] = max(dp[neighbor], dp[node] + time[neighbor - 1])
+                in_degree[neighbor] -= 1
+                if in_degree[neighbor] == 0:
+                    queue.append(neighbor)
+        return max(dp)`,
+      },
       
       
     ]
