@@ -4365,6 +4365,48 @@ export const topics: Topic[] = [
                     heapq.heappush(heap, (-new_prob, neighbor))
         return 0.0`,
       },
+      {
+        id: 'graph-69',
+        title: 'Shortest Path to Get All Keys',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-path-to-get-all-keys/',
+        description: 'Given a grid with keys (a-f), locks (A-F), start (@), and walls (#), return the minimum number of moves to collect all keys. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def shortestPathAllKeys(self, grid: List[str]) -> int:
+        from collections import deque
+        rows, cols = len(grid), len(grid[0])
+        start = None
+        all_keys = 0
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == '@':
+                    start = (r, c)
+                elif grid[r][c].islower():
+                    all_keys |= (1 << (ord(grid[r][c]) - ord('a')))
+        queue = deque([(start[0], start[1], 0, 0)])
+        visited = {(start[0], start[1], 0)}
+        while queue:
+            r, c, keys, moves = queue.popleft()
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r + dr, c + dc
+                if not (0 <= nr < rows and 0 <= nc < cols):
+                    continue
+                cell = grid[nr][nc]
+                if cell == '#':
+                    continue
+                if cell.isupper() and not (keys & (1 << (ord(cell.lower()) - ord('a')))):
+                    continue
+                new_keys = keys
+                if cell.islower():
+                    new_keys |= (1 << (ord(cell) - ord('a')))
+                if new_keys == all_keys:
+                    return moves + 1
+                if (nr, nc, new_keys) not in visited:
+                    visited.add((nr, nc, new_keys))
+                    queue.append((nr, nc, new_keys, moves + 1))
+        return -1`,
+      },
       
       
     ]
