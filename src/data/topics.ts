@@ -5047,6 +5047,38 @@ export const topics: Topic[] = [
                     queue.append((nr, nc))
         return height`,
       },
+      {
+        id: 'graph-92',
+        title: 'Difference Between Maximum and Minimum Price Sum',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/difference-between-maximum-and-minimum-price-sum/',
+        description: 'Given a tree with n nodes and price array, return the maximum difference between the sum of prices along any path and the minimum price in that path.',
+        language: 'python',
+        solution: `class Solution:
+    def maxOutput(self, n: int, edges: List[List[int]], price: List[int]) -> int:
+        from collections import defaultdict
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        result = 0
+        def dfs(node, parent):
+            nonlocal result
+            max_with = price[node]
+            max_without = 0
+            for child in graph[node]:
+                if child == parent:
+                    continue
+                child_with, child_without = dfs(child, node)
+                result = max(result,
+                    max_with + child_without,
+                    max_without + child_with)
+                max_with = max(max_with, price[node] + child_with)
+                max_without = max(max_without, price[node] + child_without - price[node], child_without)
+            return max_with, max_without
+        dfs(0, -1)
+        return result`,
+      },
       
       
     ]
