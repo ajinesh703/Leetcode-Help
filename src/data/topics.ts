@@ -4991,6 +4991,35 @@ export const topics: Topic[] = [
                     heapq.heappush(heap, (cost + w // 2, neighbor, used + 1))
         return -1`,
       },
+      {
+        id: 'graph-90',
+        title: 'Kth Largest Sum in a Binary Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/kth-largest-sum-in-a-binary-tree/',
+        description: 'Given the root of a binary tree and integer k, return the kth largest level sum. The level sum is the sum of all node values at that level.',
+        language: 'python',
+        solution: `class Solution:
+    def kthLargestLevelSum(self, root, k: int) -> int:
+        from collections import deque
+        import heapq
+        if not root:
+            return -1
+        level_sums = []
+        queue = deque([root])
+        while queue:
+            level_sum = 0
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                level_sum += node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            level_sums.append(level_sum)
+        if k > len(level_sums):
+            return -1
+        return sorted(level_sums, reverse=True)[k - 1]`,
+      },
       
       
     ]
