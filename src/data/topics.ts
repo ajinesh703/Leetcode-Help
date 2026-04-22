@@ -5176,6 +5176,37 @@ export const topics: Topic[] = [
                 prev += curr
         return result`,
       },
+      {
+        id: 'graph-96',
+        title: 'Collect Coins in a Tree',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/collect-coins-in-a-tree/',
+        description: 'Given a tree with n nodes and a coins array, return the minimum number of edges to traverse to collect all coins. You can collect coins within distance 2 from visited nodes.',
+        language: 'python',
+        solution: `class Solution:
+    def collectTheCoins(self, coins: List[int], edges: List[List[int]]) -> int:
+        from collections import defaultdict, deque
+        n = len(coins)
+        graph = defaultdict(set)
+        for u, v in edges:
+            graph[u].add(v)
+            graph[v].add(u)
+        leaves = deque([i for i in range(n) if len(graph[i]) == 1 and coins[i] == 0])
+        while leaves:
+            node = leaves.popleft()
+            for neighbor in list(graph[node]):
+                graph[neighbor].remove(node)
+                if len(graph[neighbor]) == 1 and coins[neighbor] == 0:
+                    leaves.append(neighbor)
+            graph[node].clear()
+        for _ in range(2):
+            leaves = [i for i in range(n) if len(graph[i]) == 1]
+            for node in leaves:
+                for neighbor in list(graph[node]):
+                    graph[neighbor].remove(node)
+                graph[node].clear()
+        return max(0, sum(len(graph[i]) > 0 for i in range(n)) - 1) * 2`,
+      },
       
       
     ]
