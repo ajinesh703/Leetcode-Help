@@ -5020,6 +5020,33 @@ export const topics: Topic[] = [
             return -1
         return sorted(level_sums, reverse=True)[k - 1]`,
       },
+      {
+        id: 'graph-91',
+        title: 'Map of Highest Peak',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/map-of-highest-peak/',
+        description: 'Given an m x n binary matrix isWater where 1 is water and 0 is land, assign heights to each cell such that water cells have height 0 and adjacent cells differ by at most 1. Return the matrix with maximum height.',
+        language: 'python',
+        solution: `class Solution:
+    def highestPeak(self, isWater: List[List[int]]) -> List[List[int]]:
+        from collections import deque
+        rows, cols = len(isWater), len(isWater[0])
+        height = [[-1] * cols for _ in range(rows)]
+        queue = deque()
+        for r in range(rows):
+            for c in range(cols):
+                if isWater[r][c] == 1:
+                    height[r][c] = 0
+                    queue.append((r, c))
+        while queue:
+            r, c = queue.popleft()
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < rows and 0 <= nc < cols and height[nr][nc] == -1:
+                    height[nr][nc] = height[r][c] + 1
+                    queue.append((nr, nc))
+        return height`,
+      },
       
       
     ]
