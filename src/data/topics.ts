@@ -4926,6 +4926,38 @@ export const topics: Topic[] = [
                     queue.append((nr, nc, new_elim, steps + 1))
         return -1`,
       },
+      {
+        id: 'graph-88',
+        title: 'Robot Room Cleaner',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/robot-room-cleaner/',
+        description: 'Given a robot cleaner API with move, turnLeft, turnRight, and clean methods, clean the entire room without knowing the room layout. The robot starts at an unknown position.',
+        language: 'python',
+        solution: `class Solution:
+    def cleanRoom(self, robot):
+        visited = set()
+        directions = [(-1,0),(0,1),(1,0),(0,-1)]
+
+        def go_back():
+            robot.turnRight()
+            robot.turnRight()
+            robot.move()
+            robot.turnRight()
+            robot.turnRight()
+
+        def dfs(r, c, d):
+            robot.clean()
+            visited.add((r, c))
+            for i in range(4):
+                nd = (d + i) % 4
+                nr, nc = r + directions[nd][0], c + directions[nd][1]
+                if (nr, nc) not in visited and robot.move():
+                    dfs(nr, nc, nd)
+                    go_back()
+                robot.turnRight()
+
+        dfs(0, 0, 0)`,
+      },
       
       
     ]
