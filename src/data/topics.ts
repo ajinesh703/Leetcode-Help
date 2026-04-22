@@ -4776,6 +4776,35 @@ export const topics: Topic[] = [
                         queue.append((new_gene, mutations + 1))
         return -1`,
       },
+      {
+        id: 'graph-83',
+        title: 'Closest Meeting Node',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-closest-node-to-given-two-nodes/',
+        description: 'Given a directed graph where each node has at most one outgoing edge, and two source nodes, return the node reachable from both with the minimum maximum distance. Return -1 if no such node.',
+        language: 'python',
+        solution: `class Solution:
+    def closestMeetingNode(self, edges: List[int], node1: int, node2: int) -> int:
+        def bfs(start):
+            dist = [-1] * len(edges)
+            node, d = start, 0
+            while node != -1 and dist[node] == -1:
+                dist[node] = d
+                node = edges[node]
+                d += 1
+            return dist
+        dist1 = bfs(node1)
+        dist2 = bfs(node2)
+        result = -1
+        min_dist = float('inf')
+        for i in range(len(edges)):
+            if dist1[i] != -1 and dist2[i] != -1:
+                max_d = max(dist1[i], dist2[i])
+                if max_d < min_dist:
+                    min_dist = max_d
+                    result = i
+        return result`,
+      },
       
       
     ]
