@@ -4958,6 +4958,39 @@ export const topics: Topic[] = [
 
         dfs(0, 0, 0)`,
       },
+      {
+        id: 'graph-89',
+        title: 'Minimum Cost to Reach City With Discounts',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/',
+        description: 'Given n cities, highways with tolls, and k discounts that halve a toll, return the minimum cost to travel from city 0 to city n-1 using at most k discounts.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumCost(self, n: int, highways: List[List[int]], discounts: int) -> int:
+        import heapq
+        from collections import defaultdict
+        graph = defaultdict(list)
+        for u, v, w in highways:
+            graph[u].append((v, w))
+            graph[v].append((u, w))
+        dist = [[float('inf')] * (discounts + 1) for _ in range(n)]
+        dist[0][0] = 0
+        heap = [(0, 0, 0)]
+        while heap:
+            cost, node, used = heapq.heappop(heap)
+            if cost > dist[node][used]:
+                continue
+            if node == n - 1:
+                return cost
+            for neighbor, w in graph[node]:
+                if cost + w < dist[neighbor][used]:
+                    dist[neighbor][used] = cost + w
+                    heapq.heappush(heap, (cost + w, neighbor, used))
+                if used < discounts and cost + w // 2 < dist[neighbor][used + 1]:
+                    dist[neighbor][used + 1] = cost + w // 2
+                    heapq.heappush(heap, (cost + w // 2, neighbor, used + 1))
+        return -1`,
+      },
       
       
     ]
