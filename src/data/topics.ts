@@ -4722,6 +4722,33 @@ export const topics: Topic[] = [
             result = max(result, vals[node] + sum(neighbors))
         return result`,
       },
+      {
+        id: 'graph-81',
+        title: 'Stepping Numbers',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/stepping-numbers/',
+        description: 'Given two integers low and high, return a sorted list of all stepping numbers in the range [low, high]. A stepping number has adjacent digits that differ by exactly 1.',
+        language: 'python',
+        solution: `class Solution:
+    def countSteppingNumbers(self, low: int, high: int) -> List[int]:
+        from collections import deque
+        result = []
+        queue = deque(range(1, 10))
+        if low == 0:
+            result.append(0)
+        while queue:
+            num = queue.popleft()
+            if num > high:
+                continue
+            if num >= low:
+                result.append(num)
+            last = num % 10
+            if last > 0:
+                queue.append(num * 10 + last - 1)
+            if last < 9:
+                queue.append(num * 10 + last + 1)
+        return sorted(result)`,
+      },
       
       
     ]
