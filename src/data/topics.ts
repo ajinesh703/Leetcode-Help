@@ -4897,6 +4897,35 @@ export const topics: Topic[] = [
             return result
         return sum(dfs(r, c) for r in range(rows) for c in range(cols)) % MOD`,
       },
+      {
+        id: 'graph-87',
+        title: 'Shortest Path in a Grid with Obstacles Elimination',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/',
+        description: 'Given an m x n grid with 0s (empty) and 1s (obstacles), and integer k, return the minimum steps to walk from top-left to bottom-right with at most k obstacle eliminations. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def shortestPath(self, grid: List[List[int]], k: int) -> int:
+        from collections import deque
+        rows, cols = len(grid), len(grid[0])
+        if rows == 1 and cols == 1:
+            return 0
+        queue = deque([(0, 0, k, 0)])
+        visited = {(0, 0, k)}
+        while queue:
+            r, c, elim, steps = queue.popleft()
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r + dr, c + dc
+                if not (0 <= nr < rows and 0 <= nc < cols):
+                    continue
+                if nr == rows - 1 and nc == cols - 1:
+                    return steps + 1
+                new_elim = elim - grid[nr][nc]
+                if new_elim >= 0 and (nr, nc, new_elim) not in visited:
+                    visited.add((nr, nc, new_elim))
+                    queue.append((nr, nc, new_elim, steps + 1))
+        return -1`,
+      },
       
       
     ]
