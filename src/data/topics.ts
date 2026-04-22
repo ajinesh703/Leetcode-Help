@@ -4873,6 +4873,30 @@ export const topics: Topic[] = [
                     grid[r][c] = 1
         return 2`,
       },
+      {
+        id: 'graph-86',
+        title: 'Number of Increasing Paths in a Grid',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-increasing-paths-in-a-grid/',
+        description: 'Given an m x n integer grid, return the number of strictly increasing paths. You can move in 4 directions and the answer should be modulo 10^9 + 7.',
+        language: 'python',
+        solution: `class Solution:
+    def countPaths(self, grid: List[List[int]]) -> int:
+        MOD = 10**9 + 7
+        rows, cols = len(grid), len(grid[0])
+        memo = {}
+        def dfs(r, c):
+            if (r, c) in memo:
+                return memo[(r, c)]
+            result = 1
+            for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                nr, nc = r + dr, c + dc
+                if 0 <= nr < rows and 0 <= nc < cols and grid[nr][nc] > grid[r][c]:
+                    result = (result + dfs(nr, nc)) % MOD
+            memo[(r, c)] = result
+            return result
+        return sum(dfs(r, c) for r in range(rows) for c in range(cols)) % MOD`,
+      },
       
       
     ]
