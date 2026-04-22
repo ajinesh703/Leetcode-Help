@@ -5079,6 +5079,43 @@ export const topics: Topic[] = [
         dfs(0, -1)
         return result`,
       },
+      {
+        id: 'graph-93',
+        title: 'Minimum Weighted Subgraph With the Required Paths',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-weighted-subgraph-with-the-required-paths/',
+        description: 'Given a directed weighted graph and three nodes src1, src2, dest, return the minimum weight of a subgraph such that there is a path from src1 to dest and src2 to dest. Return -1 if impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumWeight(self, n: int, edges: List[List[int]], src1: int, src2: int, dest: int) -> int:
+        import heapq
+        from collections import defaultdict
+        def dijkstra(graph, start):
+            dist = [float('inf')] * n
+            dist[start] = 0
+            heap = [(0, start)]
+            while heap:
+                d, node = heapq.heappop(heap)
+                if d > dist[node]:
+                    continue
+                for neighbor, w in graph[node]:
+                    if dist[node] + w < dist[neighbor]:
+                        dist[neighbor] = dist[node] + w
+                        heapq.heappush(heap, (dist[neighbor], neighbor))
+            return dist
+        forward = defaultdict(list)
+        backward = defaultdict(list)
+        for u, v, w in edges:
+            forward[u].append((v, w))
+            backward[v].append((u, w))
+        d1 = dijkstra(forward, src1)
+        d2 = dijkstra(forward, src2)
+        d3 = dijkstra(backward, dest)
+        result = float('inf')
+        for i in range(n):
+            result = min(result, d1[i] + d2[i] + d3[i])
+        return result if result != float('inf') else -1`,
+      },
       
       
     ]
