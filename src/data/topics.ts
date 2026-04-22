@@ -5146,6 +5146,36 @@ export const topics: Topic[] = [
         result = min(bfs(i) for i in range(n))
         return result if result != float('inf') else -1`,
       },
+      {
+        id: 'graph-95',
+        title: 'Count Pairs of Connectable Servers in a Weighted Tree Network',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-pairs-of-connectable-servers-in-a-weighted-tree-network/',
+        description: 'Given a tree with n servers and weighted edges, and integer signalSpeed, return an array where answer[i] is the number of pairs of servers that can communicate through server i with equal distance divisible by signalSpeed.',
+        language: 'python',
+        solution: `class Solution:
+    def countPairsOfConnectableServers(self, edges: List[List[int]], signalSpeed: int) -> List[int]:
+        from collections import defaultdict
+        n = len(edges) + 1
+        graph = defaultdict(list)
+        for u, v, w in edges:
+            graph[u].append((v, w))
+            graph[v].append((u, w))
+        def dfs(node, parent, dist):
+            count = 1 if dist % signalSpeed == 0 else 0
+            for neighbor, w in graph[node]:
+                if neighbor != parent:
+                    count += dfs(neighbor, node, dist + w)
+            return count
+        result = [0] * n
+        for i in range(n):
+            prev = 0
+            for neighbor, w in graph[i]:
+                curr = dfs(neighbor, i, w)
+                result[i] += prev * curr
+                prev += curr
+        return result`,
+      },
       
       
     ]
