@@ -4835,6 +4835,44 @@ export const topics: Topic[] = [
         dfs(self.king)
         return result`,
       },
+      {
+        id: 'graph-85',
+        title: 'Minimum Number of Days to Disconnect Island',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/',
+        description: 'Given a binary grid, return the minimum number of days to disconnect the island by changing 1s to 0s. An island is disconnected if there are 0 or more than 1 islands.',
+        language: 'python',
+        solution: `class Solution:
+    def minDays(self, grid: List[List[int]]) -> int:
+        rows, cols = len(grid), len(grid[0])
+
+        def count_islands():
+            visited = set()
+            count = 0
+            def dfs(r, c):
+                if (r,c) in visited or r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == 0:
+                    return
+                visited.add((r, c))
+                for dr, dc in [(1,0),(-1,0),(0,1),(0,-1)]:
+                    dfs(r+dr, c+dc)
+            for r in range(rows):
+                for c in range(cols):
+                    if grid[r][c] == 1 and (r,c) not in visited:
+                        dfs(r, c)
+                        count += 1
+            return count
+
+        if count_islands() != 1:
+            return 0
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == 1:
+                    grid[r][c] = 0
+                    if count_islands() != 1:
+                        return 1
+                    grid[r][c] = 1
+        return 2`,
+      },
       
       
     ]
