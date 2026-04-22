@@ -4805,6 +4805,36 @@ export const topics: Topic[] = [
                     result = i
         return result`,
       },
+      {
+        id: 'graph-84',
+        title: 'Throne Inheritance',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/throne-inheritance/',
+        description: 'Design a throne inheritance system with birth and death operations. Implement getInheritanceOrder to return the current order of inheritance excluding dead people.',
+        language: 'python',
+        solution: `class ThroneInheritance:
+    def __init__(self, kingName: str):
+        from collections import defaultdict
+        self.king = kingName
+        self.children = defaultdict(list)
+        self.dead = set()
+
+    def birth(self, parentName: str, childName: str) -> None:
+        self.children[parentName].append(childName)
+
+    def death(self, name: str) -> None:
+        self.dead.add(name)
+
+    def getInheritanceOrder(self) -> List[str]:
+        result = []
+        def dfs(node):
+            if node not in self.dead:
+                result.append(node)
+            for child in self.children[node]:
+                dfs(child)
+        dfs(self.king)
+        return result`,
+      },
       
       
     ]
