@@ -5116,6 +5116,36 @@ export const topics: Topic[] = [
             result = min(result, d1[i] + d2[i] + d3[i])
         return result if result != float('inf') else -1`,
       },
+      {
+        id: 'graph-94',
+        title: 'Shortest Cycle in a Graph',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/shortest-cycle-in-a-graph/',
+        description: 'Given a directed graph with n nodes and edges, return the length of the shortest cycle. If no cycle exists, return -1.',
+        language: 'python',
+        solution: `class Solution:
+    def findShortestCycle(self, n: int, edges: List[List[int]]) -> int:
+        from collections import defaultdict, deque
+        graph = defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        def bfs(start):
+            dist = [-1] * n
+            dist[start] = 0
+            queue = deque([start])
+            while queue:
+                node = queue.popleft()
+                for neighbor in graph[node]:
+                    if dist[neighbor] == -1:
+                        dist[neighbor] = dist[node] + 1
+                        queue.append(neighbor)
+                    elif dist[neighbor] >= dist[node]:
+                        return dist[node] + dist[neighbor] + 1
+            return float('inf')
+        result = min(bfs(i) for i in range(n))
+        return result if result != float('inf') else -1`,
+      },
       
       
     ]
