@@ -2283,7 +2283,32 @@ export const topics: Topic[] = [
                     queue.append(node.right)
             result.append(level)
         return result`
-}
+},
+{
+        id: 'tree-6',
+        title: 'Binary Tree Right Side View',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/binary-tree-right-side-view/',
+        description: 'Given the root of a binary tree, imagine yourself standing on the right side of it. Return the values of the nodes you can see ordered from top to bottom.',
+        language: 'python',
+        solution: `class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        from collections import deque
+        if not root:
+            return []
+        result = []
+        queue = deque([root])
+        while queue:
+            for i in range(len(queue)):
+                node = queue.popleft()
+                if i == 0:
+                    result.append(node.val)
+                if node.right:
+                    queue.append(node.right)
+                if node.left:
+                    queue.append(node.left)
+        return result`,
+      },
     ]
   },
   {
