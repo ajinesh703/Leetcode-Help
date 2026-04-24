@@ -2356,6 +2356,27 @@ export const topics: Topic[] = [
             left_to_right = not left_to_right
         return result`,
       },
+      {
+        id: 'tree-9',
+        title: 'Diameter of Binary Tree',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/diameter-of-binary-tree/',
+        description: 'Given the root of a binary tree, return the length of the diameter of the tree. The diameter is the length of the longest path between any two nodes which may or may not pass through the root.',
+        language: 'python',
+        solution: `class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        result = 0
+        def dfs(node) -> int:
+            nonlocal result
+            if not node:
+                return 0
+            left = dfs(node.left)
+            right = dfs(node.right)
+            result = max(result, left + right)
+            return 1 + max(left, right)
+        dfs(root)
+        return result`,
+      },
     ]
   },
   {
