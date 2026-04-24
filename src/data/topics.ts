@@ -2450,6 +2450,26 @@ export const topics: Topic[] = [
         return self.hasPathSum(root.left, targetSum - root.val) or \
                self.hasPathSum(root.right, targetSum - root.val)`,
       },
+      {
+        id: 'tree-14',
+        title: 'Binary Tree Maximum Path Sum',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/binary-tree-maximum-path-sum/',
+        description: 'Given the root of a binary tree, return the maximum path sum of any non-empty path. A path is a sequence of nodes where each pair of adjacent nodes has an edge, and no node appears more than once.',
+        language: 'python',
+        solution: `class Solution:
+    def maxPathSum(self, root: Optional[TreeNode]) -> int:
+        result = [root.val]
+        def dfs(node) -> int:
+            if not node:
+                return 0
+            left = max(dfs(node.left), 0)
+            right = max(dfs(node.right), 0)
+            result[0] = max(result[0], node.val + left + right)
+            return node.val + max(left, right)
+        dfs(root)
+        return result[0]`,
+      },
     ]
   },
   {
