@@ -2487,6 +2487,28 @@ export const topics: Topic[] = [
         root.right = self.buildTree(preorder[mid+1:], inorder[mid+1:])
         return root`,
       },
+      {
+        id: 'tree-16',
+        title: 'Kth Smallest Element in a BST',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/kth-smallest-element-in-a-bst/',
+        description: 'Given the root of a binary search tree and an integer k, return the kth smallest value of all the values of the nodes in the tree.',
+        language: 'python',
+        solution: `class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        stack = []
+        curr = root
+        count = 0
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            count += 1
+            if count == k:
+                return curr.val
+            curr = curr.right`,
+      },
     ]
   },
   {
