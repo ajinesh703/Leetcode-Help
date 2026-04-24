@@ -2396,6 +2396,23 @@ export const topics: Topic[] = [
             return 1 + max(left, right)
         return dfs(root) != -1`,
       },
+      {
+        id: 'tree-11',
+        title: 'Same Tree',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/same-tree/',
+        description: 'Given the roots of two binary trees p and q, write a function to check if they are the same or not. Two binary trees are considered the same if they are structurally identical and the nodes have the same value.',
+        language: 'python',
+        solution: `class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
+        if not p or not q:
+            return False
+        if p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)`,
+      },
     ]
   },
   {
