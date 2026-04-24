@@ -2526,6 +2526,31 @@ export const topics: Topic[] = [
             return root
         return left or right`,
       },
+      {
+        id: 'tree-18',
+        title: 'Serialize and Deserialize Binary Tree',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/serialize-and-deserialize-binary-tree/',
+        description: 'Design an algorithm to serialize and deserialize a binary tree. Serialization is the process of converting a tree to a string, and deserialization is converting a string back to a tree.',
+        language: 'python',
+        solution: `class Codec:
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        if not root:
+            return 'N'
+        return str(root.val) + ',' + self.serialize(root.left) + ',' + self.serialize(root.right)
+
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        vals = iter(data.split(','))
+        def dfs():
+            val = next(vals)
+            if val == 'N':
+                return None
+            node = TreeNode(int(val))
+            node.left = dfs()
+            node.right = dfs()
+            return node
+        return dfs()`,
+      },
     ]
   },
   {
