@@ -2328,6 +2328,34 @@ export const topics: Topic[] = [
             return good
         return dfs(root, root.val)`,
       },
+      {
+        id: 'tree-8',
+        title: 'Binary Tree Zigzag Level Order Traversal',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/',
+        description: 'Given the root of a binary tree, return the zigzag level order traversal of its nodes values. (i.e., from left to right, then right to left for the next level and alternate between).',
+        language: 'python',
+        solution: `class Solution:
+    def zigzagLevelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        from collections import deque
+        if not root:
+            return []
+        result = []
+        queue = deque([root])
+        left_to_right = True
+        while queue:
+            level = []
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                level.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            result.append(level if left_to_right else level[::-1])
+            left_to_right = not left_to_right
+        return result`,
+      },
     ]
   },
   {
