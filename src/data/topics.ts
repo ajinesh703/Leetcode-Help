@@ -2377,6 +2377,25 @@ export const topics: Topic[] = [
         dfs(root)
         return result`,
       },
+      {
+        id: 'tree-10',
+        title: 'Balanced Binary Tree',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/balanced-binary-tree/',
+        description: 'Given a binary tree, determine if it is height-balanced. A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.',
+        language: 'python',
+        solution: `class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def dfs(node) -> int:
+            if not node:
+                return 0
+            left = dfs(node.left)
+            right = dfs(node.right)
+            if left == -1 or right == -1 or abs(left - right) > 1:
+                return -1
+            return 1 + max(left, right)
+        return dfs(root) != -1`,
+      },
     ]
   },
   {
