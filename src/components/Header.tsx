@@ -68,7 +68,6 @@ const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
@@ -79,7 +78,6 @@ const Header: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close dropdown on route change
   useEffect(() => {
     setIsOpen(false);
     setQuery('');
@@ -125,7 +123,6 @@ const Header: React.FC = () => {
     setActiveIndex(-1);
   };
 
-  // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!isOpen) return;
 
@@ -150,7 +147,18 @@ const Header: React.FC = () => {
 
         {/* Logo */}
         <Link to="/" className="logo">
-          <div className="logo-icon">⚡</div>
+          <div className="logo-icon">
+            <img
+              src="/logo.png"
+              alt="Python Code Logo"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '8px',
+              }}
+            />
+          </div>
           <div className="logo-text">
             <span>LeetCode</span> Solutions
           </div>
@@ -205,7 +213,6 @@ const Header: React.FC = () => {
               boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
             }}>
 
-              {/* Not Found */}
               {results.length === 0 && searched ? (
                 <div style={{
                   padding: '32px 16px',
