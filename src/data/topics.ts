@@ -2509,6 +2509,23 @@ export const topics: Topic[] = [
                 return curr.val
             curr = curr.right`,
       },
+      {
+        id: 'tree-17',
+        title: 'Lowest Common Ancestor of a Binary Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/',
+        description: 'Given a binary tree, find the lowest common ancestor (LCA) of two given nodes p and q. The LCA is the lowest node that has both p and q as descendants.',
+        language: 'python',
+        solution: `class Solution:
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+        if not root or root == p or root == q:
+            return root
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
+        if left and right:
+            return root
+        return left or right`,
+      },
     ]
   },
   {
