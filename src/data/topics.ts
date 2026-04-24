@@ -2434,6 +2434,22 @@ export const topics: Topic[] = [
             return True
         return self.isSubtree(root.left, subRoot) or self.isSubtree(root.right, subRoot)`,
       },
+      {
+        id: 'tree-13',
+        title: 'Path Sum',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/path-sum/',
+        description: 'Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.',
+        language: 'python',
+        solution: `class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        if not root:
+            return False
+        if not root.left and not root.right:
+            return root.val == targetSum
+        return self.hasPathSum(root.left, targetSum - root.val) or \
+               self.hasPathSum(root.right, targetSum - root.val)`,
+      },
     ]
   },
   {
