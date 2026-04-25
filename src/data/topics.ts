@@ -2619,6 +2619,25 @@ export const topics: Topic[] = [
                 curr.left = None
             curr = curr.right`,
       },
+      {
+        id: 'tree-22',
+        title: 'Symmetric Tree',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/symmetric-tree/',
+        description: 'Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).',
+        language: 'python',
+        solution: `class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        def isMirror(left, right) -> bool:
+            if not left and not right:
+                return True
+            if not left or not right:
+                return False
+            return (left.val == right.val and
+                    isMirror(left.left, right.right) and
+                    isMirror(left.right, right.left))
+        return isMirror(root.left, root.right)`,
+      },
     ]
   },
   {
