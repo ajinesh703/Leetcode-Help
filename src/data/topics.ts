@@ -2551,6 +2551,32 @@ export const topics: Topic[] = [
             return node
         return dfs()`,
       },
+      {
+        id: 'tree-19',
+        title: 'Binary Tree Level Order Traversal II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/binary-tree-level-order-traversal-ii/',
+        description: 'Given the root of a binary tree, return the bottom-up level order traversal of its nodes values (from left to right, level by level from leaf to root).',
+        language: 'python',
+        solution: `class Solution:
+    def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
+        from collections import deque
+        if not root:
+            return []
+        result = []
+        queue = deque([root])
+        while queue:
+            level = []
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                level.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            result.append(level)
+        return result[::-1]`,
+      },
     ]
   },
   {
