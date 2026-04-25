@@ -2577,6 +2577,28 @@ export const topics: Topic[] = [
             result.append(level)
         return result[::-1]`,
       },
+      {
+        id: 'tree-20',
+        title: 'Path Sum II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/path-sum-ii/',
+        description: 'Given the root of a binary tree and an integer targetSum, return all root-to-leaf paths where the sum of the node values equals targetSum.',
+        language: 'python',
+        solution: `class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
+        result = []
+        def dfs(node, path, remaining):
+            if not node:
+                return
+            path.append(node.val)
+            if not node.left and not node.right and remaining == node.val:
+                result.append(path[:])
+            dfs(node.left, path, remaining - node.val)
+            dfs(node.right, path, remaining - node.val)
+            path.pop()
+        dfs(root, [], targetSum)
+        return result`,
+      },
     ]
   },
   {
