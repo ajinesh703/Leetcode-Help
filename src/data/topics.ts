@@ -2638,6 +2638,31 @@ export const topics: Topic[] = [
                     isMirror(left.right, right.left))
         return isMirror(root.left, root.right)`,
       },
+      {
+        id: 'tree-23',
+        title: 'Binary Search Tree Iterator',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/binary-search-tree-iterator/',
+        description: 'Implement the BSTIterator class that represents an iterator over the in-order traversal of a BST. next() returns the next smallest number and hasNext() returns true if there is a next number.',
+        language: 'python',
+        solution: `class BSTIterator:
+    def __init__(self, root: Optional[TreeNode]):
+        self.stack = []
+        self._push_left(root)
+
+    def _push_left(self, node):
+        while node:
+            self.stack.append(node)
+            node = node.left
+
+    def next(self) -> int:
+        node = self.stack.pop()
+        self._push_left(node.right)
+        return node.val
+
+    def hasNext(self) -> bool:
+        return len(self.stack) > 0`,
+      },
     ]
   },
   {
