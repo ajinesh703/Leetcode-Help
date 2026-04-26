@@ -2706,6 +2706,25 @@ export const topics: Topic[] = [
             return dfs(node.left, curr) + dfs(node.right, curr)
         return dfs(root, 0)`,
       },
+      {
+        id: 'tree-26',
+        title: 'House Robber III',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/house-robber-iii/',
+        description: 'Given the root of a binary tree where each node contains money, return the maximum amount of money you can rob without alerting the police. You cannot rob directly-linked nodes.',
+        language: 'python',
+        solution: `class Solution:
+    def rob(self, root: Optional[TreeNode]) -> int:
+        def dfs(node):
+            if not node:
+                return (0, 0)
+            left_rob, left_skip = dfs(node.left)
+            right_rob, right_skip = dfs(node.right)
+            rob = node.val + left_skip + right_skip
+            skip = max(left_rob, left_skip) + max(right_rob, right_skip)
+            return (rob, skip)
+        return max(dfs(root))`,
+      },
     ]
   },
   {
