@@ -2752,6 +2752,23 @@ export const topics: Topic[] = [
             root.right = self.deleteNode(root.right, root.val)
         return root`,
       },
+      {
+        id: 'tree-28',
+        title: 'Convert Sorted Array to Binary Search Tree',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/',
+        description: 'Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced binary search tree.',
+        language: 'python',
+        solution: `class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+        if not nums:
+            return None
+        mid = len(nums) // 2
+        root = TreeNode(nums[mid])
+        root.left = self.sortedArrayToBST(nums[:mid])
+        root.right = self.sortedArrayToBST(nums[mid+1:])
+        return root`,
+      },
     ]
   },
   {
