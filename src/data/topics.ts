@@ -2725,6 +2725,33 @@ export const topics: Topic[] = [
             return (rob, skip)
         return max(dfs(root))`,
       },
+      {
+        id: 'tree-27',
+        title: 'Delete Node in a BST',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/delete-node-in-a-bst/',
+        description: 'Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return the root node reference of the BST.',
+        language: 'python',
+        solution: `class Solution:
+    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+        if not root:
+            return None
+        if key < root.val:
+            root.left = self.deleteNode(root.left, key)
+        elif key > root.val:
+            root.right = self.deleteNode(root.right, key)
+        else:
+            if not root.left:
+                return root.right
+            if not root.right:
+                return root.left
+            curr = root.right
+            while curr.left:
+                curr = curr.left
+            root.val = curr.val
+            root.right = self.deleteNode(root.right, root.val)
+        return root`,
+      },
     ]
   },
   {
