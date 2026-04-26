@@ -2769,6 +2769,30 @@ export const topics: Topic[] = [
         root.right = self.sortedArrayToBST(nums[mid+1:])
         return root`,
       },
+      {
+        id: 'tree-29',
+        title: 'Recover Binary Search Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/recover-binary-search-tree/',
+        description: 'You are given the root of a binary search tree where exactly two nodes were swapped by mistake. Recover the tree without changing its structure.',
+        language: 'python',
+        solution: `class Solution:
+    def recoverTree(self, root: Optional[TreeNode]) -> None:
+        first = second = prev = None
+        def inorder(node):
+            nonlocal first, second, prev
+            if not node:
+                return
+            inorder(node.left)
+            if prev and prev.val > node.val:
+                if not first:
+                    first = prev
+                second = node
+            prev = node
+            inorder(node.right)
+        inorder(root)
+        first.val, second.val = second.val, first.val`,
+      },
     ]
   },
   {
