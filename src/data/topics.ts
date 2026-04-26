@@ -2793,6 +2793,32 @@ export const topics: Topic[] = [
         inorder(root)
         first.val, second.val = second.val, first.val`,
       },
+      {
+        id: 'tree-30',
+        title: 'Maximum Width of Binary Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-width-of-binary-tree/',
+        description: 'Given the root of a binary tree, return the maximum width of the given tree. The maximum width is the maximum width among all levels. The width of one level is the length between the end-nodes.',
+        language: 'python',
+        solution: `class Solution:
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        from collections import deque
+        if not root:
+            return 0
+        result = 0
+        queue = deque([(root, 0)])
+        while queue:
+            size = len(queue)
+            _, first_idx = queue[0]
+            for _ in range(size):
+                node, idx = queue.popleft()
+                if node.left:
+                    queue.append((node.left, 2 * idx))
+                if node.right:
+                    queue.append((node.right, 2 * idx + 1))
+            result = max(result, idx - first_idx + 1)
+        return result`,
+      },
     ]
   },
   {
