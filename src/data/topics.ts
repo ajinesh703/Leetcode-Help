@@ -2688,6 +2688,24 @@ export const topics: Topic[] = [
                     queue.append(node.right)
         return root`,
       },
+      {
+        id: 'tree-25',
+        title: 'Sum Root to Leaf Numbers',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/sum-root-to-leaf-numbers/',
+        description: 'Given a binary tree containing digits from 0-9, each root-to-leaf path represents a number. Return the total sum of all root-to-leaf numbers.',
+        language: 'python',
+        solution: `class Solution:
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        def dfs(node, curr) -> int:
+            if not node:
+                return 0
+            curr = curr * 10 + node.val
+            if not node.left and not node.right:
+                return curr
+            return dfs(node.left, curr) + dfs(node.right, curr)
+        return dfs(root, 0)`,
+      },
     ]
   },
   {
