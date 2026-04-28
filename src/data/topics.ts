@@ -3057,6 +3057,23 @@ export const topics: Topic[] = [
                 queue.append(node.right)
         return True`,
       },
+      {
+        id: 'tree-40',
+        title: 'Insert into a Binary Search Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/insert-into-a-binary-search-tree/',
+        description: 'Given the root node of a binary search tree and a value to insert, insert the value into the BST and return the root node. It is guaranteed the new value does not exist in the original BST.',
+        language: 'python',
+        solution: `class Solution:
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if not root:
+            return TreeNode(val)
+        if val < root.val:
+            root.left = self.insertIntoBST(root.left, val)
+        else:
+            root.right = self.insertIntoBST(root.right, val)
+        return root`,
+      },
     ]
   },
   {
