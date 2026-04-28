@@ -2872,6 +2872,39 @@ export const topics: Topic[] = [
             result += 1
         return result`,
       },
+      {
+        id: 'tree-33',
+        title: 'All Nodes Distance K in Binary Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/',
+        description: 'Given the root of a binary tree, a target node, and an integer k, return an array of the values of all nodes that have a distance k from the target node.',
+        language: 'python',
+        solution: `class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        from collections import defaultdict, deque
+        graph = defaultdict(list)
+        def dfs(node, parent):
+            if not node:
+                return
+            if parent:
+                graph[node.val].append(parent.val)
+                graph[parent.val].append(node.val)
+            dfs(node.left, node)
+            dfs(node.right, node)
+        dfs(root, None)
+        visited = {target.val}
+        queue = deque([(target.val, 0)])
+        result = []
+        while queue:
+            node, dist = queue.popleft()
+            if dist == k:
+                result.append(node)
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append((neighbor, dist + 1))
+        return result`,
+      },
     ]
   },
   {
