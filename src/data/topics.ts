@@ -3184,6 +3184,28 @@ export const topics: Topic[] = [
                 result = level
         return result`,
       },
+      {
+        id: 'tree-46',
+        title: 'Deepest Leaves Sum',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/deepest-leaves-sum/',
+        description: 'Given the root of a binary tree, return the sum of values of its deepest leaves.',
+        language: 'python',
+        solution: `class Solution:
+    def deepestLeavesSum(self, root: Optional[TreeNode]) -> int:
+        from collections import deque
+        queue = deque([root])
+        while queue:
+            level_sum = 0
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                level_sum += node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+        return level_sum`,
+      },
     ]
   },
   {
