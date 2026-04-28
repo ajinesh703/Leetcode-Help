@@ -3155,6 +3155,35 @@ export const topics: Topic[] = [
             result.append(level)
         return result`,
       },
+      {
+        id: 'tree-45',
+        title: 'Maximum Level Sum of a Binary Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/',
+        description: 'Given the root of a binary tree, return the smallest level x such that the sum of all the values of nodes at level x is maximal.',
+        language: 'python',
+        solution: `class Solution:
+    def maxLevelSum(self, root: Optional[TreeNode]) -> int:
+        from collections import deque
+        queue = deque([root])
+        max_sum = float('-inf')
+        result = 1
+        level = 0
+        while queue:
+            level += 1
+            level_sum = 0
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                level_sum += node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            if level_sum > max_sum:
+                max_sum = level_sum
+                result = level
+        return result`,
+      },
     ]
   },
   {
