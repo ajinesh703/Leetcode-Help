@@ -3074,6 +3074,24 @@ export const topics: Topic[] = [
             root.right = self.insertIntoBST(root.right, val)
         return root`,
       },
+      {
+        id: 'tree-41',
+        title: 'Search in a Binary Search Tree',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/search-in-a-binary-search-tree/',
+        description: 'Given the root of a BST and an integer val, find the node in the BST that has a value equal to val and return the subtree rooted at that node. If no such node exists, return null.',
+        language: 'python',
+        solution: `class Solution:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        while root:
+            if val == root.val:
+                return root
+            elif val < root.val:
+                root = root.left
+            else:
+                root = root.right
+        return None`,
+      },
     ]
   },
   {
