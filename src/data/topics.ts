@@ -3112,6 +3112,25 @@ export const topics: Topic[] = [
             total += self.rangeSumBST(root.right, low, high)
         return total`,
       },
+      {
+        id: 'tree-43',
+        title: 'Trim a Binary Search Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/trim-a-binary-search-tree/',
+        description: 'Given the root of a binary search tree and the values low and high, trim the tree so that all its values are in the range [low, high]. Return the root of the trimmed binary search tree.',
+        language: 'python',
+        solution: `class Solution:
+    def trimBST(self, root: Optional[TreeNode], low: int, high: int) -> Optional[TreeNode]:
+        if not root:
+            return None
+        if root.val < low:
+            return self.trimBST(root.right, low, high)
+        if root.val > high:
+            return self.trimBST(root.left, low, high)
+        root.left = self.trimBST(root.left, low, high)
+        root.right = self.trimBST(root.right, low, high)
+        return root`,
+      },
     ]
   },
   {
