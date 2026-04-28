@@ -2846,6 +2846,32 @@ export const topics: Topic[] = [
             result.append(groups[col])
         return result`,
       },
+      {
+        id: 'tree-32',
+        title: 'Binary Tree Cameras',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/binary-tree-cameras/',
+        description: 'Given a binary tree, place cameras on some nodes such that every node is monitored. A camera at a node monitors its parent, itself, and its children. Return the minimum number of cameras needed.',
+        language: 'python',
+        solution: `class Solution:
+    def minCameraCover(self, root: Optional[TreeNode]) -> int:
+        result = 0
+        def dfs(node) -> int:
+            nonlocal result
+            if not node:
+                return 2
+            left = dfs(node.left)
+            right = dfs(node.right)
+            if left == 0 or right == 0:
+                result += 1
+                return 1
+            if left == 1 or right == 1:
+                return 2
+            return 0
+        if dfs(root) == 0:
+            result += 1
+        return result`,
+      },
     ]
   },
   {
