@@ -2819,6 +2819,33 @@ export const topics: Topic[] = [
             result = max(result, idx - first_idx + 1)
         return result`,
       },
+      {
+        id: 'tree-31',
+        title: 'Vertical Order Traversal of a Binary Tree',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/',
+        description: 'Given the root of a binary tree, calculate the vertical order traversal. For each node at position (row, col), its left child is at (row+1, col-1) and right child is at (row+1, col+1). Return the node values column by column.',
+        language: 'python',
+        solution: `class Solution:
+    def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
+        from collections import defaultdict
+        nodes = []
+        def dfs(node, row, col):
+            if not node:
+                return
+            nodes.append((col, row, node.val))
+            dfs(node.left, row + 1, col - 1)
+            dfs(node.right, row + 1, col + 1)
+        dfs(root, 0, 0)
+        nodes.sort()
+        result = []
+        groups = defaultdict(list)
+        for col, row, val in nodes:
+            groups[col].append(val)
+        for col in sorted(groups):
+            result.append(groups[col])
+        return result`,
+      },
     ]
   },
   {
