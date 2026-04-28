@@ -3206,6 +3206,40 @@ export const topics: Topic[] = [
                     queue.append(node.right)
         return level_sum`,
       },
+      {
+        id: 'tree-47',
+        title: 'Even Odd Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/even-odd-tree/',
+        description: 'A binary tree is named Even-Odd if it follows certain rules about even/odd values at each level. Return true if the binary tree is Even-Odd, false otherwise.',
+        language: 'python',
+        solution: `class Solution:
+    def isEvenOddTree(self, root: Optional[TreeNode]) -> bool:
+        from collections import deque
+        queue = deque([root])
+        level = 0
+        while queue:
+            prev = None
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                if level % 2 == 0:
+                    if node.val % 2 == 0:
+                        return False
+                    if prev is not None and node.val <= prev:
+                        return False
+                else:
+                    if node.val % 2 == 1:
+                        return False
+                    if prev is not None and node.val >= prev:
+                        return False
+                prev = node.val
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            level += 1
+        return True`,
+      },
     ]
   },
   {
