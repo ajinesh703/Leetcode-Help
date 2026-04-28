@@ -2987,6 +2987,31 @@ export const topics: Topic[] = [
                         queue.append(neighbor)
         return time`,
       },
+      {
+        id: 'tree-37',
+        title: 'Longest ZigZag Path in a Binary Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/',
+        description: 'Given the root of a binary tree, return the length of the longest ZigZag path contained in that tree. A ZigZag path alternates between left and right child nodes.',
+        language: 'python',
+        solution: `class Solution:
+    def longestZigZag(self, root: Optional[TreeNode]) -> int:
+        result = 0
+        def dfs(node, direction, length):
+            nonlocal result
+            if not node:
+                return
+            result = max(result, length)
+            if direction == 'left':
+                dfs(node.left, 'right', 1)
+                dfs(node.right, 'left', length + 1)
+            else:
+                dfs(node.right, 'left', 1)
+                dfs(node.left, 'right', length + 1)
+        dfs(root.left, 'right', 1)
+        dfs(root.right, 'left', 1)
+        return result`,
+      },
     ]
   },
   {
