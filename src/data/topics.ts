@@ -2905,6 +2905,29 @@ export const topics: Topic[] = [
                     queue.append((neighbor, dist + 1))
         return result`,
       },
+      {
+        id: 'tree-34',
+        title: 'Find Duplicate Subtrees',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-duplicate-subtrees/',
+        description: 'Given the root of a binary tree, return all duplicate subtrees. For each kind of duplicate subtrees, you only need to return the root node of any one of them.',
+        language: 'python',
+        solution: `class Solution:
+    def findDuplicateSubtrees(self, root: Optional[TreeNode]) -> List[Optional[TreeNode]]:
+        from collections import defaultdict
+        count = defaultdict(int)
+        result = []
+        def serialize(node) -> str:
+            if not node:
+                return '#'
+            serial = str(node.val) + ',' + serialize(node.left) + ',' + serialize(node.right)
+            count[serial] += 1
+            if count[serial] == 2:
+                result.append(node)
+            return serial
+        serialize(root)
+        return result`,
+      },
     ]
   },
   {
