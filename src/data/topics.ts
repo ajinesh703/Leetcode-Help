@@ -3034,6 +3034,29 @@ export const topics: Topic[] = [
         dfs(root, root.val, root.val)
         return result`,
       },
+      {
+        id: 'tree-39',
+        title: 'Check Completeness of a Binary Tree',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/check-completeness-of-a-binary-tree/',
+        description: 'Given the root of a binary tree, determine if it is a complete binary tree. A complete binary tree has all levels filled except possibly the last, which is filled from left to right.',
+        language: 'python',
+        solution: `class Solution:
+    def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
+        from collections import deque
+        queue = deque([root])
+        found_none = False
+        while queue:
+            node = queue.popleft()
+            if not node:
+                found_none = True
+            else:
+                if found_none:
+                    return False
+                queue.append(node.left)
+                queue.append(node.right)
+        return True`,
+      },
     ]
   },
   {
