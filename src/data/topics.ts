@@ -3131,6 +3131,30 @@ export const topics: Topic[] = [
         root.right = self.trimBST(root.right, low, high)
         return root`,
       },
+      {
+        id: 'tree-44',
+        title: 'N-ary Tree Level Order Traversal',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/n-ary-tree-level-order-traversal/',
+        description: 'Given an n-ary tree, return the level order traversal of its nodes values.',
+        language: 'python',
+        solution: `class Solution:
+    def levelOrder(self, root: Optional[Node]) -> List[List[int]]:
+        from collections import deque
+        if not root:
+            return []
+        result = []
+        queue = deque([root])
+        while queue:
+            level = []
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                level.append(node.val)
+                for child in node.children:
+                    queue.append(child)
+            result.append(level)
+        return result`,
+      },
     ]
   },
   {
