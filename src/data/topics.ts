@@ -2954,6 +2954,39 @@ export const topics: Topic[] = [
                 queue.append((node.right, node.val, depth + 1))
         return x_info[1] == y_info[1] and x_info[0] != y_info[0]`,
       },
+      {
+        id: 'tree-36',
+        title: 'Amount of Time for Binary Tree to Be Infected',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/',
+        description: 'Given the root of a binary tree and an integer start, return the number of minutes needed for the entire tree to be infected starting from the node with value start.',
+        language: 'python',
+        solution: `class Solution:
+    def amountOfTime(self, root: Optional[TreeNode], start: int) -> int:
+        from collections import defaultdict, deque
+        graph = defaultdict(list)
+        def dfs(node, parent):
+            if not node:
+                return
+            if parent:
+                graph[node.val].append(parent)
+                graph[parent].append(node.val)
+            dfs(node.left, node.val)
+            dfs(node.right, node.val)
+        dfs(root, None)
+        visited = {start}
+        queue = deque([start])
+        time = -1
+        while queue:
+            time += 1
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                for neighbor in graph[node]:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        queue.append(neighbor)
+        return time`,
+      },
     ]
   },
   {
