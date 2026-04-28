@@ -3092,6 +3092,26 @@ export const topics: Topic[] = [
                 root = root.right
         return None`,
       },
+      {
+        id: 'tree-42',
+        title: 'Range Sum of BST',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/range-sum-of-bst/',
+        description: 'Given the root node of a binary search tree and two integers low and high, return the sum of values of all nodes with a value in the inclusive range [low, high].',
+        language: 'python',
+        solution: `class Solution:
+    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        if not root:
+            return 0
+        total = 0
+        if low <= root.val <= high:
+            total += root.val
+        if root.val > low:
+            total += self.rangeSumBST(root.left, low, high)
+        if root.val < high:
+            total += self.rangeSumBST(root.right, low, high)
+        return total`,
+      },
     ]
   },
   {
