@@ -3012,6 +3012,28 @@ export const topics: Topic[] = [
         dfs(root.right, 'left', 1)
         return result`,
       },
+      {
+        id: 'tree-38',
+        title: 'Maximum Difference Between Node and Ancestor',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/',
+        description: 'Given the root of a binary tree, find the maximum value v for which there exist different nodes a and b where v = |a.val - b.val| and a is an ancestor of b.',
+        language: 'python',
+        solution: `class Solution:
+    def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
+        result = 0
+        def dfs(node, curr_min, curr_max):
+            nonlocal result
+            if not node:
+                result = max(result, curr_max - curr_min)
+                return
+            curr_min = min(curr_min, node.val)
+            curr_max = max(curr_max, node.val)
+            dfs(node.left, curr_min, curr_max)
+            dfs(node.right, curr_min, curr_max)
+        dfs(root, root.val, root.val)
+        return result`,
+      },
     ]
   },
   {
