@@ -7553,6 +7553,27 @@ export const patterns: Pattern[] = [
             result[q] = heap[0][0] if heap else -1
         return [result[q] for q in queries]`,
       },
+      {
+        id: 'mi-17',
+        title: 'Car Pooling',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/car-pooling/',
+        description: 'Given a trips array where trips[i] = [numPassengers, from, to] and an integer capacity, return true if it is possible to pick up and drop off all passengers without exceeding vehicle capacity.',
+        language: 'python',
+        solution: `class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
+        events = []
+        for num, start, end in trips:
+            events.append((start, num))
+            events.append((end, -num))
+        events.sort()
+        curr = 0
+        for _, change in events:
+            curr += change
+            if curr > capacity:
+                return False
+        return True`,
+      },
     ]
   },
   {
