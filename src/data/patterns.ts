@@ -7657,6 +7657,30 @@ export const patterns: Pattern[] = [
                 covered.add(point)
         return len(covered)`,
       },
+      {
+        id: 'mi-22',
+        title: 'Amount of New Area Painted Each Day',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/amount-of-new-area-painted-each-day/',
+        description: 'Given a 2D array paint where paint[i] = [start, end] represents painting a wall segment on day i, return an array where worklog[i] is the amount of new area painted on day i.',
+        language: 'python',
+        solution: `class Solution:
+    def amountPainted(self, paint: List[List[int]]) -> List[int]:
+        painted = {}
+        result = []
+        for start, end in paint:
+            new_area = 0
+            cur = start
+            while cur < end:
+                if cur in painted:
+                    cur = painted[cur]
+                else:
+                    new_area += 1
+                    painted[cur] = cur + 1
+                    cur += 1
+            result.append(new_area)
+        return result`,
+      },
     ]
   },
   {
