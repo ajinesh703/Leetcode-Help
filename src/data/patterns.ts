@@ -7529,6 +7529,30 @@ export const patterns: Pattern[] = [
             prev_end = max(prev_end, iv.end)
         return result`
       },
+      {
+        id: 'mi-16',
+        title: 'Minimum Interval to Include Each Query',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-interval-to-include-each-query/',
+        description: 'Given a 2D array intervals and an integer array queries, for each query return the size of the smallest interval that contains the query point. Return -1 if no such interval exists.',
+        language: 'python',
+        solution: `class Solution:
+    def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+        import heapq
+        intervals.sort()
+        result = {}
+        heap = []
+        i = 0
+        for q in sorted(queries):
+            while i < len(intervals) and intervals[i][0] <= q:
+                l, r = intervals[i]
+                heapq.heappush(heap, (r - l + 1, r))
+                i += 1
+            while heap and heap[0][1] < q:
+                heapq.heappop(heap)
+            result[q] = heap[0][0] if heap else -1
+        return [result[q] for q in queries]`,
+      },
     ]
   },
   {
