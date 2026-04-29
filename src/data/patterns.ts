@@ -7574,6 +7574,25 @@ export const patterns: Pattern[] = [
                 return False
         return True`,
       },
+      {
+        id: 'mi-18',
+        title: 'Count Days Without Meetings',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-days-without-meetings/',
+        description: 'Given an integer days and a 2D array meetings where meetings[i] = [start, end], return the count of days when no meetings are scheduled.',
+        language: 'python',
+        solution: `class Solution:
+    def countDays(self, days: int, meetings: List[List[int]]) -> int:
+        meetings.sort()
+        free = 0
+        prev_end = 0
+        for start, end in meetings:
+            if start > prev_end + 1:
+                free += start - prev_end - 1
+            prev_end = max(prev_end, end)
+        free += days - prev_end
+        return free`,
+      },
     ]
   },
   {
