@@ -7593,6 +7593,25 @@ export const patterns: Pattern[] = [
         free += days - prev_end
         return free`,
       },
+      {
+        id: 'mi-19',
+        title: 'Divide Intervals Into Minimum Number of Groups',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/',
+        description: 'Given a 2D integer array intervals where intervals[i] = [left, right], divide the intervals into one or more groups such that each interval is in exactly one group and no two intervals in the same group intersect. Return the minimum number of groups needed.',
+        language: 'python',
+        solution: `class Solution:
+    def minGroups(self, intervals: List[List[int]]) -> int:
+        import heapq
+        intervals.sort()
+        heap = []
+        for start, end in intervals:
+            if heap and heap[0] < start:
+                heapq.heapreplace(heap, end)
+            else:
+                heapq.heappush(heap, end)
+        return len(heap)`,
+      },
     ]
   },
   {
