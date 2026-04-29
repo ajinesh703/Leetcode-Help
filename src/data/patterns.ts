@@ -7782,7 +7782,36 @@ export const patterns: Pattern[] = [
             wilted  = bisect_left(ends, t)
             result.append(bloomed - wilted)
         return result`
-    }
+    },
+    {
+  id: 'mi-28',
+  title: 'Meeting Scheduler',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/meeting-scheduler/',
+  description: 'Given the availability time slots arrays slots1 and slots2 of two people and a meeting duration, return the earliest time slot that works for both of them and is of duration dur. If there is no common available slot, return an empty array.',
+  language: 'python',
+  solution: `class Solution:
+    def minAvailableDuration(
+        self,
+        slots1: List[List[int]],
+        slots2: List[List[int]],
+        duration: int
+    ) -> List[int]:
+        slots1.sort()
+        slots2.sort()
+        i, j = 0, 0
+        while i < len(slots1) and j < len(slots2):
+            lo = max(slots1[i][0], slots2[j][0])
+            hi = min(slots1[i][1], slots2[j][1])
+            if hi - lo >= duration:
+                return [lo, lo + duration]
+            if slots1[i][1] < slots2[j][1]:
+                i += 1
+            else:
+                j += 1
+        return []`
+},
+    
   ]
 },
     
