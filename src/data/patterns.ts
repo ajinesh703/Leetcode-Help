@@ -7642,6 +7642,21 @@ export const patterns: Pattern[] = [
                 day += 1
         return result`,
       },
+      {
+        id: 'mi-21',
+        title: 'Points That Intersect With Cars',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/points-that-intersect-with-cars/',
+        description: 'Given a 2D integer array nums where nums[i] = [starti, endi] represents a car parked on a number line, return the number of integer points covered by at least one car.',
+        language: 'python',
+        solution: `class Solution:
+    def numberOfPoints(self, nums: List[List[int]]) -> int:
+        covered = set()
+        for start, end in nums:
+            for point in range(start, end + 1):
+                covered.add(point)
+        return len(covered)`,
+      },
     ]
   },
   {
