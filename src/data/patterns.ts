@@ -7725,6 +7725,22 @@ export const patterns: Pattern[] = [
                 curr_end = end
         return arrows`,
       },
+      {
+        id: 'mi-25',
+        title: 'Task Scheduler',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/task-scheduler/',
+        description: 'Given a list of tasks and a cooldown period n, return the minimum number of intervals the CPU will take to finish all tasks. Between two same tasks there must be at least n intervals.',
+        language: 'python',
+        solution: `class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        from collections import Counter
+        count = Counter(tasks)
+        max_freq = max(count.values())
+        max_count = sum(1 for v in count.values() if v == max_freq)
+        result = (max_freq - 1) * (n + 1) + max_count
+        return max(result, len(tasks))`,
+      },
     ]
   },
   {
