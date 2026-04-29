@@ -7612,6 +7612,36 @@ export const patterns: Pattern[] = [
                 heapq.heappush(heap, end)
         return len(heap)`,
       },
+      {
+        id: 'mi-20',
+        title: 'Maximum Number of Events That Can Be Attended',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended/',
+        description: 'Given an array of events where events[i] = [startDay, endDay], attend as many events as possible. You can attend one event per day and each event can only be attended on one day within its range.',
+        language: 'python',
+        solution: `class Solution:
+    def maxEvents(self, events: List[List[int]]) -> int:
+        import heapq
+        events.sort()
+        heap = []
+        result = 0
+        i = 0
+        n = len(events)
+        day = events[0][0]
+        while heap or i < n:
+            if not heap:
+                day = events[i][0]
+            while i < n and events[i][0] <= day:
+                heapq.heappush(heap, events[i][1])
+                i += 1
+            while heap and heap[0] < day:
+                heapq.heappop(heap)
+            if heap:
+                heapq.heappop(heap)
+                result += 1
+                day += 1
+        return result`,
+      },
     ]
   },
   {
