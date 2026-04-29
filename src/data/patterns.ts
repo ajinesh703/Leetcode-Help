@@ -7759,8 +7759,33 @@ export const patterns: Pattern[] = [
                 dp.append([e, dp[idx][1] + p])
         return dp[-1][1]`,
       },
-    ]
-  },
+      
+    {
+      id: 'mi-27',
+      title: 'Number of Flowers in Full Bloom',
+      difficulty: 'Medium',
+      leetcodeUrl: 'https://leetcode.com/problems/number-of-flowers-in-full-bloom/',
+      description: 'Given a 2D array flowers where flowers[i] = [start, end] means the i-th flower blooms from start to end inclusive, and an array people where people[i] is the arrival time of the i-th person, return an array where answer[i] is the number of flowers in full bloom when the i-th person arrives.',
+      language: 'python',
+      solution: `class Solution:
+    def fullBloomFlowers(
+        self,
+        flowers: List[List[int]],
+        people: List[int]
+    ) -> List[int]:
+        from bisect import bisect_right, bisect_left
+        starts = sorted(f[0] for f in flowers)
+        ends   = sorted(f[1] for f in flowers)
+        result = []
+        for t in people:
+            bloomed = bisect_right(starts, t)
+            wilted  = bisect_left(ends, t)
+            result.append(bloomed - wilted)
+        return result`
+    }
+  ]
+},
+    
   {
     id: 'backtracking',
     name: 'Backtracking',
