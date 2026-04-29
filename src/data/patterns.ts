@@ -7707,6 +7707,24 @@ export const patterns: Pattern[] = [
             result = max(result, right - left + 1)
         return result`,
       },
+      {
+        id: 'mi-24',
+        title: 'Minimum Number of Arrows to Burst Balloons II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/',
+        description: 'Given balloon intervals on a 2D plane, return the minimum number of arrows shot vertically to burst all balloons. An arrow shot at x bursts all balloons where start <= x <= end.',
+        language: 'python',
+        solution: `class Solution:
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
+        points.sort(key=lambda x: x[1])
+        arrows = 1
+        curr_end = points[0][1]
+        for start, end in points[1:]:
+            if start > curr_end:
+                arrows += 1
+                curr_end = end
+        return arrows`,
+      },
     ]
   },
   {
