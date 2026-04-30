@@ -7810,8 +7810,37 @@ export const patterns: Pattern[] = [
             else:
                 j += 1
         return []`
-},
+
     
+},
+{
+        id: 'mi-29',
+        title: 'Describe the Painting',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/describe-the-painting/',
+        description: 'Given a 2D array segments where segments[i] = [left, right, color], each segment paints the half-open interval [left, right) with color. Return a 2D array describing the painting after all segments have been applied.',
+        language: 'python',
+        solution: `class Solution:
+    def splitPainting(self, segments: List[List[int]]) -> List[List[int]]:
+        from collections import defaultdict
+        from sortedcontainers import SortedList
+        diff = defaultdict(int)
+        endpoints = set()
+        for l, r, c in segments:
+            diff[l] += c
+            diff[r] -= c
+            endpoints.add(l)
+            endpoints.add(r)
+        result = []
+        curr_color = 0
+        prev = -1
+        for point in sorted(endpoints):
+            if curr_color != 0 and prev != -1:
+                result.append([prev, point, curr_color])
+            curr_color += diff[point]
+            prev = point
+        return result`,
+      },
   ]
 },
     
