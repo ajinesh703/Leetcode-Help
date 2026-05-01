@@ -371,7 +371,29 @@ export const topics: Topic[] = [
                 return False
             max_reach = max(max_reach, i + jump)
         return True`
-}
+},
+{
+  id: 'arr-20',
+  title: 'Sort Colors',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/sort-colors/',
+  description: 'Given an array nums with n objects colored red, white, or blue (represented as 0, 1, 2), sort them in-place so that objects of the same color are adjacent, in the order red, white, and blue.',
+  language: 'python',
+  solution: `class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        low, mid, high = 0, 0, len(nums) - 1
+        while mid <= high:
+            if nums[mid] == 0:
+                nums[low], nums[mid] = nums[mid], nums[low]
+                low += 1
+                mid += 1
+            elif nums[mid] == 1:
+                mid += 1
+            else:
+                nums[mid], nums[high] = nums[high], nums[mid]
+                high -= 1`
+},
+
     ]
   },
   {
