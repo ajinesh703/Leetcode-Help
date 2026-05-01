@@ -301,7 +301,24 @@ export const topics: Topic[] = [
             nums[left], nums[right] = nums[right], nums[left]
             left += 1
             right -= 1`
-      }
+      },
+      {
+  id: 'arr-16',
+  title: 'Maximum Product Subarray',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-product-subarray/',
+  description: 'Given an integer array nums, find a subarray that has the largest product, and return the product.',
+  language: 'python',
+  solution: `class Solution:
+    def maxProduct(self, nums: List[int]) -> int:
+        max_prod = min_prod = result = nums[0]
+        for num in nums[1:]:
+            candidates = (num, max_prod * num, min_prod * num)
+            max_prod = max(candidates)
+            min_prod = min(candidates)
+            result = max(result, max_prod)
+        return result`
+},
     ]
   },
   {
