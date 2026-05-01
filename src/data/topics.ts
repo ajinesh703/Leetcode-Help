@@ -355,6 +355,22 @@ export const topics: Topic[] = [
                     length += 1
                 longest = max(longest, length)
         return longest`
+},
+{
+  id: 'arr-19',
+  title: 'Jump Game',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/jump-game/',
+  description: 'Given an integer array nums where nums[i] is the maximum jump length at position i, return true if you can reach the last index starting from the first index.',
+  language: 'python',
+  solution: `class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        max_reach = 0
+        for i, jump in enumerate(nums):
+            if i > max_reach:
+                return False
+            max_reach = max(max_reach, i + jump)
+        return True`
 }
     ]
   },
