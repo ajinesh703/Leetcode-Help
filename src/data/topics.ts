@@ -409,6 +409,25 @@ export const topics: Topic[] = [
             count += (1 if num == candidate else -1)
         return candidate`
 },
+{
+  id: 'arr-22',
+  title: 'Gas Station',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/gas-station/',
+  description: 'There are n gas stations along a circular route. Given two integer arrays gas and cost, return the starting gas station index if you can travel around the circuit once, or -1 if it is impossible.',
+  language: 'python',
+  solution: `class Solution:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+        if sum(gas) < sum(cost):
+            return -1
+        tank, start = 0, 0
+        for i in range(len(gas)):
+            tank += gas[i] - cost[i]
+            if tank < 0:
+                tank = 0
+                start = i + 1
+        return start`
+}
     ]
   },
   {
