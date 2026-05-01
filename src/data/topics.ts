@@ -319,6 +319,24 @@ export const topics: Topic[] = [
             result = max(result, max_prod)
         return result`
 },
+{
+  id: 'arr-17',
+  title: 'Find All Duplicates in an Array',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-all-duplicates-in-an-array/',
+  description: 'Given an integer array nums of length n where all integers are in range [1, n] and each integer appears once or twice, return an array of all integers that appear twice.',
+  language: 'python',
+  solution: `class Solution:
+    def findDuplicates(self, nums: List[int]) -> List[int]:
+        result = []
+        for num in nums:
+            idx = abs(num) - 1
+            if nums[idx] < 0:
+                result.append(abs(num))
+            else:
+                nums[idx] *= -1
+        return result`
+}
     ]
   },
   {
