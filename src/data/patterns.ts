@@ -7841,6 +7841,26 @@ export const patterns: Pattern[] = [
             prev = point
         return result`,
       },
+      {
+        id: 'mi-30',
+        title: 'Minimum Cost to Cut a Stick',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-cut-a-stick/',
+        description: 'Given a wooden stick of length n and an array cuts, return the minimum total cost to perform all the cuts. The cost of a cut is the length of the stick being cut.',
+        language: 'python',
+        solution: `class Solution:
+    def minCost(self, n: int, cuts: List[int]) -> int:
+        cuts = sorted([0] + cuts + [n])
+        m = len(cuts)
+        dp = [[0] * m for _ in range(m)]
+        for diff in range(2, m):
+            for i in range(m - diff):
+                j = i + diff
+                dp[i][j] = float('inf')
+                for k in range(i + 1, j):
+                    dp[i][j] = min(dp[i][j], cuts[j] - cuts[i] + dp[i][k] + dp[k][j])
+        return dp[0][m - 1]`,
+      },
   ]
 },
     
