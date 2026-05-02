@@ -7861,6 +7861,45 @@ export const patterns: Pattern[] = [
                     dp[i][j] = min(dp[i][j], cuts[j] - cuts[i] + dp[i][k] + dp[k][j])
         return dp[0][m - 1]`,
       },
+      {
+        id: 'mi-31',
+        title: 'Stamping The Sequence',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/stamping-the-sequence/',
+        description: 'Given a stamp string and a target string, return the sequence of stamp positions to turn a string of question marks into the target. Return an empty array if it is not possible.',
+        language: 'python',
+        solution: `class Solution:
+    def movesToStamp(self, stamp: str, target: str) -> List[int]:
+        m, n = len(stamp), len(target)
+        target = list(target)
+        result = []
+        total_replaced = 0
+
+        def try_stamp(pos):
+            replaced = 0
+            for i in range(m):
+                if target[pos + i] == '?':
+                    continue
+                if target[pos + i] != stamp[i]:
+                    return 0
+                replaced += 1
+            for i in range(m):
+                target[pos + i] = '?'
+            return replaced
+
+        while total_replaced < n:
+            made_progress = False
+            for i in range(n - m + 1):
+                replaced = try_stamp(i)
+                if replaced:
+                    total_replaced += replaced
+                    result.append(i)
+                    made_progress = True
+            if not made_progress:
+                return []
+
+        return result[::-1]`,
+      },
   ]
 },
     
