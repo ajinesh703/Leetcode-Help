@@ -7900,8 +7900,20 @@ export const patterns: Pattern[] = [
 
         return result[::-1]`,
       },
+      {
+        id: 'mi-32',
+        title: 'Determine if Two Events Have Conflict',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/determine-if-two-events-have-conflict/',
+        description: 'Given two events represented as strings in "HH:MM" format, return true if they conflict. Two events conflict if they overlap in time.',
+        language: 'python',
+        solution: `class Solution:
+    def haveConflict(self, event1: List[str], event2: List[str]) -> bool:
+        return event1[0] <= event2[1] and event2[0] <= event1[1]`,
+      },
   ]
-},
+  },
+  
     
   {
     id: 'backtracking',
