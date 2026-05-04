@@ -8005,6 +8005,27 @@ export const patterns: Pattern[] = [
             result.append(level_sum / level_size)
         return result`,
       },
+      {
+        id: 'mi-37',
+        title: 'Time Based Key-Value Store',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/time-based-key-value-store/',
+        description: 'Design a time-based key-value store that stores multiple values for the same key at different timestamps and retrieves the value at a given timestamp.',
+        language: 'python',
+        solution: `class TimeMap:
+    def __init__(self):
+        from collections import defaultdict
+        self.store = defaultdict(list)
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        self.store[key].append((timestamp, value))
+
+    def get(self, key: str, timestamp: int) -> str:
+        from bisect import bisect_right
+        pairs = self.store[key]
+        idx = bisect_right(pairs, (timestamp, chr(127))) - 1
+        return pairs[idx][1] if idx >= 0 else ""`,
+      },
 
   ]
   },
