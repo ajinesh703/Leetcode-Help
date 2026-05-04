@@ -7927,6 +7927,36 @@ export const patterns: Pattern[] = [
                 covered.add(i)
         return all(i in covered for i in range(left, right + 1))`,
       },
+      {
+        id: 'mi-34',
+        title: 'Count Integers in Intervals',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/count-integers-in-intervals/',
+        description: 'Design a data structure that supports adding intervals and counting the number of integers present in at least one interval.',
+        language: 'python',
+        solution: `class CountIntervals:
+    def __init__(self):
+        self.intervals = []
+        self.count = 0
+
+    def add(self, left: int, right: int) -> None:
+        new_intervals = []
+        for l, r in self.intervals:
+            if r < left:
+                new_intervals.append((l, r))
+            elif l > right:
+                new_intervals.append((l, r))
+            else:
+                self.count -= r - l + 1
+                left = min(left, l)
+                right = max(right, r)
+        new_intervals.append((left, right))
+        self.count += right - left + 1
+        self.intervals = new_intervals
+
+    def count(self) -> int:
+        return self.count`,
+      },
 
   ]
   },
