@@ -7911,6 +7911,7 @@ export const patterns: Pattern[] = [
     def haveConflict(self, event1: List[str], event2: List[str]) -> bool:
         return event1[0] <= event2[1] and event2[0] <= event1[1]`,
       },
+
       {
         id: 'mi-33',
         title: 'Check if All the Integers in a Range Are Covered',
@@ -7926,8 +7927,10 @@ export const patterns: Pattern[] = [
                 covered.add(i)
         return all(i in covered for i in range(left, right + 1))`,
       },
+
   ]
-},
+  },
+  
     
   {
     id: 'backtracking',
