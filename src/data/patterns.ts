@@ -7911,6 +7911,21 @@ export const patterns: Pattern[] = [
     def haveConflict(self, event1: List[str], event2: List[str]) -> bool:
         return event1[0] <= event2[1] and event2[0] <= event1[1]`,
       },
+      {
+        id: 'mi-33',
+        title: 'Check if All the Integers in a Range Are Covered',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/check-if-all-the-integers-in-a-range-are-covered/',
+        description: 'Given a 2D integer array ranges and two integers left and right, return true if every integer in the inclusive range [left, right] is covered by at least one interval in ranges.',
+        language: 'python',
+        solution: `class Solution:
+    def isCovered(self, ranges: List[List[int]], left: int, right: int) -> bool:
+        covered = set()
+        for start, end in ranges:
+            for i in range(start, end + 1):
+                covered.add(i)
+        return all(i in covered for i in range(left, right + 1))`,
+      },
   ]
 },
     
