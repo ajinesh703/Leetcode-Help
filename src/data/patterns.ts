@@ -7957,6 +7957,27 @@ export const patterns: Pattern[] = [
     def count(self) -> int:
         return self.count`,
       },
+      {
+        id: 'mi-35',
+        title: 'My Calendar III',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/my-calendar-iii/',
+        description: 'Implement a calendar that returns the maximum k-booking when a new event is added. A k-booking happens when k events have some non-empty intersection.',
+        language: 'python',
+        solution: `class MyCalendarThree:
+    def __init__(self):
+        from sortedcontainers import SortedDict
+        self.diff = SortedDict()
+
+    def book(self, start: int, end: int) -> int:
+        self.diff[start] = self.diff.get(start, 0) + 1
+        self.diff[end] = self.diff.get(end, 0) - 1
+        result = curr = 0
+        for val in self.diff.values():
+            curr += val
+            result = max(result, curr)
+        return result`,
+      },
 
   ]
   },
