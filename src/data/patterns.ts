@@ -8026,6 +8026,26 @@ export const patterns: Pattern[] = [
         idx = bisect_right(pairs, (timestamp, chr(127))) - 1
         return pairs[idx][1] if idx >= 0 else ""`,
       },
+      {
+        id: 'mi-38',
+        title: 'Longest Uploaded Prefix',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-uploaded-prefix/',
+        description: 'Design a system that tracks uploaded video parts and returns the longest uploaded prefix after each upload. A prefix [1, 2, ..., n] is complete if all parts have been uploaded.',
+        language: 'python',
+        solution: `class LUPrefix:
+    def __init__(self, n: int):
+        self.uploaded = set()
+        self.longest = 0
+
+    def upload(self, video: int) -> None:
+        self.uploaded.add(video)
+        while self.longest + 1 in self.uploaded:
+            self.longest += 1
+
+    def longest(self) -> int:
+        return self.longest`,
+      },
 
   ]
   },
