@@ -8046,6 +8046,27 @@ export const patterns: Pattern[] = [
     def longest(self) -> int:
         return self.longest`,
       },
+      {
+        id: 'mi-39',
+        title: 'Find Right Interval',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-right-interval/',
+        description: 'Given an array of intervals, for each interval find the minimum start point of another interval such that the start point is greater than or equal to the end point of the given interval. Return -1 if no such interval exists.',
+        language: 'python',
+        solution: `class Solution:
+    def findRightInterval(self, intervals: List[List[int]]) -> List[int]:
+        from bisect import bisect_left
+        start_map = {s: i for i, (s, e) in enumerate(intervals)}
+        starts = sorted(start_map.keys())
+        result = []
+        for s, e in intervals:
+            idx = bisect_left(starts, e)
+            if idx < len(starts):
+                result.append(start_map[starts[idx]])
+            else:
+                result.append(-1)
+        return result`,
+      },
 
   ]
   },
