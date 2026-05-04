@@ -8090,6 +8090,34 @@ export const patterns: Pattern[] = [
             result.append(max_height)
         return result`,
       },
+      {
+        id: 'mi-41',
+        title: 'Shortest Job First Scheduling',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/single-threaded-cpu/',
+        description: 'Given a 2D array tasks where tasks[i] = [enqueueTime, processingTime], simulate a single-threaded CPU that always picks the task with the shortest processing time. Return the order in which the tasks are processed.',
+        language: 'python',
+        solution: `class Solution:
+    def getOrder(self, tasks: List[List[int]]) -> List[int]:
+        import heapq
+        indexed = sorted((t[0], t[1], i) for i, t in enumerate(tasks))
+        heap = []
+        result = []
+        time = 0
+        i = 0
+        n = len(tasks)
+        while len(result) < n:
+            while i < n and indexed[i][0] <= time:
+                heapq.heappush(heap, (indexed[i][1], indexed[i][2]))
+                i += 1
+            if not heap:
+                time = indexed[i][0]
+                continue
+            proc, idx = heapq.heappop(heap)
+            time += proc
+            result.append(idx)
+        return result`,
+      },
 
   ]
   },
