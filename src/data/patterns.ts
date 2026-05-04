@@ -8067,6 +8067,29 @@ export const patterns: Pattern[] = [
                 result.append(-1)
         return result`,
       },
+      {
+        id: 'mi-40',
+        title: 'Falling Squares',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/falling-squares/',
+        description: 'Given a list of positions where squares fall on an infinite number line, return a list of heights after each square falls. Each square lands on top of other squares or the ground.',
+        language: 'python',
+        solution: `class Solution:
+    def fallingSquares(self, positions: List[List[int]]) -> List[int]:
+        intervals = []
+        result = []
+        max_height = 0
+        for left, size in positions:
+            right = left + size
+            height = size
+            for l, r, h in intervals:
+                if left < r and right > l:
+                    height = max(height, h + size)
+            intervals.append((left, right, height))
+            max_height = max(max_height, height)
+            result.append(max_height)
+        return result`,
+      },
 
   ]
   },
