@@ -8248,6 +8248,26 @@ export const patterns: Pattern[] = [
                     dp[i][j] = max(dp[i+1][j], dp[i][j-1])
         return dp[0][n-1]`,
       },
+      {
+        id: 'mi-48',
+        title: 'Minimum Cost to Make Array Equal',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-make-array-equal/',
+        description: 'Given two integer arrays nums and cost, return the minimum total cost to make all elements of nums equal. The cost to change nums[i] by 1 is cost[i].',
+        language: 'python',
+        solution: `class Solution:
+    def minCost(self, nums: List[int], cost: List[int]) -> int:
+        def totalCost(target: int) -> int:
+            return sum(abs(n - target) * c for n, c in zip(nums, cost))
+        left, right = min(nums), max(nums)
+        while left < right:
+            mid = (left + right) // 2
+            if totalCost(mid) <= totalCost(mid + 1):
+                right = mid
+            else:
+                left = mid + 1
+        return totalCost(left)`,
+      },
 
   ]
   },
