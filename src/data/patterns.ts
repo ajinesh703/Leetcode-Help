@@ -8140,6 +8140,32 @@ export const patterns: Pattern[] = [
             stack.append(heights[i])
         return result`,
       },
+      {
+        id: 'mi-43',
+        title: 'Minimum Number of Taps to Open to Water a Garden',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/',
+        description: 'Given a garden of length n and an array ranges where ranges[i] is the range of the ith tap, return the minimum number of taps to water the whole garden. Return -1 if it is impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def minTaps(self, n: int, ranges: List[int]) -> int:
+        intervals = []
+        for i, r in enumerate(ranges):
+            if r > 0:
+                intervals.append((max(0, i - r), min(n, i + r)))
+        intervals.sort()
+        taps = end = max_end = 0
+        i = 0
+        while end < n:
+            while i < len(intervals) and intervals[i][0] <= end:
+                max_end = max(max_end, intervals[i][1])
+                i += 1
+            if max_end == end:
+                return -1
+            taps += 1
+            end = max_end
+        return taps`,
+      },
 
   ]
   },
