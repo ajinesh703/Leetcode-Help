@@ -8205,6 +8205,27 @@ export const patterns: Pattern[] = [
             end = max_end
         return count`,
       },
+      {
+        id: 'mi-46',
+        title: 'Remove Interval',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/remove-interval/',
+        description: 'Given a sorted list of disjoint intervals and a toBeRemoved interval, return the set of real numbers with the toBeRemoved interval deleted from the intervals list.',
+        language: 'python',
+        solution: `class Solution:
+    def removeInterval(self, intervals: List[List[int]], toBeRemoved: List[int]) -> List[List[int]]:
+        result = []
+        rm_start, rm_end = toBeRemoved
+        for start, end in intervals:
+            if end <= rm_start or start >= rm_end:
+                result.append([start, end])
+            else:
+                if start < rm_start:
+                    result.append([start, rm_start])
+                if end > rm_end:
+                    result.append([rm_end, end])
+        return result`,
+      },
 
   ]
   },
