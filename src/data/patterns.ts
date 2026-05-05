@@ -8226,6 +8226,28 @@ export const patterns: Pattern[] = [
                     result.append([rm_end, end])
         return result`,
       },
+      {
+        id: 'mi-47',
+        title: 'Longest Palindromic Subsequence',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-palindromic-subsequence/',
+        description: 'Given a string s, find the longest palindromic subsequence length. A subsequence is a sequence derived from the original by deleting some characters without changing the relative order.',
+        language: 'python',
+        solution: `class Solution:
+    def longestPalindromeSubseq(self, s: str) -> int:
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = 1
+        for length in range(2, n + 1):
+            for i in range(n - length + 1):
+                j = i + length - 1
+                if s[i] == s[j]:
+                    dp[i][j] = dp[i+1][j-1] + 2
+                else:
+                    dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+        return dp[0][n-1]`,
+      },
 
   ]
   },
