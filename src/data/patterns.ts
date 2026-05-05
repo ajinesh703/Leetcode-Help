@@ -8283,6 +8283,27 @@ export const patterns: Pattern[] = [
             result = max(result, xs[i] - xs[i - 1])
         return result`,
       },
+      {
+        id: 'mi-50',
+        title: 'Gaps Between Ones in Binary',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/binary-gap/',
+        description: 'Given a positive integer n, return the longest distance between any two adjacent 1s in the binary representation of n. If there are no two adjacent 1s, return 0.',
+        language: 'python',
+        solution: `class Solution:
+    def binaryGap(self, n: int) -> int:
+        result = 0
+        last = -1
+        pos = 0
+        while n:
+            if n & 1:
+                if last != -1:
+                    result = max(result, pos - last)
+                last = pos
+            n >>= 1
+            pos += 1
+        return result`,
+      },
 
   ]
   },
