@@ -8268,6 +8268,21 @@ export const patterns: Pattern[] = [
                 left = mid + 1
         return totalCost(left)`,
       },
+      {
+        id: 'mi-49',
+        title: 'Widest Vertical Area Between Two Points Containing No Points',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/widest-vertical-area-between-two-points-containing-no-points/',
+        description: 'Given a 2D array points where points[i] = [xi, yi], return the widest vertical area between two points such that no points are inside the area.',
+        language: 'python',
+        solution: `class Solution:
+    def maxWidthOfVerticalArea(self, points: List[List[int]]) -> int:
+        xs = sorted(p[0] for p in points)
+        result = 0
+        for i in range(1, len(xs)):
+            result = max(result, xs[i] - xs[i - 1])
+        return result`,
+      },
 
   ]
   },
