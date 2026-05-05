@@ -8118,6 +8118,28 @@ export const patterns: Pattern[] = [
             result.append(idx)
         return result`,
       },
+      {
+        id: 'mi-42',
+        title: 'Number of Visible People in a Queue',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-visible-people-in-a-queue/',
+        description: 'Given an array heights of distinct integers representing people in a queue, return an array where answer[i] is the number of people the ith person can see to their right.',
+        language: 'python',
+        solution: `class Solution:
+    def canSeePersonsCount(self, heights: List[int]) -> List[int]:
+        stack = []
+        result = [0] * len(heights)
+        for i in range(len(heights) - 1, -1, -1):
+            count = 0
+            while stack and heights[i] > stack[-1]:
+                stack.pop()
+                count += 1
+            if stack:
+                count += 1
+            result[i] = count
+            stack.append(heights[i])
+        return result`,
+      },
 
   ]
   },
