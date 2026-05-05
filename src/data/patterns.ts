@@ -8183,6 +8183,28 @@ export const patterns: Pattern[] = [
                 curr_end = curr_far
         return jumps`,
       },
+      {
+        id: 'mi-45',
+        title: 'Video Stitching',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/video-stitching/',
+        description: 'Given a series of video clips and an integer time, return the minimum number of clips needed to cover the entire video from 0 to time. Return -1 if it is impossible.',
+        language: 'python',
+        solution: `class Solution:
+    def videoStitching(self, clips: List[List[int]], time: int) -> int:
+        clips.sort()
+        count = end = max_end = 0
+        i = 0
+        while end < time:
+            while i < len(clips) and clips[i][0] <= end:
+                max_end = max(max_end, clips[i][1])
+                i += 1
+            if max_end == end:
+                return -1
+            count += 1
+            end = max_end
+        return count`,
+      },
 
   ]
   },
