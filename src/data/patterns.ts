@@ -8166,6 +8166,23 @@ export const patterns: Pattern[] = [
             end = max_end
         return taps`,
       },
+      {
+        id: 'mi-44',
+        title: 'Jump Game II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/jump-game-ii/',
+        description: 'Given an array of non-negative integers nums where each element represents the maximum jump length, return the minimum number of jumps to reach the last index.',
+        language: 'python',
+        solution: `class Solution:
+    def jump(self, nums: List[int]) -> int:
+        jumps = curr_end = curr_far = 0
+        for i in range(len(nums) - 1):
+            curr_far = max(curr_far, i + nums[i])
+            if i == curr_end:
+                jumps += 1
+                curr_end = curr_far
+        return jumps`,
+      },
 
   ]
   },
