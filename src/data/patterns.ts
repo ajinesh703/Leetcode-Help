@@ -8388,6 +8388,25 @@ export const patterns: Pattern[] = [
                 if arr3[k] == min_val: k += 1
         return result`,
       },
+      {
+        id: 'mi-55',
+        title: 'Number of Flowers in Full Bloom II',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-flowers-in-full-bloom/',
+        description: 'Given a 2D array flowers and an array persons representing arrival times, return how many flowers are blooming for each person. Use difference array technique for optimal performance.',
+        language: 'python',
+        solution: `class Solution:
+    def fullBloomFlowers(self, flowers: List[List[int]], people: List[int]) -> List[int]:
+        from sortedcontainers import SortedList
+        starts = SortedList(f[0] for f in flowers)
+        ends = SortedList(f[1] for f in flowers)
+        result = []
+        for p in people:
+            bloomed = starts.bisect_right(p)
+            wilted = ends.bisect_left(p)
+            result.append(bloomed - wilted)
+        return result`,
+      },
 
   ]
   },
