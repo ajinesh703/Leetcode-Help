@@ -8304,6 +8304,28 @@ export const patterns: Pattern[] = [
             pos += 1
         return result`,
       },
+      {
+        id: 'mi-51',
+        title: 'Maximum Sum Obtained of Any Permutation',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-obtained-of-any-permutation/',
+        description: 'Given an array nums and a 2D array requests where requests[i] = [starti, endi], return the maximum total sum of all requests. You can permute nums in any order.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSumRangeQuery(self, nums: List[int], requests: List[List[int]]) -> int:
+        MOD = 10**9 + 7
+        n = len(nums)
+        freq = [0] * (n + 1)
+        for start, end in requests:
+            freq[start] += 1
+            freq[end + 1] -= 1
+        for i in range(1, n):
+            freq[i] += freq[i - 1]
+        freq = freq[:n]
+        nums.sort(reverse=True)
+        freq.sort(reverse=True)
+        return sum(a * b for a, b in zip(nums, freq)) % MOD`,
+      },
 
   ]
   },
