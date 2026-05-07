@@ -8326,6 +8326,26 @@ export const patterns: Pattern[] = [
         freq.sort(reverse=True)
         return sum(a * b for a, b in zip(nums, freq)) % MOD`,
       },
+      {
+        id: 'mi-52',
+        title: 'Corporate Flight Bookings',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/corporate-flight-bookings/',
+        description: 'Given a 2D array bookings where bookings[i] = [first, last, seats] represents a booking of seats seats for all flights from first to last, return an array answer of length n where answer[i] is the total number of seats booked for flight i.',
+        language: 'python',
+        solution: `class Solution:
+    def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:
+        diff = [0] * (n + 1)
+        for first, last, seats in bookings:
+            diff[first - 1] += seats
+            diff[last] -= seats
+        result = []
+        curr = 0
+        for i in range(n):
+            curr += diff[i]
+            result.append(curr)
+        return result`,
+      },
 
   ]
   },
