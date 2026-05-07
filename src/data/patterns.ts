@@ -8346,6 +8346,24 @@ export const patterns: Pattern[] = [
             result.append(curr)
         return result`,
       },
+      {
+        id: 'mi-53',
+        title: 'Get Equal Substrings Within Budget',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/get-equal-substrings-within-budget/',
+        description: 'Given two strings s and t of the same length and integer maxCost, return the maximum length of a substring of s that can be changed to be the same as the corresponding substring of t with a cost of at most maxCost.',
+        language: 'python',
+        solution: `class Solution:
+    def equalSubstring(self, s: str, t: str, maxCost: int) -> int:
+        left = curr_cost = result = 0
+        for right in range(len(s)):
+            curr_cost += abs(ord(s[right]) - ord(t[right]))
+            while curr_cost > maxCost:
+                curr_cost -= abs(ord(s[left]) - ord(t[left]))
+                left += 1
+            result = max(result, right - left + 1)
+        return result`,
+      },
 
   ]
   },
