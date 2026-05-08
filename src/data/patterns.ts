@@ -8915,6 +8915,26 @@ export const patterns: Pattern[] = [
                 result[idx] = heap[0][0]
         return result`,
       },
+      {
+        id: 'mi-78',
+        title: 'Longest Subarray of 1s After Deleting One Element',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/',
+        description: 'Given a binary array nums, delete exactly one element and return the size of the longest non-empty subarray containing only 1s. Return 0 if no such subarray exists.',
+        language: 'python',
+        solution: `class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        left = zeros = result = 0
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1
+            while zeros > 1:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+            result = max(result, right - left)
+        return result`,
+      },
 
   ]
   },
