@@ -8753,6 +8753,27 @@ export const patterns: Pattern[] = [
             result = min(result, moves + left_sum + right_sum)
         return result`,
       },
+      {
+        id: 'mi-71',
+        title: 'Minimum Swaps to Group All Ones Together',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/',
+        description: 'Given a circular binary array nums, return the minimum number of swaps required to group all 1s present in the array together at any location.',
+        language: 'python',
+        solution: `class Solution:
+    def minSwaps(self, nums: List[int]) -> int:
+        k = sum(nums)
+        if k == 0 or k == len(nums):
+            return 0
+        n = len(nums)
+        nums = nums + nums
+        window_ones = sum(nums[:k])
+        max_ones = window_ones
+        for i in range(k, len(nums)):
+            window_ones += nums[i] - nums[i - k]
+            max_ones = max(max_ones, window_ones)
+        return k - max_ones`,
+      },
 
   ]
   },
