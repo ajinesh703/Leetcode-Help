@@ -8482,6 +8482,25 @@ export const patterns: Pattern[] = [
             result.append(new_char)
         return ''.join(result)`,
       },
+      {
+        id: 'mi-59',
+        title: 'Minimum Number of Operations to Make Array Continuous',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/',
+        description: 'Given an integer array nums, return the minimum number of operations to make nums continuous. An array is continuous if all elements are distinct and the difference between max and min equals n-1.',
+        language: 'python',
+        solution: `class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        n = len(nums)
+        nums = sorted(set(nums))
+        result = 0
+        right = 0
+        for left in range(len(nums)):
+            while right < len(nums) and nums[right] < nums[left] + n:
+                right += 1
+            result = max(result, right - left)
+        return n - result`,
+      },
 
   ]
   },
