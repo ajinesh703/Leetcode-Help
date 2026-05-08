@@ -8884,6 +8884,37 @@ export const patterns: Pattern[] = [
             used.add(f)
         return result`,
       },
+      {
+        id: 'mi-77',
+        title: 'Minimum Interval to Include Each Query III',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-interval-to-include-each-query/',
+        description: 'Given intervals and queries, for each query return the size of the smallest interval containing the query. Use event-based sweep line approach for optimal O(n log n) solution.',
+        language: 'python',
+        solution: `class Solution:
+    def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+        import heapq
+        events = []
+        for l, r in intervals:
+            events.append((l, 'start', r - l + 1, r))
+            events.append((r, 'end', r - l + 1, r))
+        sorted_q = sorted(enumerate(queries), key=lambda x: x[1])
+        result = [-1] * len(queries)
+        heap = []
+        i = 0
+        intervals.sort()
+        j = 0
+        for idx, q in sorted_q:
+            while j < len(intervals) and intervals[j][0] <= q:
+                l, r = intervals[j]
+                heapq.heappush(heap, (r - l + 1, r))
+                j += 1
+            while heap and heap[0][1] < q:
+                heapq.heappop(heap)
+            if heap:
+                result[idx] = heap[0][0]
+        return result`,
+      },
 
   ]
   },
