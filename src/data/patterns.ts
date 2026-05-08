@@ -8501,6 +8501,26 @@ export const patterns: Pattern[] = [
             result = max(result, right - left)
         return n - result`,
       },
+      {
+        id: 'mi-60',
+        title: 'Range Addition',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/range-addition/',
+        description: 'Given an integer length and a 2D array updates where updates[i] = [startIndex, endIndex, inc], apply all updates to an array of zeros and return the resulting array.',
+        language: 'python',
+        solution: `class Solution:
+    def getModifiedArray(self, length: int, updates: List[List[int]]) -> List[int]:
+        diff = [0] * (length + 1)
+        for start, end, inc in updates:
+            diff[start] += inc
+            diff[end + 1] -= inc
+        result = []
+        curr = 0
+        for i in range(length):
+            curr += diff[i]
+            result.append(curr)
+        return result`,
+      },
 
   ]
   },
