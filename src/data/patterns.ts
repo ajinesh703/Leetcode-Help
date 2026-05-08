@@ -8629,6 +8629,36 @@ export const patterns: Pattern[] = [
                 result = max(result, j - stack.pop())
         return result`,
       },
+      {
+        id: 'mi-66',
+        title: 'Minimum Number of Removals to Make Mountain Array',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/',
+        description: 'Given an integer array nums, return the minimum number of elements to remove to make nums a mountain array. A mountain array increases then decreases with at least one element on each side of the peak.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumMountainRemovals(self, nums: List[int]) -> int:
+        from bisect import bisect_left
+        n = len(nums)
+        def lis(arr):
+            tails = []
+            dp = []
+            for num in arr:
+                idx = bisect_left(tails, num)
+                if idx == len(tails):
+                    tails.append(num)
+                else:
+                    tails[idx] = num
+                dp.append(idx + 1)
+            return dp
+        left = lis(nums)
+        right = lis(nums[::-1])[::-1]
+        result = 0
+        for i in range(1, n - 1):
+            if left[i] > 1 and right[i] > 1:
+                result = max(result, left[i] + right[i] - 1)
+        return n - result`,
+      },
 
   ]
   },
