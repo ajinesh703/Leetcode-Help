@@ -8455,6 +8455,33 @@ export const patterns: Pattern[] = [
             i += 1
         return result`,
       },
+      {
+        id: 'mi-58',
+        title: 'Shifting Letters II',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/shifting-letters-ii/',
+        description: 'Given a string s and a 2D array shifts where shifts[i] = [start, end, direction], apply all shifts to s and return the resulting string. Direction 1 means forward shift and 0 means backward shift.',
+        language: 'python',
+        solution: `class Solution:
+    def shiftingLetters(self, s: str, shifts: List[List[int]]) -> str:
+        n = len(s)
+        diff = [0] * (n + 1)
+        for start, end, direction in shifts:
+            if direction == 1:
+                diff[start] += 1
+                diff[end + 1] -= 1
+            else:
+                diff[start] -= 1
+                diff[end + 1] += 1
+        result = []
+        curr = 0
+        for i in range(n):
+            curr += diff[i]
+            shift = curr % 26
+            new_char = chr((ord(s[i]) - ord('a') + shift) % 26 + ord('a'))
+            result.append(new_char)
+        return ''.join(result)`,
+      },
 
   ]
   },
