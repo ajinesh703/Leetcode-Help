@@ -8566,6 +8566,29 @@ export const patterns: Pattern[] = [
             result = max(result, c - k)
         return result if c == r == o == a == k else -1`,
       },
+      {
+        id: 'mi-63',
+        title: 'Minimum Cost to Hire K Workers',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-hire-k-workers/',
+        description: 'Given quality and wage arrays and integer k, return the minimum cost to hire exactly k workers. Each worker must be paid at least their minimum wage and proportional to their quality ratio.',
+        language: 'python',
+        solution: `class Solution:
+    def mincostToHireWorkers(self, quality: List[int], wage: List[int], k: int) -> float:
+        import heapq
+        workers = sorted((w / q, q) for w, q in zip(wage, quality))
+        result = float('inf')
+        pool = []
+        pool_sum = 0
+        for ratio, q in workers:
+            heapq.heappush(pool, -q)
+            pool_sum += q
+            if len(pool) > k:
+                pool_sum += heapq.heappop(pool)
+            if len(pool) == k:
+                result = min(result, ratio * pool_sum)
+        return result`,
+      },
 
   ]
   },
