@@ -8678,6 +8678,25 @@ export const patterns: Pattern[] = [
             max_end = max(max_end, end)
         return pow(2, groups, MOD)`,
       },
+      {
+        id: 'mi-68',
+        title: 'Maximum Earnings From Taxi',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-earnings-from-taxi/',
+        description: 'Given n points on a number line and a 2D array rides where rides[i] = [start, end, tip], return the maximum earnings you can make by picking up and dropping off riders optimally.',
+        language: 'python',
+        solution: `class Solution:
+    def maxTaxiEarnings(self, n: int, rides: List[List[int]]) -> int:
+        from bisect import bisect_right
+        rides.sort(key=lambda x: x[1])
+        dp = [[0, 0]]
+        for start, end, tip in rides:
+            earn = end - start + tip
+            idx = bisect_right(dp, [start, float('inf')]) - 1
+            if dp[idx][1] + earn > dp[-1][1]:
+                dp.append([end, dp[idx][1] + earn])
+        return dp[-1][1]`,
+      },
 
   ]
   },
