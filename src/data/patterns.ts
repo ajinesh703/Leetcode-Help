@@ -8718,6 +8718,41 @@ export const patterns: Pattern[] = [
                 i -= 1
         return sum(run)`,
       },
+      {
+        id: 'mi-70',
+        title: 'Minimum Moves to Pick K Ones',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-moves-to-pick-k-ones/',
+        description: 'Given a binary array nums, an integer k, and an integer maxChanges, return the minimum number of moves to pick k ones. In one move you can pick an adjacent 1, or use a change to convert a 0 to 1 then pick it.',
+        language: 'python',
+        solution: `class Solution:
+    def minimumMoves(self, nums: List[int], k: int, maxChanges: int) -> int:
+        ones = [i for i, x in enumerate(nums) if x == 1]
+        n = len(ones)
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i + 1] = prefix[i] + ones[i]
+
+        result = float('inf')
+        for i in range(n + 1):
+            take = min(k, min(3, (ones[i] - ones[i-1] <= 2) if i > 0 else 0))
+            use_changes = max(0, k - take)
+            if use_changes > maxChanges:
+                continue
+            moves = use_changes * 2
+            remain = k - use_changes
+            if remain == 0:
+                result = min(result, moves)
+                continue
+            lo, hi = i, i + remain - 1
+            if hi >= n:
+                continue
+            mid = (lo + hi) // 2
+            left_sum = ones[mid] * (mid - lo) - (prefix[mid] - prefix[lo])
+            right_sum = (prefix[hi + 1] - prefix[mid + 1]) - ones[mid] * (hi - mid)
+            result = min(result, moves + left_sum + right_sum)
+        return result`,
+      },
 
   ]
   },
