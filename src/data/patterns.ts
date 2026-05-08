@@ -8864,6 +8864,26 @@ export const patterns: Pattern[] = [
                 curr_end = min(curr_end, end)
         return arrows`,
       },
+      {
+        id: 'mi-76',
+        title: 'Minimum Deletions to Make Character Frequencies Unique',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique/',
+        description: 'Given a string s, return the minimum number of characters to delete to make the frequency of each character unique.',
+        language: 'python',
+        solution: `class Solution:
+    def minDeletions(self, s: str) -> int:
+        from collections import Counter
+        freq = sorted(Counter(s).values(), reverse=True)
+        result = 0
+        used = set()
+        for f in freq:
+            while f > 0 and f in used:
+                f -= 1
+                result += 1
+            used.add(f)
+        return result`,
+      },
 
   ]
   },
