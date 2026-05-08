@@ -8433,6 +8433,28 @@ export const patterns: Pattern[] = [
                 result[idx] = heap[0][0]
         return result`,
       },
+      {
+        id: 'mi-57',
+        title: 'Summary Ranges',
+        difficulty: 'Easy',
+        leetcodeUrl: 'https://leetcode.com/problems/summary-ranges/',
+        description: 'Given a sorted unique integer array nums, return the smallest sorted list of ranges that cover all the numbers in the array exactly.',
+        language: 'python',
+        solution: `class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        result = []
+        i = 0
+        while i < len(nums):
+            start = nums[i]
+            while i + 1 < len(nums) and nums[i + 1] == nums[i] + 1:
+                i += 1
+            if nums[i] == start:
+                result.append(str(start))
+            else:
+                result.append(f"{start}->{nums[i]}")
+            i += 1
+        return result`,
+      },
 
   ]
   },
