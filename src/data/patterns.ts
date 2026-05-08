@@ -8539,6 +8539,33 @@ export const patterns: Pattern[] = [
             result += curr
         return result`,
       },
+      {
+        id: 'mi-62',
+        title: 'Minimum Number of Frogs Croaking',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-frogs-croaking/',
+        description: 'Given a string croakOfFrogs representing a combination of croaks from multiple frogs, return the minimum number of frogs needed. Return -1 if the string is invalid.',
+        language: 'python',
+        solution: `class Solution:
+    def minNumberOfFrogs(self, croakOfFrogs: str) -> int:
+        c = r = o = a = k = 0
+        result = 0
+        for ch in croakOfFrogs:
+            if ch == 'c':
+                c += 1
+            elif ch == 'r':
+                r += 1
+            elif ch == 'o':
+                o += 1
+            elif ch == 'a':
+                a += 1
+            elif ch == 'k':
+                k += 1
+            if not (c >= r >= o >= a >= k):
+                return -1
+            result = max(result, c - k)
+        return result if c == r == o == a == k else -1`,
+      },
 
   ]
   },
