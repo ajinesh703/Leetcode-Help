@@ -8521,6 +8521,24 @@ export const patterns: Pattern[] = [
             result.append(curr)
         return result`,
       },
+      {
+        id: 'mi-61',
+        title: 'Number of Smooth Descent Periods of a Stock',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/number-of-smooth-descent-periods-of-a-stock/',
+        description: 'Given an integer array prices representing daily stock prices, return the number of smooth descent periods. A smooth descent period is a contiguous subarray where each day the price decreases by exactly 1.',
+        language: 'python',
+        solution: `class Solution:
+    def getDescentPeriods(self, prices: List[int]) -> int:
+        result = curr = 1
+        for i in range(1, len(prices)):
+            if prices[i] == prices[i - 1] - 1:
+                curr += 1
+            else:
+                curr = 1
+            result += curr
+        return result`,
+      },
 
   ]
   },
