@@ -8774,6 +8774,26 @@ export const patterns: Pattern[] = [
             max_ones = max(max_ones, window_ones)
         return k - max_ones`,
       },
+      {
+        id: 'mi-72',
+        title: 'Find the Longest Equal Subarray',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/find-the-longest-equal-subarray/',
+        description: 'Given an integer array nums and integer k, return the length of the longest equal subarray after deleting at most k elements. An equal subarray has all elements equal.',
+        language: 'python',
+        solution: `class Solution:
+    def longestEqualSubarray(self, nums: List[int], k: int) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        left = result = 0
+        for right in range(len(nums)):
+            count[nums[right]] += 1
+            while (right - left + 1) - max(count.values()) > k:
+                count[nums[left]] -= 1
+                left += 1
+            result = max(result, max(count.values()))
+        return result`,
+      },
 
   ]
   },
