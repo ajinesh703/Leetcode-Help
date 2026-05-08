@@ -8659,6 +8659,25 @@ export const patterns: Pattern[] = [
                 result = max(result, left[i] + right[i] - 1)
         return n - result`,
       },
+      {
+        id: 'mi-67',
+        title: 'Count Ways to Group Overlapping Ranges',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/count-ways-to-group-overlapping-ranges/',
+        description: 'Given a 2D array ranges where ranges[i] = [start, end], return the number of ways to split ranges into two groups such that no two overlapping ranges are in different groups. Return the answer modulo 10^9 + 7.',
+        language: 'python',
+        solution: `class Solution:
+    def countWays(self, ranges: List[List[int]]) -> int:
+        MOD = 10**9 + 7
+        ranges.sort()
+        groups = 0
+        max_end = -1
+        for start, end in ranges:
+            if start > max_end:
+                groups += 1
+            max_end = max(max_end, end)
+        return pow(2, groups, MOD)`,
+      },
 
   ]
   },
