@@ -8697,6 +8697,27 @@ export const patterns: Pattern[] = [
                 dp.append([end, dp[idx][1] + earn])
         return dp[-1][1]`,
       },
+      {
+        id: 'mi-69',
+        title: 'Minimum Time to Complete All Tasks',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-time-to-complete-all-tasks/',
+        description: 'Given a 2D array tasks where tasks[i] = [start, end, duration], return the minimum time the computer should be turned on to complete all tasks. Each task needs duration consecutive or non-consecutive seconds within [start, end].',
+        language: 'python',
+        solution: `class Solution:
+    def findMinimumTime(self, tasks: List[List[int]]) -> int:
+        tasks.sort(key=lambda x: x[1])
+        run = [False] * (tasks[-1][1] + 1)
+        for start, end, duration in tasks:
+            duration -= sum(run[start:end + 1])
+            i = end
+            while duration > 0:
+                if not run[i]:
+                    run[i] = True
+                    duration -= 1
+                i -= 1
+        return sum(run)`,
+      },
 
   ]
   },
