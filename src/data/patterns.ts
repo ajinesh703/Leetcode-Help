@@ -8842,6 +8842,28 @@ export const patterns: Pattern[] = [
                 i += 1
         return result`,
       },
+      {
+        id: 'mi-75',
+        title: 'Minimum Number of Arrows to Burst Balloons III',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/',
+        description: 'Given balloon intervals on a 2D plane where balloons[i] = [x_start, x_end], find the minimum number of arrows to burst all balloons using a sweep line approach.',
+        language: 'python',
+        solution: `class Solution:
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
+        if not points:
+            return 0
+        points.sort(key=lambda x: x[0])
+        arrows = 1
+        curr_end = points[0][1]
+        for start, end in points[1:]:
+            if start > curr_end:
+                arrows += 1
+                curr_end = end
+            else:
+                curr_end = min(curr_end, end)
+        return arrows`,
+      },
 
   ]
   },
