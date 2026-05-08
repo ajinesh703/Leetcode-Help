@@ -8815,6 +8815,33 @@ export const patterns: Pattern[] = [
                 tails[idx] = num
         return len(target) - len(tails)`,
       },
+      {
+        id: 'mi-74',
+        title: 'Maximum Number of Non-Overlapping Palindrome Substrings',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/',
+        description: 'Given a string s and integer k, return the maximum number of non-overlapping palindrome substrings of length at least k that you can select from s.',
+        language: 'python',
+        solution: `class Solution:
+    def maxPalindromes(self, s: str, k: int) -> int:
+        n = len(s)
+        result = 0
+        i = 0
+        while i < n:
+            found = False
+            for length in [k, k + 1]:
+                if i + length > n:
+                    break
+                sub = s[i:i + length]
+                if sub == sub[::-1]:
+                    result += 1
+                    i += length
+                    found = True
+                    break
+            if not found:
+                i += 1
+        return result`,
+      },
 
   ]
   },
