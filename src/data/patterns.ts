@@ -8609,6 +8609,26 @@ export const patterns: Pattern[] = [
             stack.append((start, h))
         return result`,
       },
+      {
+        id: 'mi-65',
+        title: 'Maximum Width Ramp',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-width-ramp/',
+        description: 'Given an integer array nums, return the maximum width of a ramp. A ramp is a pair (i, j) where i < j and nums[i] <= nums[j]. The width is j - i.',
+        language: 'python',
+        solution: `class Solution:
+    def maxWidthRamp(self, nums: List[int]) -> int:
+        n = len(nums)
+        stack = []
+        for i in range(n):
+            if not stack or nums[i] < nums[stack[-1]]:
+                stack.append(i)
+        result = 0
+        for j in range(n - 1, -1, -1):
+            while stack and nums[j] >= nums[stack[-1]]:
+                result = max(result, j - stack.pop())
+        return result`,
+      },
 
   ]
   },
