@@ -8794,6 +8794,27 @@ export const patterns: Pattern[] = [
             result = max(result, max(count.values()))
         return result`,
       },
+      {
+        id: 'mi-73',
+        title: 'Minimum Operations to Make a Subsequence',
+        difficulty: 'Hard',
+        leetcodeUrl: 'https://leetcode.com/problems/minimum-operations-to-make-a-subsequence/',
+        description: 'Given an array target and an array arr, return the minimum number of operations to make target a subsequence of arr. In one operation you can insert any element at any position in arr.',
+        language: 'python',
+        solution: `class Solution:
+    def minOperations(self, target: List[int], arr: List[int]) -> int:
+        from bisect import bisect_left
+        pos = {v: i for i, v in enumerate(target)}
+        filtered = [pos[x] for x in arr if x in pos]
+        tails = []
+        for num in filtered:
+            idx = bisect_left(tails, num)
+            if idx == len(tails):
+                tails.append(num)
+            else:
+                tails[idx] = num
+        return len(target) - len(tails)`,
+      },
 
   ]
   },
