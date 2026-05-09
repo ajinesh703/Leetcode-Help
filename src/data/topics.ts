@@ -753,6 +753,17 @@ export const topics: Topic[] = [
             res.append(s[j+1:j+1+length])
             i = j + 1 + length
         return res`
+},
+{
+  id: 'str-16',
+  title: 'Reverse Words in a String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/reverse-words-in-a-string/',
+  description: 'Given a string, reverse the order of words.',
+  language: 'python',
+  solution: `class Solution:
+    def reverseWords(self, s: str) -> str:
+        return ' '.join(s.split()[::-1])`
 }
     ]
   },
