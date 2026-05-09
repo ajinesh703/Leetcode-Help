@@ -866,6 +866,27 @@ export const topics: Topic[] = [
 
         backtrack(0, [])
         return res`
+},
+{
+  id: 'str-21',
+  title: 'Word Break',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/word-break/',
+  description: 'Determine if a string can be segmented into words from a dictionary.',
+  language: 'python',
+  solution: `class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        word_set = set(wordDict)
+        dp = [False] * (len(s) + 1)
+        dp[0] = True
+
+        for i in range(1, len(s) + 1):
+            for j in range(i):
+                if dp[j] and s[j:i] in word_set:
+                    dp[i] = True
+                    break
+
+        return dp[len(s)]`
 }
     ]
   },
