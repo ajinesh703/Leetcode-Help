@@ -812,6 +812,33 @@ export const topics: Topic[] = [
             res = max(res, right - left + 1)
 
         return res`
+},
+{
+  id: 'str-19',
+  title: 'Find All Anagrams in a String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-all-anagrams-in-a-string/',
+  description: 'Find all starting indices of anagrams of pattern p in string s.',
+  language: 'python',
+  solution: `class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        from collections import Counter
+        p_count = Counter(p)
+        s_count = Counter(s[:len(p)])
+        res = []
+
+        if s_count == p_count:
+            res.append(0)
+
+        for i in range(len(p), len(s)):
+            s_count[s[i]] += 1
+            s_count[s[i - len(p)]] -= 1
+            if s_count[s[i - len(p)]] == 0:
+                del s_count[s[i - len(p)]]
+            if s_count == p_count:
+                res.append(i - len(p) + 1)
+
+        return res`
 }
     ]
   },
