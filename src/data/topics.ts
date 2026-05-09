@@ -967,6 +967,32 @@ export const topics: Topic[] = [
             return False
 
         return dp(s1, s2)`
+},
+{
+  id: 'str-25',
+  title: 'Text Justification',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/text-justification/',
+  description: 'Format text such that each line has exactly maxWidth characters and is fully justified.',
+  language: 'python',
+  solution: `class Solution:
+    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
+        res = []
+        line = []
+        line_len = 0
+
+        for word in words:
+            if line_len + len(word) + len(line) > maxWidth:
+                for i in range(maxWidth - line_len):
+                    line[i % (len(line) - 1 or 1)] += ' '
+                res.append(''.join(line))
+                line = []
+                line_len = 0
+            line.append(word)
+            line_len += len(word)
+
+        res.append(' '.join(line).ljust(maxWidth))
+        return res`
 }
     ]
   },
