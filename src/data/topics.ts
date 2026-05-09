@@ -764,6 +764,28 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def reverseWords(self, s: str) -> str:
         return ' '.join(s.split()[::-1])`
+},
+{
+  id: 'str-17',
+  title: 'Count and Say',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/count-and-say/',
+  description: 'Generate the nth term of the count-and-say sequence.',
+  language: 'python',
+  solution: `class Solution:
+    def countAndSay(self, n: int) -> str:
+        result = "1"
+        for _ in range(n - 1):
+            curr = ""
+            i = 0
+            while i < len(result):
+                count = 1
+                while i + count < len(result) and result[i] == result[i + count]:
+                    count += 1
+                curr += str(count) + result[i]
+                i += count
+            result = curr
+        return result`
 }
     ]
   },
