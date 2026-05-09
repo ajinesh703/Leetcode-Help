@@ -839,6 +839,33 @@ export const topics: Topic[] = [
                 res.append(i - len(p) + 1)
 
         return res`
+},
+{
+  id: 'str-20',
+  title: 'Palindrome Partitioning',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/palindrome-partitioning/',
+  description: 'Partition a string such that every substring of the partition is a palindrome.',
+  language: 'python',
+  solution: `class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        res = []
+
+        def isPalin(sub):
+            return sub == sub[::-1]
+
+        def backtrack(start, path):
+            if start == len(s):
+                res.append(path[:])
+                return
+            for end in range(start + 1, len(s) + 1):
+                if isPalin(s[start:end]):
+                    path.append(s[start:end])
+                    backtrack(end, path)
+                    path.pop()
+
+        backtrack(0, [])
+        return res`
 }
     ]
   },
