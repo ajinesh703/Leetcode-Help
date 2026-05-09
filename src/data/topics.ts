@@ -732,6 +732,27 @@ export const topics: Topic[] = [
             curr += step
         
         return "".join(rows)`
+},
+{
+  id: 'str-15',
+  title: 'Encode and Decode Strings',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/encode-and-decode-strings/',
+  description: 'Design an algorithm to encode a list of strings to a single string and decode it back.',
+  language: 'python',
+  solution: `class Solution:
+    def encode(self, strs: List[str]) -> str:
+        return ''.join(f'{len(s)}#{s}' for s in strs)
+
+    def decode(self, s: str) -> List[str]:
+        res = []
+        i = 0
+        while i < len(s):
+            j = s.index('#', i)
+            length = int(s[i:j])
+            res.append(s[j+1:j+1+length])
+            i = j + 1 + length
+        return res`
 }
     ]
   },
