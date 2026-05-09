@@ -8935,6 +8935,25 @@ export const patterns: Pattern[] = [
             result = max(result, right - left)
         return result`,
       },
+      {
+        id: 'mi-79',
+        title: 'Maximum Sum of an Hourglass',
+        difficulty: 'Medium',
+        leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-an-hourglass/',
+        description: 'Given an m x n integer matrix grid, return the maximum sum of the elements of an hourglass. An hourglass consists of a top row of 3, a middle element, and a bottom row of 3.',
+        language: 'python',
+        solution: `class Solution:
+    def maxSum(self, grid: List[List[int]]) -> int:
+        rows, cols = len(grid), len(grid[0])
+        result = 0
+        for r in range(rows - 2):
+            for c in range(cols - 2):
+                total = (grid[r][c] + grid[r][c+1] + grid[r][c+2] +
+                         grid[r+1][c+1] +
+                         grid[r+2][c] + grid[r+2][c+1] + grid[r+2][c+2])
+                result = max(result, total)
+        return result`,
+      },
 
   ]
   },
