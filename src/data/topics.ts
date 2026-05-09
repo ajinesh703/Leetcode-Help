@@ -1017,6 +1017,29 @@ export const topics: Topic[] = [
                     res = max(res, i - stack[-1])
 
         return res`
+},
+{
+  id: 'str-27',
+  title: 'Integer to Roman',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/integer-to-roman/',
+  description: 'Convert an integer to its roman numeral representation.',
+  language: 'python',
+  solution: `class Solution:
+    def intToRoman(self, num: int) -> str:
+        val_sym = [
+            (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
+            (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),
+            (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')
+        ]
+        res = ""
+
+        for val, sym in val_sym:
+            while num >= val:
+                res += sym
+                num -= val
+
+        return res`
 }
     ]
   },
