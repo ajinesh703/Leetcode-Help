@@ -1223,6 +1223,25 @@ export const topics: Topic[] = [
             seen.add(seq)
 
         return list(repeated)`
+},
+{
+  id: 'str-37',
+  title: 'Ransom Note',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/ransom-note/',
+  description: 'Determine if a ransom note can be constructed from the letters in a magazine.',
+  language: 'python',
+  solution: `class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        from collections import Counter
+        mag_count = Counter(magazine)
+
+        for ch in ransomNote:
+            if mag_count[ch] <= 0:
+                return False
+            mag_count[ch] -= 1
+
+        return True`
 }
     ]
   },
