@@ -1088,6 +1088,25 @@ export const topics: Topic[] = [
                     dp[i][j] = dp[i-1][j-1]
 
         return dp[len(s)][len(p)]`
+},
+{
+  id: 'str-31',
+  title: 'Implement strStr()',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/',
+  description: 'Return the index of the first occurrence of needle in haystack, or -1 if not found.',
+  language: 'python',
+  solution: `class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if not needle:
+            return 0
+
+        n, m = len(haystack), len(needle)
+        for i in range(n - m + 1):
+            if haystack[i:i+m] == needle:
+                return i
+
+        return -1`
 }
     ]
   },
