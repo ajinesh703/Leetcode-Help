@@ -1186,6 +1186,23 @@ export const topics: Topic[] = [
                         res.append([i, word_map[rev_prefix]])
 
         return res`
+},
+{
+  id: 'str-35',
+  title: 'Short Encoding of Words',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/short-encoding-of-words/',
+  description: 'Find the length of the shortest reference string for encoding a list of words.',
+  language: 'python',
+  solution: `class Solution:
+    def minimumLengthEncoding(self, words: List[str]) -> int:
+        word_set = set(words)
+
+        for word in words:
+            for k in range(1, len(word)):
+                word_set.discard(word[k:])
+
+        return sum(len(word) + 1 for word in word_set)`
 }
     ]
   },
