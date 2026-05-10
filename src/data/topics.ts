@@ -1203,6 +1203,26 @@ export const topics: Topic[] = [
                 word_set.discard(word[k:])
 
         return sum(len(word) + 1 for word in word_set)`
+},
+{
+  id: 'str-36',
+  title: 'Repeated DNA Sequences',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/repeated-dna-sequences/',
+  description: 'Find all 10-letter-long sequences that occur more than once in a DNA string.',
+  language: 'python',
+  solution: `class Solution:
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:
+        seen = set()
+        repeated = set()
+
+        for i in range(len(s) - 9):
+            seq = s[i:i+10]
+            if seq in seen:
+                repeated.add(seq)
+            seen.add(seq)
+
+        return list(repeated)`
 }
     ]
   },
