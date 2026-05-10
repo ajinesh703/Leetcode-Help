@@ -1154,6 +1154,38 @@ export const topics: Topic[] = [
                     dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])
 
         return dp[m][n]`
+},
+{
+  id: 'str-34',
+  title: 'Palindrome Pairs',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/palindrome-pairs/',
+  description: 'Find all pairs of indices where concatenation of two words forms a palindrome.',
+  language: 'python',
+  solution: `class Solution:
+    def palindromePairs(self, words: List[str]) -> List[List[int]]:
+        word_map = {word: i for i, word in enumerate(words)}
+        res = []
+
+        def isPalin(s):
+            return s == s[::-1]
+
+        for i, word in enumerate(words):
+            for j in range(len(word) + 1):
+                prefix = word[:j]
+                suffix = word[j:]
+
+                if isPalin(prefix):
+                    rev_suffix = suffix[::-1]
+                    if rev_suffix in word_map and word_map[rev_suffix] != i:
+                        res.append([word_map[rev_suffix], i])
+
+                if j != len(word) and isPalin(suffix):
+                    rev_prefix = prefix[::-1]
+                    if rev_prefix in word_map and word_map[rev_prefix] != i:
+                        res.append([i, word_map[rev_prefix]])
+
+        return res`
 }
     ]
   },
