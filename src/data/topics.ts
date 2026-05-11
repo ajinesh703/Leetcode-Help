@@ -1290,6 +1290,22 @@ export const topics: Topic[] = [
             w_to_p[w] = p
 
         return True`
+},
+{
+  id: 'str-40',
+  title: 'Reverse String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/reverse-string/',
+  description: 'Reverse a string in-place using two pointers.',
+  language: 'python',
+  solution: `class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1`
 }
 
     ]
