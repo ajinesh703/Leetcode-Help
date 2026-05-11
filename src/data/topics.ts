@@ -1415,6 +1415,17 @@ export const topics: Topic[] = [
             s[i] = ''
 
         return ''.join(s)`
+},
+{
+  id: 'str-45',
+  title: 'Check if Two String Arrays are Equivalent',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/',
+  description: 'Determine if two string arrays are equivalent when concatenated.',
+  language: 'python',
+  solution: `class Solution:
+    def arrayStringsAreEqual(self, word1: List[str], word2: List[str]) -> bool:
+        return ''.join(word1) == ''.join(word2)`
 }
 
     ]
