@@ -1469,6 +1469,17 @@ export const topics: Topic[] = [
 
         result = ''.join(nums)
         return '0' if result[0] == '0' else result`
+},
+{
+  id: 'str-48',
+  title: 'Detect Capital',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/detect-capital/',
+  description: 'Determine if the usage of capitals in a word is correct.',
+  language: 'python',
+  solution: `class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
+        return word.isupper() or word.islower() or word.istitle()`
 }
 
     ]
