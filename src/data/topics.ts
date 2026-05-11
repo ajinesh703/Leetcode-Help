@@ -1306,6 +1306,28 @@ export const topics: Topic[] = [
             s[left], s[right] = s[right], s[left]
             left += 1
             right -= 1`
+},
+{
+  id: 'str-41',
+  title: 'Valid Parentheses',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/valid-parentheses/',
+  description: 'Determine if a string of brackets is valid using a stack.',
+  language: 'python',
+  solution: `class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        mapping = {')': '(', '}': '{', ']': '['}
+
+        for ch in s:
+            if ch in mapping:
+                top = stack.pop() if stack else '#'
+                if mapping[ch] != top:
+                    return False
+            else:
+                stack.append(ch)
+
+        return not stack`
 }
 
     ]
