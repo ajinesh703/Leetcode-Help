@@ -1355,6 +1355,40 @@ export const topics: Topic[] = [
             res = max(res, right - left + 1)
 
         return res`
+},
+{
+  id: 'str-43',
+  title: 'Reorganize String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/reorganize-string/',
+  description: 'Rearrange characters of a string so no two adjacent characters are the same.',
+  language: 'python',
+  solution: `class Solution:
+    def reorganizeString(self, s: str) -> str:
+        from collections import Counter
+        import heapq
+
+        count = Counter(s)
+        heap = [(-freq, ch) for ch, freq in count.items()]
+        heapq.heapify(heap)
+
+        res = []
+        while len(heap) >= 2:
+            freq1, ch1 = heapq.heappop(heap)
+            freq2, ch2 = heapq.heappop(heap)
+            res.extend([ch1, ch2])
+            if freq1 + 1 < 0:
+                heapq.heappush(heap, (freq1 + 1, ch1))
+            if freq2 + 1 < 0:
+                heapq.heappush(heap, (freq2 + 1, ch2))
+
+        if heap:
+            freq, ch = heapq.heappop(heap)
+            if -freq > 1:
+                return ""
+            res.append(ch)
+
+        return "".join(res)`
 }
 
     ]
