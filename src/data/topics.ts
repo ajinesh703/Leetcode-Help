@@ -1445,6 +1445,30 @@ export const topics: Topic[] = [
             res = max(res, count)
 
         return res`
+},
+{
+  id: 'str-47',
+  title: 'Largest Number',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/largest-number/',
+  description: 'Arrange numbers to form the largest possible number.',
+  language: 'python',
+  solution: `class Solution:
+    def largestNumber(self, nums: List[int]) -> str:
+        from functools import cmp_to_key
+
+        def compare(a, b):
+            if a + b > b + a:
+                return -1
+            elif a + b < b + a:
+                return 1
+            return 0
+
+        nums = list(map(str, nums))
+        nums.sort(key=cmp_to_key(compare))
+
+        result = ''.join(nums)
+        return '0' if result[0] == '0' else result`
 }
 
     ]
