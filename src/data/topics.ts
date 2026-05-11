@@ -1426,6 +1426,25 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def arrayStringsAreEqual(self, word1: List[str], word2: List[str]) -> bool:
         return ''.join(word1) == ''.join(word2)`
+},
+{
+  id: 'str-46',
+  title: 'Maximum Number of Vowels in a Substring of Given Length',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
+  description: 'Find the maximum number of vowels in any substring of length k.',
+  language: 'python',
+  solution: `class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        vowels = set('aeiou')
+        count = sum(1 for c in s[:k] if c in vowels)
+        res = count
+
+        for i in range(k, len(s)):
+            count += (s[i] in vowels) - (s[i-k] in vowels)
+            res = max(res, count)
+
+        return res`
 }
 
     ]
