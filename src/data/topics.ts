@@ -1328,6 +1328,33 @@ export const topics: Topic[] = [
                 stack.append(ch)
 
         return not stack`
+},
+{
+  id: 'str-42',
+  title: 'Longest Substring with At Most Two Distinct Characters',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/',
+  description: 'Find the length of the longest substring with at most two distinct characters.',
+  language: 'python',
+  solution: `class Solution:
+    def lengthOfLongestSubstringTwoDistinct(self, s: str) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        left = 0
+        res = 0
+
+        for right in range(len(s)):
+            count[s[right]] += 1
+
+            while len(count) > 2:
+                count[s[left]] -= 1
+                if count[s[left]] == 0:
+                    del count[s[left]]
+                left += 1
+
+            res = max(res, right - left + 1)
+
+        return res`
 }
 
     ]
