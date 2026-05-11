@@ -1242,7 +1242,30 @@ export const topics: Topic[] = [
             mag_count[ch] -= 1
 
         return True`
+},
+{
+  id: 'str-38',
+  title: 'Isomorphic Strings',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/isomorphic-strings/',
+  description: 'Determine if two strings are isomorphic, meaning characters can be mapped to each other.',
+  language: 'python',
+  solution: `class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        s_to_t = {}
+        t_to_s = {}
+
+        for cs, ct in zip(s, t):
+            if cs in s_to_t and s_to_t[cs] != ct:
+                return False
+            if ct in t_to_s and t_to_s[ct] != cs:
+                return False
+            s_to_t[cs] = ct
+            t_to_s[ct] = cs
+
+        return True`
 }
+
     ]
   },
   {
