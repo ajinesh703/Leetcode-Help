@@ -1630,6 +1630,21 @@ export const topics: Topic[] = [
         from collections import Counter
         count = Counter((s1 + ' ' + s2).split())
         return [word for word, freq in count.items() if freq == 1]`
+},
+{
+  id: 'str-56',
+  title: 'Count and Say',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-segments-in-a-string/',
+  description: 'Count the number of segments in a string where a segment is a contiguous sequence of non-space characters.',
+  language: 'python',
+  solution: `class Solution:
+    def countSegments(self, s: str) -> int:
+        count = 0
+        for i in range(len(s)):
+            if s[i] != ' ' and (i == 0 or s[i-1] == ' '):
+                count += 1
+        return count`
 }
 
     ]
