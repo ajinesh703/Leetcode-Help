@@ -1837,6 +1837,25 @@ export const topics: Topic[] = [
             res[i] = chr((ord(s[i]) - ord('a') + total_shift) % 26 + ord('a'))
 
         return ''.join(res)`
+},
+{
+  id: 'str-66',
+  title: 'Unique Email Addresses',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/unique-email-addresses/',
+  description: 'Count the number of unique email addresses after applying local name rules.',
+  language: 'python',
+  solution: `class Solution:
+    def numUniqueEmails(self, emails: List[str]) -> int:
+        unique = set()
+
+        for email in emails:
+            local, domain = email.split('@')
+            local = local.split('+')[0]
+            local = local.replace('.', '')
+            unique.add(local + '@' + domain)
+
+        return len(unique)`
 }
 
     ]
