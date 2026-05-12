@@ -1766,6 +1766,29 @@ export const topics: Topic[] = [
             seen.add(ch)
 
         return ''.join(stack)`
+},
+{
+  id: 'str-63',
+  title: 'Sentence Similarity',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/sentence-similarity/',
+  description: 'Determine if two sentences are similar given a list of similar word pairs.',
+  language: 'python',
+  solution: `class Solution:
+    def areSentencesSimilar(self, sentence1: List[str], sentence2: List[str], similarPairs: List[List[str]]) -> bool:
+        if len(sentence1) != len(sentence2):
+            return False
+
+        similar_set = set()
+        for a, b in similarPairs:
+            similar_set.add((a, b))
+            similar_set.add((b, a))
+
+        for w1, w2 in zip(sentence1, sentence2):
+            if w1 != w2 and (w1, w2) not in similar_set:
+                return False
+
+        return True`
 }
 
     ]
