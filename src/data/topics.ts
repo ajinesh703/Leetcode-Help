@@ -1585,6 +1585,25 @@ export const topics: Topic[] = [
             carry = total // 2
 
         return ''.join(reversed(res))`
+},
+{
+  id: 'str-53',
+  title: 'Longest Word in Dictionary',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-word-in-dictionary/',
+  description: 'Find the longest word that can be built one character at a time from other words in the dictionary.',
+  language: 'python',
+  solution: `class Solution:
+    def longestWord(self, words: List[str]) -> str:
+        word_set = set(words)
+        res = ""
+
+        for word in words:
+            if all(word[:k] in word_set for k in range(1, len(word))):
+                if len(word) > len(res) or (len(word) == len(res) and word < res):
+                    res = word
+
+        return res`
 }
 
     ]
