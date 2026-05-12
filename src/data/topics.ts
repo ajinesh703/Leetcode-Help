@@ -1856,6 +1856,27 @@ export const topics: Topic[] = [
             unique.add(local + '@' + domain)
 
         return len(unique)`
+},
+{
+  id: 'str-67',
+  title: 'License Key Formatting',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/license-key-formatting/',
+  description: 'Format a license key string into groups of k characters separated by dashes.',
+  language: 'python',
+  solution: `class Solution:
+    def licenseKeyFormatting(self, s: str, k: int) -> str:
+        s = s.replace('-', '').upper()
+        first = len(s) % k
+        parts = []
+
+        if first:
+            parts.append(s[:first])
+
+        for i in range(first, len(s), k):
+            parts.append(s[i:i+k])
+
+        return '-'.join(parts)`
 }
 
     ]
