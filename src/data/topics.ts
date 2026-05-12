@@ -1604,6 +1604,19 @@ export const topics: Topic[] = [
                     res = word
 
         return res`
+},
+{
+  id: 'str-54',
+  title: 'Rotate String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/rotate-string/',
+  description: 'Determine if one string can become another after some number of rotations.',
+  language: 'python',
+  solution: `class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        if len(s) != len(goal):
+            return False
+        return goal in s + s`
 }
 
     ]
