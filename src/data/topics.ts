@@ -1715,6 +1715,32 @@ export const topics: Topic[] = [
                 stack.append(ch)
 
         return ''.join(stack)`
+},
+{
+  id: 'str-61',
+  title: 'Longest Common Prefix After Merging',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-the-longest-common-prefix-after-merging/',
+  description: 'Find the longest prefix that appears in all strings after merging operations.',
+  language: 'python',
+  solution: `class Solution:
+    def longestCommonPrefix(self, arr1: List[int], arr2: List[int]) -> int:
+        prefixes = set()
+
+        for num in arr1:
+            while num > 0:
+                prefixes.add(num)
+                num //= 10
+
+        res = 0
+        for num in arr2:
+            while num > 0:
+                if num in prefixes:
+                    res = max(res, len(str(num)))
+                    break
+                num //= 10
+
+        return res`
 }
 
     ]
