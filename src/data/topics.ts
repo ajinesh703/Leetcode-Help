@@ -1617,6 +1617,19 @@ export const topics: Topic[] = [
         if len(s) != len(goal):
             return False
         return goal in s + s`
+},
+{
+  id: 'str-55',
+  title: 'Uncommon Words from Two Sentences',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/uncommon-words-from-two-sentences/',
+  description: 'Find all uncommon words from two sentences that appear exactly once in one sentence and not in the other.',
+  language: 'python',
+  solution: `class Solution:
+    def uncommonFromSentences(self, s1: str, s2: str) -> List[str]:
+        from collections import Counter
+        count = Counter((s1 + ' ' + s2).split())
+        return [word for word, freq in count.items() if freq == 1]`
 }
 
     ]
