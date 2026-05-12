@@ -1668,6 +1668,23 @@ export const topics: Topic[] = [
             right -= 1
 
         return ''.join(s)`
+},
+{
+  id: 'str-58',
+  title: 'To Lower Case',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/to-lower-case/',
+  description: 'Convert all uppercase letters in a string to lowercase.',
+  language: 'python',
+  solution: `class Solution:
+    def toLowerCase(self, s: str) -> str:
+        res = []
+        for ch in s:
+            if 'A' <= ch <= 'Z':
+                res.append(chr(ord(ch) + 32))
+            else:
+                res.append(ch)
+        return ''.join(res)`
 }
 
     ]
