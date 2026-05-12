@@ -1645,6 +1645,29 @@ export const topics: Topic[] = [
             if s[i] != ' ' and (i == 0 or s[i-1] == ' '):
                 count += 1
         return count`
+},
+{
+  id: 'str-57',
+  title: 'Reverse Only Letters',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/reverse-only-letters/',
+  description: 'Reverse only the letters in a string, keeping non-letter characters in place.',
+  language: 'python',
+  solution: `class Solution:
+    def reverseOnlyLetters(self, s: str) -> str:
+        s = list(s)
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            while left < right and not s[left].isalpha():
+                left += 1
+            while left < right and not s[right].isalpha():
+                right -= 1
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
+
+        return ''.join(s)`
 }
 
     ]
