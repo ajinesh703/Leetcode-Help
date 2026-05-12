@@ -1505,6 +1505,36 @@ export const topics: Topic[] = [
             res += expand(i, i + 1)
 
         return res`
+},
+{
+  id: 'str-50',
+  title: 'String Compression',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/string-compression/',
+  description: 'Compress a character array in-place using counts of repeated characters.',
+  language: 'python',
+  solution: `class Solution:
+    def compress(self, chars: List[str]) -> int:
+        write = 0
+        i = 0
+
+        while i < len(chars):
+            ch = chars[i]
+            count = 0
+
+            while i < len(chars) and chars[i] == ch:
+                count += 1
+                i += 1
+
+            chars[write] = ch
+            write += 1
+
+            if count > 1:
+                for c in str(count):
+                    chars[write] = c
+                    write += 1
+
+        return write`
 }
 
     ]
