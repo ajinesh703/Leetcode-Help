@@ -1818,6 +1818,25 @@ export const topics: Topic[] = [
             res = max(res, inc, dec)
 
         return res`
+},
+{
+  id: 'str-65',
+  title: 'Shifting Letters',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/shifting-letters/',
+  description: 'Shift each letter of a string by the sum of all shifts from its position to the end.',
+  language: 'python',
+  solution: `class Solution:
+    def shiftingLetters(self, s: str, shifts: List[int]) -> str:
+        n = len(s)
+        total_shift = 0
+        res = list(s)
+
+        for i in range(n - 1, -1, -1):
+            total_shift = (total_shift + shifts[i]) % 26
+            res[i] = chr((ord(s[i]) - ord('a') + total_shift) % 26 + ord('a'))
+
+        return ''.join(res)`
 }
 
     ]
