@@ -1741,6 +1741,31 @@ export const topics: Topic[] = [
                 num //= 10
 
         return res`
+},
+{
+  id: 'str-62',
+  title: 'Remove Duplicate Letters',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/remove-duplicate-letters/',
+  description: 'Remove duplicate letters so that every letter appears once and the result is the smallest lexicographic order.',
+  language: 'python',
+  solution: `class Solution:
+    def removeDuplicateLetters(self, s: str) -> str:
+        from collections import Counter
+        count = Counter(s)
+        stack = []
+        seen = set()
+
+        for ch in s:
+            count[ch] -= 1
+            if ch in seen:
+                continue
+            while stack and ch < stack[-1] and count[stack[-1]] > 0:
+                seen.remove(stack.pop())
+            stack.append(ch)
+            seen.add(ch)
+
+        return ''.join(stack)`
 }
 
     ]
