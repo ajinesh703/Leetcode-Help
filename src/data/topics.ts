@@ -1685,6 +1685,17 @@ export const topics: Topic[] = [
             else:
                 res.append(ch)
         return ''.join(res)`
+},
+{
+  id: 'str-59',
+  title: 'Goal Parser Interpretation',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/goal-parser-interpretation/',
+  description: 'Interpret a command string where G means G, () means o, and (al) means al.',
+  language: 'python',
+  solution: `class Solution:
+    def interpret(self, command: str) -> str:
+        return command.replace('()', 'o').replace('(al)', 'al')`
 }
 
     ]
