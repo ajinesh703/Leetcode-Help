@@ -1480,6 +1480,31 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def detectCapitalUse(self, word: str) -> bool:
         return word.isupper() or word.islower() or word.istitle()`
+},
+{
+  id: 'str-49',
+  title: 'Count Palindromic Substrings',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/palindromic-substrings/',
+  description: 'Count the number of palindromic substrings in a given string.',
+  language: 'python',
+  solution: `class Solution:
+    def countSubstrings(self, s: str) -> int:
+        res = 0
+
+        def expand(left, right):
+            count = 0
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                count += 1
+                left -= 1
+                right += 1
+            return count
+
+        for i in range(len(s)):
+            res += expand(i, i)
+            res += expand(i, i + 1)
+
+        return res`
 }
 
     ]
