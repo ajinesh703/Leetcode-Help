@@ -1696,6 +1696,25 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def interpret(self, command: str) -> str:
         return command.replace('()', 'o').replace('(al)', 'al')`
+},
+{
+  id: 'str-60',
+  title: 'Make The String Great',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/make-the-string-great/',
+  description: 'Remove adjacent characters that are same letter but different case to make the string great.',
+  language: 'python',
+  solution: `class Solution:
+    def makeGood(self, s: str) -> str:
+        stack = []
+
+        for ch in s:
+            if stack and stack[-1] != ch and stack[-1].lower() == ch.lower():
+                stack.pop()
+            else:
+                stack.append(ch)
+
+        return ''.join(stack)`
 }
 
     ]
