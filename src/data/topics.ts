@@ -1892,6 +1892,34 @@ export const topics: Topic[] = [
         if 'LLL' in s:
             return False
         return True`
+},
+{
+  id: 'str-69',
+  title: 'Expressive Words',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/expressive-words/',
+  description: 'Count how many words can be stretched to match a given string by extending groups of characters.',
+  language: 'python',
+  solution: `class Solution:
+    def expressiveWords(self, s: str, words: List[str]) -> int:
+        def isStretchy(s, w):
+            i, j = 0, 0
+            while i < len(s) and j < len(w):
+                if s[i] != w[j]:
+                    return False
+                cnt_s = 1
+                cnt_w = 1
+                while i + cnt_s < len(s) and s[i + cnt_s] == s[i]:
+                    cnt_s += 1
+                while j + cnt_w < len(w) and w[j + cnt_w] == w[j]:
+                    cnt_w += 1
+                if cnt_s < cnt_w or (cnt_s < 3 and cnt_s != cnt_w):
+                    return False
+                i += cnt_s
+                j += cnt_w
+            return i == len(s) and j == len(w)
+
+        return sum(isStretchy(s, w) for w in words)`
 }
 
     ]
