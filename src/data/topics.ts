@@ -2088,6 +2088,17 @@ export const topics: Topic[] = [
             repeated += word
 
         return count`
+},
+{
+  id: 'str-78',
+  title: 'Truncate Sentence',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/truncate-sentence/',
+  description: 'Return a sentence with only the first k words.',
+  language: 'python',
+  solution: `class Solution:
+    def truncateSentence(self, s: str, k: int) -> str:
+        return ' '.join(s.split()[:k])`
 }
 
     ]
