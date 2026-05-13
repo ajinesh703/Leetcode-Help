@@ -1877,6 +1877,21 @@ export const topics: Topic[] = [
             parts.append(s[i:i+k])
 
         return '-'.join(parts)`
+},
+{
+  id: 'str-68',
+  title: 'Student Attendance Record I',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/student-attendance-record-i/',
+  description: 'Determine if a student is eligible for an attendance award based on their record.',
+  language: 'python',
+  solution: `class Solution:
+    def checkRecord(self, s: str) -> bool:
+        if s.count('A') > 1:
+            return False
+        if 'LLL' in s:
+            return False
+        return True`
 }
 
     ]
