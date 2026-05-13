@@ -2070,6 +2070,24 @@ export const topics: Topic[] = [
             if s[i] != s[i+1] and s[i+1] != s[i+2] and s[i] != s[i+2]:
                 count += 1
         return count`
+},
+{
+  id: 'str-77',
+  title: 'Maximum Repeating Substring',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-repeating-substring/',
+  description: 'Find the maximum number of times a word can be concatenated to form a substring of a sequence.',
+  language: 'python',
+  solution: `class Solution:
+    def maxRepeating(self, sequence: str, word: str) -> int:
+        count = 0
+        repeated = word
+
+        while repeated in sequence:
+            count += 1
+            repeated += word
+
+        return count`
 }
 
     ]
