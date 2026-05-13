@@ -1961,6 +1961,29 @@ export const topics: Topic[] = [
         count = Counter(w for w in words if w not in banned_set)
 
         return count.most_common(1)[0][0]`
+},
+{
+  id: 'str-72',
+  title: 'Custom Sort String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/custom-sort-string/',
+  description: 'Sort a string based on the order of characters defined in a custom order string.',
+  language: 'python',
+  solution: `class Solution:
+    def customSortString(self, order: str, s: str) -> str:
+        from collections import Counter
+        count = Counter(s)
+        res = []
+
+        for ch in order:
+            if ch in count:
+                res.append(ch * count[ch])
+                del count[ch]
+
+        for ch, freq in count.items():
+            res.append(ch * freq)
+
+        return ''.join(res)`
 }
 
     ]
