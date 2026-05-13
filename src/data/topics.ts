@@ -2005,6 +2005,33 @@ export const topics: Topic[] = [
         return (len(diffs) == 2 and
                 diffs[0][0] == diffs[1][1] and
                 diffs[0][1] == diffs[1][0])`
+},
+{
+  id: 'str-74',
+  title: 'Longest Substring with At Most K Distinct Characters',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/',
+  description: 'Find the length of the longest substring with at most k distinct characters.',
+  language: 'python',
+  solution: `class Solution:
+    def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        left = 0
+        res = 0
+
+        for right in range(len(s)):
+            count[s[right]] += 1
+
+            while len(count) > k:
+                count[s[left]] -= 1
+                if count[s[left]] == 0:
+                    del count[s[left]]
+                left += 1
+
+            res = max(res, right - left + 1)
+
+        return res`
 }
 
     ]
