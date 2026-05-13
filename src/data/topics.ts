@@ -1943,6 +1943,24 @@ export const topics: Topic[] = [
         letter_logs.sort(key=lambda x: (x[0], x[1]))
 
         return [log for _, _, log in letter_logs] + digit_logs`
+},
+{
+  id: 'str-71',
+  title: 'Most Common Word',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/most-common-word/',
+  description: 'Find the most frequent word in a paragraph that is not in the banned list.',
+  language: 'python',
+  solution: `class Solution:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        from collections import Counter
+        import re
+
+        banned_set = set(banned)
+        words = re.findall(r'[a-z]+', paragraph.lower())
+        count = Counter(w for w in words if w not in banned_set)
+
+        return count.most_common(1)[0][0]`
 }
 
     ]
