@@ -2166,6 +2166,20 @@ export const topics: Topic[] = [
             res += 2
 
         return res`
+},
+{
+  id: 'str-83',
+  title: 'Find the Difference',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/find-the-difference/',
+  description: 'Find the letter that was added to string t which is a shuffled version of string s.',
+  language: 'python',
+  solution: `class Solution:
+    def findTheDifference(self, s: str, t: str) -> str:
+        res = 0
+        for ch in s + t:
+            res ^= ord(ch)
+        return chr(res)`
 }
 
     ]
