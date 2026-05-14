@@ -2110,6 +2110,23 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def checkIfPangram(self, sentence: str) -> bool:
         return len(set(sentence)) >= 26`
+},
+{
+  id: 'str-80',
+  title: 'Sorting the Sentence',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/sorting-the-sentence/',
+  description: 'Reconstruct the original sentence from shuffled words that have their position appended.',
+  language: 'python',
+  solution: `class Solution:
+    def sortSentence(self, s: str) -> str:
+        words = s.split()
+        sorted_words = [''] * len(words)
+
+        for word in words:
+            sorted_words[int(word[-1]) - 1] = word[:-1]
+
+        return ' '.join(sorted_words)`
 }
 
     ]
