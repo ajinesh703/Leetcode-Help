@@ -2099,6 +2099,17 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def truncateSentence(self, s: str, k: int) -> str:
         return ' '.join(s.split()[:k])`
+},
+{
+  id: 'str-79',
+  title: 'Check if the Sentence Is Pangram',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/check-if-the-sentence-is-pangram/',
+  description: 'Determine if a sentence is a pangram containing every letter of the alphabet at least once.',
+  language: 'python',
+  solution: `class Solution:
+    def checkIfPangram(self, sentence: str) -> bool:
+        return len(set(sentence)) >= 26`
 }
 
     ]
