@@ -2268,6 +2268,27 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def numOfStrings(self, patterns: List[str], word: str) -> int:
         return sum(1 for p in patterns if p in word)`
+},
+{
+  id: 'str-90',
+  title: 'Find Common Characters',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/find-common-characters/',
+  description: 'Find all characters that appear in every string in the array including duplicates.',
+  language: 'python',
+  solution: `class Solution:
+    def commonChars(self, words: List[str]) -> List[str]:
+        from collections import Counter
+        common = Counter(words[0])
+
+        for word in words[1:]:
+            common &= Counter(word)
+
+        res = []
+        for ch, freq in common.items():
+            res.extend([ch] * freq)
+
+        return res`
 }
 
     ]
