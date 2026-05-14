@@ -2327,6 +2327,26 @@ export const topics: Topic[] = [
                 return left if len(left) >= len(right) else right
 
         return s`
+},
+{
+  id: 'str-93',
+  title: 'Check Whether Two Strings are Almost Equivalent',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/check-whether-two-strings-are-almost-equivalent/',
+  description: 'Check if two strings are almost equivalent where each character differs by at most 3.',
+  language: 'python',
+  solution: `class Solution:
+    def checkAlmostEquivalent(self, word1: str, word2: str) -> bool:
+        from collections import Counter
+        count1 = Counter(word1)
+        count2 = Counter(word2)
+        all_chars = set(word1 + word2)
+
+        for ch in all_chars:
+            if abs(count1[ch] - count2[ch]) > 3:
+                return False
+
+        return True`
 }
 
     ]
