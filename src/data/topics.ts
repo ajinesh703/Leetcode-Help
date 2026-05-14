@@ -2233,6 +2233,19 @@ export const topics: Topic[] = [
                 count[sub] += 1
 
         return max(count.values(), default=0)`
+},
+{
+  id: 'str-87',
+  title: 'Sum of Unique Elements',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/sum-of-unique-elements/',
+  description: 'Find the sum of all unique elements in an array that appear exactly once.',
+  language: 'python',
+  solution: `class Solution:
+    def sumOfUnique(self, nums: List[int]) -> int:
+        from collections import Counter
+        count = Counter(nums)
+        return sum(num for num, freq in count.items() if freq == 1)`
 }
 
     ]
