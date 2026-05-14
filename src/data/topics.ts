@@ -2180,6 +2180,26 @@ export const topics: Topic[] = [
         for ch in s + t:
             res ^= ord(ch)
         return chr(res)`
+},
+{
+  id: 'str-84',
+  title: 'Minimum Number of Steps to Make Two Strings Anagram',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/',
+  description: 'Find the minimum number of character replacements to make two strings anagrams of each other.',
+  language: 'python',
+  solution: `class Solution:
+    def minSteps(self, s: str, t: str) -> int:
+        from collections import Counter
+        count_s = Counter(s)
+        count_t = Counter(t)
+        res = 0
+
+        for ch in count_s:
+            if count_s[ch] > count_t[ch]:
+                res += count_s[ch] - count_t[ch]
+
+        return res`
 }
 
     ]
