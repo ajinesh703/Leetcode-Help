@@ -2246,6 +2246,17 @@ export const topics: Topic[] = [
         from collections import Counter
         count = Counter(nums)
         return sum(num for num, freq in count.items() if freq == 1)`
+},
+{
+  id: 'str-88',
+  title: 'Percentage of Letter in String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/percentage-of-letter-in-string/',
+  description: 'Find the percentage of characters in a string that are equal to a given letter.',
+  language: 'python',
+  solution: `class Solution:
+    def percentageLetter(self, s: str, letter: str) -> int:
+        return (s.count(letter) * 100) // len(s)`
 }
 
     ]
