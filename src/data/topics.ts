@@ -2307,6 +2307,26 @@ export const topics: Topic[] = [
             rods[rod].add(color)
 
         return sum(1 for rod in rods if len(rods[rod]) == 3)`
+},
+{
+  id: 'str-92',
+  title: 'Longest Nice Substring',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-nice-substring/',
+  description: 'Find the longest substring where every letter appears in both uppercase and lowercase.',
+  language: 'python',
+  solution: `class Solution:
+    def longestNiceSubstring(self, s: str) -> str:
+        if len(s) < 2:
+            return ""
+
+        for i, ch in enumerate(s):
+            if ch.lower() not in s or ch.upper() not in s:
+                left = self.longestNiceSubstring(s[:i])
+                right = self.longestNiceSubstring(s[i+1:])
+                return left if len(left) >= len(right) else right
+
+        return s`
 }
 
     ]
