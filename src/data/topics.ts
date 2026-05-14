@@ -2138,6 +2138,34 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def prefixCount(self, words: List[str], pref: str) -> int:
         return sum(1 for word in words if word.startswith(pref))`
+},
+{
+  id: 'str-82',
+  title: 'Longest Palindrome by Concatenating Two Letter Words',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-palindrome-by-concatenating-two-letter-words/',
+  description: 'Find the longest palindrome that can be formed by concatenating two letter words from an array.',
+  language: 'python',
+  solution: `class Solution:
+    def longestPalindrome(self, words: List[str]) -> int:
+        from collections import Counter
+        count = Counter(words)
+        res = 0
+        center = False
+
+        for word, freq in count.items():
+            rev = word[::-1]
+            if word == rev:
+                res += (freq // 2) * 4
+                if freq % 2 == 1:
+                    center = True
+            elif rev in count and word < rev:
+                res += min(freq, count[rev]) * 4
+
+        if center:
+            res += 2
+
+        return res`
 }
 
     ]
