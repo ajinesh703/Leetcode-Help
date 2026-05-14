@@ -2127,6 +2127,17 @@ export const topics: Topic[] = [
             sorted_words[int(word[-1]) - 1] = word[:-1]
 
         return ' '.join(sorted_words)`
+},
+{
+  id: 'str-81',
+  title: 'Count Words With a Given Prefix',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/count-words-with-a-given-prefix/',
+  description: 'Count the number of words in an array that contain a given prefix.',
+  language: 'python',
+  solution: `class Solution:
+    def prefixCount(self, words: List[str], pref: str) -> int:
+        return sum(1 for word in words if word.startswith(pref))`
 }
 
     ]
