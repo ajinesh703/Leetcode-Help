@@ -2257,6 +2257,17 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def percentageLetter(self, s: str, letter: str) -> int:
         return (s.count(letter) * 100) // len(s)`
+},
+{
+  id: 'str-89',
+  title: 'Number of Strings That Appear as Substrings in Word',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-strings-that-appear-as-substrings-in-word/',
+  description: 'Count how many strings in an array appear as substrings in a given word.',
+  language: 'python',
+  solution: `class Solution:
+    def numOfStrings(self, patterns: List[str], word: str) -> int:
+        return sum(1 for p in patterns if p in word)`
 }
 
     ]
