@@ -2289,6 +2289,24 @@ export const topics: Topic[] = [
             res.extend([ch] * freq)
 
         return res`
+},
+{
+  id: 'str-91',
+  title: 'Rings and Rods',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/rings-and-rods/',
+  description: 'Count the number of rods that have all three colors of rings on them.',
+  language: 'python',
+  solution: `class Solution:
+    def countPoints(self, rings: str) -> int:
+        rods = defaultdict(set)
+
+        for i in range(0, len(rings), 2):
+            color = rings[i]
+            rod = rings[i+1]
+            rods[rod].add(color)
+
+        return sum(1 for rod in rods if len(rods[rod]) == 3)`
 }
 
     ]
