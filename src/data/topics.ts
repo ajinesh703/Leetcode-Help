@@ -2200,6 +2200,20 @@ export const topics: Topic[] = [
                 res += count_s[ch] - count_t[ch]
 
         return res`
+},
+{
+  id: 'str-85',
+  title: 'Largest Odd Number in String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/largest-odd-number-in-string/',
+  description: 'Find the largest odd number that is a non-empty substring of a numeric string.',
+  language: 'python',
+  solution: `class Solution:
+    def largestOddNumber(self, num: str) -> str:
+        for i in range(len(num) - 1, -1, -1):
+            if int(num[i]) % 2 != 0:
+                return num[:i + 1]
+        return ""`
 }
 
     ]
