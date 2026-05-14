@@ -2214,6 +2214,25 @@ export const topics: Topic[] = [
             if int(num[i]) % 2 != 0:
                 return num[:i + 1]
         return ""`
+},
+{
+  id: 'str-86',
+  title: 'Maximum Number of Occurrences of a Substring',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-occurrences-of-a-substring/',
+  description: 'Find the maximum number of occurrences of any substring with at most maxLetters distinct characters and length between minSize and maxSize.',
+  language: 'python',
+  solution: `class Solution:
+    def maxFreq(self, s: str, maxLetters: int, minSize: int, maxSize: int) -> int:
+        from collections import Counter
+        count = Counter()
+
+        for i in range(len(s) - minSize + 1):
+            sub = s[i:i + minSize]
+            if len(set(sub)) <= maxLetters:
+                count[sub] += 1
+
+        return max(count.values(), default=0)`
 }
 
     ]
