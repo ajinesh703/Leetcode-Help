@@ -2496,6 +2496,26 @@ export const topics: Topic[] = [
                     res += 1
 
         return res`
+},
+{
+  id: 'str-101',
+  title: 'Optimal Partition of String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/optimal-partition-of-string/',
+  description: 'Find the minimum number of substrings the string can be partitioned into such that each substring has all unique characters.',
+  language: 'python',
+  solution: `class Solution:
+    def partitionString(self, s: str) -> int:
+        seen = set()
+        res = 1
+
+        for ch in s:
+            if ch in seen:
+                res += 1
+                seen = set()
+            seen.add(ch)
+
+        return res`
 }
 
     ]
