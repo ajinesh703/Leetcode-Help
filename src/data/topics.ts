@@ -2516,6 +2516,23 @@ export const topics: Topic[] = [
             seen.add(ch)
 
         return res`
+},
+{
+  id: 'str-102',
+  title: 'Capitalize the Title',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/capitalize-the-title/',
+  description: 'Capitalize words with length greater than 2 and lowercase words with length at most 2.',
+  language: 'python',
+  solution: `class Solution:
+    def capitalizeTitle(self, title: str) -> str:
+        res = []
+        for word in title.split():
+            if len(word) <= 2:
+                res.append(word.lower())
+            else:
+                res.append(word.capitalize())
+        return ' '.join(res)`
 }
 
     ]
