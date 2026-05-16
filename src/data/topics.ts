@@ -2686,6 +2686,19 @@ export const topics: Topic[] = [
     def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
         allowed_set = set(allowed)
         return sum(1 for word in words if all(ch in allowed_set for ch in word))`
+},
+{
+  id: 'str-110',
+  title: 'Determine if String Halves Are Alike',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/determine-if-string-halves-are-alike/',
+  description: 'Check if the two halves of a string have the same number of vowels.',
+  language: 'python',
+  solution: `class Solution:
+    def halvesAreAlike(self, s: str) -> bool:
+        vowels = set('aeiouAEIOU')
+        mid = len(s) // 2
+        return sum(c in vowels for c in s[:mid]) == sum(c in vowels for c in s[mid:])`
 }
 
     ]
