@@ -2533,6 +2533,26 @@ export const topics: Topic[] = [
             else:
                 res.append(word.capitalize())
         return ' '.join(res)`
+},
+{
+  id: 'str-103',
+  title: 'Number of Valid Subarrays',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-valid-subarrays/',
+  description: 'Count the number of non-empty subarrays where the leftmost element is not larger than any other element.',
+  language: 'python',
+  solution: `class Solution:
+    def validSubarrays(self, nums: List[int]) -> int:
+        stack = []
+        res = 0
+
+        for num in nums:
+            while stack and stack[-1] > num:
+                stack.pop()
+            stack.append(num)
+            res += len(stack)
+
+        return res`
 }
 
     ]
