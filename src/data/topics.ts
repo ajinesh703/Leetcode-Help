@@ -2553,6 +2553,39 @@ export const topics: Topic[] = [
             res += len(stack)
 
         return res`
+},
+{
+  id: 'str-104',
+  title: 'Longest Common Suffix Queries',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-common-suffix-queries/',
+  description: 'Find the index of the shortest word from wordsContainer that has the longest common suffix with each word in wordsQuery.',
+  language: 'python',
+  solution: `class Solution:
+    def stringIndices(self, wordsContainer: List[str], wordsQuery: List[str]) -> List[int]:
+        trie = {}
+        
+        for i, word in enumerate(wordsContainer):
+            node = trie
+            for ch in reversed(word):
+                if ch not in node:
+                    node[ch] = {}
+                node = node[ch]
+                if 'idx' not in node or len(word) < len(wordsContainer[node['idx']]):
+                    node['idx'] = i
+            if 'idx' not in node or len(word) < len(wordsContainer[node['idx']]):
+                node['idx'] = i
+
+        res = []
+        for word in wordsQuery:
+            node = trie
+            for ch in reversed(word):
+                if ch not in node:
+                    break
+                node = node[ch]
+            res.append(node.get('idx', 0))
+
+        return res`
 }
 
     ]
