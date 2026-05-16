@@ -2418,6 +2418,28 @@ export const topics: Topic[] = [
                 res = max(res, length)
 
         return res`
+},
+{
+  id: 'str-97',
+  title: 'Minimum Deletions to Make Character Frequencies Unique',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-deletions-to-make-character-frequencies-unique/',
+  description: 'Find the minimum number of character deletions to make all character frequencies unique.',
+  language: 'python',
+  solution: `class Solution:
+    def minDeletions(self, s: str) -> int:
+        from collections import Counter
+        freq = sorted(Counter(s).values(), reverse=True)
+        res = 0
+        seen = set()
+
+        for f in freq:
+            while f > 0 and f in seen:
+                f -= 1
+                res += 1
+            seen.add(f)
+
+        return res`
 }
 
     ]
