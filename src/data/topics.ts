@@ -2674,6 +2674,18 @@ export const topics: Topic[] = [
             res = max(res, left + right)
 
         return res`
+},
+{
+  id: 'str-109',
+  title: 'Count the Number of Consistent Strings',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/count-the-number-of-consistent-strings/',
+  description: 'Count the number of consistent strings where every character appears in the allowed string.',
+  language: 'python',
+  solution: `class Solution:
+    def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
+        allowed_set = set(allowed)
+        return sum(1 for word in words if all(ch in allowed_set for ch in word))`
 }
 
     ]
