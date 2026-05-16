@@ -2808,6 +2808,37 @@ export const topics: Topic[] = [
                 res = max(res, length)
 
         return res`
+},
+{
+  id: 'str-117',
+  title: 'Longest Even Odd Subarray With Threshold',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-even-odd-subarray-with-threshold/',
+  description: 'Find the length of the longest subarray where elements alternate between even and odd and are all within a threshold.',
+  language: 'python',
+  solution: `class Solution:
+    def longestAlternatingSubarray(self, nums: List[int], threshold: int) -> int:
+        res = 0
+        i = 0
+
+        while i < len(nums):
+            if nums[i] % 2 == 0 and nums[i] <= threshold:
+                j = i
+                while j < len(nums) and nums[j] <= threshold and nums[j] % 2 == j % 2 - i % 2 + (i % 2):
+                    j += 1
+                    if nums[j-1] % 2 != (j - i - 1) % 2:
+                        break
+                length = 1
+                k = i
+                while k + 1 < len(nums) and nums[k+1] <= threshold and nums[k] % 2 != nums[k+1] % 2:
+                    k += 1
+                    length += 1
+                res = max(res, length)
+                i = k + 1
+            else:
+                i += 1
+
+        return res`
 }
 
     ]
