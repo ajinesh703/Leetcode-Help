@@ -2586,6 +2586,19 @@ export const topics: Topic[] = [
             res.append(node.get('idx', 0))
 
         return res`
+},
+{
+  id: 'str-105',
+  title: 'Minimum Number of Moves to Seat Everyone',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/',
+  description: 'Find the minimum number of moves to seat everyone where a move shifts a person or seat by one.',
+  language: 'python',
+  solution: `class Solution:
+    def minMovesToSeat(self, seats: List[int], students: List[int]) -> int:
+        seats.sort()
+        students.sort()
+        return sum(abs(a - b) for a, b in zip(seats, students))`
 }
 
     ]
