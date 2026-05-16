@@ -2717,6 +2717,19 @@ export const topics: Topic[] = [
             res.append(ch)
 
         return ''.join(res)`
+},
+{
+  id: 'str-112',
+  title: 'Number of Different Integers in a String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-different-integers-in-a-string/',
+  description: 'Count the number of different integers embedded in a string after removing leading zeros.',
+  language: 'python',
+  solution: `class Solution:
+    def numDifferentIntegers(self, word: str) -> int:
+        import re
+        nums = re.findall(r'\d+', word)
+        return len(set(int(n) for n in nums))`
 }
 
     ]
