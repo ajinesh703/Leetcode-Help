@@ -2767,6 +2767,20 @@ export const topics: Topic[] = [
         if str1 + str2 != str2 + str1:
             return ""
         return str1[:gcd(len(str1), len(str2))]`
+},
+{
+  id: 'str-115',
+  title: 'Reverse Prefix of Word',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/reverse-prefix-of-word/',
+  description: 'Reverse the segment of a word from index 0 up to and including the first occurrence of a given character.',
+  language: 'python',
+  solution: `class Solution:
+    def reversePrefix(self, word: str, ch: str) -> str:
+        idx = word.find(ch)
+        if idx == -1:
+            return word
+        return word[:idx+1][::-1] + word[idx+1:]`
 }
 
     ]
