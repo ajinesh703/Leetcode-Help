@@ -2473,6 +2473,29 @@ export const topics: Topic[] = [
             else:
                 stack.append(ch)
         return ''.join(stack)`
+},
+{
+  id: 'str-100',
+  title: 'Count Vowel Substrings of a String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/count-vowel-substrings-of-a-string/',
+  description: 'Count the number of substrings that contain only vowels and have all five vowels present.',
+  language: 'python',
+  solution: `class Solution:
+    def countVowelSubstrings(self, word: str) -> int:
+        vowels = set('aeiou')
+        res = 0
+
+        for i in range(len(word)):
+            seen = set()
+            for j in range(i, len(word)):
+                if word[j] not in vowels:
+                    break
+                seen.add(word[j])
+                if len(seen) == 5:
+                    res += 1
+
+        return res`
 }
 
     ]
