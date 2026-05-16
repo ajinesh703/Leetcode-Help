@@ -2656,6 +2656,24 @@ export const topics: Topic[] = [
                 return i - m + 1
 
         return -1`
+},
+{
+  id: 'str-108',
+  title: 'Maximum Score After Splitting a String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-score-after-splitting-a-string/',
+  description: 'Find the maximum score after splitting a binary string into two non-empty substrings where score is count of 0s in left and 1s in right.',
+  language: 'python',
+  solution: `class Solution:
+    def maxScore(self, s: str) -> int:
+        res = 0
+
+        for i in range(1, len(s)):
+            left = s[:i].count('0')
+            right = s[i:].count('1')
+            res = max(res, left + right)
+
+        return res`
 }
 
     ]
