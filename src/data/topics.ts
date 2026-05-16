@@ -2699,6 +2699,24 @@ export const topics: Topic[] = [
         vowels = set('aeiouAEIOU')
         mid = len(s) // 2
         return sum(c in vowels for c in s[:mid]) == sum(c in vowels for c in s[mid:])`
+},
+{
+  id: 'str-111',
+  title: 'Minimum Number of Characters to Delete to Make Fancy String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/delete-characters-to-make-fancy-string/',
+  description: 'Remove minimum characters so that no three consecutive characters are the same.',
+  language: 'python',
+  solution: `class Solution:
+    def makeFancyString(self, s: str) -> str:
+        res = []
+
+        for ch in s:
+            if len(res) >= 2 and res[-1] == ch and res[-2] == ch:
+                continue
+            res.append(ch)
+
+        return ''.join(res)`
 }
 
     ]
