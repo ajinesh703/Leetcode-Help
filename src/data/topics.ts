@@ -2440,6 +2440,21 @@ export const topics: Topic[] = [
             seen.add(f)
 
         return res`
+},
+{
+  id: 'str-98',
+  title: 'Minimum Changes To Make Alternating Binary String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/',
+  description: 'Find the minimum number of changes to make a binary string alternating.',
+  language: 'python',
+  solution: `class Solution:
+    def minOperations(self, s: str) -> int:
+        count = 0
+        for i in range(len(s)):
+            if s[i] != str(i % 2):
+                count += 1
+        return min(count, len(s) - count)`
 }
 
     ]
