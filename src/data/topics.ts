@@ -2781,6 +2781,33 @@ export const topics: Topic[] = [
         if idx == -1:
             return word
         return word[:idx+1][::-1] + word[idx+1:]`
+},
+{
+  id: 'str-116',
+  title: 'Find Longest Special Substring That Occurs Thrice',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-i/',
+  description: 'Find the longest special substring that occurs at least three times where a special substring contains only one distinct character.',
+  language: 'python',
+  solution: `class Solution:
+    def maximumLength(self, s: str) -> int:
+        from collections import Counter
+        count = Counter()
+        n = len(s)
+
+        for i in range(n):
+            ch = s[i]
+            for j in range(i, n):
+                if s[j] != ch:
+                    break
+                count[(ch, j - i + 1)] += 1
+
+        res = -1
+        for (ch, length), freq in count.items():
+            if freq >= 3:
+                res = max(res, length)
+
+        return res`
 }
 
     ]
