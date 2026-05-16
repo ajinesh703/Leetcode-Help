@@ -2455,6 +2455,24 @@ export const topics: Topic[] = [
             if s[i] != str(i % 2):
                 count += 1
         return min(count, len(s) - count)`
+},
+{
+  id: 'str-99',
+  title: 'Removing Stars From a String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/removing-stars-from-a-string/',
+  description: 'Remove stars and their closest non-star character to the left until no stars remain.',
+  language: 'python',
+  solution: `class Solution:
+    def removeStars(self, s: str) -> str:
+        stack = []
+        for ch in s:
+            if ch == '*':
+                if stack:
+                    stack.pop()
+            else:
+                stack.append(ch)
+        return ''.join(stack)`
 }
 
     ]
