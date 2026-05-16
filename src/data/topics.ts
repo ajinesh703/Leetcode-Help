@@ -2372,6 +2372,25 @@ export const topics: Topic[] = [
                 dp[i] = (dp[i] + dp[i-4]) % MOD
 
         return dp[n]`
+},
+{
+  id: 'str-95',
+  title: 'Minimum Time to Type Word Using Special Typewriter',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/',
+  description: 'Find the minimum time to type a word using a circular typewriter starting at letter a.',
+  language: 'python',
+  solution: `class Solution:
+    def minTimeToType(self, word: str) -> int:
+        res = 0
+        curr = 'a'
+
+        for ch in word:
+            diff = abs(ord(ch) - ord(curr))
+            res += min(diff, 26 - diff) + 1
+            curr = ch
+
+        return res`
 }
 
     ]
