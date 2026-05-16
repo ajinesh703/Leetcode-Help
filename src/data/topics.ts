@@ -2599,6 +2599,30 @@ export const topics: Topic[] = [
         seats.sort()
         students.sort()
         return sum(abs(a - b) for a, b in zip(seats, students))`
+},
+{
+  id: 'str-106',
+  title: 'Longest Continuous Increasing Subsequence',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-continuous-increasing-subsequence/',
+  description: 'Find the length of the longest continuous strictly increasing subsequence in an array.',
+  language: 'python',
+  solution: `class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        if not nums:
+            return 0
+
+        res = 1
+        length = 1
+
+        for i in range(1, len(nums)):
+            if nums[i] > nums[i-1]:
+                length += 1
+                res = max(res, length)
+            else:
+                length = 1
+
+        return res`
 }
 
     ]
