@@ -2391,6 +2391,33 @@ export const topics: Topic[] = [
             curr = ch
 
         return res`
+},
+{
+  id: 'str-96',
+  title: 'Longest Substring Of All Vowels in Order',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-substring-of-all-vowels-in-order/',
+  description: 'Find the longest beautiful substring where vowels appear in alphabetical order and each vowel appears at least once.',
+  language: 'python',
+  solution: `class Solution:
+    def longestBeautifulSubstring(self, word: str) -> int:
+        res = 0
+        length = 1
+        unique = 1
+
+        for i in range(1, len(word)):
+            if word[i] >= word[i-1]:
+                length += 1
+                if word[i] > word[i-1]:
+                    unique += 1
+            else:
+                length = 1
+                unique = 1
+
+            if unique == 5:
+                res = max(res, length)
+
+        return res`
 }
 
     ]
