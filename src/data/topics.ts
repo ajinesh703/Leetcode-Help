@@ -2839,6 +2839,33 @@ export const topics: Topic[] = [
                 i += 1
 
         return res`
+},
+{
+  id: 'str-118',
+  title: 'Find the Longest Balanced Substring of a Binary String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/find-the-longest-balanced-substring-of-a-binary-string/',
+  description: 'Find the longest balanced substring containing equal number of 0s followed by equal number of 1s.',
+  language: 'python',
+  solution: `class Solution:
+    def findTheLongestBalancedSubstring(self, s: str) -> int:
+        res = 0
+        n = len(s)
+
+        for i in range(n):
+            if s[i] == '0':
+                zeros = 0
+                ones = 0
+                j = i
+                while j < n and s[j] == '0':
+                    zeros += 1
+                    j += 1
+                while j < n and s[j] == '1':
+                    ones += 1
+                    j += 1
+                res = max(res, min(zeros, ones) * 2)
+
+        return res`
 }
 
     ]
