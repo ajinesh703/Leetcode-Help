@@ -2888,6 +2888,45 @@ export const topics: Topic[] = [
             res = max(res, j - i)
 
         return n - res`
+},
+{
+  id: 'str-120',
+  title: 'Minimum Window Subsequence',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-window-subsequence/',
+  description: 'Find the minimum window substring of s where t is a subsequence of that window.',
+  language: 'python',
+  solution: `class Solution:
+    def minWindow(self, s: str, t: str) -> str:
+        res = ""
+        i = 0
+
+        while i < len(s):
+            j = 0
+            while i < len(s):
+                if s[i] == t[j]:
+                    j += 1
+                if j == len(t):
+                    break
+                i += 1
+
+            if j < len(t):
+                break
+
+            end = i
+            j = len(t) - 1
+            while j >= 0:
+                if s[i] == t[j]:
+                    j -= 1
+                i -= 1
+
+            i += 1
+            window = s[i:end+1]
+            if not res or len(window) < len(res):
+                res = window
+            i += 1
+
+        return res`
 }
 
     ]
