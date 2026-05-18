@@ -2927,6 +2927,38 @@ export const topics: Topic[] = [
             i += 1
 
         return res`
+},
+{
+  id: 'str-121',
+  title: 'Lexicographically Smallest String After Applying Operations',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/lexicographically-smallest-string-after-applying-operations/',
+  description: 'Find the lexicographically smallest string after applying add and rotate operations any number of times.',
+  language: 'python',
+  solution: `class Solution:
+    def findLexSmallestString(self, s: str, a: int, b: int) -> str:
+        visited = set()
+        queue = [s]
+        res = s
+
+        while queue:
+            curr = queue.pop()
+            if curr in visited:
+                continue
+            visited.add(curr)
+            res = min(res, curr)
+
+            # Apply add operation to odd indices
+            added = list(curr)
+            for i in range(1, len(curr), 2):
+                added[i] = str((int(added[i]) + a) % 10)
+            queue.append(''.join(added))
+
+            # Apply rotate operation
+            rotated = curr[-b:] + curr[:-b]
+            queue.append(rotated)
+
+        return res`
 }
 
     ]
