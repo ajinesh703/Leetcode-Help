@@ -2959,6 +2959,30 @@ export const topics: Topic[] = [
             queue.append(rotated)
 
         return res`
+},
+{
+  id: 'str-122',
+  title: 'Sum of Scores of Built Strings',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/sum-of-scores-of-built-strings/',
+  description: 'Find the sum of Z-scores of all suffixes of a string using the Z-algorithm.',
+  language: 'python',
+  solution: `class Solution:
+    def sumScores(self, s: str) -> int:
+        n = len(s)
+        z = [0] * n
+        z[0] = n
+        l, r = 0, 0
+
+        for i in range(1, n):
+            if i < r:
+                z[i] = min(r - i, z[i - l])
+            while i + z[i] < n and s[z[i]] == s[i + z[i]]:
+                z[i] += 1
+            if i + z[i] > r:
+                l, r = i, i + z[i]
+
+        return sum(z)`
 }
 
     ]
