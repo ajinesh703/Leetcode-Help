@@ -2983,6 +2983,32 @@ export const topics: Topic[] = [
                 l, r = i, i + z[i]
 
         return sum(z)`
+},
+{
+  id: 'str-123',
+  title: 'Shortest Palindrome',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/shortest-palindrome/',
+  description: 'Find the shortest palindrome by adding characters in front of a given string.',
+  language: 'python',
+  solution: `class Solution:
+    def shortestPalindrome(self, s: str) -> str:
+        rev = s[::-1]
+        combined = s + '#' + rev
+        n = len(combined)
+        kmp = [0] * n
+        j = 0
+
+        for i in range(1, n):
+            while j > 0 and combined[i] != combined[j]:
+                j = kmp[j-1]
+            if combined[i] == combined[j]:
+                j += 1
+            kmp[i] = j
+
+        longest_palindrome_prefix = kmp[-1]
+        suffix = s[longest_palindrome_prefix:][::-1]
+        return suffix + s`
 }
 
     ]
