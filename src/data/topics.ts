@@ -2866,6 +2866,28 @@ export const topics: Topic[] = [
                 res = max(res, min(zeros, ones) * 2)
 
         return res`
+},
+{
+  id: 'str-119',
+  title: 'Minimum Number of Operations to Make Array Continuous',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-operations-to-make-array-continuous/',
+  description: 'Find the minimum number of operations to make an array continuous where all elements are unique and max-min equals n-1.',
+  language: 'python',
+  solution: `class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        n = len(nums)
+        nums = sorted(set(nums))
+        m = len(nums)
+        res = 0
+        j = 0
+
+        for i in range(m):
+            while j < m and nums[j] < nums[i] + n:
+                j += 1
+            res = max(res, j - i)
+
+        return n - res`
 }
 
     ]
