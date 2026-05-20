@@ -3513,6 +3513,32 @@ export const topics: Topic[] = [
         
         return old_to_new[head]`
 },
+{
+    id: 'll-16',
+    title: 'Find the Duplicate Number',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/find-the-duplicate-number/',
+    description: 'Given an array of n+1 integers where each integer is between 1 and n, find the duplicate number using linked list cycle detection.',
+    language: 'python',
+    solution: `class Solution:
+    def findDuplicate(self, nums: List[int]) -> int:
+        slow = fast = nums[0]
+        
+        # Phase 1: detect cycle
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+        
+        # Phase 2: find entry point
+        slow = nums[0]
+        while slow != fast:
+            slow = nums[slow]
+            fast = nums[fast]
+        
+        return slow`
+},
     ]
   },
   {
