@@ -3599,6 +3599,18 @@ export const topics: Topic[] = [
         
         return head`
 },
+{
+    id: 'll-20',
+    title: 'Delete Node in a Linked List',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/delete-node-in-a-linked-list/',
+    description: 'Delete a node in a linked list given only access to that node (not the head).',
+    language: 'python',
+    solution: `class Solution:
+    def deleteNode(self, node):
+        node.val = node.next.val
+        node.next = node.next.next`
+},
     ]
   },
   {
