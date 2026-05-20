@@ -3440,6 +3440,50 @@ export const topics: Topic[] = [
         dfs(head)
         return head`
 },
+{
+    id: 'll-14',
+    title: 'LRU Cache',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/lru-cache/',
+    description: 'Design a data structure that follows the Least Recently Used (LRU) cache constraint.',
+    language: 'python',
+    solution: `class LRUCache:
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.cache = {}
+        self.head = ListNode(0)
+        self.tail = ListNode(0)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    def _remove(self, node):
+        node.prev.next = node.next
+        node.next.prev = node.prev
+
+    def _insert(self, node):
+        node.prev = self.tail.prev
+        node.next = self.tail
+        self.tail.prev.next = node
+        self.tail.prev = node
+
+    def get(self, key: int) -> int:
+        if key in self.cache:
+            self._remove(self.cache[key])
+            self._insert(self.cache[key])
+            return self.cache[key].val
+        return -1
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self._remove(self.cache[key])
+        self.cache[key] = ListNode(value)
+        self.cache[key].key = key
+        self._insert(self.cache[key])
+        if len(self.cache) > self.capacity:
+            lru = self.head.next
+            self._remove(lru)
+            del self.cache[lru.key]`
+},
     ]
   },
   {
