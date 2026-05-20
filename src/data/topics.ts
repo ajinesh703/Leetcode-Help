@@ -3563,6 +3563,23 @@ export const topics: Topic[] = [
         
         return dummy.next`
 },
+{
+    id: 'll-18',
+    title: 'Middle of the Linked List',
+    difficulty: 'Easy',
+    leetcodeUrl: 'https://leetcode.com/problems/middle-of-the-linked-list/',
+    description: 'Given the head of a singly linked list, return the middle node. If two middle nodes exist, return the second one.',
+    language: 'python',
+    solution: `class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow = fast = head
+        
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        return slow`
+},
     ]
   },
   {
