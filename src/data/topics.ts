@@ -3484,6 +3484,35 @@ export const topics: Topic[] = [
             self._remove(lru)
             del self.cache[lru.key]`
 },
+{
+    id: 'll-15',
+    title: 'Copy List with Random Pointer',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/copy-list-with-random-pointer/',
+    description: 'A linked list where each node has a random pointer. Return a deep copy of the list.',
+    language: 'python',
+    solution: `class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if not head:
+            return None
+        
+        old_to_new = {}
+        
+        curr = head
+        while curr:
+            old_to_new[curr] = Node(curr.val)
+            curr = curr.next
+        
+        curr = head
+        while curr:
+            if curr.next:
+                old_to_new[curr].next = old_to_new[curr.next]
+            if curr.random:
+                old_to_new[curr].random = old_to_new[curr.random]
+            curr = curr.next
+        
+        return old_to_new[head]`
+},
     ]
   },
   {
