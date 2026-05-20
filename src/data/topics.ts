@@ -3580,6 +3580,25 @@ export const topics: Topic[] = [
         
         return slow`
 },
+{
+    id: 'll-19',
+    title: 'Remove Duplicates from Sorted List',
+    difficulty: 'Easy',
+    leetcodeUrl: 'https://leetcode.com/problems/remove-duplicates-from-sorted-list/',
+    description: 'Given the head of a sorted linked list, delete all duplicates such that each element appears only once.',
+    language: 'python',
+    solution: `class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        curr = head
+        
+        while curr and curr.next:
+            if curr.val == curr.next.val:
+                curr.next = curr.next.next
+            else:
+                curr = curr.next
+        
+        return head`
+},
     ]
   },
   {
