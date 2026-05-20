@@ -3539,6 +3539,30 @@ export const topics: Topic[] = [
         
         return slow`
 },
+{
+    id: 'll-17',
+    title: 'Swap Nodes in Pairs',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/swap-nodes-in-pairs/',
+    description: 'Given a linked list, swap every two adjacent nodes and return its head.',
+    language: 'python',
+    solution: `class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0, head)
+        prev = dummy
+        
+        while prev.next and prev.next.next:
+            first = prev.next
+            second = prev.next.next
+            
+            prev.next = second
+            first.next = second.next
+            second.next = first
+            
+            prev = first
+        
+        return dummy.next`
+},
     ]
   },
   {
