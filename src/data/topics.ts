@@ -3164,6 +3164,48 @@ export const topics: Topic[] = [
                 curr_str += ch
 
         return curr_str`
+},
+{
+  id: 'str-132',
+  title: 'Number of Atoms',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-atoms/',
+  description: 'Parse a chemical formula and return the count of each atom in sorted order.',
+  language: 'python',
+  solution: `class Solution:
+    def countOfAtoms(self, formula: str) -> str:
+        from collections import defaultdict
+        stack = [defaultdict(int)]
+        i = 0
+        n = len(formula)
+
+        while i < n:
+            if formula[i] == '(':
+                stack.append(defaultdict(int))
+                i += 1
+            elif formula[i] == ')':
+                i += 1
+                start = i
+                while i < n and formula[i].isdigit():
+                    i += 1
+                mult = int(formula[start:i] or 1)
+                top = stack.pop()
+                for atom, cnt in top.items():
+                    stack[-1][atom] += cnt * mult
+            elif formula[i].isupper():
+                start = i
+                i += 1
+                while i < n and formula[i].islower():
+                    i += 1
+                atom = formula[start:i]
+                start = i
+                while i < n and formula[i].isdigit():
+                    i += 1
+                cnt = int(formula[start:i] or 1)
+                stack[-1][atom] += cnt
+
+        return ''.join(atom + (str(cnt) if cnt > 1 else '')
+                      for atom, cnt in sorted(stack[0].items()))`
 }
 
     ]
