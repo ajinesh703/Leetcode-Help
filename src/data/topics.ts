@@ -3136,6 +3136,34 @@ export const topics: Topic[] = [
                 stack[-1] += max(2 * v, 1)
 
         return stack[0]`
+},
+{
+  id: 'str-131',
+  title: 'Decode String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/decode-string/',
+  description: 'Decode an encoded string where k[encoded_string] means the encoded_string is repeated k times.',
+  language: 'python',
+  solution: `class Solution:
+    def decodeString(self, s: str) -> str:
+        stack = []
+        curr_str = ""
+        curr_num = 0
+
+        for ch in s:
+            if ch.isdigit():
+                curr_num = curr_num * 10 + int(ch)
+            elif ch == '[':
+                stack.append((curr_str, curr_num))
+                curr_str = ""
+                curr_num = 0
+            elif ch == ']':
+                prev_str, num = stack.pop()
+                curr_str = prev_str + num * curr_str
+            else:
+                curr_str += ch
+
+        return curr_str`
 }
 
     ]
