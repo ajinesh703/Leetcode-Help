@@ -3022,6 +3022,17 @@ export const topics: Topic[] = [
         doubled = s + s
         trimmed = doubled[1:-1]
         return s in trimmed`
+},
+{
+  id: 'str-125',
+  title: 'Check if Two Strings Are Equivalent After Swaps',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/',
+  description: 'Check if two string arrays are equivalent by comparing their concatenated results.',
+  language: 'python',
+  solution: `class Solution:
+    def arrayStringsAreEqual(self, word1: List[str], word2: List[str]) -> bool:
+        return ''.join(word1) == ''.join(word2)`
 }
 
     ]
