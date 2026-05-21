@@ -3256,6 +3256,28 @@ export const topics: Topic[] = [
                 depth -= 1
 
         return res`
+},
+{
+  id: 'str-135',
+  title: 'Longest Happy Prefix',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-happy-prefix/',
+  description: 'Find the longest prefix of a string that is also a suffix using KMP failure function.',
+  language: 'python',
+  solution: `class Solution:
+    def longestPrefix(self, s: str) -> str:
+        n = len(s)
+        kmp = [0] * n
+        j = 0
+
+        for i in range(1, n):
+            while j > 0 and s[i] != s[j]:
+                j = kmp[j-1]
+            if s[i] == s[j]:
+                j += 1
+            kmp[i] = j
+
+        return s[:kmp[-1]]`
 }
 
     ]
