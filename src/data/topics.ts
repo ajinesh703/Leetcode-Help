@@ -3303,6 +3303,27 @@ export const topics: Topic[] = [
                     count -= 1
 
         return len(seen)`
+},
+{
+  id: 'str-137',
+  title: 'Minimum Number of Swaps to Make the String Balanced',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/',
+  description: 'Find the minimum number of swaps to make a bracket string balanced.',
+  language: 'python',
+  solution: `class Solution:
+    def minSwaps(self, s: str) -> int:
+        unmatched = 0
+        max_unmatched = 0
+
+        for ch in s:
+            if ch == '[':
+                unmatched += 1
+            else:
+                unmatched -= 1
+            max_unmatched = max(max_unmatched, -unmatched)
+
+        return (max_unmatched + 1) // 2`
 }
 
     ]
