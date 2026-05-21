@@ -3093,6 +3093,29 @@ export const topics: Topic[] = [
             res = min(res, len(s) - (right - left + 1))
 
         return res`
+},
+{
+  id: 'str-129',
+  title: 'Minimum Add to Make Parentheses Valid',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/',
+  description: 'Find the minimum number of parentheses to add to make a string of parentheses valid.',
+  language: 'python',
+  solution: `class Solution:
+    def minAddToMakeValid(self, s: str) -> int:
+        open_count = 0
+        close_count = 0
+
+        for ch in s:
+            if ch == '(':
+                open_count += 1
+            elif ch == ')':
+                if open_count > 0:
+                    open_count -= 1
+                else:
+                    close_count += 1
+
+        return open_count + close_count`
 }
 
     ]
