@@ -3065,6 +3065,34 @@ export const topics: Topic[] = [
                 right -= 1
 
         return right - left + 1`
+},
+{
+  id: 'str-128',
+  title: 'Take K of Each Character From Left and Right',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/take-k-of-each-character-from-left-and-right/',
+  description: 'Find the minimum number of minutes to take at least k of each character from left and right ends of a string.',
+  language: 'python',
+  solution: `class Solution:
+    def takeCharacters(self, s: str, k: int) -> int:
+        from collections import Counter
+        count = Counter(s)
+
+        if any(count[c] < k for c in 'abc'):
+            return -1
+
+        res = float('inf')
+        window = Counter()
+        left = 0
+
+        for right in range(len(s)):
+            window[s[right]] += 1
+            while any(count[c] - window[c] < k for c in 'abc'):
+                window[s[left]] -= 1
+                left += 1
+            res = min(res, len(s) - (right - left + 1))
+
+        return res`
 }
 
     ]
