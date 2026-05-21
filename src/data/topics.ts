@@ -3116,6 +3116,26 @@ export const topics: Topic[] = [
                     close_count += 1
 
         return open_count + close_count`
+},
+{
+  id: 'str-130',
+  title: 'Score of Parentheses',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/score-of-parentheses/',
+  description: 'Calculate the score of a balanced parentheses string based on specific scoring rules.',
+  language: 'python',
+  solution: `class Solution:
+    def scoreOfParentheses(self, s: str) -> int:
+        stack = [0]
+
+        for ch in s:
+            if ch == '(':
+                stack.append(0)
+            else:
+                v = stack.pop()
+                stack[-1] += max(2 * v, 1)
+
+        return stack[0]`
 }
 
     ]
