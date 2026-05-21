@@ -3033,6 +3033,18 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def arrayStringsAreEqual(self, word1: List[str], word2: List[str]) -> bool:
         return ''.join(word1) == ''.join(word2)`
+},
+{
+  id: 'str-126',
+  title: 'Count Substrings Starting and Ending with Given Character',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/count-substrings-starting-and-ending-with-given-character/',
+  description: 'Count the number of substrings that start and end with a given character.',
+  language: 'python',
+  solution: `class Solution:
+    def countSubstrings(self, s: str, c: str) -> int:
+        count = s.count(c)
+        return count * (count + 1) // 2`
 }
 
     ]
