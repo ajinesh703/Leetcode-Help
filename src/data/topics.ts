@@ -3278,6 +3278,31 @@ export const topics: Topic[] = [
             kmp[i] = j
 
         return s[:kmp[-1]]`
+},
+{
+  id: 'str-136',
+  title: 'Distinct Echo Substrings',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/distinct-echo-substrings/',
+  description: 'Count the number of distinct substrings that can be written as a concatenation of two identical strings.',
+  language: 'python',
+  solution: `class Solution:
+    def distinctEchoSubstrings(self, text: str) -> int:
+        n = len(text)
+        seen = set()
+
+        for length in range(1, n // 2 + 1):
+            count = 0
+            for i in range(n - length):
+                if text[i] == text[i + length]:
+                    count += 1
+                else:
+                    count = 0
+                if count == length:
+                    seen.add(text[i + 1 - length: i + 1])
+                    count -= 1
+
+        return len(seen)`
 }
 
     ]
