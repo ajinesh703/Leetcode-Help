@@ -3235,6 +3235,27 @@ export const topics: Topic[] = [
             min_open = max(min_open, 0)
 
         return min_open == 0`
+},
+{
+  id: 'str-134',
+  title: 'Minimum Score After Removals on a Tree',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/',
+  description: 'Find the maximum nesting depth of valid parentheses in a string.',
+  language: 'python',
+  solution: `class Solution:
+    def maxDepth(self, s: str) -> int:
+        res = 0
+        depth = 0
+
+        for ch in s:
+            if ch == '(':
+                depth += 1
+                res = max(res, depth)
+            elif ch == ')':
+                depth -= 1
+
+        return res`
 }
 
     ]
