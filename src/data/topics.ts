@@ -3045,6 +3045,26 @@ export const topics: Topic[] = [
     def countSubstrings(self, s: str, c: str) -> int:
         count = s.count(c)
         return count * (count + 1) // 2`
+},
+{
+  id: 'str-127',
+  title: 'Minimum Length of String After Deleting Similar Ends',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-length-of-string-after-deleting-similar-ends/',
+  description: 'Find the minimum length of a string after repeatedly deleting equal characters from both ends.',
+  language: 'python',
+  solution: `class Solution:
+    def minimumLength(self, s: str) -> int:
+        left, right = 0, len(s) - 1
+
+        while left < right and s[left] == s[right]:
+            ch = s[left]
+            while left <= right and s[left] == ch:
+                left += 1
+            while left <= right and s[right] == ch:
+                right -= 1
+
+        return right - left + 1`
 }
 
     ]
