@@ -3009,6 +3009,19 @@ export const topics: Topic[] = [
         longest_palindrome_prefix = kmp[-1]
         suffix = s[longest_palindrome_prefix:][::-1]
         return suffix + s`
+},
+{
+  id: 'str-124',
+  title: 'Repeated Substring Pattern',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/repeated-substring-pattern/',
+  description: 'Determine if a string can be constructed by repeating a substring of itself.',
+  language: 'python',
+  solution: `class Solution:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        doubled = s + s
+        trimmed = doubled[1:-1]
+        return s in trimmed`
 }
 
     ]
