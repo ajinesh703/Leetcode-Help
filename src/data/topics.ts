@@ -3324,6 +3324,27 @@ export const topics: Topic[] = [
             max_unmatched = max(max_unmatched, -unmatched)
 
         return (max_unmatched + 1) // 2`
+},
+{
+  id: 'str-138',
+  title: 'Crawler Log Folder',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/crawler-log-folder/',
+  description: 'Find the minimum number of operations to go back to the main folder after a series of folder operations.',
+  language: 'python',
+  solution: `class Solution:
+    def minOperations(self, logs: List[str]) -> int:
+        depth = 0
+
+        for log in logs:
+            if log == '../':
+                depth = max(0, depth - 1)
+            elif log == './':
+                continue
+            else:
+                depth += 1
+
+        return depth`
 }
 
     ]
