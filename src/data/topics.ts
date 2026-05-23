@@ -3604,6 +3604,45 @@ export const topics: Topic[] = [
                 res.append(i)
 
         return res`
+},
+{
+  id: 'str-147',
+  title: 'Longest Subsequence Repeated k Times',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-subsequence-repeated-k-times/',
+  description: 'Find the longest subsequence that when repeated k times is still a subsequence of the given string.',
+  language: 'python',
+  solution: `class Solution:
+    def longestSubsequenceRepeatedK(self, s: str, k: int) -> str:
+        from collections import Counter
+        from itertools import product
+
+        freq = Counter(s)
+        chars = sorted([c for c in freq if freq[c] >= k], reverse=True)
+
+        def isSubseq(sub, s, k):
+            count = 0
+            i = 0
+            for ch in s:
+                if ch == sub[i % len(sub)]:
+                    i += 1
+                if i == len(sub) * k:
+                    return True
+            return False
+
+        res = ""
+        queue = [""]
+
+        while queue:
+            curr = queue.pop(0)
+            for ch in chars:
+                candidate = curr + ch
+                if isSubseq(candidate, s, k):
+                    if len(candidate) > len(res) or (len(candidate) == len(res) and candidate > res):
+                        res = candidate
+                    queue.append(candidate)
+
+        return res`
 }
 
 
