@@ -3662,6 +3662,31 @@ export const topics: Topic[] = [
             i += 1
 
         return len(t) - j`
+},
+{
+  id: 'str-149',
+  title: 'Count Substrings Without Repeating Character',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/count-substrings-without-repeating-character/',
+  description: 'Count the number of substrings that contain no duplicate characters using sliding window.',
+  language: 'python',
+  solution: `class Solution:
+    def numberOfSpecialSubstrings(self, s: str) -> int:
+        from collections import defaultdict
+        count = defaultdict(int)
+        left = 0
+        res = 0
+
+        for right in range(len(s)):
+            count[s[right]] += 1
+
+            while count[s[right]] > 1:
+                count[s[left]] -= 1
+                left += 1
+
+            res += right - left + 1
+
+        return res`
 }
 
 
