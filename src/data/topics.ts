@@ -3413,6 +3413,30 @@ export const topics: Topic[] = [
 
         return ''.join(res)`
 },
+{
+  id: 'str-142',
+  title: 'Splitting a String Into Descending Consecutive Values',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/splitting-a-string-into-descending-consecutive-values/',
+  description: 'Check if a string can be split into at least 3 parts with consecutive descending values.',
+  language: 'python',
+  solution: `class Solution:
+    def splitString(self, s: str) -> bool:
+        def backtrack(idx, prev, count):
+            if idx == len(s):
+                return count >= 3
+            num = 0
+            for i in range(idx, len(s)):
+                num = num * 10 + int(s[i])
+                if prev == -1 or num == prev - 1:
+                    if backtrack(i + 1, num, count + 1):
+                        return True
+                if prev != -1 and num >= prev:
+                    break
+            return False
+
+        return backtrack(0, -1, 0)`
+}
 
 
     ]
