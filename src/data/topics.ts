@@ -3510,6 +3510,56 @@ export const topics: Topic[] = [
             res += dist[u][v]
 
         return res`
+},
+{
+  id: 'str-145',
+  title: 'Count Palindromic Subsequences',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/count-palindromic-subsequences/',
+  description: 'Count the number of distinct palindromic subsequences of length 5 in a given string.',
+  language: 'python',
+  solution: `class Solution:
+    def countPalindromes(self, s: str) -> int:
+        MOD = 10**9 + 7
+        n = len(s)
+        res = 0
+
+        for c1 in '0123456789':
+            for c2 in '0123456789':
+                pattern = c1 + c2 + '*' + c2 + c1
+                pre = [0] * (n + 1)
+                pre2 = [0] * (n + 1)
+                suf = [0] * (n + 2)
+                suf2 = [0] * (n + 2)
+
+                cnt = 0
+                for i in range(n):
+                    if s[i] == c1:
+                        cnt += 1
+                    pre[i+1] = pre[i]
+                    pre2[i+1] = pre2[i]
+                    if s[i] == c2:
+                        pre2[i+1] = (pre2[i] + cnt) % MOD
+                    else:
+                        pre2[i+1] = pre2[i]
+                    if s[i] == c1:
+                        pre[i+1] = (pre[i] + 1) % MOD
+
+                cnt = 0
+                for i in range(n-1, -1, -1):
+                    if s[i] == c1:
+                        cnt += 1
+                    suf[i] = suf[i+1]
+                    suf2[i] = suf2[i+1]
+                    if s[i] == c2:
+                        suf2[i] = (suf2[i+1] + cnt) % MOD
+                    if s[i] == c1:
+                        suf[i] = (suf[i+1] + 1) % MOD
+
+                for i in range(2, n-2):
+                    res = (res + pre2[i] * suf2[i+1]) % MOD
+
+        return res`
 }
 
 
