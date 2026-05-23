@@ -3365,6 +3365,25 @@ export const topics: Topic[] = [
                 stack.append(part)
 
         return '/' + '/'.join(stack)`
+},
+{
+  id: 'str-140',
+  title: 'Thousand Separator',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/thousand-separator/',
+  description: 'Add a dot as a thousand separator to an integer and return it as a string.',
+  language: 'python',
+  solution: `class Solution:
+    def thousandSeparator(self, n: int) -> str:
+        s = str(n)
+        res = []
+
+        for i, ch in enumerate(reversed(s)):
+            if i > 0 and i % 3 == 0:
+                res.append('.')
+            res.append(ch)
+
+        return ''.join(reversed(res))`
 }
 
     ]
