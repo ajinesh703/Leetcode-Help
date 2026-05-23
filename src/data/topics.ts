@@ -3477,6 +3477,39 @@ export const topics: Topic[] = [
                 return False
 
         return True`
+},
+{
+  id: 'str-144',
+  title: 'Minimum Cost to Convert String I',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-cost-to-convert-string-i/',
+  description: 'Find the minimum cost to convert a source string to a target string using given character conversions.',
+  language: 'python',
+  solution: `class Solution:
+    def minimumCost(self, source: str, target: str, original: List[str], changed: List[str], cost: List[int]) -> int:
+        INF = float('inf')
+        dist = [[INF] * 26 for _ in range(26)]
+
+        for i in range(26):
+            dist[i][i] = 0
+
+        for o, c, w in zip(original, changed, cost):
+            u, v = ord(o) - ord('a'), ord(c) - ord('a')
+            dist[u][v] = min(dist[u][v], w)
+
+        for k in range(26):
+            for i in range(26):
+                for j in range(26):
+                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+
+        res = 0
+        for s, t in zip(source, target):
+            u, v = ord(s) - ord('a'), ord(t) - ord('a')
+            if dist[u][v] == INF:
+                return -1
+            res += dist[u][v]
+
+        return res`
 }
 
 
