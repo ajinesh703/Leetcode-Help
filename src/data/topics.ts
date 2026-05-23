@@ -3560,6 +3560,50 @@ export const topics: Topic[] = [
                     res = (res + pre2[i] * suf2[i+1]) % MOD
 
         return res`
+},
+{
+  id: 'str-146',
+  title: 'Find Beautiful Indices in the Given Array I',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/find-beautiful-indices-in-the-given-array-i/',
+  description: 'Find all beautiful indices where pattern a starts and pattern b starts within distance k.',
+  language: 'python',
+  solution: `class Solution:
+    def beautifulIndices(self, s: str, a: str, b: str, k: int) -> List[int]:
+        def kmp(text, pattern):
+            n, m = len(text), len(pattern)
+            lps = [0] * m
+            j = 0
+            for i in range(1, m):
+                while j > 0 and pattern[i] != pattern[j]:
+                    j = lps[j-1]
+                if pattern[i] == pattern[j]:
+                    j += 1
+                lps[i] = j
+            matches = []
+            j = 0
+            for i in range(n):
+                while j > 0 and text[i] != pattern[j]:
+                    j = lps[j-1]
+                if text[i] == pattern[j]:
+                    j += 1
+                if j == m:
+                    matches.append(i - m + 1)
+                    j = lps[j-1]
+            return matches
+
+        a_indices = kmp(s, a)
+        b_indices = kmp(s, b)
+        res = []
+        j = 0
+
+        for i in a_indices:
+            while j < len(b_indices) and b_indices[j] < i - k:
+                j += 1
+            if j < len(b_indices) and abs(b_indices[j] - i) <= k:
+                res.append(i)
+
+        return res`
 }
 
 
