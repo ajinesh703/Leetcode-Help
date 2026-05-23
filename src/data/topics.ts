@@ -3643,6 +3643,25 @@ export const topics: Topic[] = [
                     queue.append(candidate)
 
         return res`
+},
+{
+  id: 'str-148',
+  title: 'Append Characters to String to Make Subsequence',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/',
+  description: 'Find the minimum number of characters to append to string s so that string t becomes a subsequence of s.',
+  language: 'python',
+  solution: `class Solution:
+    def appendCharacters(self, s: str, t: str) -> int:
+        i = 0
+        j = 0
+
+        while i < len(s) and j < len(t):
+            if s[i] == t[j]:
+                j += 1
+            i += 1
+
+        return len(t) - j`
 }
 
 
