@@ -3687,6 +3687,26 @@ export const topics: Topic[] = [
             res += right - left + 1
 
         return res`
+},
+{
+  id: 'str-150',
+  title: 'Longest Ideal Subsequence',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-ideal-subsequence/',
+  description: 'Find the longest ideal subsequence where adjacent characters differ by at most k in alphabet order.',
+  language: 'python',
+  solution: `class Solution:
+    def longestIdealString(self, s: str, k: int) -> int:
+        dp = [0] * 26
+
+        for ch in s:
+            i = ord(ch) - ord('a')
+            best = 0
+            for j in range(max(0, i - k), min(25, i + k) + 1):
+                best = max(best, dp[j])
+            dp[i] = best + 1
+
+        return max(dp)`
 }
 
 
