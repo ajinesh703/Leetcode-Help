@@ -3436,6 +3436,47 @@ export const topics: Topic[] = [
             return False
 
         return backtrack(0, -1, 0)`
+},
+{
+  id: 'str-143',
+  title: 'Check if a Parentheses String Can Be Valid',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/check-if-a-parentheses-string-can-be-valid/',
+  description: 'Check if a parentheses string can be valid by changing locked positions.',
+  language: 'python',
+  solution: `class Solution:
+    def canBeValid(self, s: str, locked: str) -> bool:
+        if len(s) % 2 == 1:
+            return False
+
+        open_count = 0
+        wild_count = 0
+
+        for i in range(len(s)):
+            if locked[i] == '0':
+                wild_count += 1
+            elif s[i] == '(':
+                open_count += 1
+            else:
+                if open_count > 0:
+                    open_count -= 1
+                elif wild_count > 0:
+                    wild_count -= 1
+                else:
+                    return False
+
+        balance = 0
+        for i in range(len(s) - 1, -1, -1):
+            if locked[i] == '0':
+                balance -= 1
+            elif s[i] == ')':
+                balance += 1
+            else:
+                balance -= 1
+            if balance < 0:
+                return False
+
+        return True`
 }
 
 
