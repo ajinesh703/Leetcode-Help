@@ -3384,7 +3384,36 @@ export const topics: Topic[] = [
             res.append(ch)
 
         return ''.join(reversed(res))`
-}
+},
+{
+  id: 'str-141',
+  title: 'Reformat The String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/reformat-the-string/',
+  description: 'Reformat a string so that no two adjacent characters are of the same type by alternating digits and letters.',
+  language: 'python',
+  solution: `class Solution:
+    def reformat(self, s: str) -> str:
+        digits = [c for c in s if c.isdigit()]
+        letters = [c for c in s if c.isalpha()]
+
+        if abs(len(digits) - len(letters)) > 1:
+            return ""
+
+        if len(digits) < len(letters):
+            digits, letters = letters, digits
+
+        res = []
+        for i in range(len(letters)):
+            res.append(digits[i])
+            res.append(letters[i])
+
+        if len(digits) > len(letters):
+            res.append(digits[-1])
+
+        return ''.join(res)`
+},
+
 
     ]
   },
