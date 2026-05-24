@@ -3996,6 +3996,31 @@ export const topics: Topic[] = [
                 res = min(res + 1, b_count)
 
         return res`
+},
+{
+  id: 'str-163',
+  title: 'Minimum Time Difference',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-time-difference/',
+  description: 'Find the minimum time difference between any two time points in a list of 24-hour clock times.',
+  language: 'python',
+  solution: `class Solution:
+    def findMinDifference(self, timePoints: List[str]) -> int:
+        minutes = []
+
+        for time in timePoints:
+            h, m = map(int, time.split(':'))
+            minutes.append(h * 60 + m)
+
+        minutes.sort()
+        res = float('inf')
+
+        for i in range(1, len(minutes)):
+            res = min(res, minutes[i] - minutes[i-1])
+
+        res = min(res, 1440 - minutes[-1] + minutes[0])
+
+        return res`
 }
 
 
