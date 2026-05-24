@@ -3725,6 +3725,25 @@ export const topics: Topic[] = [
             if len(curr) >= len(s):
                 break
         return False`
+},
+{
+  id: 'str-152',
+  title: 'Longest Word With All Prefixes',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-word-with-all-prefixes/',
+  description: 'Find the longest word in an array where every prefix of the word is also in the array.',
+  language: 'python',
+  solution: `class Solution:
+    def longestWord(self, words: List[str]) -> str:
+        word_set = set(words)
+        res = ""
+
+        for word in words:
+            if all(word[:i] in word_set for i in range(1, len(word))):
+                if len(word) > len(res) or (len(word) == len(res) and word < res):
+                    res = word
+
+        return res`
 }
 
 
