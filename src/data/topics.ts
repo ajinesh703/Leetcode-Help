@@ -3876,6 +3876,45 @@ export const topics: Topic[] = [
                     res = max(res, len(words[i]) * len(words[j]))
 
         return res`
+},
+{
+  id: 'str-158',
+  title: 'Zigzag String Partition',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/string-without-aaa-or-bbb/',
+  description: 'Construct a string without three consecutive same characters given counts of a and b.',
+  language: 'python',
+  solution: `class Solution:
+    def strWithout3a3b(self, a: int, b: int) -> str:
+        res = []
+
+        while a > 0 or b > 0:
+            if a > b:
+                res.append('a')
+                a -= 1
+                if a > 0:
+                    res.append('a')
+                    a -= 1
+                if b > 0:
+                    res.append('b')
+                    b -= 1
+            elif b > a:
+                res.append('b')
+                b -= 1
+                if b > 0:
+                    res.append('b')
+                    b -= 1
+                if a > 0:
+                    res.append('a')
+                    a -= 1
+            else:
+                res.append('a')
+                a -= 1
+                if b > 0:
+                    res.append('b')
+                    b -= 1
+
+        return ''.join(res)`
 }
 
 
