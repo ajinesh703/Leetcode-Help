@@ -3940,6 +3940,29 @@ export const topics: Topic[] = [
             return dp[len(word)]
 
         return [word for word in words if canForm(word)]`
+},
+{
+  id: 'str-160',
+  title: 'Longest Substring with Equal Number of 0s and 1s',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/contiguous-array/',
+  description: 'Find the maximum length subarray with equal number of 0s and 1s using prefix sum and hashmap.',
+  language: 'python',
+  solution: `class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        prefix = {0: -1}
+        count = 0
+        res = 0
+
+        for i, num in enumerate(nums):
+            count += 1 if num == 1 else -1
+
+            if count in prefix:
+                res = max(res, i - prefix[count])
+            else:
+                prefix[count] = i
+
+        return res`
 }
 
 
