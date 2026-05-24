@@ -4062,6 +4062,28 @@ export const topics: Topic[] = [
             res = max(res, right - left)
 
         return res`
+},
+{
+  id: 'str-166',
+  title: 'Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/',
+  description: 'Count subarrays of size k whose average is greater than or equal to a given threshold.',
+  language: 'python',
+  solution: `class Solution:
+    def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
+        res = 0
+        window_sum = sum(arr[:k])
+
+        if window_sum >= k * threshold:
+            res += 1
+
+        for i in range(k, len(arr)):
+            window_sum += arr[i] - arr[i - k]
+            if window_sum >= k * threshold:
+                res += 1
+
+        return res`
 }
 
 
