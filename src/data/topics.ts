@@ -3852,6 +3852,30 @@ export const topics: Topic[] = [
                 res += max(count.values()) - min(count.values())
 
         return res`
+},
+{
+  id: 'str-157',
+  title: 'Maximum Product of Word Lengths',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-product-of-word-lengths/',
+  description: 'Find the maximum product of lengths of two words that share no common letters.',
+  language: 'python',
+  solution: `class Solution:
+    def maxProduct(self, words: List[str]) -> int:
+        masks = []
+        for word in words:
+            mask = 0
+            for ch in word:
+                mask |= 1 << (ord(ch) - ord('a'))
+            masks.append(mask)
+
+        res = 0
+        for i in range(len(words)):
+            for j in range(i + 1, len(words)):
+                if masks[i] & masks[j] == 0:
+                    res = max(res, len(words[i]) * len(words[j]))
+
+        return res`
 }
 
 
