@@ -3744,6 +3744,51 @@ export const topics: Topic[] = [
                     res = word
 
         return res`
+},
+{
+  id: 'str-153',
+  title: 'Number of Ways to Split a String',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-ways-to-split-a-string/',
+  description: 'Count the number of ways to split a binary string into three parts with equal number of ones.',
+  language: 'python',
+  solution: `class Solution:
+    def numWays(self, s: str) -> int:
+        MOD = 10**9 + 7
+        ones = s.count('1')
+
+        if ones % 3 != 0:
+            return 0
+
+        if ones == 0:
+            n = len(s)
+            return (n - 1) * (n - 2) // 2 % MOD
+
+        target = ones // 3
+        count = 0
+        first_end = second_start = second_end = third_start = 0
+
+        cnt = 0
+        for i, ch in enumerate(s):
+            if ch == '1':
+                cnt += 1
+            if cnt == target:
+                first_end = i
+            if cnt == target + 1:
+                second_start = i
+                break
+
+        cnt = 0
+        for i, ch in enumerate(s):
+            if ch == '1':
+                cnt += 1
+            if cnt == 2 * target:
+                second_end = i
+            if cnt == 2 * target + 1:
+                third_start = i
+                break
+
+        return (second_start - first_end) * (third_start - second_end) % MOD`
 }
 
 
