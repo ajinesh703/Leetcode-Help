@@ -4021,6 +4021,21 @@ export const topics: Topic[] = [
         res = min(res, 1440 - minutes[-1] + minutes[0])
 
         return res`
+},
+{
+  id: 'str-164',
+  title: 'Rearrange Characters to Make Target String',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/rearrange-characters-to-make-target-string/',
+  description: 'Find the maximum number of copies of target that can be formed using characters from s.',
+  language: 'python',
+  solution: `class Solution:
+    def rearrangeCharacters(self, s: str, target: str) -> int:
+        from collections import Counter
+        s_count = Counter(s)
+        t_count = Counter(target)
+
+        return min(s_count[ch] // t_count[ch] for ch in t_count)`
 }
 
 
