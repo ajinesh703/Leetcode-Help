@@ -3707,6 +3707,24 @@ export const topics: Topic[] = [
             dp[i] = best + 1
 
         return max(dp)`
+},
+{
+  id: 'str-151',
+  title: 'Check if String Is a Prefix of Array',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/check-if-string-is-a-prefix-of-array/',
+  description: 'Check if a string is a prefix of an array by concatenating words in order.',
+  language: 'python',
+  solution: `class Solution:
+    def isPrefixString(self, s: str, words: List[str]) -> bool:
+        curr = ""
+        for word in words:
+            curr += word
+            if curr == s:
+                return True
+            if len(curr) >= len(s):
+                break
+        return False`
 }
 
 
