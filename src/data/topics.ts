@@ -3963,6 +3963,19 @@ export const topics: Topic[] = [
                 prefix[count] = i
 
         return res`
+},
+{
+  id: 'str-161',
+  title: 'Check if All Characters Have Equal Number of Occurrences',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/',
+  description: 'Check if all characters in a string appear the same number of times.',
+  language: 'python',
+  solution: `class Solution:
+    def areOccurrencesEqual(self, s: str) -> bool:
+        from collections import Counter
+        count = Counter(s)
+        return len(set(count.values())) == 1`
 }
 
 
