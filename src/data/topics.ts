@@ -3976,6 +3976,26 @@ export const topics: Topic[] = [
         from collections import Counter
         count = Counter(s)
         return len(set(count.values())) == 1`
+},
+{
+  id: 'str-162',
+  title: 'Minimum Deletions to Make String Balanced',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-deletions-to-make-string-balanced/',
+  description: 'Find the minimum number of deletions to make a string balanced where all as come before all bs.',
+  language: 'python',
+  solution: `class Solution:
+    def minimumDeletions(self, s: str) -> int:
+        b_count = 0
+        res = 0
+
+        for ch in s:
+            if ch == 'b':
+                b_count += 1
+            else:
+                res = min(res + 1, b_count)
+
+        return res`
 }
 
 
