@@ -3832,6 +3832,26 @@ export const topics: Topic[] = [
             lo = max(lo, 0)
 
         return lo == 0`
+},
+{
+  id: 'str-156',
+  title: 'Sum of Beauty of All Substrings',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/sum-of-beauty-of-all-substrings/',
+  description: 'Find the sum of beauty of all substrings where beauty is the difference between max and min frequency of characters.',
+  language: 'python',
+  solution: `class Solution:
+    def beautySum(self, s: str) -> int:
+        from collections import Counter
+        res = 0
+
+        for i in range(len(s)):
+            count = Counter()
+            for j in range(i, len(s)):
+                count[s[j]] += 1
+                res += max(count.values()) - min(count.values())
+
+        return res`
 }
 
 
