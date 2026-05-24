@@ -3915,6 +3915,31 @@ export const topics: Topic[] = [
                     b -= 1
 
         return ''.join(res)`
+},
+{
+  id: 'str-159',
+  title: 'Concatenated Words',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/concatenated-words/',
+  description: 'Find all words that can be formed by concatenating at least two shorter words from the same array.',
+  language: 'python',
+  solution: `class Solution:
+    def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:
+        word_set = set(words)
+
+        def canForm(word):
+            if not word:
+                return False
+            dp = [False] * (len(word) + 1)
+            dp[0] = True
+            for i in range(1, len(word) + 1):
+                for j in range(i):
+                    if dp[j] and word[j:i] in word_set and (j > 0 or i < len(word)):
+                        dp[i] = True
+                        break
+            return dp[len(word)]
+
+        return [word for word in words if canForm(word)]`
 }
 
 
