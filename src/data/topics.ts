@@ -4036,6 +4036,32 @@ export const topics: Topic[] = [
         t_count = Counter(target)
 
         return min(s_count[ch] // t_count[ch] for ch in t_count)`
+},
+{
+  id: 'str-165',
+  title: 'Longest Subarray of 1s After Deleting One Element',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/',
+  description: 'Find the longest subarray of 1s after deleting exactly one element from a binary array.',
+  language: 'python',
+  solution: `class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        left = 0
+        zeros = 0
+        res = 0
+
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1
+
+            while zeros > 1:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+
+            res = max(res, right - left)
+
+        return res`
 }
 
 
