@@ -3804,6 +3804,34 @@ export const topics: Topic[] = [
         if n % 2 == 0:
             return n // 2
         return n`
+},
+{
+  id: 'str-155',
+  title: 'Parentheses in Expression',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/check-if-there-is-a-valid-parenthesization/',
+  description: 'Determine the minimum number of parentheses needed to make an expression valid.',
+  language: 'python',
+  solution: `class Solution:
+    def checkValidString(self, s: str) -> bool:
+        lo = hi = 0
+
+        for ch in s:
+            if ch == '(':
+                lo += 1
+                hi += 1
+            elif ch == ')':
+                lo -= 1
+                hi -= 1
+            else:
+                lo -= 1
+                hi += 1
+
+            if hi < 0:
+                return False
+            lo = max(lo, 0)
+
+        return lo == 0`
 }
 
 
