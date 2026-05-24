@@ -3789,6 +3789,21 @@ export const topics: Topic[] = [
                 break
 
         return (second_start - first_end) * (third_start - second_end) % MOD`
+},
+{
+  id: 'str-154',
+  title: 'Minimum Cuts to Divide a Circle',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-cuts-to-divide-a-circle/',
+  description: 'Find the minimum number of cuts needed to divide a circle into n equal slices.',
+  language: 'python',
+  solution: `class Solution:
+    def numberOfCuts(self, n: int) -> int:
+        if n == 1:
+            return 0
+        if n % 2 == 0:
+            return n // 2
+        return n`
 }
 
 
