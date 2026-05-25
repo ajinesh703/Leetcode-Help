@@ -4196,6 +4196,29 @@ export const topics: Topic[] = [
             res = max(res, right - left + 1)
 
         return res`
+},
+{
+  id: 'str-172',
+  title: 'Minimum Size Subarray Sum',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-size-subarray-sum/',
+  description: 'Find the minimum length subarray whose sum is greater than or equal to target.',
+  language: 'python',
+  solution: `class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        left = 0
+        curr_sum = 0
+        res = float('inf')
+
+        for right in range(len(nums)):
+            curr_sum += nums[right]
+
+            while curr_sum >= target:
+                res = min(res, right - left + 1)
+                curr_sum -= nums[left]
+                left += 1
+
+        return res if res != float('inf') else 0`
 }
 
 
