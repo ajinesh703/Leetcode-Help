@@ -4239,6 +4239,35 @@ export const topics: Topic[] = [
             min_sum = min(min_sum, curr_sum)
 
         return sum(cardPoints) - min_sum`
+},
+{
+  id: 'str-174',
+  title: 'Number of Equal Count Substrings',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-equal-count-substrings/',
+  description: 'Count substrings where every character that appears does so exactly count times.',
+  language: 'python',
+  solution: `class Solution:
+    def equalCountSubstrings(self, s: str, count: int) -> int:
+        from collections import Counter
+        res = 0
+
+        for unique in range(1, 27):
+            k = unique * count
+            if k > len(s):
+                break
+            window = Counter(s[:k])
+            if sum(v == count for v in window.values()) == unique:
+                res += 1
+            for i in range(k, len(s)):
+                window[s[i]] += 1
+                window[s[i - k]] -= 1
+                if window[s[i - k]] == 0:
+                    del window[s[i - k]]
+                if sum(v == count for v in window.values()) == unique:
+                    res += 1
+
+        return res`
 }
 
 
