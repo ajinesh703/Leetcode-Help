@@ -4153,6 +4153,21 @@ export const topics: Topic[] = [
             res = max(res, right - left + 1)
 
         return res`
+},
+{
+  id: 'str-170',
+  title: 'Substrings of Size Three with Distinct Characters',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/',
+  description: 'Count the number of substrings of size three with all distinct characters.',
+  language: 'python',
+  solution: `class Solution:
+    def countGoodSubstrings(self, s: str) -> int:
+        res = 0
+        for i in range(len(s) - 2):
+            if len(set(s[i:i+3])) == 3:
+                res += 1
+        return res`
 }
 
 
