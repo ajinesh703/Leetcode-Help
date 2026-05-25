@@ -4168,6 +4168,34 @@ export const topics: Topic[] = [
             if len(set(s[i:i+3])) == 3:
                 res += 1
         return res`
+},
+{
+  id: 'str-171',
+  title: 'Longest Turbulent Subarray',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-turbulent-subarray/',
+  description: 'Find the length of the longest turbulent subarray where comparisons strictly alternate.',
+  language: 'python',
+  solution: `class Solution:
+    def maxTurbulenceSize(self, arr: List[int]) -> int:
+        left = 0
+        res = 1
+
+        for right in range(1, len(arr)):
+            if right >= 2:
+                if (arr[right-2] < arr[right-1] and arr[right-1] > arr[right]) or \
+                   (arr[right-2] > arr[right-1] and arr[right-1] < arr[right]):
+                    continue
+                elif arr[right-1] == arr[right]:
+                    left = right
+                else:
+                    left = right - 1
+            elif arr[right] == arr[right-1]:
+                left = right
+
+            res = max(res, right - left + 1)
+
+        return res`
 }
 
 
