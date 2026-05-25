@@ -4084,6 +4084,25 @@ export const topics: Topic[] = [
                 res += 1
 
         return res`
+},
+{
+  id: 'str-167',
+  title: 'Minimum Consecutive Cards to Pick Up',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-consecutive-cards-to-pick-up/',
+  description: 'Find the minimum number of consecutive cards to pick up that contains at least one matching pair.',
+  language: 'python',
+  solution: `class Solution:
+    def minimumCardPickup(self, cards: List[int]) -> int:
+        last_seen = {}
+        res = float('inf')
+
+        for i, card in enumerate(cards):
+            if card in last_seen:
+                res = min(res, i - last_seen[card] + 1)
+            last_seen[card] = i
+
+        return res if res != float('inf') else -1`
 }
 
 
