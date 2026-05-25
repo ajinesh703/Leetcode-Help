@@ -4219,6 +4219,26 @@ export const topics: Topic[] = [
                 left += 1
 
         return res if res != float('inf') else 0`
+},
+{
+  id: 'str-173',
+  title: 'Maximum Points You Can Obtain from Cards',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/',
+  description: 'Find the maximum score by picking exactly k cards from either end of the array.',
+  language: 'python',
+  solution: `class Solution:
+    def maxScore(self, cardPoints: List[int], k: int) -> int:
+        n = len(cardPoints)
+        window = n - k
+        curr_sum = sum(cardPoints[:window])
+        min_sum = curr_sum
+
+        for i in range(window, n):
+            curr_sum += cardPoints[i] - cardPoints[i - window]
+            min_sum = min(min_sum, curr_sum)
+
+        return sum(cardPoints) - min_sum`
 }
 
 
