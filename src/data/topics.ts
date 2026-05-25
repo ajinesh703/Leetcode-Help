@@ -4128,6 +4128,31 @@ export const topics: Topic[] = [
             res = max(res, curr_sum)
 
         return res`
+},
+{
+  id: 'str-169',
+  title: 'Frequency of the Most Frequent Element',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/frequency-of-the-most-frequent-element/',
+  description: 'Find the maximum frequency of any element after performing at most k increment operations.',
+  language: 'python',
+  solution: `class Solution:
+    def maxFrequency(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        left = 0
+        curr_sum = 0
+        res = 0
+
+        for right in range(len(nums)):
+            curr_sum += nums[right]
+
+            while nums[right] * (right - left + 1) - curr_sum > k:
+                curr_sum -= nums[left]
+                left += 1
+
+            res = max(res, right - left + 1)
+
+        return res`
 }
 
 
