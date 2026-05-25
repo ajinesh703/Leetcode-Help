@@ -4103,6 +4103,31 @@ export const topics: Topic[] = [
             last_seen[card] = i
 
         return res if res != float('inf') else -1`
+},
+{
+  id: 'str-168',
+  title: 'Maximum Erasure Value',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-erasure-value/',
+  description: 'Find the maximum sum of a subarray with all unique elements using sliding window.',
+  language: 'python',
+  solution: `class Solution:
+    def maximumUniqueSubarray(self, nums: List[int]) -> int:
+        seen = set()
+        left = 0
+        curr_sum = 0
+        res = 0
+
+        for right in range(len(nums)):
+            while nums[right] in seen:
+                seen.remove(nums[left])
+                curr_sum -= nums[left]
+                left += 1
+            seen.add(nums[right])
+            curr_sum += nums[right]
+            res = max(res, curr_sum)
+
+        return res`
 }
 
 
