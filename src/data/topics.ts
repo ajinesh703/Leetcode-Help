@@ -4268,6 +4268,41 @@ export const topics: Topic[] = [
                     res += 1
 
         return res`
+},
+{
+  id: 'str-175',
+  title: 'Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/',
+  description: 'Find the longest subarray where the absolute difference between max and min is at most limit.',
+  language: 'python',
+  solution: `class Solution:
+    def longestSubarray(self, nums: List[int], limit: int) -> int:
+        from collections import deque
+        max_dq = deque()
+        min_dq = deque()
+        left = 0
+        res = 0
+
+        for right in range(len(nums)):
+            while max_dq and nums[max_dq[-1]] <= nums[right]:
+                max_dq.pop()
+            while min_dq and nums[min_dq[-1]] >= nums[right]:
+                min_dq.pop()
+
+            max_dq.append(right)
+            min_dq.append(right)
+
+            while nums[max_dq[0]] - nums[min_dq[0]] > limit:
+                left += 1
+                if max_dq[0] < left:
+                    max_dq.popleft()
+                if min_dq[0] < left:
+                    min_dq.popleft()
+
+            res = max(res, right - left + 1)
+
+        return res`
 }
 
 
