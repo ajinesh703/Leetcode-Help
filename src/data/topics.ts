@@ -4303,6 +4303,32 @@ export const topics: Topic[] = [
             res = max(res, right - left + 1)
 
         return res`
+},
+{
+  id: 'str-176',
+  title: 'Max Consecutive Ones III',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/max-consecutive-ones-iii/',
+  description: 'Find the maximum number of consecutive 1s after flipping at most k zeros.',
+  language: 'python',
+  solution: `class Solution:
+    def longestOnes(self, nums: List[int], k: int) -> int:
+        left = 0
+        zeros = 0
+        res = 0
+
+        for right in range(len(nums)):
+            if nums[right] == 0:
+                zeros += 1
+
+            while zeros > k:
+                if nums[left] == 0:
+                    zeros -= 1
+                left += 1
+
+            res = max(res, right - left + 1)
+
+        return res`
 }
 
 
