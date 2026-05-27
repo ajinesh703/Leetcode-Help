@@ -4412,6 +4412,31 @@ export const topics: Topic[] = [
             return res
 
         return atMostK(k) - atMostK(k - 1)`
+},
+{
+  id: 'str-180',
+  title: 'Count Number of Nice Subarrays',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/count-number-of-nice-subarrays/',
+  description: 'Count the number of subarrays with exactly k odd numbers.',
+  language: 'python',
+  solution: `class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        def atMostK(k):
+            left = 0
+            res = 0
+            odd_count = 0
+            for right in range(len(nums)):
+                if nums[right] % 2 == 1:
+                    odd_count += 1
+                while odd_count > k:
+                    if nums[left] % 2 == 1:
+                        odd_count -= 1
+                    left += 1
+                res += right - left + 1
+            return res
+
+        return atMostK(k) - atMostK(k - 1)`
 }
 
 
