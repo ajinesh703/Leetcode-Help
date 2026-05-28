@@ -4480,6 +4480,26 @@ export const topics: Topic[] = [
             res += 1 + min(last.values())
 
         return res`
+},
+{
+  id: 'str-183',
+  title: 'Grumpy Bookstore Owner',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/grumpy-bookstore-owner/',
+  description: 'Find the maximum number of satisfied customers using a secret technique for a window of minutes.',
+  language: 'python',
+  solution: `class Solution:
+    def maxSatisfied(self, customers: List[int], grumpy: List[int], minutes: int) -> int:
+        base = sum(c for c, g in zip(customers, grumpy) if g == 0)
+        extra = sum(customers[:minutes][i] * grumpy[:minutes][i] for i in range(minutes))
+        max_extra = extra
+
+        for i in range(minutes, len(customers)):
+            extra += customers[i] * grumpy[i]
+            extra -= customers[i - minutes] * grumpy[i - minutes]
+            max_extra = max(max_extra, extra)
+
+        return base + max_extra`
 }
 
 
