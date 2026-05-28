@@ -4594,6 +4594,27 @@ export const topics: Topic[] = [
                 res += 1
 
         return res`
+},
+{
+  id: 'str-188',
+  title: 'Maximum Number of Vowels in a Substring of Given Length',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/',
+  description: 'Find the maximum number of vowels in any substring of length k using sliding window.',
+  language: 'python',
+  solution: `class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        vowels = set('aeiou')
+        window = sum(1 for c in s[:k] if c in vowels)
+        res = window
+
+        for i in range(k, len(s)):
+            window += (s[i] in vowels) - (s[i - k] in vowels)
+            res = max(res, window)
+            if res == k:
+                break
+
+        return res`
 }
 
 
