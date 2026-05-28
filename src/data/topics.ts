@@ -4568,6 +4568,32 @@ export const topics: Topic[] = [
             res[i - k] = curr_sum // window
 
         return res`
+},
+{
+  id: 'str-187',
+  title: 'Diet Plan Performance',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/diet-plan-performance/',
+  description: 'Calculate the diet plan performance score based on sliding window sums compared to lower and upper thresholds.',
+  language: 'python',
+  solution: `class Solution:
+    def dietPlanPerformance(self, calories: List[int], k: int, lower: int, upper: int) -> int:
+        window_sum = sum(calories[:k])
+        res = 0
+
+        if window_sum < lower:
+            res -= 1
+        elif window_sum > upper:
+            res += 1
+
+        for i in range(k, len(calories)):
+            window_sum += calories[i] - calories[i - k]
+            if window_sum < lower:
+                res -= 1
+            elif window_sum > upper:
+                res += 1
+
+        return res`
 }
 
 
