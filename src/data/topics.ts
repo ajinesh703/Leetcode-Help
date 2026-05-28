@@ -4642,6 +4642,28 @@ export const topics: Topic[] = [
                 res.append(nums[dq[0]])
 
         return res`
+},
+{
+  id: 'str-190',
+  title: 'Longest Subarray With Maximum Bitwise AND',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/longest-subarray-with-maximum-bitwise-and/',
+  description: 'Find the length of the longest subarray with the maximum possible bitwise AND value.',
+  language: 'python',
+  solution: `class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        max_val = max(nums)
+        res = 0
+        curr = 0
+
+        for num in nums:
+            if num == max_val:
+                curr += 1
+                res = max(res, curr)
+            else:
+                curr = 0
+
+        return res`
 }
 
 
