@@ -4437,6 +4437,31 @@ export const topics: Topic[] = [
             return res
 
         return atMostK(k) - atMostK(k - 1)`
+},
+{
+  id: 'str-181',
+  title: 'Binary Subarrays With Sum',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/binary-subarrays-with-sum/',
+  description: 'Count the number of non-empty subarrays with a sum equal to goal.',
+  language: 'python',
+  solution: `class Solution:
+    def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
+        def atMostK(k):
+            if k < 0:
+                return 0
+            left = 0
+            curr_sum = 0
+            res = 0
+            for right in range(len(nums)):
+                curr_sum += nums[right]
+                while curr_sum > k:
+                    curr_sum -= nums[left]
+                    left += 1
+                res += right - left + 1
+            return res
+
+        return atMostK(goal) - atMostK(goal - 1)`
 }
 
 
