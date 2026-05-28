@@ -4500,6 +4500,24 @@ export const topics: Topic[] = [
             max_extra = max(max_extra, extra)
 
         return base + max_extra`
+},
+{
+  id: 'str-184',
+  title: 'Maximum Average Subarray I',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-average-subarray-i/',
+  description: 'Find the contiguous subarray of length k with the maximum average value.',
+  language: 'python',
+  solution: `class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        window_sum = sum(nums[:k])
+        max_sum = window_sum
+
+        for i in range(k, len(nums)):
+            window_sum += nums[i] - nums[i - k]
+            max_sum = max(max_sum, window_sum)
+
+        return max_sum / k`
 }
 
 
