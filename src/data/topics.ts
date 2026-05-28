@@ -4462,6 +4462,24 @@ export const topics: Topic[] = [
             return res
 
         return atMostK(goal) - atMostK(goal - 1)`
+},
+{
+  id: 'str-182',
+  title: 'Number of Substrings Containing All Three Characters',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/',
+  description: 'Count the number of substrings containing at least one occurrence of all three characters a, b and c.',
+  language: 'python',
+  solution: `class Solution:
+    def numberOfSubstrings(self, s: str) -> int:
+        last = {'a': -1, 'b': -1, 'c': -1}
+        res = 0
+
+        for i, ch in enumerate(s):
+            last[ch] = i
+            res += 1 + min(last.values())
+
+        return res`
 }
 
 
