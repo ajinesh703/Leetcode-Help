@@ -4543,6 +4543,31 @@ export const topics: Topic[] = [
             return res
 
         return max(helper(firstLen, secondLen), helper(secondLen, firstLen))`
+},
+{
+  id: 'str-186',
+  title: 'K Radius Subarray Averages',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/k-radius-subarray-averages/',
+  description: 'Find the k-radius averages for each index in an array where average is calculated from k elements on each side.',
+  language: 'python',
+  solution: `class Solution:
+    def getAverages(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        res = [-1] * n
+        window = 2 * k + 1
+
+        if window > n:
+            return res
+
+        curr_sum = sum(nums[:window])
+        res[k] = curr_sum // window
+
+        for i in range(window, n):
+            curr_sum += nums[i] - nums[i - window]
+            res[i - k] = curr_sum // window
+
+        return res`
 }
 
 
