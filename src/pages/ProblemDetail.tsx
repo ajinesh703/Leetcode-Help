@@ -38,7 +38,7 @@ const ProblemDetail: React.FC = () => {
       <div className="problem-detail">
         <div className="problem-list-header">
           <button className="back-btn" onClick={() => navigate(-1)}>
-            Back
+            &#8592;
           </button>
           <div className="header-info">
             <h1>{problem.title}</h1>
