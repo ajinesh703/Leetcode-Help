@@ -36,33 +36,33 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ============ DARK MODE ============ */
+/* ============ DARK MODE — Classic Black ============ */
 :root[data-theme="dark"] {
-  --bg-primary: #0f0c29;
-  --bg-secondary: #1a1040;
-  --bg-card: #1e1a3a;
-  --bg-card-hover: #252048;
-  --bg-glass: rgba(30, 26, 58, 0.85);
-  --border-color: rgba(196, 181, 253, 0.12);
-  --border-glow: rgba(196, 181, 253, 0.3);
-  --text-primary: #f0eeff;
-  --text-secondary: #a0a0c8;
-  --text-muted: #6060a0;
-  --accent-primary: #a78bfa;
-  --accent-secondary: #c084fc;
-  --accent-gradient: linear-gradient(135deg, #a78bfa, #c084fc);
-  --easy: #34d399;
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-card: #111111;
+  --bg-card-hover: #1a1a1a;
+  --bg-glass: rgba(10, 10, 10, 0.9);
+  --border-color: rgba(255, 255, 255, 0.06);
+  --border-glow: rgba(255, 255, 255, 0.15);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #555555;
+  --accent-primary: #ffffff;
+  --accent-secondary: #cccccc;
+  --accent-gradient: linear-gradient(135deg, #ffffff, #888888);
+  --easy: #4ade80;
   --medium: #fbbf24;
   --hard: #f87171;
-  --easy-bg: rgba(52, 211, 153, 0.12);
-  --medium-bg: rgba(251, 191, 36, 0.12);
-  --hard-bg: rgba(248, 113, 113, 0.12);
-  --code-bg: #0d0b20;
-  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 30px rgba(167, 139, 250, 0.1);
-  --header-bg: rgba(15, 12, 41, 0.95);
-  --grid-color: rgba(167, 139, 250, 0.05);
+  --easy-bg: rgba(74, 222, 128, 0.08);
+  --medium-bg: rgba(251, 191, 36, 0.08);
+  --hard-bg: rgba(248, 113, 113, 0.08);
+  --code-bg: #000000;
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 30px rgba(255, 255, 255, 0.03);
+  --header-bg: rgba(0, 0, 0, 0.97);
+  --grid-color: rgba(255, 255, 255, 0.03);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -118,6 +118,10 @@ body::after {
   background: radial-gradient(ellipse, rgba(108, 99, 255, 0.08) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
+}
+
+:root[data-theme="dark"] body::after {
+  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
 }
 
 #root {
@@ -193,6 +197,10 @@ a {
   flex-shrink: 0;
 }
 
+:root[data-theme="dark"] .logo-icon {
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
 .logo-text span {
   background: var(--accent-gradient);
   -webkit-background-clip: text;
@@ -221,6 +229,10 @@ a {
 .search-bar input:focus {
   border-color: var(--accent-primary);
   box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
+}
+
+:root[data-theme="dark"] .search-bar input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
 }
 
 .search-bar input::placeholder {
@@ -513,7 +525,7 @@ a {
 .category-card:hover .arrow {
   background: var(--accent-primary);
   border-color: var(--accent-primary);
-  color: white;
+  color: var(--bg-primary);
   transform: translateX(3px);
 }
 
@@ -657,9 +669,13 @@ a {
 
 .leetcode-link:hover {
   background: var(--accent-primary);
-  color: white;
+  color: var(--bg-primary);
   border-color: var(--accent-primary);
   box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+}
+
+:root[data-theme="dark"] .leetcode-link:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 .problem-card .view-arrow {
@@ -763,9 +779,13 @@ a {
 
 .code-header .copy-btn:hover {
   background: var(--accent-primary);
-  color: white;
+  color: var(--bg-primary);
   border-color: var(--accent-primary);
   box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+}
+
+:root[data-theme="dark"] .code-header .copy-btn:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 .code-content {
@@ -824,6 +844,53 @@ a {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 4px;
+}
+
+/* ============ Companies Section ============ */
+.companies-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.companies-section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.companies-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.company-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--accent-primary);
+  transition: var(--transition);
+  cursor: default;
+}
+
+.company-badge:hover {
+  background: var(--accent-primary);
+  color: var(--bg-primary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+:root[data-theme="dark"] .company-badge:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 /* ============ Responsive ============ */
@@ -1043,6 +1110,10 @@ a {
     backdrop-filter: blur(4px);
     z-index: 140;
     top: 64px;
+  }
+
+  :root[data-theme="dark"] .sidebar-overlay {
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .sidebar-toggle.open {
