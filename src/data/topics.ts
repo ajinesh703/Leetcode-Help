@@ -438,17 +438,18 @@ export const topics: Topic[] = [
     color: '#4ECDC4',
     problems: [
       {
-        id: 'str-1',
-        title: 'Valid Anagram',
-        difficulty: 'Easy',
-        leetcodeUrl: 'https://leetcode.com/problems/valid-anagram/',
-        description: 'Given two strings s and t, return true if t is an anagram of s, and false otherwise.',
-        language: 'python',
-        solution: `class Solution:
+  id: 'str-1',
+  title: 'Valid Anagram',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/valid-anagram/',
+  description: 'Given two strings s and t, return true if t is an anagram of s, and false otherwise.',
+  language: 'python',
+  solution: `class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         from collections import Counter
-        return Counter(s) == Counter(t)`
-      },
+        return Counter(s) == Counter(t)`,
+  companies: ['Facebook', 'Amazon', 'Microsoft']
+},
       {
         id: 'str-2',
         title: 'Longest Palindromic Substring',
