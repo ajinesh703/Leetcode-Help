@@ -68,7 +68,7 @@ const ProblemDetail: React.FC = () => {
           <div className="companies-section">
             <h3>Asked at</h3>
             <div className="companies-list">
-              {problem.companies.map((company) => (
+              {problem.companies.map((company: string) => (
                 <span key={company} className="company-badge">
                   {company}
                 </span>

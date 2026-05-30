@@ -1,11 +1,12 @@
-export interface Problem {
+﻿export interface Problem {
   id: string;
   title: string;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
+  difficulty: "Easy" | "Medium" | "Hard";
   leetcodeUrl: string;
   description: string;
   solution: string;
   language: string;
+  companies?: string[];
 }
 
 export interface Pattern {
@@ -15,6 +16,7 @@ export interface Pattern {
   description: string;
   color: string;
   problems: Problem[];
+  companies?: string[];
 }
 
 export interface Topic {
@@ -24,4 +26,5 @@ export interface Topic {
   description: string;
   color: string;
   problems: Problem[];
+  companies?: string[];
 }
