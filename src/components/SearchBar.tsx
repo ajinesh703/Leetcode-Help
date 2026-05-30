@@ -28,7 +28,6 @@ function getAllProblems(): SearchResult[] {
 
   for (const topic of topics) {
     for (const problem of topic.problems) {
-      // avoid duplicates by id
       if (!results.find(r => r.id === problem.id)) {
         results.push({
           id: problem.id,
@@ -100,8 +99,8 @@ export default function SearchBar() {
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        background: 'var(--input-bg, #1e1e2e)',
-        border: '1.5px solid var(--border-color, #333)',
+        background: 'var(--bg-card)',
+        border: '1.5px solid var(--border-color)',
         borderRadius: '10px',
         padding: '6px 14px',
         gap: '8px',
@@ -117,7 +116,7 @@ export default function SearchBar() {
             background: 'transparent',
             border: 'none',
             outline: 'none',
-            color: 'var(--text-primary, #fff)',
+            color: 'var(--text-primary)',
             fontSize: '14px',
             width: '100%',
           }}
@@ -126,8 +125,12 @@ export default function SearchBar() {
           <button
             onClick={() => { setQuery(''); setResults([]); setIsOpen(false); setSearched(false); }}
             style={{
-              background: 'none', border: 'none', cursor: 'pointer',
-              color: 'var(--text-secondary, #aaa)', fontSize: '16px', padding: 0,
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: 'var(--text-secondary)',
+              fontSize: '16px',
+              padding: 0,
             }}
           >✕</button>
         )}
@@ -139,19 +142,19 @@ export default function SearchBar() {
           top: 'calc(100% + 8px)',
           left: 0,
           right: 0,
-          background: 'var(--card-bg, #1e1e2e)',
-          border: '1.5px solid var(--border-color, #333)',
+          background: 'var(--bg-card)',
+          border: '1.5px solid var(--border-color)',
           borderRadius: '12px',
           maxHeight: '380px',
           overflowY: 'auto',
           zIndex: 1000,
-          boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+          boxShadow: 'var(--shadow-lg)',
         }}>
           {results.length === 0 && searched ? (
             <div style={{
               padding: '32px 16px',
               textAlign: 'center',
-              color: 'var(--text-secondary, #aaa)',
+              color: 'var(--text-secondary)',
               fontSize: '15px',
             }}>
               <div style={{ fontSize: '40px', marginBottom: '8px' }}>😕</div>
@@ -168,21 +171,21 @@ export default function SearchBar() {
                 style={{
                   padding: '10px 16px',
                   cursor: 'pointer',
-                  borderBottom: '1px solid var(--border-color, #2a2a3a)',
+                  borderBottom: '1px solid var(--border-color)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   gap: '8px',
                   transition: 'background 0.15s',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'var(--hover-bg, #2a2a3a)')}
+                onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-card-hover)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
               >
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{
                     fontSize: '14px',
                     fontWeight: 500,
-                    color: 'var(--text-primary, #fff)',
+                    color: 'var(--text-primary)',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
@@ -191,7 +194,7 @@ export default function SearchBar() {
                   </div>
                   <div style={{
                     fontSize: '11px',
-                    color: 'var(--text-secondary, #888)',
+                    color: 'var(--text-secondary)',
                     marginTop: '2px',
                   }}>
                     {result.source}
@@ -200,7 +203,7 @@ export default function SearchBar() {
                 <span style={{
                   fontSize: '11px',
                   fontWeight: 600,
-                  color: difficultyColor[result.difficulty] ?? '#aaa',
+                  color: difficultyColor[result.difficulty] ?? 'var(--text-muted)',
                   flexShrink: 0,
                 }}>
                   {result.difficulty}
