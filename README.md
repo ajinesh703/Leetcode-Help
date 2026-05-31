@@ -20,7 +20,7 @@ Built by [@ajinesh703](https://github.com/ajinesh703)
 
 ## ✨ Features
 
-- 📚 **200+ DSA problems** organized by topic and pattern
+- 📚 **1000+ DSA problems** organized by topic and pattern
 - 🎨 **Light & Dark mode** with a clean purple aesthetic UI
 - ⚡ **Blazing fast** — powered by Vite with HMR
 - 🔍 **Search** across all problems instantly
