@@ -525,7 +525,8 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         from collections import Counter
-        return Counter(s) == Counter(t)`
+        return Counter(s) == Counter(t)`,
+        companies: ['Facebook', 'Amazon', 'Microsoft']
 },
 
 {
