@@ -475,7 +475,8 @@ export const topics: Topic[] = [
                     result = s[left:right+1]
                 left -= 1
                 right += 1
-        return result`
+        return result`,
+        companies: ['Amazon', 'Google', 'Adobe']
       },
       {
         id: 'str-3',
