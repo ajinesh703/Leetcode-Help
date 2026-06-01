@@ -625,7 +625,8 @@ export const topics: Topic[] = [
         for i in range(len(s)):
             res = max(res, expand(i, i), expand(i, i+1), key=len)
         
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Adobe']
 },
 
 {
