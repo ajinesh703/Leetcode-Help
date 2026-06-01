@@ -601,7 +601,8 @@ export const topics: Topic[] = [
             key = tuple(sorted(s))
             mp[key].append(s)
         
-        return list(mp.values())`
+        return list(mp.values())`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Facebook']
 },
 
 {
