@@ -512,7 +512,8 @@ export const topics: Topic[] = [
                 prefix = prefix[:-1]
                 if not prefix:
                     return ""
-        return prefix`
+        return prefix`,
+        companies: ['Google', 'Amazon', 'Apple']
       },
       {
   id: 'str-5',
