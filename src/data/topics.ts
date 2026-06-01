@@ -581,7 +581,8 @@ export const topics: Topic[] = [
             seen.add(s[right])
             res = max(res, right - left + 1)
         
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Adobe']
 },
 
 {
