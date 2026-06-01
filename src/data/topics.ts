@@ -557,7 +557,8 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def isPalindrome(self, s: str) -> bool:
         filtered = [c.lower() for c in s if c.isalnum()]
-        return filtered == filtered[::-1]`
+        return filtered == filtered[::-1]`,
+        companies: ['Facebook', 'Apple', 'Microsoft']
 },
 
 {
