@@ -543,7 +543,8 @@ export const topics: Topic[] = [
         for i, ch in enumerate(s):
             if count[ch] == 1:
                 return i
-        return -1`
+        return -1`,
+        companies: ['Amazon', 'Google', 'Bloomberg']
 },
 
 {
