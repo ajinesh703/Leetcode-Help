@@ -492,7 +492,8 @@ export const topics: Topic[] = [
         for s in strs:
             key = ''.join(sorted(s))
             anagram_map[key].append(s)
-        return list(anagram_map.values())`
+        return list(anagram_map.values())`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Facebook']
       },
       {
         id: 'str-4',
