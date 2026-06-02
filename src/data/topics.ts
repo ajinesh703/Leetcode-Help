@@ -766,7 +766,8 @@ export const topics: Topic[] = [
             length = int(s[i:j])
             res.append(s[j+1:j+1+length])
             i = j + 1 + length
-        return res`
+        return res`,
+        companies: ['Google', 'Facebook', 'Airbnb', 'LinkedIn', 'Palantir']
 },
 {
   id: 'str-16',
