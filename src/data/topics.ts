@@ -801,7 +801,8 @@ export const topics: Topic[] = [
                 curr += str(count) + result[i]
                 i += count
             result = curr
-        return result`
+        return result`,
+        companies: ['Amazon', 'Microsoft', 'Bloomberg', 'Google', 'Uber']
 },
 {
   id: 'str-18',
