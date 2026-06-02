@@ -690,7 +690,8 @@ export const topics: Topic[] = [
         num *= sign
         INT_MAX, INT_MIN = 2**31 - 1, -2**31
         
-        return max(min(num, INT_MAX), INT_MIN)`
+        return max(min(num, INT_MAX), INT_MIN)`,
+        companies: ['Amazon', 'Microsoft', 'Apple', 'Bloomberg', 'Adobe']
 },
 
 {
