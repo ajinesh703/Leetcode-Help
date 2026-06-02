@@ -744,7 +744,8 @@ export const topics: Topic[] = [
                 step = -1
             curr += step
         
-        return "".join(rows)`
+        return "".join(rows)`,
+        companies: ['Google', 'Amazon', 'Adobe', 'Bloomberg', 'Uber']
 },
 {
   id: 'str-15',
