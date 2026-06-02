@@ -717,7 +717,8 @@ export const topics: Topic[] = [
                 res[i + j] += sum_ // 10
         
         result = ''.join(map(str, res)).lstrip('0')
-        return result`
+        return result`,
+        companies: ['Facebook', 'Google', 'Microsoft', 'Twitter', 'Airbnb']
 },
 
 {
