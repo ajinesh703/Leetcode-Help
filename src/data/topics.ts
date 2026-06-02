@@ -658,7 +658,8 @@ export const topics: Topic[] = [
                 missing += 1
                 left += 1
         
-        return s[start:end]`
+        return s[start:end]`,
+        companies: ['Facebook', 'Google', 'Amazon', 'Microsoft', 'Uber']
 },
 
 {
