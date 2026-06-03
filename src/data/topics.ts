@@ -1041,7 +1041,8 @@ export const topics: Topic[] = [
                 else:
                     res = max(res, i - stack[-1])
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
 },
 {
   id: 'str-27',
