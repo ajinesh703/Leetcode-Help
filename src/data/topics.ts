@@ -934,7 +934,8 @@ export const topics: Topic[] = [
                 elif p[j-1] == '.' or p[j-1] == s[i-1]:
                     dp[i][j] = dp[i-1][j-1]
 
-        return dp[len(s)][len(p)]`
+        return dp[len(s)][len(p)]`,
+        companies: ['Google', 'Facebook', 'Amazon', 'Microsoft', 'Uber']
 },
 {
   id: 'str-23',
