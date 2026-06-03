@@ -884,7 +884,8 @@ export const topics: Topic[] = [
                     path.pop()
 
         backtrack(0, [])
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Apple', 'Uber']
 },
 {
   id: 'str-21',
