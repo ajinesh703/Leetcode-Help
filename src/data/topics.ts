@@ -856,7 +856,8 @@ export const topics: Topic[] = [
             if s_count == p_count:
                 res.append(i - len(p) + 1)
 
-        return res`
+        return res`,
+        companies: ['Facebook', 'Google', 'Amazon', 'Samsung', 'Adobe']
 },
 {
   id: 'str-20',
