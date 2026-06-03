@@ -906,7 +906,8 @@ export const topics: Topic[] = [
                     dp[i] = True
                     break
 
-        return dp[len(s)]`
+        return dp[len(s)]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Bloomberg']
 },
 {
   id: 'str-22',
