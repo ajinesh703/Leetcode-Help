@@ -962,7 +962,8 @@ export const topics: Topic[] = [
             if 10 <= two <= 26:
                 dp[i] += dp[i-2]
 
-        return dp[len(s)]`
+        return dp[len(s)]`,
+        companies: ['Amazon', 'Microsoft', 'Google', 'Facebook', 'Bloomberg']
 },
 {
   id: 'str-24',
