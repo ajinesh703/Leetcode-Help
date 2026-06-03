@@ -989,7 +989,8 @@ export const topics: Topic[] = [
                     return True
             return False
 
-        return dp(s1, s2)`
+        return dp(s1, s2)`,
+        companies: ['Google', 'Amazon', 'Bloomberg', 'Uber', 'Palantir']
 },
 {
   id: 'str-25',
