@@ -1016,7 +1016,8 @@ export const topics: Topic[] = [
             line_len += len(word)
 
         res.append(' '.join(line).ljust(maxWidth))
-        return res`
+        return res`,
+        companies: ['Google', 'Facebook', 'Airbnb', 'LinkedIn', 'Dropbox']
 },
 {
   id: 'str-26',
