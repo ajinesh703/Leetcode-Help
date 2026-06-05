@@ -1089,7 +1089,8 @@ export const topics: Topic[] = [
             else:
                 res += roman[s[i]]
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Bloomberg', 'Adobe', 'Microsoft', 'Apple']
 },
 {
   id: 'str-29',
