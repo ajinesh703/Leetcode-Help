@@ -1119,6 +1119,36 @@ export const topics: Topic[] = [
         companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
 },
 {
+  id: 'str-30',
+  title: 'Word Search',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/word-search/',
+  description: 'Given a 2D board and a word, find if the word exists in the grid.',
+  language: 'python',
+  solution: `class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        rows, cols = len(board), len(board[0])
+
+        def dfs(r, c, i):
+            if i == len(word):
+                return True
+            if r < 0 or c < 0 or r >= rows or c >= cols or board[r][c] != word[i]:
+                return False
+            temp = board[r][c]
+            board[r][c] = '#'
+            found = (dfs(r+1, c, i+1) or dfs(r-1, c, i+1) or
+                     dfs(r, c+1, i+1) or dfs(r, c-1, i+1))
+            board[r][c] = temp
+            return found
+
+        for r in range(rows):
+            for c in range(cols):
+                if dfs(r, c, 0):
+                    return True
+        return False`,
+  companies: ['Amazon', 'Microsoft', 'Facebook', 'Google', 'Adobe']
+},
+{
   id: 'str-31',
   title: 'Implement strStr()',
   difficulty: 'Easy',
