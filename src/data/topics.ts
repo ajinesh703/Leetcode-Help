@@ -1065,7 +1065,8 @@ export const topics: Topic[] = [
                 res += sym
                 num -= val
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Bloomberg', 'Adobe', 'Google', 'Uber']
 },
 {
   id: 'str-28',
