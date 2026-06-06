@@ -1165,7 +1165,8 @@ export const topics: Topic[] = [
             if haystack[i:i+m] == needle:
                 return i
 
-        return -1`
+        return -1`,
+        companies: ['Facebook', 'Amazon', 'Microsoft', 'Google', 'Apple']
 },
 {
   id: 'str-32',
