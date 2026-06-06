@@ -1306,7 +1306,8 @@ export const topics: Topic[] = [
                 return False
             mag_count[ch] -= 1
 
-        return True`
+        return True`,
+        companies: ['Amazon', 'Google', 'Goldman Sachs', 'Facebook', 'Apple']
 },
 {
   id: 'str-38',
