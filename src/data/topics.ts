@@ -1329,7 +1329,8 @@ export const topics: Topic[] = [
             s_to_t[cs] = ct
             t_to_s[ct] = cs
 
-        return True`
+        return True`,
+        companies: ['LinkedIn', 'Amazon', 'Google', 'Facebook', 'Twitter']
 },
 {
   id: 'str-39',
