@@ -1286,7 +1286,8 @@ export const topics: Topic[] = [
                 repeated.add(seq)
             seen.add(seq)
 
-        return list(repeated)`
+        return list(repeated)`,
+        companies: ['LinkedIn', 'Google', 'Amazon', 'Microsoft', 'Bloomberg']
 },
 {
   id: 'str-37',
