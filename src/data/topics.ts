@@ -1187,7 +1187,8 @@ export const topics: Topic[] = [
                 else:
                     dp[i][j] = max(dp[i-1][j], dp[i][j-1])
 
-        return dp[m][n]`
+        return dp[m][n]`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Adobe', 'Dropbox']
 },
 {
   id: 'str-33',
