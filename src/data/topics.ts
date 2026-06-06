@@ -1265,7 +1265,8 @@ export const topics: Topic[] = [
             for k in range(1, len(word)):
                 word_set.discard(word[k:])
 
-        return sum(len(word) + 1 for word in word_set)`
+        return sum(len(word) + 1 for word in word_set)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
 },
 {
   id: 'str-36',
