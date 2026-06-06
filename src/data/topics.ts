@@ -1247,7 +1247,8 @@ export const topics: Topic[] = [
                     if rev_prefix in word_map and word_map[rev_prefix] != i:
                         res.append([i, word_map[rev_prefix]])
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Airbnb', 'LinkedIn', 'Palantir']
 },
 {
   id: 'str-35',
