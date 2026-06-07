@@ -1581,7 +1581,8 @@ export const topics: Topic[] = [
             res += expand(i, i)
             res += expand(i, i + 1)
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Facebook', 'LinkedIn', 'Adobe']
 },
 {
   id: 'str-50',
