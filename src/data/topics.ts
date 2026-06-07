@@ -1459,7 +1459,8 @@ export const topics: Topic[] = [
                 return ""
             res.append(ch)
 
-        return "".join(res)`
+        return "".join(res)`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Bloomberg', 'Apple']
 },
 {
   id: 'str-44',
