@@ -1518,7 +1518,8 @@ export const topics: Topic[] = [
             count += (s[i] in vowels) - (s[i-k] in vowels)
             res = max(res, count)
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Adobe', 'Uber']
 },
 {
   id: 'str-47',
