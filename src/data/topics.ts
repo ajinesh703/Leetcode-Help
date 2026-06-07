@@ -1555,7 +1555,8 @@ export const topics: Topic[] = [
   language: 'python',
   solution: `class Solution:
     def detectCapitalUse(self, word: str) -> bool:
-        return word.isupper() or word.islower() or word.istitle()`
+        return word.isupper() or word.islower() or word.istitle()`,
+        companies: ['Google', 'Amazon', 'Apple', 'Microsoft', 'Twitter']
 },
 {
   id: 'str-49',
