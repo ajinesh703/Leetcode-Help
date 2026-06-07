@@ -1373,7 +1373,8 @@ export const topics: Topic[] = [
         while left < right:
             s[left], s[right] = s[right], s[left]
             left += 1
-            right -= 1`
+            right -= 1`,
+            companies: ['Facebook', 'Amazon', 'Google', 'Apple', 'Microsoft']
 },
 {
   id: 'str-41',
@@ -1395,7 +1396,8 @@ export const topics: Topic[] = [
             else:
                 stack.append(ch)
 
-        return not stack`
+        return not stack`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 {
   id: 'str-42',
