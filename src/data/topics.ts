@@ -1424,7 +1424,8 @@ export const topics: Topic[] = [
 
             res = max(res, right - left + 1)
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Uber']
 },
 {
   id: 'str-43',
