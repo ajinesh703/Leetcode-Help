@@ -1356,7 +1356,8 @@ export const topics: Topic[] = [
             p_to_w[p] = w
             w_to_p[w] = p
 
-        return True`
+        return True`,
+        companies: ['Google', 'Amazon', 'Dropbox', 'Apple', 'Bloomberg']
 },
 {
   id: 'str-40',
