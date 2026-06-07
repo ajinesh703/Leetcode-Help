@@ -1396,7 +1396,8 @@ export const topics: Topic[] = [
             else:
                 stack.append(ch)
 
-        return not stack`
+        return not stack`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 {
   id: 'str-42',
