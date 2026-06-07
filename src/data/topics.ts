@@ -1543,7 +1543,8 @@ export const topics: Topic[] = [
         nums.sort(key=cmp_to_key(compare))
 
         result = ''.join(nums)
-        return '0' if result[0] == '0' else result`
+        return '0' if result[0] == '0' else result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
 },
 {
   id: 'str-48',
