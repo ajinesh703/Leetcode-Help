@@ -1612,7 +1612,8 @@ export const topics: Topic[] = [
                     chars[write] = c
                     write += 1
 
-        return write`
+        return write`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Apple']
 },
 {
   id: 'str-51',
