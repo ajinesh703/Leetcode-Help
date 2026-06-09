@@ -1664,7 +1664,8 @@ export const topics: Topic[] = [
             res.append(str(total % 2))
             carry = total // 2
 
-        return ''.join(reversed(res))`
+        return ''.join(reversed(res))`,
+        companies: ['Facebook', 'Amazon', 'Google', 'Microsoft', 'Apple']
 },
 {
   id: 'str-53',
