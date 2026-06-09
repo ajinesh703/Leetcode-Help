@@ -1728,7 +1728,8 @@ export const topics: Topic[] = [
         for i in range(len(s)):
             if s[i] != ' ' and (i == 0 or s[i-1] == ' '):
                 count += 1
-        return count`
+        return count`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Adobe']
 },
 {
   id: 'str-57',
