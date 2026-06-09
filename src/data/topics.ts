@@ -1802,7 +1802,8 @@ export const topics: Topic[] = [
             else:
                 stack.append(ch)
 
-        return ''.join(stack)`
+        return ''.join(stack)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Adobe', 'Bloomberg']
 },
 {
   id: 'str-61',
