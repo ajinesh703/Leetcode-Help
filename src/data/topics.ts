@@ -1712,7 +1712,8 @@ export const topics: Topic[] = [
     def uncommonFromSentences(self, s1: str, s2: str) -> List[str]:
         from collections import Counter
         count = Counter((s1 + ' ' + s2).split())
-        return [word for word, freq in count.items() if freq == 1]`
+        return [word for word, freq in count.items() if freq == 1]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Twitter', 'Apple']
 },
 {
   id: 'str-56',
