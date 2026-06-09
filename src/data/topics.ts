@@ -1684,7 +1684,8 @@ export const topics: Topic[] = [
                 if len(word) > len(res) or (len(word) == len(res) and word < res):
                     res = word
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Uber', 'Snapchat']
 },
 {
   id: 'str-54',
