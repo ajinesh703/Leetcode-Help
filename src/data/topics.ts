@@ -1909,7 +1909,8 @@ export const topics: Topic[] = [
                 inc = dec = 1
             res = max(res, inc, dec)
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Adobe']
 },
 {
   id: 'str-65',
