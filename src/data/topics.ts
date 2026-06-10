@@ -1879,7 +1879,8 @@ export const topics: Topic[] = [
             if w1 != w2 and (w1, w2) not in similar_set:
                 return False
 
-        return True`
+        return True`,
+        companies: ['Google', 'Amazon', 'Facebook', 'LinkedIn', 'Uber']
 },
 {
   id: 'str-64',
