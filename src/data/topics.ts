@@ -1829,7 +1829,8 @@ export const topics: Topic[] = [
                     break
                 num //= 10
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Apple', 'Uber']
 },
 {
   id: 'str-62',
