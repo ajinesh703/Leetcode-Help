@@ -1949,7 +1949,8 @@ export const topics: Topic[] = [
             local = local.replace('.', '')
             unique.add(local + '@' + domain)
 
-        return len(unique)`
+        return len(unique)`,
+        companies: ['Google', 'Facebook', 'Amazon', 'Microsoft', 'Uber']
 },
 {
   id: 'str-67',
