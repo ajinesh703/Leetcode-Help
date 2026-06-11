@@ -1987,7 +1987,8 @@ export const topics: Topic[] = [
             return False
         if 'LLL' in s:
             return False
-        return True`
+        return True`,
+        companies: ['Amazon', 'Google', 'Apple', 'Microsoft', 'Samsung']
 },
 {
   id: 'str-69',
