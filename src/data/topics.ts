@@ -1971,7 +1971,8 @@ export const topics: Topic[] = [
         for i in range(first, len(s), k):
             parts.append(s[i:i+k])
 
-        return '-'.join(parts)`
+        return '-'.join(parts)`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Apple', 'Bloomberg']
 },
 {
   id: 'str-68',
