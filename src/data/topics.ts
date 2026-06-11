@@ -1929,7 +1929,8 @@ export const topics: Topic[] = [
             total_shift = (total_shift + shifts[i]) % 26
             res[i] = chr((ord(s[i]) - ord('a') + total_shift) % 26 + ord('a'))
 
-        return ''.join(res)`
+        return ''.join(res)`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Apple', 'Twitter']
 },
 {
   id: 'str-66',
