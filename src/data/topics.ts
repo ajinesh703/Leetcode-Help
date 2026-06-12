@@ -2040,7 +2040,8 @@ export const topics: Topic[] = [
 
         letter_logs.sort(key=lambda x: (x[0], x[1]))
 
-        return [log for _, _, log in letter_logs] + digit_logs`
+        return [log for _, _, log in letter_logs] + digit_logs`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'LinkedIn']
 },
 {
   id: 'str-71',
