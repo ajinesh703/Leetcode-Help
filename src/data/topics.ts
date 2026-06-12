@@ -2059,7 +2059,8 @@ export const topics: Topic[] = [
         words = re.findall(r'[a-z]+', paragraph.lower())
         count = Counter(w for w in words if w not in banned_set)
 
-        return count.most_common(1)[0][0]`
+        return count.most_common(1)[0][0]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
 },
 {
   id: 'str-72',
