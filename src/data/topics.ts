@@ -2157,7 +2157,8 @@ export const topics: Topic[] = [
                 return ''.join(s)
 
         s[-1] = 'b'
-        return ''.join(s)`
+        return ''.join(s)`,
+        companies: ['Google', 'Amazon', 'Adobe', 'Bloomberg', 'Apple']
 },
 {
   id: 'str-76',
