@@ -2105,7 +2105,8 @@ export const topics: Topic[] = [
 
         return (len(diffs) == 2 and
                 diffs[0][0] == diffs[1][1] and
-                diffs[0][1] == diffs[1][0])`
+                diffs[0][1] == diffs[1][0])`,
+                companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Twitter']
 },
 {
   id: 'str-74',
