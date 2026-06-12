@@ -2083,7 +2083,8 @@ export const topics: Topic[] = [
         for ch, freq in count.items():
             res.append(ch * freq)
 
-        return ''.join(res)`
+        return ''.join(res)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Uber', 'Snapchat']
 },
 {
   id: 'str-73',
