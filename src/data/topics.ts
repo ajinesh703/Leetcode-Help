@@ -2016,7 +2016,8 @@ export const topics: Topic[] = [
                 j += cnt_w
             return i == len(s) and j == len(w)
 
-        return sum(isStretchy(s, w) for w in words)`
+        return sum(isStretchy(s, w) for w in words)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Uber', 'Airbnb']
 },
 {
   id: 'str-70',
