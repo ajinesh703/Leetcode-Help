@@ -2204,7 +2204,8 @@ export const topics: Topic[] = [
   language: 'python',
   solution: `class Solution:
     def truncateSentence(self, s: str, k: int) -> str:
-        return ' '.join(s.split()[:k])`
+        return ' '.join(s.split()[:k])`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Uber']
 },
 {
   id: 'str-79',
