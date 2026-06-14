@@ -2234,7 +2234,8 @@ export const topics: Topic[] = [
         for word in words:
             sorted_words[int(word[-1]) - 1] = word[:-1]
 
-        return ' '.join(sorted_words)`
+        return ' '.join(sorted_words)`,
+        companies: ['Amazon', 'Google', 'Apple', 'Microsoft', 'Samsung']
 },
 {
   id: 'str-81',
