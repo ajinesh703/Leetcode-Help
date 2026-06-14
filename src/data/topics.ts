@@ -2192,7 +2192,8 @@ export const topics: Topic[] = [
             count += 1
             repeated += word
 
-        return count`
+        return count`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Bloomberg']
 },
 {
   id: 'str-78',
