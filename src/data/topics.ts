@@ -2216,7 +2216,8 @@ export const topics: Topic[] = [
   language: 'python',
   solution: `class Solution:
     def checkIfPangram(self, sentence: str) -> bool:
-        return len(set(sentence)) >= 26`
+        return len(set(sentence)) >= 26`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
 },
 {
   id: 'str-80',
