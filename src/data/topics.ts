@@ -2290,7 +2290,8 @@ export const topics: Topic[] = [
         res = 0
         for ch in s + t:
             res ^= ord(ch)
-        return chr(res)`
+        return chr(res)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Microsoft']
 },
 {
   id: 'str-84',
