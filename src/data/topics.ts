@@ -2311,7 +2311,8 @@ export const topics: Topic[] = [
             if count_s[ch] > count_t[ch]:
                 res += count_s[ch] - count_t[ch]
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
 },
 {
   id: 'str-85',
