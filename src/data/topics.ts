@@ -2246,7 +2246,8 @@ export const topics: Topic[] = [
   language: 'python',
   solution: `class Solution:
     def prefixCount(self, words: List[str], pref: str) -> int:
-        return sum(1 for word in words if word.startswith(pref))`
+        return sum(1 for word in words if word.startswith(pref))`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Adobe']
 },
 {
   id: 'str-82',
