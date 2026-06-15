@@ -2275,7 +2275,8 @@ export const topics: Topic[] = [
         if center:
             res += 2
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
 },
 {
   id: 'str-83',
