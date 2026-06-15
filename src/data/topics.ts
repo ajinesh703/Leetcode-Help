@@ -2346,7 +2346,8 @@ export const topics: Topic[] = [
             if len(set(sub)) <= maxLetters:
                 count[sub] += 1
 
-        return max(count.values(), default=0)`
+        return max(count.values(), default=0)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Airbnb']
 },
 {
   id: 'str-87',
