@@ -2425,7 +2425,8 @@ export const topics: Topic[] = [
             rod = rings[i+1]
             rods[rod].add(color)
 
-        return sum(1 for rod in rods if len(rods[rod]) == 3)`
+        return sum(1 for rod in rods if len(rods[rod]) == 3)`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Twitter']
 },
 {
   id: 'str-92',
