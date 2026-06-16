@@ -2384,7 +2384,8 @@ export const topics: Topic[] = [
   language: 'python',
   solution: `class Solution:
     def numOfStrings(self, patterns: List[str], word: str) -> int:
-        return sum(1 for p in patterns if p in word)`
+        return sum(1 for p in patterns if p in word)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
 },
 {
   id: 'str-90',
