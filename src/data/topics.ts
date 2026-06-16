@@ -2406,7 +2406,8 @@ export const topics: Topic[] = [
         for ch, freq in common.items():
             res.extend([ch] * freq)
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Bloomberg']
 },
 {
   id: 'str-91',
