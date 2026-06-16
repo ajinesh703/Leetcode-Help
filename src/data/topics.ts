@@ -2360,7 +2360,8 @@ export const topics: Topic[] = [
     def sumOfUnique(self, nums: List[int]) -> int:
         from collections import Counter
         count = Counter(nums)
-        return sum(num for num, freq in count.items() if freq == 1)`
+        return sum(num for num, freq in count.items() if freq == 1)`,
+        companies: ['Amazon', 'Google', 'Apple', 'Facebook', 'Samsung']
 },
 {
   id: 'str-88',
