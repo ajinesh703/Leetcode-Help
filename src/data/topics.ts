@@ -2599,7 +2599,8 @@ export const topics: Topic[] = [
                     stack.pop()
             else:
                 stack.append(ch)
-        return ''.join(stack)`
+        return ''.join(stack)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 {
   id: 'str-100',
