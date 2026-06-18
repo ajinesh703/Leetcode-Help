@@ -2446,7 +2446,8 @@ export const topics: Topic[] = [
                 right = self.longestNiceSubstring(s[i+1:])
                 return left if len(left) >= len(right) else right
 
-        return s`
+        return s`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Adobe', 'Airbnb']
 },
 {
   id: 'str-93',
