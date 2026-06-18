@@ -2662,7 +2662,8 @@ export const topics: Topic[] = [
                 res.append(word.lower())
             else:
                 res.append(word.capitalize())
-        return ' '.join(res)`
+        return ' '.join(res)`,
+        companies: ['Amazon', 'Google', 'Apple', 'Facebook', 'Samsung']
 },
 {
   id: 'str-103',
