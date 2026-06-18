@@ -2493,7 +2493,8 @@ export const topics: Topic[] = [
             if i >= 4 and pressedKeys[i-1] in '79' and pressedKeys[i-1] == pressedKeys[i-2] == pressedKeys[i-3] == pressedKeys[i-4]:
                 dp[i] = (dp[i] + dp[i-4]) % MOD
 
-        return dp[n]`
+        return dp[n]`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Bloomberg', 'Uber']
 },
 {
   id: 'str-95',
