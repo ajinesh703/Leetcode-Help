@@ -2541,7 +2541,8 @@ export const topics: Topic[] = [
             if unique == 5:
                 res = max(res, length)
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
 },
 {
   id: 'str-97',
