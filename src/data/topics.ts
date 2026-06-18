@@ -2644,7 +2644,8 @@ export const topics: Topic[] = [
                 seen = set()
             seen.add(ch)
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Adobe', 'Twitter']
 },
 {
   id: 'str-102',
