@@ -2467,7 +2467,8 @@ export const topics: Topic[] = [
             if abs(count1[ch] - count2[ch]) > 3:
                 return False
 
-        return True`
+        return True`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
 },
 {
   id: 'str-94',
