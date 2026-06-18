@@ -2580,7 +2580,8 @@ export const topics: Topic[] = [
         for i in range(len(s)):
             if s[i] != str(i % 2):
                 count += 1
-        return min(count, len(s) - count)`
+        return min(count, len(s) - count)`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Samsung']
 },
 {
   id: 'str-99',
