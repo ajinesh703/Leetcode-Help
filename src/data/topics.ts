@@ -2623,7 +2623,8 @@ export const topics: Topic[] = [
                 if len(seen) == 5:
                     res += 1
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Uber']
 },
 {
   id: 'str-101',
