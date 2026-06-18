@@ -2564,7 +2564,8 @@ export const topics: Topic[] = [
                 res += 1
             seen.add(f)
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Uber', 'Bloomberg']
 },
 {
   id: 'str-98',
