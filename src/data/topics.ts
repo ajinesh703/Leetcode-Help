@@ -2513,7 +2513,8 @@ export const topics: Topic[] = [
             res += min(diff, 26 - diff) + 1
             curr = ch
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Apple', 'Facebook', 'Adobe']
 },
 {
   id: 'str-96',
