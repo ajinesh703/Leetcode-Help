@@ -2683,7 +2683,8 @@ export const topics: Topic[] = [
             stack.append(num)
             res += len(stack)
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
 },
 {
   id: 'str-104',
