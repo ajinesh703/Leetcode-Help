@@ -2869,7 +2869,8 @@ export const topics: Topic[] = [
     def numDifferentIntegers(self, word: str) -> int:
         import re
         nums = re.findall(r'\d+', word)
-        return len(set(int(n) for n in nums))`
+        return len(set(int(n) for n in nums))`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Bloomberg']
 },
 {
   id: 'str-113',
