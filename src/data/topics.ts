@@ -2790,7 +2790,8 @@ export const topics: Topic[] = [
             if j == m:
                 return i - m + 1
 
-        return -1`
+        return -1`,
+        companies: ['Facebook', 'Amazon', 'Microsoft', 'Google', 'Apple']
 },
 {
   id: 'str-108',
