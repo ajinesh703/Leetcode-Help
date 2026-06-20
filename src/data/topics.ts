@@ -2717,7 +2717,8 @@ export const topics: Topic[] = [
                 node = node[ch]
             res.append(node.get('idx', 0))
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Facebook', 'Uber']
 },
 {
   id: 'str-105',
