@@ -2809,7 +2809,8 @@ export const topics: Topic[] = [
             right = s[i:].count('1')
             res = max(res, left + right)
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Twitter']
 },
 {
   id: 'str-109',
