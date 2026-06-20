@@ -2731,7 +2731,8 @@ export const topics: Topic[] = [
     def minMovesToSeat(self, seats: List[int], students: List[int]) -> int:
         seats.sort()
         students.sort()
-        return sum(abs(a - b) for a, b in zip(seats, students))`
+        return sum(abs(a - b) for a, b in zip(seats, students))`,
+        companies: ['Amazon', 'Google', 'Apple', 'Microsoft', 'Bloomberg']
 },
 {
   id: 'str-106',
