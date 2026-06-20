@@ -2822,7 +2822,8 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
         allowed_set = set(allowed)
-        return sum(1 for word in words if all(ch in allowed_set for ch in word))`
+        return sum(1 for word in words if all(ch in allowed_set for ch in word))`,
+        companies: ['Amazon', 'Google', 'Apple', 'Microsoft', 'Samsung']
 },
 {
   id: 'str-110',
