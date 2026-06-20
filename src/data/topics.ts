@@ -2756,7 +2756,8 @@ export const topics: Topic[] = [
             else:
                 length = 1
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
 },
 {
   id: 'str-107',
