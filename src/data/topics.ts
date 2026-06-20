@@ -2836,7 +2836,8 @@ export const topics: Topic[] = [
     def halvesAreAlike(self, s: str) -> bool:
         vowels = set('aeiouAEIOU')
         mid = len(s) // 2
-        return sum(c in vowels for c in s[:mid]) == sum(c in vowels for c in s[mid:])`
+        return sum(c in vowels for c in s[:mid]) == sum(c in vowels for c in s[mid:])`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Uber']
 },
 {
   id: 'str-111',
