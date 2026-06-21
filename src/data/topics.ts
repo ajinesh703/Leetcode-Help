@@ -3074,7 +3074,8 @@ export const topics: Topic[] = [
                 res = window
             i += 1
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
 },
 {
   id: 'str-121',
