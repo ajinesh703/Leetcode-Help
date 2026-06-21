@@ -2923,7 +2923,8 @@ export const topics: Topic[] = [
         idx = word.find(ch)
         if idx == -1:
             return word
-        return word[:idx+1][::-1] + word[idx+1:]`
+        return word[:idx+1][::-1] + word[idx+1:]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Samsung']
 },
 {
   id: 'str-116',
