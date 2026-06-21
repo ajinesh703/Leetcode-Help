@@ -2983,7 +2983,8 @@ export const topics: Topic[] = [
             else:
                 i += 1
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Uber']
 },
 {
   id: 'str-118',
