@@ -2951,7 +2951,8 @@ export const topics: Topic[] = [
             if freq >= 3:
                 res = max(res, length)
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
 },
 {
   id: 'str-117',
