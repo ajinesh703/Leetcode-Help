@@ -3107,7 +3107,8 @@ export const topics: Topic[] = [
             rotated = curr[-b:] + curr[:-b]
             queue.append(rotated)
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Apple', 'Twitter']
 },
 {
   id: 'str-122',
