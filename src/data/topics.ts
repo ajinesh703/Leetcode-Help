@@ -3011,7 +3011,8 @@ export const topics: Topic[] = [
                     j += 1
                 res = max(res, min(zeros, ones) * 2)
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Adobe']
 },
 {
   id: 'str-119',
