@@ -3159,7 +3159,8 @@ export const topics: Topic[] = [
 
         longest_palindrome_prefix = kmp[-1]
         suffix = s[longest_palindrome_prefix:][::-1]
-        return suffix + s`
+        return suffix + s`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
 },
 {
   id: 'str-124',
