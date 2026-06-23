@@ -3248,7 +3248,8 @@ export const topics: Topic[] = [
                 left += 1
             res = min(res, len(s) - (right - left + 1))
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Facebook', 'Airbnb']
 },
 {
   id: 'str-129',
