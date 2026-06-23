@@ -3272,7 +3272,8 @@ export const topics: Topic[] = [
                 else:
                     close_count += 1
 
-        return open_count + close_count`
+        return open_count + close_count`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
 },
 {
   id: 'str-130',
