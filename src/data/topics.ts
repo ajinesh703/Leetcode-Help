@@ -3322,7 +3322,8 @@ export const topics: Topic[] = [
             else:
                 curr_str += ch
 
-        return curr_str`
+        return curr_str`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 {
   id: 'str-132',
