@@ -3293,7 +3293,8 @@ export const topics: Topic[] = [
                 v = stack.pop()
                 stack[-1] += max(2 * v, 1)
 
-        return stack[0]`
+        return stack[0]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'LinkedIn']
 },
 {
   id: 'str-131',
