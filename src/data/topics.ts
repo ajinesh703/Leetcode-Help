@@ -3173,7 +3173,8 @@ export const topics: Topic[] = [
     def repeatedSubstringPattern(self, s: str) -> bool:
         doubled = s + s
         trimmed = doubled[1:-1]
-        return s in trimmed`
+        return s in trimmed`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Adobe']
 },
 {
   id: 'str-125',
