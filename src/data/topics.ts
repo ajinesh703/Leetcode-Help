@@ -3132,7 +3132,8 @@ export const topics: Topic[] = [
             if i + z[i] > r:
                 l, r = i, i + z[i]
 
-        return sum(z)`
+        return sum(z)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Palantir']
 },
 {
   id: 'str-123',
