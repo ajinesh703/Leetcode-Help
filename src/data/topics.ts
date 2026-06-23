@@ -3219,7 +3219,8 @@ export const topics: Topic[] = [
             while left <= right and s[right] == ch:
                 right -= 1
 
-        return right - left + 1`
+        return right - left + 1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Adobe', 'Bloomberg']
 },
 {
   id: 'str-128',
