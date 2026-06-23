@@ -3198,7 +3198,8 @@ export const topics: Topic[] = [
   solution: `class Solution:
     def countSubstrings(self, s: str, c: str) -> int:
         count = s.count(c)
-        return count * (count + 1) // 2`
+        return count * (count + 1) // 2`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
 },
 {
   id: 'str-127',
