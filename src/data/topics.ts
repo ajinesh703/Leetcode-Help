@@ -3417,7 +3417,8 @@ export const topics: Topic[] = [
             elif ch == ')':
                 depth -= 1
 
-        return res`
+        return res`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Bloomberg']
 },
 {
   id: 'str-135',
