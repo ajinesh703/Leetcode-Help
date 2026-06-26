@@ -3488,7 +3488,8 @@ export const topics: Topic[] = [
                 unmatched -= 1
             max_unmatched = max(max_unmatched, -unmatched)
 
-        return (max_unmatched + 1) // 2`
+        return (max_unmatched + 1) // 2`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
 },
 {
   id: 'str-138',
