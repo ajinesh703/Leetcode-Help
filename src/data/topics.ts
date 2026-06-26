@@ -3440,7 +3440,8 @@ export const topics: Topic[] = [
                 j += 1
             kmp[i] = j
 
-        return s[:kmp[-1]]`
+        return s[:kmp[-1]]`,
+        companies: ['Google', 'Amazon', 'Microsoft', 'Facebook', 'Adobe']
 },
 {
   id: 'str-136',
