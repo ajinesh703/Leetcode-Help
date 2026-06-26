@@ -3395,7 +3395,8 @@ export const topics: Topic[] = [
                 return False
             min_open = max(min_open, 0)
 
-        return min_open == 0`
+        return min_open == 0`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
 },
 {
   id: 'str-134',
