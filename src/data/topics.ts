@@ -3365,7 +3365,8 @@ export const topics: Topic[] = [
                 stack[-1][atom] += cnt
 
         return ''.join(atom + (str(cnt) if cnt > 1 else '')
-                      for atom, cnt in sorted(stack[0].items()))`
+                      for atom, cnt in sorted(stack[0].items()))`,
+                      companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
 },
 {
   id: 'str-133',
