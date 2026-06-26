@@ -3466,7 +3466,8 @@ export const topics: Topic[] = [
                     seen.add(text[i + 1 - length: i + 1])
                     count -= 1
 
-        return len(seen)`
+        return len(seen)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
 },
 {
   id: 'str-137',
