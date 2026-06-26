@@ -3510,7 +3510,8 @@ export const topics: Topic[] = [
             else:
                 depth += 1
 
-        return depth`
+        return depth`,
+        companies: ['Amazon', 'Google', 'Apple', 'Microsoft', 'Samsung']
 },
 {
   id: 'str-139',
