@@ -190,7 +190,8 @@ export const patterns: Pattern[] = [
                 result[pos] = right_sq
                 right -= 1
             pos -= 1
-        return result`
+        return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Twitter']
       },
       {
         id: 'tp-9',
