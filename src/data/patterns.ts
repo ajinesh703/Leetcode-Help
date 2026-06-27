@@ -130,7 +130,8 @@ export const patterns: Pattern[] = [
                 else:
                     water += right_max - height[right]
                 right -= 1
-        return water`
+        return water`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Goldman Sachs']
       },
       {
         id: 'tp-6',
