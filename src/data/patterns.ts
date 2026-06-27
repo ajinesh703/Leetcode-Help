@@ -149,7 +149,8 @@ export const patterns: Pattern[] = [
             if nums[fast] != nums[slow]:
                 slow += 1
                 nums[slow] = nums[fast]
-        return slow + 1`
+        return slow + 1`,
+        companies: ['Facebook', 'Amazon', 'Google', 'Microsoft', 'Apple']
       },
       {
         id: 'tp-7',
