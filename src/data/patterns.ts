@@ -80,7 +80,8 @@ export const patterns: Pattern[] = [
                 left += 1
             else:
                 right -= 1
-        return max_water`
+        return max_water`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'tp-4',
