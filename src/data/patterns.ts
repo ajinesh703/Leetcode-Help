@@ -26,7 +26,8 @@ export const patterns: Pattern[] = [
                 left += 1
             else:
                 right -= 1
-        return []`
+        return []`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'tp-2',
