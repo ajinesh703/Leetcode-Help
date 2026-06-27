@@ -165,7 +165,8 @@ export const patterns: Pattern[] = [
         for fast in range(len(nums)):
             if nums[fast] != 0:
                 nums[slow], nums[fast] = nums[fast], nums[slow]
-                slow += 1`
+                slow += 1`,
+                companies: ['Facebook', 'Amazon', 'Google', 'Bloomberg', 'Apple']
       },
       {
         id: 'tp-8',
