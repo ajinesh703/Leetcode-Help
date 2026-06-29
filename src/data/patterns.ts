@@ -297,7 +297,8 @@ export const patterns: Pattern[] = [
         language: 'python',
         solution: `class Solution:
     def reverseWords(self, s: str) -> str:
-        return ' '.join(word[::-1] for word in s.split())`
+        return ' '.join(word[::-1] for word in s.split())`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'tp-14',
