@@ -407,6 +407,7 @@ export const patterns: Pattern[] = [
             i -= 1
             j -= 1
         return True`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Bloomberg']
       },
       {
         id: 'tp-18',
