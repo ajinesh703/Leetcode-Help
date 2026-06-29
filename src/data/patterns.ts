@@ -342,7 +342,8 @@ export const patterns: Pattern[] = [
             left -= 1
         while right < len(nums) - 1 and nums[right + 1] < sub_max:
             right += 1
-        return right - left + 1`
+        return right - left + 1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'tp-16',
