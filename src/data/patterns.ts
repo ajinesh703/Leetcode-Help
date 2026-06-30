@@ -570,6 +570,7 @@ export const patterns: Pattern[] = [
             else:
                 right -= 1
         return False`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'tp-25',
