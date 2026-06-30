@@ -728,6 +728,7 @@ export const patterns: Pattern[] = [
                 nums[slow] = nums[fast]
                 slow += 1
         return slow`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'tp-33',
