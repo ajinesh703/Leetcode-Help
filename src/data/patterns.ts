@@ -521,6 +521,7 @@ export const patterns: Pattern[] = [
                 else:
                     return total
         return closest`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'tp-23',
