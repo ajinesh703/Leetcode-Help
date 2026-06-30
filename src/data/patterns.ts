@@ -548,6 +548,7 @@ export const patterns: Pattern[] = [
             else:
                 break
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Palantir']
       },
       {
         id: 'tp-24',
