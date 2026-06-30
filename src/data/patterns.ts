@@ -673,6 +673,7 @@ export const patterns: Pattern[] = [
             nums1[pos] = nums2[right]
             right -= 1
             pos -= 1`,
+            companies: ['Facebook', 'Amazon', 'Microsoft', 'Google', 'Apple']
       },
       {
         id: 'tp-30',
