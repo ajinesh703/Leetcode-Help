@@ -648,6 +648,7 @@ export const patterns: Pattern[] = [
                 child += 1
             cookie += 1
         return child`,
+        companies: ['Amazon', 'Google', 'Apple', 'Facebook', 'Adobe']
       },
       {
         id: 'tp-29',
