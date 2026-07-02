@@ -1123,6 +1123,7 @@ export const patterns: Pattern[] = [
                 right = i
             result[i] = min(result[i], abs(i - right))
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'tp-51',
