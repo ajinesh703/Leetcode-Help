@@ -1215,6 +1215,7 @@ export const patterns: Pattern[] = [
                 result.append([left, right - 1])
             left = right + 1
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'tp-55',
