@@ -788,6 +788,7 @@ export const patterns: Pattern[] = [
         while right < l2 and w1[l1 - 1 - right] == w2[l2 - 1 - right]:
             right += 1
         return left + right >= l2`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'LinkedIn']
       },
       {
         id: 'tp-36',
