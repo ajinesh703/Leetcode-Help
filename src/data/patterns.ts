@@ -1099,6 +1099,7 @@ export const patterns: Pattern[] = [
         result.append(word1[left:])
         result.append(word2[right:])
         return ''.join(result)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'tp-50',
