@@ -1037,6 +1037,7 @@ export const patterns: Pattern[] = [
                 result = max(result, max_L + prefix[i] - prefix[i - M])
             return result
         return max(solve(firstLen, secondLen), solve(secondLen, firstLen))`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Palantir']
       },
       {
         id: 'tp-48',
