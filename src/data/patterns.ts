@@ -879,6 +879,7 @@ export const patterns: Pattern[] = [
             if (i % 2 == 1 and nums[i] < nums[i - 1]) or \
                (i % 2 == 0 and nums[i] > nums[i - 1]):
                 nums[i], nums[i - 1] = nums[i - 1], nums[i]`,
+                companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'tp-41',
