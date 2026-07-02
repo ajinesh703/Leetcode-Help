@@ -842,6 +842,7 @@ export const patterns: Pattern[] = [
                 result[neg] = num
                 neg += 2
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'tp-39',
