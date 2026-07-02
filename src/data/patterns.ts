@@ -1238,6 +1238,7 @@ export const patterns: Pattern[] = [
                 if len(seen) == 5:
                     result += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'tp-56',
