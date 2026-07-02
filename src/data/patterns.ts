@@ -998,6 +998,7 @@ export const patterns: Pattern[] = [
                 result.append('R' * (gap // 2) + ('.' if gap % 2 else '') + 'L' * (gap // 2))
             left = right
         return ''.join(result)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Adobe']
       },
       {
         id: 'tp-46',
