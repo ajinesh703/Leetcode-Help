@@ -1015,6 +1015,7 @@ export const patterns: Pattern[] = [
                 left = right + 1
             result += right - left + 1 if nums[right] == 0 else 0
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'tp-47',
