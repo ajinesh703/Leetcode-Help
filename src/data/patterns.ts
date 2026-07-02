@@ -806,6 +806,7 @@ export const patterns: Pattern[] = [
             left += 1
             right -= 1
         return ' '.join(words)`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Facebook']
       },
       {
         id: 'tp-37',
