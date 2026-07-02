@@ -902,6 +902,7 @@ export const patterns: Pattern[] = [
                     right -= 1
             left += 1
         return swaps`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'tp-42',
