@@ -1196,6 +1196,7 @@ export const patterns: Pattern[] = [
         candidates.discard(n)
         num = int(n)
         return min(candidates, key=lambda x: (abs(int(x) - num), int(x)))`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'tp-54',
