@@ -1465,6 +1465,7 @@ export const patterns: Pattern[] = [
             result += ratio_count[ratio]
             ratio_count[ratio] += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'tp-66',
