@@ -1581,6 +1581,7 @@ export const patterns: Pattern[] = [
                 right += 1
             result = max(result, rooms)
         return result`,
+        companies: ['Facebook', 'Amazon', 'Google', 'Microsoft', 'Airbnb']
       },
       {
         id: 'tp-71',
