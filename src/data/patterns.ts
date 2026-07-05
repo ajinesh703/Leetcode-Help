@@ -1326,6 +1326,7 @@ export const patterns: Pattern[] = [
                 left += 2
                 right += 2
         return nums`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Samsung']
       },
       {
         id: 'tp-60',
