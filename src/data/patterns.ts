@@ -1393,6 +1393,7 @@ export const patterns: Pattern[] = [
                 nums[mid], nums[high] = nums[high], nums[mid]
                 high -= 1
         return nums`,
+        companies: ['Facebook', 'Amazon', 'Google', 'Microsoft', 'Uber']
       },
       {
         id: 'tp-63',
