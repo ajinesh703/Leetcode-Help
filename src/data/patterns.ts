@@ -1537,6 +1537,7 @@ export const patterns: Pattern[] = [
             result.append(intervals[i])
             i += 1
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'LinkedIn']
       },
       {
         id: 'tp-69',
