@@ -1557,6 +1557,7 @@ export const patterns: Pattern[] = [
             else:
                 result += 1
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'tp-70',
