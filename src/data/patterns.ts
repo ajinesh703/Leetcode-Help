@@ -1370,6 +1370,7 @@ export const patterns: Pattern[] = [
                 left += 1
                 right -= 1
         return ''.join(s)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Uber']
       },
       {
         id: 'tp-62',
