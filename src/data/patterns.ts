@@ -1639,6 +1639,7 @@ export const patterns: Pattern[] = [
             x2, y2 = points[i]
             result += max(abs(x2 - x1), abs(y2 - y1))
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'tp-74',
