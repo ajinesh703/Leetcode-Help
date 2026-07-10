@@ -1692,6 +1692,7 @@ export const patterns: Pattern[] = [
             ones = sum(grid[i][j] for i in range(m))
             result += max(ones, m - ones) * (1 << (n - j - 1))
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Twitter']
       },
       {
         id: 'tp-77',
