@@ -1753,6 +1753,7 @@ export const patterns: Pattern[] = [
                 if left > right:
                     right = left
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'tp-80',
