@@ -1786,6 +1786,7 @@ export const patterns: Pattern[] = [
             graph[u].append(v)
             result.append(bfs())
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'tp-81',
