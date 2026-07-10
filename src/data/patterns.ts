@@ -1731,6 +1731,7 @@ export const patterns: Pattern[] = [
                 seen = set()
             seen.add(c)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'tp-79',
