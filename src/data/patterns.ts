@@ -1990,6 +1990,7 @@ export const patterns: Pattern[] = [
             if window == need:
                 return True
         return False`,
+        companies: ['Facebook', 'Amazon', 'Google', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'sw-7',
