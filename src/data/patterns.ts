@@ -2013,6 +2013,7 @@ export const patterns: Pattern[] = [
             if i >= k - 1:
                 result.append(nums[dq[0]])
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'sw-8',
