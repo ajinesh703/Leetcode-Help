@@ -1896,6 +1896,7 @@ export const patterns: Pattern[] = [
             char_set.add(s[right])
             max_len = max(max_len, right - left + 1)
         return max_len`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'sw-3',
