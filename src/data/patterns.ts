@@ -1925,6 +1925,7 @@ export const patterns: Pattern[] = [
                 missing += 1
                 left += 1
         return s[start:end]`,
+        companies: ['Facebook', 'Google', 'Amazon', 'Microsoft', 'Uber']
       },
       {
         id: 'sw-4',
