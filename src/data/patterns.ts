@@ -1830,6 +1830,7 @@ export const patterns: Pattern[] = [
                 nums[i + 2] ^= 1
                 result += 1
         return result if all(n == 1 for n in nums) else -1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'tp-83',
