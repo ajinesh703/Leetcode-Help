@@ -1849,6 +1849,7 @@ export const patterns: Pattern[] = [
                 result += 1
                 flip ^= 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
     ]
   },
