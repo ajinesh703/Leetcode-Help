@@ -1963,6 +1963,7 @@ export const patterns: Pattern[] = [
             window_sum += nums[i] - nums[i - k]
             max_sum = max(max_sum, window_sum)
         return max_sum / k`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'sw-6',
