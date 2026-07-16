@@ -2202,6 +2202,7 @@ export const patterns: Pattern[] = [
             curr += cardPoints[i] - cardPoints[i - window]
             min_sum = min(min_sum, curr)
         return sum(cardPoints) - min_sum`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Goldman Sachs']
 },
 {
   id: 'sw-17',
