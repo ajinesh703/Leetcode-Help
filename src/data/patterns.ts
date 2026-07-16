@@ -2271,6 +2271,7 @@ export const patterns: Pattern[] = [
             window_sum += calories[i] - calories[i - k]
             result += check(window_sum)
         return result`,
+        companies: ['Amazon', 'Google', 'Apple', 'Facebook', 'Samsung']
 },
 {
   id: 'sw-20',
