@@ -2183,6 +2183,7 @@ export const patterns: Pattern[] = [
             if window == need:
                 result.append(i - len(p) + 1)
         return result`,
+        companies: ['Facebook', 'Amazon', 'Google', 'Samsung', 'Adobe']
 },
 {
   id: 'sw-16',
