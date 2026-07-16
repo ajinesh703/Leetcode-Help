@@ -2157,6 +2157,7 @@ export const patterns: Pattern[] = [
                 current_sum -= nums[left]
                 left += 1
         return 0 if min_len == float('inf') else min_len`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
   id: 'sw-15',
