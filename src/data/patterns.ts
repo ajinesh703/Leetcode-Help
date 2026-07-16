@@ -2385,6 +2385,7 @@ export const patterns: Pattern[] = [
             if i >= n - 1:
                 result = min(result, diff1, diff2)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 {
         id: 'sw-25',
