@@ -2359,6 +2359,7 @@ export const patterns: Pattern[] = [
             curr += nums[i] - nums[i - window]
             avgs[i - k] = curr // window
         return avgs`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Adobe']
 },
 {
   id: 'sw-24',
