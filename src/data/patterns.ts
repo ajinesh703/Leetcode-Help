@@ -2222,6 +2222,7 @@ export const patterns: Pattern[] = [
             if window_sum >= k * threshold:
                 result += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
 },
 {
   id: 'sw-18',
