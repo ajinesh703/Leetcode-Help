@@ -2137,6 +2137,7 @@ export const patterns: Pattern[] = [
             extra -= customers[i - minutes] * grumpy[i - minutes]
             max_extra = max(max_extra, extra)
         return base + max_extra`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Apple']
       },
       {
         id: 'sw-14',
