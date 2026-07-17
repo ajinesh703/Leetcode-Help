@@ -2475,6 +2475,7 @@ export const patterns: Pattern[] = [
                 count[s[left]] += 1
                 left += 1
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'sw-29',
