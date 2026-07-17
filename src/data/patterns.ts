@@ -2500,6 +2500,7 @@ export const patterns: Pattern[] = [
                 result += right - left + 1
             return result
         return atMost(k) - atMost(k - 1)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Airbnb']
       },
       {
         id: 'sw-30',
