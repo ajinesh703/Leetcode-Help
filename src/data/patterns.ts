@@ -2590,6 +2590,7 @@ export const patterns: Pattern[] = [
                     freq -= 1
                 left += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'sw-34',
