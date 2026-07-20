@@ -2624,6 +2624,7 @@ export const patterns: Pattern[] = [
         for i in range(len(nums) - k + 1):
             result = min(result, nums[i + k - 1] - nums[i])
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'sw-36',
