@@ -3072,6 +3072,7 @@ export const patterns: Pattern[] = [
             curr_min = min(candidates)
             result = max(result, curr_max)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Goldman Sachs']
       },
       {
         id: 'sw-56',
