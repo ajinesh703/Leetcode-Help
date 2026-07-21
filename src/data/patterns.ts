@@ -2900,6 +2900,7 @@ export const patterns: Pattern[] = [
                 flips ^= 1
                 result += 1
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'sw-48',
