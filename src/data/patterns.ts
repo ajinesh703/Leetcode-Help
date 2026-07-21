@@ -2727,6 +2727,7 @@ export const patterns: Pattern[] = [
                 val = sl[x - 1]
                 result.append(val if val < 0 else 0)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'sw-40',
