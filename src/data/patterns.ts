@@ -2946,6 +2946,7 @@ export const patterns: Pattern[] = [
             while stack and nums[j] >= nums[stack[-1]]:
                 result = max(result, j - stack.pop())
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'sw-50',
