@@ -3050,6 +3050,7 @@ export const patterns: Pattern[] = [
             for i in range(len(garbage) - 1)
             if any(g_type in garbage[j] for j in range(i + 1, len(garbage)))
         )`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'sw-55',
