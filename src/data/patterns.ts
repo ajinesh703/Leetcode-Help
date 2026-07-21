@@ -2812,6 +2812,7 @@ export const patterns: Pattern[] = [
             window_ones += nums[i] - nums[i - k]
             max_ones = max(max_ones, window_ones)
         return k - max_ones`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'sw-44',
