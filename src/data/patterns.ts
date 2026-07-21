@@ -3026,6 +3026,7 @@ export const patterns: Pattern[] = [
                 result = min(result, i - last[card] + 1)
             last[card] = i
         return result if result != float('inf') else -1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Uber']
       },
       {
         id: 'sw-54',
