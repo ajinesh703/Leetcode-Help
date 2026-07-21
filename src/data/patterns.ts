@@ -2984,6 +2984,7 @@ export const patterns: Pattern[] = [
                 last_even = i
             result += last_even + 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'sw-52',
