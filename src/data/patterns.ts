@@ -2790,6 +2790,7 @@ export const patterns: Pattern[] = [
                 max_pos = i
             result += max(0, min(min_pos, max_pos) - bad_pos)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Palantir']
       },
       {
         id: 'sw-43',
