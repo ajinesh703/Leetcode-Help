@@ -2672,6 +2672,7 @@ export const patterns: Pattern[] = [
             result[i] = window
             window += code[start + abs(k) + i] - code[start + i]
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Twitter']
       },
       {
         id: 'sw-38',
