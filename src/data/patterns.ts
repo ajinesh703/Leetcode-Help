@@ -2925,6 +2925,7 @@ export const patterns: Pattern[] = [
                 dq.pop()
             dq.append(i)
         return result if result != float('inf') else -1`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'sw-49',
