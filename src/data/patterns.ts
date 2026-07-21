@@ -3007,6 +3007,7 @@ export const patterns: Pattern[] = [
                 result = max(result, right - left + 1)
             return result
         return max(maxWindow('T'), maxWindow('F'))`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'sw-53',
