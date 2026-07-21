@@ -2768,6 +2768,7 @@ export const patterns: Pattern[] = [
             used_bits |= nums[right]
             result = max(result, right - left + 1)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'sw-42',
