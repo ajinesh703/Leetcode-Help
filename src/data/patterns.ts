@@ -2748,6 +2748,7 @@ export const patterns: Pattern[] = [
                 result += count
             return result
         return countAtMost(right) - countAtMost(left - 1)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'sw-41',
