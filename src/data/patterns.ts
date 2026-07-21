@@ -2855,6 +2855,7 @@ export const patterns: Pattern[] = [
             if len(set(sub)) <= maxLetters:
                 freq[sub] += 1
         return max(freq.values(), default=0)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Adobe']
       },
       {
         id: 'sw-46',
