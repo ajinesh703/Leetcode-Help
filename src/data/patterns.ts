@@ -3152,6 +3152,7 @@ export const patterns: Pattern[] = [
                 if len(window) == unique and all(v == count for v in window.values()):
                     result += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Airbnb']
       },
       {
         id: 'sw-59',
