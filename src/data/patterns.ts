@@ -3100,6 +3100,7 @@ export const patterns: Pattern[] = [
             if curr == extra:
                 result = min(result, right - left + 1)
         return base + result if result != float('inf') else -1`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'sw-57',
