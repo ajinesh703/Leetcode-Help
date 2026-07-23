@@ -3124,6 +3124,7 @@ export const patterns: Pattern[] = [
                     del count[nums[left]]
                 left += 1
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'sw-58',
