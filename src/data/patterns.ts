@@ -3342,6 +3342,7 @@ export const patterns: Pattern[] = [
             if unique == 5:
                 result = max(result, length)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Airbnb']
       },
       {
         id: 'sw-68',
