@@ -3418,6 +3418,7 @@ export const patterns: Pattern[] = [
             if sub != 0 and num % sub == 0:
                 result += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Twitter']
       },
       {
         id: 'sw-72',
