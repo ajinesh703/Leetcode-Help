@@ -3236,6 +3236,7 @@ export const patterns: Pattern[] = [
             if dp[i] > 0:
                 dq.append(i)
         return max(dp)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'sw-63',
