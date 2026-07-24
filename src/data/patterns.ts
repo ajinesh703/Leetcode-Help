@@ -3303,6 +3303,7 @@ export const patterns: Pattern[] = [
             if i >= k - 1 and len(count) == k:
                 result = max(result, window_sum)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'sw-66',
