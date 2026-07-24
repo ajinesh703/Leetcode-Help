@@ -3381,6 +3381,7 @@ export const patterns: Pattern[] = [
                 curr = 0
             result = (result + curr) % MOD
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'sw-70',
