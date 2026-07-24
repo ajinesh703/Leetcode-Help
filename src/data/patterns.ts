@@ -3320,6 +3320,7 @@ export const patterns: Pattern[] = [
             white += (blocks[i] == 'W') - (blocks[i - k] == 'W')
             result = min(result, white)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'sw-67',
