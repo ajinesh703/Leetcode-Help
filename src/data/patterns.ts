@@ -3257,6 +3257,7 @@ export const patterns: Pattern[] = [
         if (xy + yx) % 2 != 0:
             return -1
         return xy // 2 + yx // 2 + (2 if xy % 2 else 0)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'sw-64',
