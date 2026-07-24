@@ -3400,6 +3400,7 @@ export const patterns: Pattern[] = [
                 count[s[j]] += 1
                 result += max(count.values()) - min(count.values())
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'LinkedIn']
       },
       {
         id: 'sw-71',
