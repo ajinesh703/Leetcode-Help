@@ -3480,6 +3480,7 @@ export const patterns: Pattern[] = [
             result += count[prefix]
             count[prefix] += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Goldman Sachs']
       },
       {
         id: 'sw-75',
