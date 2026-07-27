@@ -3442,6 +3442,7 @@ export const patterns: Pattern[] = [
         if m % 2 == 1 and n % 2 == 1:
             result += grid[m // 2][n // 2] % 2
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'sw-73',
