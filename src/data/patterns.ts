@@ -3460,6 +3460,7 @@ export const patterns: Pattern[] = [
             count += (s[i] in vowels) - (s[i - k] in vowels)
             result = max(result, count)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Bloomberg']
       },
       {
         id: 'sw-74',
