@@ -3562,6 +3562,7 @@ export const patterns: Pattern[] = [
             if curr == target:
                 result = max(result, right - left + 1)
         return len(nums) - result if result != -1 else -1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'sw-79',
