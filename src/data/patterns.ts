@@ -3608,6 +3608,7 @@ export const patterns: Pattern[] = [
             while left <= right and s[right] == ch:
                 right -= 1
         return right - left + 1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'sw-81',
