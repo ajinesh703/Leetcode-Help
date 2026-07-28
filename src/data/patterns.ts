@@ -3519,6 +3519,7 @@ export const patterns: Pattern[] = [
             else:
                 curr = 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'sw-77',
