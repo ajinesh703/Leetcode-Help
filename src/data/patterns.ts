@@ -3589,6 +3589,7 @@ export const patterns: Pattern[] = [
             min_val = min(min_val, nums[left], nums[right])
             result = max(result, min_val * (right - left + 1))
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'sw-80',
