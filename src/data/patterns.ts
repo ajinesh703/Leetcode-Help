@@ -3647,6 +3647,7 @@ export const patterns: Pattern[] = [
             nums[-3] - nums[1],
             nums[-4] - nums[0]
         )`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Bloomberg']
       },
       {
         id: 'sw-83',
