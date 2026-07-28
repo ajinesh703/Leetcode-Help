@@ -3627,6 +3627,7 @@ export const patterns: Pattern[] = [
             max_sum = max(max_sum, curr_max)
             min_sum = min(min_sum, curr_min)
         return max(max_sum, abs(min_sum))`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'sw-82',
