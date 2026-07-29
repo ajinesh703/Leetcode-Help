@@ -3726,6 +3726,7 @@ export const patterns: Pattern[] = [
                 left += 1
             result = max(result, right - left)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Uber']
       },
       {
         id: 'sw-87',
