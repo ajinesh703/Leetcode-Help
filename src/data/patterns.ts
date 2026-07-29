@@ -3664,6 +3664,7 @@ export const patterns: Pattern[] = [
             if num + diff in seen and num + 2 * diff in seen:
                 result += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'sw-84',
