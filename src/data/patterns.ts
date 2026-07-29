@@ -3685,6 +3685,7 @@ export const patterns: Pattern[] = [
             else:
                 remainder_map[prefix] = i
         return False`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Goldman Sachs']
       },
       {
         id: 'sw-85',
