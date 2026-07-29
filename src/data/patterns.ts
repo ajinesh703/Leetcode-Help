@@ -3750,6 +3750,7 @@ export const patterns: Pattern[] = [
             else:
                 prefix_map[prefix] = i
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'sw-88',
