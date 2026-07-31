@@ -3930,6 +3930,7 @@ export const patterns: Pattern[] = [
                     result = s1[i:end]
                 i += 1
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'sw-95',
