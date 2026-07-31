@@ -3795,6 +3795,7 @@ export const patterns: Pattern[] = [
             if num > 1:
                 result *= num
         return result if result != 1 else max(nums)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'sw-90',
