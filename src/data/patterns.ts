@@ -4035,6 +4035,7 @@ export const patterns: Pattern[] = [
         return result`,
         companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
+},
       {
         id: 'sw-100',
         title: 'Maximum Number of Balls in a Box',
