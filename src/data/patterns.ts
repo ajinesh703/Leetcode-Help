@@ -3969,6 +3969,7 @@ export const patterns: Pattern[] = [
             else:
                 min_val = nums[i]
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Twitter']
       },
       {
         id: 'sw-97',
@@ -3992,6 +3993,7 @@ export const patterns: Pattern[] = [
             if i >= 4 and pressedKeys[i-1] in '79' and pressedKeys[i-1] == pressedKeys[i-2] == pressedKeys[i-3] == pressedKeys[i-4]:
                 dp[i] = (dp[i] + dp[i-4]) % MOD
         return dp[n]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'sw-98',
@@ -4010,6 +4012,7 @@ export const patterns: Pattern[] = [
             if dp[idx][1] + pro > dp[-1][1]:
                 dp.append([end, dp[idx][1] + pro])
         return dp[-1][1]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Airbnb', 'Uber']
       },
       {
         id: 'sw-99',
@@ -4030,6 +4033,7 @@ export const patterns: Pattern[] = [
                 result = max(result, prefix - sl[idx])
             sl.add(prefix)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'sw-100',
