@@ -4033,7 +4033,7 @@ export const patterns: Pattern[] = [
                 result = max(result, prefix - sl[idx])
             sl.add(prefix)
         return result`,
-        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'sw-100',
