@@ -4033,8 +4033,7 @@ export const patterns: Pattern[] = [
                 result = max(result, prefix - sl[idx])
             sl.add(prefix)
         return result`,
-        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
-      },
+},
       {
         id: 'sw-100',
         title: 'Maximum Number of Balls in a Box',
