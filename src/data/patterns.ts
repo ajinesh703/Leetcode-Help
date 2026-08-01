@@ -3969,6 +3969,7 @@ export const patterns: Pattern[] = [
             else:
                 min_val = nums[i]
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Twitter']
       },
       {
         id: 'sw-97',
