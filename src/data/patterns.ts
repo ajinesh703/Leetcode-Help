@@ -4145,6 +4145,7 @@ export const patterns: Pattern[] = [
             right_cost = (prefix[n] - prefix[idx]) - q * (n - idx)
             result.append(left_cost + right_cost)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'sw-105',
