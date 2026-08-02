@@ -4050,6 +4050,7 @@ export const patterns: Pattern[] = [
         for i in range(lowLimit, highLimit + 1):
             boxes[sum(int(d) for d in str(i))] += 1
         return max(boxes.values())`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'sw-101',
@@ -4073,6 +4074,7 @@ export const patterns: Pattern[] = [
             right_sum = (prefix[i + k] - prefix[mid + 1]) - median * (i + k - mid - 1)
             result = min(result, left_sum + right_sum)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'sw-102',
