@@ -4100,6 +4100,7 @@ export const patterns: Pattern[] = [
                 covered -= tiles[j][1] - end
             result = max(result, covered)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'sw-103',
