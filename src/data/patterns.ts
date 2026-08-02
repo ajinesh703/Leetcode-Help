@@ -4049,6 +4049,7 @@ export const patterns: Pattern[] = [
         for i in range(lowLimit, highLimit + 1):
             boxes[sum(int(d) for d in str(i))] += 1
         return max(boxes.values())`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'sw-101',
