@@ -4073,6 +4073,7 @@ export const patterns: Pattern[] = [
             right_sum = (prefix[i + k] - prefix[mid + 1]) - median * (i + k - mid - 1)
             result = min(result, left_sum + right_sum)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'sw-102',
