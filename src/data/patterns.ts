@@ -4122,6 +4122,7 @@ export const patterns: Pattern[] = [
                 elif curr_gcd < k:
                     break
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'sw-104',
