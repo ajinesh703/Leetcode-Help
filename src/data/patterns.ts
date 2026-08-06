@@ -4386,7 +4386,8 @@ export const patterns: Pattern[] = [
         right = find_right(nums, target)
         if left <= right and right < len(nums) and nums[left] == target:
             return [left, right]
-        return [-1, -1]`
+        return [-1, -1]`,
+        companies: ['Facebook', 'Amazon', 'Google', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'bs-10',
