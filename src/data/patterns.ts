@@ -4756,6 +4756,7 @@ export const patterns: Pattern[] = [
             neg_start = bisect_left([-x for x in row], 1)
             result += len(row) - neg_start
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Twitter']
       },
       {
         id: 'bs-24',
