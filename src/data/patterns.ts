@@ -4776,6 +4776,7 @@ export const patterns: Pattern[] = [
             idx = bisect_left(potions, min_potion)
             result.append(n - idx)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'bs-25',
