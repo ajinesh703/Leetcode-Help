@@ -4718,6 +4718,7 @@ export const patterns: Pattern[] = [
             else:
                 right = mid - 1
         return -1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'bs-22',
