@@ -4796,6 +4796,7 @@ export const patterns: Pattern[] = [
         from bisect import bisect_left
         target = random.randint(1, self.total)
         return bisect_left(self.prefix, target)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'bs-26',
