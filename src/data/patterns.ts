@@ -5049,6 +5049,7 @@ export const patterns: Pattern[] = [
             else:
                 right -= 1
         return nums[left]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'bs-37',
@@ -5067,6 +5068,7 @@ export const patterns: Pattern[] = [
             result += sl.bisect_right(prefix - lower) - sl.bisect_left(prefix - upper)
             sl.add(prefix)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'bs-38',
@@ -5088,6 +5090,7 @@ export const patterns: Pattern[] = [
             else:
                 result.append(-1)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'bs-39',
@@ -5108,6 +5111,7 @@ export const patterns: Pattern[] = [
             else:
                 left = mid + 1
         return left`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'bs-40',
@@ -5140,6 +5144,7 @@ export const patterns: Pattern[] = [
             else:
                 left = mid + 1
         return left`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Goldman Sachs']
       },
       {
         id: 'bs-41',
