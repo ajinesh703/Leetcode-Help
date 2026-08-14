@@ -5263,6 +5263,7 @@ export const patterns: Pattern[] = [
     def kthLargestNumber(self, nums: List[str], k: int) -> str:
         nums.sort(key=lambda x: (len(x), x), reverse=True)
         return nums[k - 1]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'bs-46',
