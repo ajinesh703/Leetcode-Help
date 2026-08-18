@@ -5315,6 +5315,7 @@ export const patterns: Pattern[] = [
             else:
                 right = mid - 1
         return left`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'bs-48',
