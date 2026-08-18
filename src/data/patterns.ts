@@ -5392,6 +5392,7 @@ export const patterns: Pattern[] = [
             else:
                 right = mid - 1
         return left if canCut(left) else 0`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'bs-51',
@@ -5425,6 +5426,7 @@ export const patterns: Pattern[] = [
             else:
                 right = mid - 1
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Goldman Sachs']
       },
       {
         id: 'bs-52',
