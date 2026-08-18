@@ -5371,6 +5371,7 @@ export const patterns: Pattern[] = [
         top   = searchRow(0, row, hasBlackInRow)
         bot   = searchRow(row, m, lambda r: not hasBlackInRow(r))
         return (right - left) * (bot - top)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'LinkedIn']
       },
       {
         id: 'bs-50',
