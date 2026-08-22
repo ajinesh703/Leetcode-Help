@@ -5748,6 +5748,7 @@ export const patterns: Pattern[] = [
                         return 1
                     grid[i][j] = 1
         return 2`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'bs-64',
