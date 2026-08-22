@@ -5768,6 +5768,7 @@ export const patterns: Pattern[] = [
             if lo == hi:
                 result += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'bs-65',
