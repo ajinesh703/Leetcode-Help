@@ -5711,6 +5711,7 @@ export const patterns: Pattern[] = [
         def val(s: str) -> int:
             return int(s) if s.isdigit() else len(s)
         return max(val(s) for s in strs)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'bs-63',
