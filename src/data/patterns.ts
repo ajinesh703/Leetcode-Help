@@ -5602,6 +5602,7 @@ export const patterns: Pattern[] = [
         left = bisect_left(nums, target)
         right = bisect_right(nums, target)
         return list(range(left, right))`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'bs-59',
