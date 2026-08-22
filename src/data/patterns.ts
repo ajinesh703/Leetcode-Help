@@ -5585,6 +5585,7 @@ export const patterns: Pattern[] = [
                 budget -= cost
                 result += profit
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Goldman Sachs']
       },
       {
         id: 'bs-58',
