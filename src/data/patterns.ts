@@ -5536,6 +5536,7 @@ export const patterns: Pattern[] = [
             else:
                 left = mid + 1
         return left`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'bs-56',
