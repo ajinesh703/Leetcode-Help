@@ -5865,6 +5865,7 @@ export const patterns: Pattern[] = [
             inorder(node.right)
         inorder(root)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'bs-70',
