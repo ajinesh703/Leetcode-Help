@@ -5826,6 +5826,7 @@ export const patterns: Pattern[] = [
             return -1
         median = nums[len(nums) // 2]
         return sum(abs(n - median) // x for n in nums)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'bs-68',
