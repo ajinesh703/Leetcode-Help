@@ -5842,6 +5842,7 @@ export const patterns: Pattern[] = [
         for v in rewardValues:
             dp |= {s + v for s in dp if s < v}
         return max(dp)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'bs-69',
