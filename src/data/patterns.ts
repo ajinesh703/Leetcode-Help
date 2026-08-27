@@ -5887,6 +5887,7 @@ export const patterns: Pattern[] = [
                 tails[idx] = ob
             result.append(idx + 1)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Adobe']
       },
       {
         id: 'bs-71',
