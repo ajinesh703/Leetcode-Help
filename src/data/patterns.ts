@@ -5809,6 +5809,7 @@ export const patterns: Pattern[] = [
             curr_sum += i
             result += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'bs-67',
