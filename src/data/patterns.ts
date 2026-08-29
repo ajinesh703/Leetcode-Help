@@ -5986,6 +5986,7 @@ export const patterns: Pattern[] = [
                 arrows += 1
                 end = finish
         return arrows`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'bs-76',
