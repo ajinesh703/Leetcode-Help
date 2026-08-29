@@ -5948,6 +5948,7 @@ export const patterns: Pattern[] = [
             result.append(idx)
             insort(sorted_list, num)
         return result[::-1]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'bs-74',
