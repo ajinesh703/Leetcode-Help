@@ -6012,6 +6012,7 @@ export const patterns: Pattern[] = [
         from bisect import bisect_right
         idx = bisect_right(self.times, t) - 1
         return self.leaders[idx]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'bs-77',
