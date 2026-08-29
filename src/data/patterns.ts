@@ -6073,6 +6073,7 @@ export const patterns: Pattern[] = [
             max_j = bisect_right(prefix, (total + left_sum) // 2, i + 1, n)
             result = (result + max(0, max_j - min_j)) % MOD
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'bs-79',
