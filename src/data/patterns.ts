@@ -6045,6 +6045,7 @@ export const patterns: Pattern[] = [
             if result[0] == -1 or total > sums[result[0]] + sums[result[1]] + sums[result[2]]:
                 result = [l, j, r]
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Palantir']
       },
       {
         id: 'bs-78',
