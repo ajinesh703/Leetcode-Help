@@ -6097,6 +6097,7 @@ export const patterns: Pattern[] = [
                 heapq.heappop(heap)
             result[q] = heap[0][0] if heap else -1
         return [result[q] for q in queries]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'LinkedIn']
       },
       {
         id: 'bs-80',
