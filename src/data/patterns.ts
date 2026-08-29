@@ -5908,6 +5908,7 @@ export const patterns: Pattern[] = [
             else:
                 tails[idx] = num
         return len(tails)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'bs-72',
