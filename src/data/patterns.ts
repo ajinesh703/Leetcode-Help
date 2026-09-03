@@ -6325,6 +6325,7 @@ export const patterns: Pattern[] = [
             else:
                 result.append(0)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'LinkedIn']
       },
       {
         id: 'bs-90',
