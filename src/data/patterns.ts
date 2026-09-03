@@ -6241,6 +6241,7 @@ export const patterns: Pattern[] = [
             if len(pool) == k:
                 result = min(result, ratio * pool_sum)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Goldman Sachs']
       },
       {
         id: 'bs-86',
