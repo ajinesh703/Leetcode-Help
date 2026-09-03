@@ -6149,6 +6149,7 @@ export const patterns: Pattern[] = [
             else:
                 left = mid + 1
         return left`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Goldman Sachs']
       },
       {
         id: 'bs-82',
@@ -6169,6 +6170,7 @@ export const patterns: Pattern[] = [
             else:
                 lo = mid
         return lo`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'bs-83',
