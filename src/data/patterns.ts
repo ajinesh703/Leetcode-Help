@@ -6298,6 +6298,7 @@ export const patterns: Pattern[] = [
             if dp[idx][1] + pro > dp[-1][1]:
                 dp.append([end, dp[idx][1] + pro])
         return dp[-1][1]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Airbnb', 'Uber']
       },
       {
         id: 'bs-88',
