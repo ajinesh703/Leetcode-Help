@@ -6355,6 +6355,7 @@ export const patterns: Pattern[] = [
                 categories.add(c)
                 result = max(result, total_profit + len(categories) ** 2)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'bs-91',
@@ -6375,6 +6376,7 @@ export const patterns: Pattern[] = [
                 for k in range(i + 1, j):
                     dp[i][j] = min(dp[i][j], cuts[j] - cuts[i] + dp[i][k] + dp[k][j])
         return dp[0][m - 1]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'bs-92',
