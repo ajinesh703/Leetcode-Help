@@ -6472,6 +6472,7 @@ export const patterns: Pattern[] = [
         starts = sorted(f[0] for f in flowers)
         ends = sorted(f[1] for f in flowers)
         return [bisect_right(starts, p) - bisect_left(ends, p) for p in people]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'bs-95',
