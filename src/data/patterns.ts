@@ -6458,6 +6458,7 @@ export const patterns: Pattern[] = [
                 break
             result += coin
         return result + 1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'bs-89',
