@@ -6552,6 +6552,7 @@ export const patterns: Pattern[] = [
             cur = max(cur, 2 * p[i] + 1)
             right[i] = cur
         return max(left[i] * right[i + 1] for i in range(n - 1))`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Goldman Sachs']
       },
       {
         id: 'bs-98',
