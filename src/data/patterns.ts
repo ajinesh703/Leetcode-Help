@@ -6520,6 +6520,7 @@ export const patterns: Pattern[] = [
         seats.sort()
         students.sort()
         return sum(abs(s - t) for s, t in zip(seats, students))`,
+        companies: ['Amazon', 'Google', 'Apple', 'Microsoft', 'Samsung']
       },
       {
         id: 'bs-97',
