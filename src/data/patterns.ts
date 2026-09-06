@@ -6610,6 +6610,7 @@ export const patterns: Pattern[] = [
             curr_max = max(curr_max, nums[i])
             result += curr_max
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'LinkedIn']
       },
     ]
   },
