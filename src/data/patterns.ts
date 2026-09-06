@@ -6570,6 +6570,7 @@ export const patterns: Pattern[] = [
             hold = max(hold, cool - price)
             cool = max(cool, prev_sold)
         return max(sold, cool)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'bs-99',
