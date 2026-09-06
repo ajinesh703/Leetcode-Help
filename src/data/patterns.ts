@@ -6402,6 +6402,7 @@ export const patterns: Pattern[] = [
             take = events[i][2] + dp(next_i, rem - 1)
             return max(skip, take)
         return dp(0, k)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'bs-93',
