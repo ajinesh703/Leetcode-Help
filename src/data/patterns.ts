@@ -6505,6 +6505,7 @@ export const patterns: Pattern[] = [
             s, points = remove(s, 'ab', x)
             result += points
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'bs-96',
