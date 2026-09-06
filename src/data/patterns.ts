@@ -6594,6 +6594,7 @@ export const patterns: Pattern[] = [
                     dp[max(0, i - 30)] + costs[2]
                 )
         return dp[365]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Uber']
       },
       {
         id: 'bs-100',
