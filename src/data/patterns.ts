@@ -6717,7 +6717,8 @@ export const patterns: Pattern[] = [
         while slow != fast:
             slow = nums[slow]
             fast = nums[fast]
-        return slow`
+        return slow`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'fsp-6',
