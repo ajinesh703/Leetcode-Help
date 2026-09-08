@@ -6768,7 +6768,8 @@ export const patterns: Pattern[] = [
 
         first = head
         while prev:
-            first.next, prev.next, first, prev = prev, first.next, first.next, prev.next`
+            first.next, prev.next, first, prev = prev, first.next, first.next, prev.next`,
+            companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'fsp-8',
