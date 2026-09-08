@@ -6744,7 +6744,8 @@ export const patterns: Pattern[] = [
             if left.val != right.val:
                 return False
             left, right = left.next, right.next
-        return True`
+        return True`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Bloomberg']
       },
       {
         id: 'fsp-7',
