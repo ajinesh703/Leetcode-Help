@@ -6675,7 +6675,8 @@ export const patterns: Pattern[] = [
                     slow = slow.next
                     fast = fast.next
                 return slow
-        return None`
+        return None`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'fsp-4',
