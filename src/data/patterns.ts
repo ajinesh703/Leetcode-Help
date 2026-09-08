@@ -6804,8 +6804,8 @@ export const patterns: Pattern[] = [
                 cur.next, right = right, right.next
             cur = cur.next
         cur.next = left or right
-        return dummy.next`
-      },
+        return dummy.next`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       {
         id: 'fsp-9',
         title: 'Remove Nth Node From End of List',
