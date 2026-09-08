@@ -6637,6 +6637,7 @@ export const patterns: Pattern[] = [
             if slow == fast:
                 return True
         return False`
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'fsp-2',
