@@ -6854,6 +6854,7 @@ export const patterns: Pattern[] = [
                         break
                     return True
         return False`
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'fsp-11',
