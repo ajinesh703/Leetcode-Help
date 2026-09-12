@@ -6805,6 +6805,7 @@ export const patterns: Pattern[] = [
         cur.next = left or right
         return dummy.next`,
         companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
+      },
       {
         id: 'fsp-9',
         title: 'Remove Nth Node From End of List',
@@ -6825,7 +6826,8 @@ export const patterns: Pattern[] = [
             fast = fast.next
 
         slow.next = slow.next.next
-        return dummy.next`
+        return dummy.next`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'fsp-10',
