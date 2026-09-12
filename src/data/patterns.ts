@@ -6942,7 +6942,7 @@ export const patterns: Pattern[] = [
         while right:
             max_sum = max(max_sum, left.val + right.val)
             left, right = left.next, right.next
-        return max_sum`
+        return max_sum`,
         companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
@@ -6973,7 +6973,8 @@ export const patterns: Pattern[] = [
         fast.next = head
         head = slow.next
         slow.next = None
-        return head`
+        return head`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'fsp-16',
