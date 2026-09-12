@@ -6853,7 +6853,7 @@ export const patterns: Pattern[] = [
                     if slow == next_idx(slow):
                         break
                     return True
-        return False`
+        return False`,
         companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
@@ -6869,7 +6869,8 @@ export const patterns: Pattern[] = [
         while a != b:
             a = a.next if a else headB
             b = b.next if b else headA
-        return a`
+        return a`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'LinkedIn']
       },
       {
         id: 'fsp-12',
