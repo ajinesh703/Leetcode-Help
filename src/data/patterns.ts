@@ -6942,6 +6942,7 @@ export const patterns: Pattern[] = [
             max_sum = max(max_sum, left.val + right.val)
             left, right = left.next, right.next
         return max_sum`
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'fsp-15',
