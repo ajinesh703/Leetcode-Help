@@ -6894,7 +6894,8 @@ export const patterns: Pattern[] = [
             while fast and fast.val not in num_set:
                 fast = fast.next
             slow = fast
-        return count`
+        return count`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'fsp-13',
