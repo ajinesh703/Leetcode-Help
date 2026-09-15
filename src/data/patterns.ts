@@ -7353,6 +7353,7 @@ export const patterns: Pattern[] = [
         self.cache[key] = value
         if len(self.cache) > self.cap:
             self.cache.popitem(last=False)`,
+            companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Palantir']
       },
       {
         id: 'fsp-31',
