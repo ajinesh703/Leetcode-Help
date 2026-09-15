@@ -7110,7 +7110,8 @@ export const patterns: Pattern[] = [
                     slow = slow.next
             if slow:
                 slow.next, slow = None, slow.next
-        return result`
+        return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'fsp-21',
