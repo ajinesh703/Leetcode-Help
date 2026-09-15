@@ -7028,7 +7028,8 @@ export const patterns: Pattern[] = [
             if random.randint(1, idx) == 1:
                 slow = slow.next
                 result = slow.val
-        return result`
+        return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'fsp-18',
