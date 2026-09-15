@@ -7004,7 +7004,8 @@ export const patterns: Pattern[] = [
                         node = edges[node]
                     ans = max(ans, length)
                     break
-        return ans`
+        return ans`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'fsp-17',
