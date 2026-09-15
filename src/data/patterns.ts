@@ -7325,6 +7325,7 @@ export const patterns: Pattern[] = [
                 old_to_new[slow].random = old_to_new[slow.random]
             slow = slow.next
         return old_to_new[head]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'fsp-30',
