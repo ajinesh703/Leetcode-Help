@@ -7081,7 +7081,8 @@ export const patterns: Pattern[] = [
                 slow.next, prev, slow = prev, slow, slow.next
 
             group_prev.next.next = slow
-            group_prev.next, group_prev = prev, group_prev.next`
+            group_prev.next, group_prev = prev, group_prev.next`,
+            companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'fsp-20',
