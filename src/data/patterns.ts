@@ -7246,6 +7246,7 @@ export const patterns: Pattern[] = [
         while slow:
             slow.next, prev, slow = prev, slow, slow.next
         return prev`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'fsp-27',
