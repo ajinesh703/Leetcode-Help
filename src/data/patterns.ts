@@ -7052,7 +7052,8 @@ export const patterns: Pattern[] = [
 
             slow = fast
             fast = next_pair
-        return dummy.next`
+        return dummy.next`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'fsp-19',
