@@ -7299,6 +7299,7 @@ export const patterns: Pattern[] = [
             node.next = head
             head = node
         return head`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'fsp-29',
