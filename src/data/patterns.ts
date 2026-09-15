@@ -7207,7 +7207,8 @@ export const patterns: Pattern[] = [
         for i in range(length - 1, -1, -1):
             result += slow.val * (2 ** i)
             slow = slow.next
-        return result`
+        return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'fsp-25',
