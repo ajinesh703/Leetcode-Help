@@ -7270,6 +7270,7 @@ export const patterns: Pattern[] = [
             slow.next = ListNode(val)
             slow = slow.next
         return dummy.next`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'fsp-28',
