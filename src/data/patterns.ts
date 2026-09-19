@@ -7479,6 +7479,7 @@ export const patterns: Pattern[] = [
             slow = slow.next
         slow.next = slow.next.next
         self.size -= 1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'fsp-35',
