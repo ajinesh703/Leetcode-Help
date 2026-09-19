@@ -7399,6 +7399,7 @@ export const patterns: Pattern[] = [
             if node.next:
                 heapq.heappush(heap, (node.next.val, i, node.next))
         return dummy.next`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'fsp-33',
