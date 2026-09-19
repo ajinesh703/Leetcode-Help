@@ -7427,6 +7427,7 @@ export const patterns: Pattern[] = [
             slow = fast
             group += 1
         return head`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'fsp-34',
