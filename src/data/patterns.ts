@@ -7505,6 +7505,7 @@ export const patterns: Pattern[] = [
         fast.next = None
         slow.next = greater_dummy.next
         return less_dummy.next`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Adobe']
       },
     ]
   },
