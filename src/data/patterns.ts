@@ -7557,7 +7557,8 @@ export const patterns: Pattern[] = [
                     max(newInterval[1], interval[1])
                 ]
         result.append(newInterval)
-        return result`
+        return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'LinkedIn']
       },
       {
         id: 'mi-3',
