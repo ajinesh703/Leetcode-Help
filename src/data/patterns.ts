@@ -7531,7 +7531,8 @@ export const patterns: Pattern[] = [
                 merged[-1][1] = max(merged[-1][1], end)
             else:
                 merged.append([start, end])
-        return merged`
+        return merged`,
+        companies: ['Facebook', 'Amazon', 'Google', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'mi-2',
