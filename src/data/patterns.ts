@@ -7665,7 +7665,8 @@ export const patterns: Pattern[] = [
         self.intervals = merged
 
     def getIntervals(self) -> List[List[int]]:
-        return self.intervals`
+        return self.intervals`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'mi-8',
