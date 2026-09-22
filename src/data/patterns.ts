@@ -7593,7 +7593,8 @@ export const patterns: Pattern[] = [
         for i in range(1, len(intervals)):
             if intervals[i][0] < intervals[i - 1][1]:
                 return False
-        return True`
+        return True`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'mi-5',
