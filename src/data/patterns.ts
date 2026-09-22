@@ -7684,7 +7684,8 @@ export const patterns: Pattern[] = [
             if end > max_end:
                 count += 1
                 max_end = end
-        return count`
+        return count`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'mi-9',
