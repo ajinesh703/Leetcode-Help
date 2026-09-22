@@ -7711,7 +7711,8 @@ export const patterns: Pattern[] = [
                 i += 1
             else:
                 j += 1
-        return result`
+        return result`,
+        companies: ['Facebook', 'Amazon', 'Google', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'mi-10',
