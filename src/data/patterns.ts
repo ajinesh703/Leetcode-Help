@@ -7731,7 +7731,8 @@ export const patterns: Pattern[] = [
             prefix += num
             count += sl.bisect_right(prefix - lower) - sl.bisect_left(prefix - upper)
             sl.add(prefix)
-        return count`
+        return count`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Goldman Sachs']
       },
       {
         id: 'mi-11',
