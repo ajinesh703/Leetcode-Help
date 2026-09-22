@@ -7631,7 +7631,8 @@ export const patterns: Pattern[] = [
             if start > end:
                 arrows += 1
                 end = finish
-        return arrows`
+        return arrows`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'mi-7',
