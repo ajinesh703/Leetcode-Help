@@ -7912,6 +7912,7 @@ export const patterns: Pattern[] = [
             if curr > capacity:
                 return False
         return True`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Lyft']
       },
       {
         id: 'mi-18',
