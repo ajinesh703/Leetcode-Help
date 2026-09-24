@@ -7931,6 +7931,7 @@ export const patterns: Pattern[] = [
             prev_end = max(prev_end, end)
         free += days - prev_end
         return free`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'mi-19',
