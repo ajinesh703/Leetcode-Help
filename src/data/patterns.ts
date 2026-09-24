@@ -8086,6 +8086,7 @@ export const patterns: Pattern[] = [
         max_count = sum(1 for v in count.values() if v == max_freq)
         result = (max_freq - 1) * (n + 1) + max_count
         return max(result, len(tasks))`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'mi-26',
