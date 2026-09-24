@@ -7751,7 +7751,8 @@ export const patterns: Pattern[] = [
             if start < e and end > s:
                 return False
         self.calendar.append((start, end))
-        return True`
+        return True`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Uber']
       },
       {
         id: 'mi-12',
