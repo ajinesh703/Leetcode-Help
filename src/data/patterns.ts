@@ -8024,6 +8024,7 @@ export const patterns: Pattern[] = [
                     cur += 1
             result.append(new_area)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'mi-23',
