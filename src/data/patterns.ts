@@ -7951,6 +7951,7 @@ export const patterns: Pattern[] = [
             else:
                 heapq.heappush(heap, end)
         return len(heap)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'mi-20',
