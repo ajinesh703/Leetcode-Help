@@ -7774,7 +7774,8 @@ export const patterns: Pattern[] = [
             if start < e and end > s:
                 self.overlaps.append((max(start, s), min(end, e)))
         self.bookings.append((start, end))
-        return True`
+        return True`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'mi-13',
@@ -7821,7 +7822,8 @@ export const patterns: Pattern[] = [
                     updated.append((l, left))
                 if r > right:
                     updated.append((right, r))
-        self.ranges = updated`
+        self.ranges = updated`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'LinkedIn']
       },
       {
         id: 'mi-14',
