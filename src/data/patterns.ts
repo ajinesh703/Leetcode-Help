@@ -7863,7 +7863,8 @@ export const patterns: Pattern[] = [
             if iv.start > prev_end:
                 result.append(Interval(prev_end, iv.start))
             prev_end = max(prev_end, iv.end)
-        return result`
+        return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'mi-16',
