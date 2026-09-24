@@ -7841,7 +7841,8 @@ export const patterns: Pattern[] = [
             if i == end:
                 result.append(end - start + 1)
                 start = i + 1
-        return result`
+        return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'mi-15',
