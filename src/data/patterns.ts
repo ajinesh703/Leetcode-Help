@@ -8157,7 +8157,8 @@ export const patterns: Pattern[] = [
                 i += 1
             else:
                 j += 1
-        return []`
+        return []`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
 
     
 },
