@@ -8210,6 +8210,7 @@ export const patterns: Pattern[] = [
                 for k in range(i + 1, j):
                     dp[i][j] = min(dp[i][j], cuts[j] - cuts[i] + dp[i][k] + dp[k][j])
         return dp[0][m - 1]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Goldman Sachs']
       },
       {
         id: 'mi-31',
