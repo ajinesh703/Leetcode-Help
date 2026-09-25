@@ -8128,7 +8128,8 @@ export const patterns: Pattern[] = [
             bloomed = bisect_right(starts, t)
             wilted  = bisect_left(ends, t)
             result.append(bloomed - wilted)
-        return result`
+        return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'LinkedIn']
     },
     {
   id: 'mi-28',
