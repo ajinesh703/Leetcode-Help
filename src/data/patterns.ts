@@ -8189,6 +8189,7 @@ export const patterns: Pattern[] = [
             curr_color += diff[point]
             prev = point
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'mi-30',
