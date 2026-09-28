@@ -8332,6 +8332,7 @@ export const patterns: Pattern[] = [
             curr += val
             result = max(result, curr)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'LinkedIn']
       },
       {
         id: 'mi-36',
