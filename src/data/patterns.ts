@@ -8311,6 +8311,7 @@ export const patterns: Pattern[] = [
 
     def count(self) -> int:
         return self.count`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'mi-35',
