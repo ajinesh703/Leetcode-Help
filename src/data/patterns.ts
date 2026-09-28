@@ -8250,6 +8250,7 @@ export const patterns: Pattern[] = [
                 return []
 
         return result[::-1]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'mi-32',
