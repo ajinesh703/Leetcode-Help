@@ -8361,6 +8361,7 @@ export const patterns: Pattern[] = [
                     queue.append(node.right)
             result.append(level_sum / level_size)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'mi-37',
