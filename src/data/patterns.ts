@@ -8279,6 +8279,7 @@ export const patterns: Pattern[] = [
             for i in range(start, end + 1):
                 covered.add(i)
         return all(i in covered for i in range(left, right + 1))`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'mi-34',
