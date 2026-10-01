@@ -8547,6 +8547,7 @@ export const patterns: Pattern[] = [
                 jumps += 1
                 curr_end = curr_far
         return jumps`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'mi-45',
