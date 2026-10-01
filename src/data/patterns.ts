@@ -8718,6 +8718,7 @@ export const patterns: Pattern[] = [
             curr += diff[i]
             result.append(curr)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'mi-53',
