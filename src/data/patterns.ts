@@ -8528,6 +8528,7 @@ export const patterns: Pattern[] = [
             taps += 1
             end = max_end
         return taps`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'mi-44',
