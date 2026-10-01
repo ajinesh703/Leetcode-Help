@@ -8636,6 +8636,7 @@ export const patterns: Pattern[] = [
             else:
                 left = mid + 1
         return totalCost(left)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'LinkedIn']
       },
       {
         id: 'mi-49',
@@ -8651,6 +8652,7 @@ export const patterns: Pattern[] = [
         for i in range(1, len(xs)):
             result = max(result, xs[i] - xs[i - 1])
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Goldman Sachs']
       },
       {
         id: 'mi-50',
