@@ -8449,6 +8449,7 @@ export const patterns: Pattern[] = [
             max_height = max(max_height, height)
             result.append(max_height)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'mi-41',
