@@ -8403,6 +8403,7 @@ export const patterns: Pattern[] = [
 
     def longest(self) -> int:
         return self.longest`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Airbnb']
       },
       {
         id: 'mi-39',
