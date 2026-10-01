@@ -8570,6 +8570,7 @@ export const patterns: Pattern[] = [
             count += 1
             end = max_end
         return count`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'mi-46',
