@@ -8426,6 +8426,7 @@ export const patterns: Pattern[] = [
             else:
                 result.append(-1)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Goldman Sachs', 'Adobe']
       },
       {
         id: 'mi-40',
