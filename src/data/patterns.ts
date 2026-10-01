@@ -8697,6 +8697,7 @@ export const patterns: Pattern[] = [
         nums.sort(reverse=True)
         freq.sort(reverse=True)
         return sum(a * b for a, b in zip(nums, freq)) % MOD`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Adobe']
       },
       {
         id: 'mi-52',
