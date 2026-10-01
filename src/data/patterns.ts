@@ -8383,6 +8383,7 @@ export const patterns: Pattern[] = [
         pairs = self.store[key]
         idx = bisect_right(pairs, (timestamp, chr(127))) - 1
         return pairs[idx][1] if idx >= 0 else ""`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'mi-38',
