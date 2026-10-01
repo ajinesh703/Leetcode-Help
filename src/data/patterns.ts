@@ -8651,6 +8651,7 @@ export const patterns: Pattern[] = [
         for i in range(1, len(xs)):
             result = max(result, xs[i] - xs[i - 1])
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Goldman Sachs']
       },
       {
         id: 'mi-50',
