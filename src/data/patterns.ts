@@ -8479,6 +8479,7 @@ export const patterns: Pattern[] = [
             time += proc
             result.append(idx)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'mi-42',
