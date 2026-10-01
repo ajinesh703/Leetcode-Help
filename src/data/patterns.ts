@@ -8591,6 +8591,7 @@ export const patterns: Pattern[] = [
                 if end > rm_end:
                     result.append([rm_end, end])
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Palantir']
       },
       {
         id: 'mi-47',
