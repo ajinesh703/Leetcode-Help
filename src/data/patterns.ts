@@ -8615,6 +8615,7 @@ export const patterns: Pattern[] = [
                 else:
                     dp[i][j] = max(dp[i+1][j], dp[i][j-1])
         return dp[0][n-1]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'mi-48',
