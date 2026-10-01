@@ -8674,6 +8674,7 @@ export const patterns: Pattern[] = [
             n >>= 1
             pos += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'mi-51',
