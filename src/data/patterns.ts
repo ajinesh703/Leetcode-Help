@@ -8501,6 +8501,7 @@ export const patterns: Pattern[] = [
             result[i] = count
             stack.append(heights[i])
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Uber']
       },
       {
         id: 'mi-43',
