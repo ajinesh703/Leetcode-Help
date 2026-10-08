@@ -8807,6 +8807,7 @@ export const patterns: Pattern[] = [
             if heap:
                 result[idx] = heap[0][0]
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'LinkedIn']
       },
       {
         id: 'mi-57',
