@@ -8761,6 +8761,7 @@ export const patterns: Pattern[] = [
                 if arr2[j] == min_val: j += 1
                 if arr3[k] == min_val: k += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'mi-55',
