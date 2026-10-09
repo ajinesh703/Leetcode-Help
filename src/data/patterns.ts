@@ -8830,6 +8830,7 @@ export const patterns: Pattern[] = [
                 result.append(f"{start}->{nums[i]}")
             i += 1
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'mi-58',
