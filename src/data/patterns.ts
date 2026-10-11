@@ -8944,6 +8944,7 @@ export const patterns: Pattern[] = [
                 return -1
             result = max(result, c - k)
         return result if c == r == o == a == k else -1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Uber']
       },
       {
         id: 'mi-63',
