@@ -8858,6 +8858,7 @@ export const patterns: Pattern[] = [
             new_char = chr((ord(s[i]) - ord('a') + shift) % 26 + ord('a'))
             result.append(new_char)
         return ''.join(result)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Samsung']
       },
       {
         id: 'mi-59',
