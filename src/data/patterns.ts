@@ -8808,6 +8808,7 @@ export const patterns: Pattern[] = [
             if heap:
                 result[idx] = heap[0][0]
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'LinkedIn']
       },
       {
         id: 'mi-57',
@@ -8830,6 +8831,7 @@ export const patterns: Pattern[] = [
                 result.append(f"{start}->{nums[i]}")
             i += 1
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'mi-58',
@@ -8857,6 +8859,7 @@ export const patterns: Pattern[] = [
             new_char = chr((ord(s[i]) - ord('a') + shift) % 26 + ord('a'))
             result.append(new_char)
         return ''.join(result)`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Samsung']
       },
       {
         id: 'mi-59',
@@ -8914,6 +8917,7 @@ export const patterns: Pattern[] = [
                 curr = 1
             result += curr
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'mi-62',
@@ -8941,6 +8945,7 @@ export const patterns: Pattern[] = [
                 return -1
             result = max(result, c - k)
         return result if c == r == o == a == k else -1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Uber']
       },
       {
         id: 'mi-63',
