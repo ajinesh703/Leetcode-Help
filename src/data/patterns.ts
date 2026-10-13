@@ -8879,6 +8879,7 @@ export const patterns: Pattern[] = [
                 right += 1
             result = max(result, right - left)
         return n - result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Goldman Sachs']
       },
       {
         id: 'mi-60',
@@ -8899,6 +8900,7 @@ export const patterns: Pattern[] = [
             curr += diff[i]
             result.append(curr)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Goldman Sachs']
       },
       {
         id: 'mi-61',
@@ -8969,6 +8971,7 @@ export const patterns: Pattern[] = [
             if len(pool) == k:
                 result = min(result, ratio * pool_sum)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'mi-64',
