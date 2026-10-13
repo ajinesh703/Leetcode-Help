@@ -9234,6 +9234,7 @@ export const patterns: Pattern[] = [
             if not found:
                 i += 1
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Twitter']
       },
       {
         id: 'mi-75',
