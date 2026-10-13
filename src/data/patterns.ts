@@ -9279,6 +9279,7 @@ export const patterns: Pattern[] = [
                 result += 1
             used.add(f)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'mi-77',
