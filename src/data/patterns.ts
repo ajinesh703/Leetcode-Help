@@ -9106,6 +9106,7 @@ export const patterns: Pattern[] = [
                     duration -= 1
                 i -= 1
         return sum(run)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Goldman Sachs']
       },
       {
         id: 'mi-70',
