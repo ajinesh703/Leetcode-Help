@@ -9043,6 +9043,7 @@ export const patterns: Pattern[] = [
             if left[i] > 1 and right[i] > 1:
                 result = max(result, left[i] + right[i] - 1)
         return n - result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Palantir']
       },
       {
         id: 'mi-67',
