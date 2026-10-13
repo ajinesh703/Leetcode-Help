@@ -9184,6 +9184,7 @@ export const patterns: Pattern[] = [
                 left += 1
             result = max(result, max(count.values()))
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'mi-73',
