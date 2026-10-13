@@ -8992,6 +8992,7 @@ export const patterns: Pattern[] = [
                 start = idx
             stack.append((start, h))
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'mi-65',
