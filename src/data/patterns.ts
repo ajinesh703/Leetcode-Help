@@ -9083,6 +9083,7 @@ export const patterns: Pattern[] = [
             if dp[idx][1] + earn > dp[-1][1]:
                 dp.append([end, dp[idx][1] + earn])
         return dp[-1][1]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'LinkedIn']
       },
       {
         id: 'mi-69',
