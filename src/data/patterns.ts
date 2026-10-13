@@ -8970,6 +8970,7 @@ export const patterns: Pattern[] = [
             if len(pool) == k:
                 result = min(result, ratio * pool_sum)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Airbnb']
       },
       {
         id: 'mi-64',
