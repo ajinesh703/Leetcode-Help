@@ -9064,6 +9064,7 @@ export const patterns: Pattern[] = [
                 groups += 1
             max_end = max(max_end, end)
         return pow(2, groups, MOD)`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'mi-68',
