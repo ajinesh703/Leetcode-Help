@@ -9257,6 +9257,7 @@ export const patterns: Pattern[] = [
             else:
                 curr_end = min(curr_end, end)
         return arrows`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Palantir']
       },
       {
         id: 'mi-76',
