@@ -9141,6 +9141,7 @@ export const patterns: Pattern[] = [
             right_sum = (prefix[hi + 1] - prefix[mid + 1]) - ones[mid] * (hi - mid)
             result = min(result, moves + left_sum + right_sum)
         return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'mi-71',
