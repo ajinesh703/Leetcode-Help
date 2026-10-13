@@ -9352,6 +9352,7 @@ export const patterns: Pattern[] = [
                          grid[r+2][c] + grid[r+2][c+1] + grid[r+2][c+2])
                 result = max(result, total)
         return result`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
       },
 
   ]
