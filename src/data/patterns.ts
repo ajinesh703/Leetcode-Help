@@ -9534,6 +9534,25 @@ export const patterns: Pattern[] = [
         return len(heap)`,
   companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
 },
+{
+  id: 'mi-89',
+  title: 'My Calendar I',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/my-calendar-i/',
+  description: 'Implement a calendar that books events without causing double booking.',
+  language: 'python',
+  solution: `class MyCalendar:
+    def __init__(self):
+        self.calendar = []
+
+    def book(self, start: int, end: int) -> bool:
+        for s, e in self.calendar:
+            if start < e and end > s:
+                return False
+        self.calendar.append((start, end))
+        return True`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Airbnb']
+},
 
   ]
   },
