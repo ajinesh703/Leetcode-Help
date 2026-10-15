@@ -9494,6 +9494,26 @@ export const patterns: Pattern[] = [
         return count`,
   companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Twitter']
 },
+{
+  id: 'mi-87',
+  title: 'Count Days Without Meetings',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/count-days-without-meetings/',
+  description: 'Count the number of days an employee is available for work without any meetings.',
+  language: 'python',
+  solution: `class Solution:
+    def countDays(self, days: int, meetings: List[List[int]]) -> int:
+        meetings.sort()
+        merged = []
+        for start, end in meetings:
+            if merged and start <= merged[-1][1]:
+                merged[-1][1] = max(merged[-1][1], end)
+            else:
+                merged.append([start, end])
+        busy = sum(end - start + 1 for start, end in merged)
+        return days - busy`,
+  companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
+},
 
   ]
   },
