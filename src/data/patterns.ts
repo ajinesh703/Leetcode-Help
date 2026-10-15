@@ -9514,6 +9514,26 @@ export const patterns: Pattern[] = [
         return days - busy`,
   companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
 },
+{
+  id: 'mi-88',
+  title: 'Divide Intervals Into Minimum Number of Groups',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/',
+  description: 'Find the minimum number of groups to divide intervals such that no two intervals in the same group intersect.',
+  language: 'python',
+  solution: `class Solution:
+    def minGroups(self, intervals: List[List[int]]) -> int:
+        import heapq
+        intervals.sort()
+        heap = []
+        for start, end in intervals:
+            if heap and heap[0] < start:
+                heapq.heapreplace(heap, end)
+            else:
+                heapq.heappush(heap, end)
+        return len(heap)`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
+},
 
   ]
   },
