@@ -9395,6 +9395,27 @@ export const patterns: Pattern[] = [
         return count`,
   companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Uber']
 },
+{
+  id: 'mi-103',
+  title: 'Car Pooling',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/car-pooling/',
+  description: 'Determine if all passengers can be picked up and dropped off given the car capacity.',
+  language: 'python',
+  solution: `class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
+        stops = [0] * 1001
+        for num, start, end in trips:
+            stops[start] += num
+            stops[end] -= num
+        curr = 0
+        for passengers in stops:
+            curr += passengers
+            if curr > capacity:
+                return False
+        return True`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Airbnb']
+},
 
   ]
   },
