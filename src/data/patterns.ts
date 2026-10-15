@@ -9396,7 +9396,7 @@ export const patterns: Pattern[] = [
   companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Uber']
 },
 {
-  id: 'mi-103',
+  id: 'mi-82',
   title: 'Car Pooling',
   difficulty: 'Medium',
   leetcodeUrl: 'https://leetcode.com/problems/car-pooling/',
@@ -9417,7 +9417,7 @@ export const patterns: Pattern[] = [
   companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Airbnb']
 },
 {
-  id: 'mi-104',
+  id: 'mi-83',
   title: 'Meeting Rooms',
   difficulty: 'Easy',
   leetcodeUrl: 'https://leetcode.com/problems/meeting-rooms/',
@@ -9431,6 +9431,26 @@ export const patterns: Pattern[] = [
                 return False
         return True`,
   companies: ['Facebook', 'Amazon', 'Google', 'Microsoft', 'Bloomberg']
+},
+{
+  id: 'mi-84',
+  title: 'Meeting Rooms II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/meeting-rooms-ii/',
+  description: 'Find the minimum number of conference rooms required for all meetings.',
+  language: 'python',
+  solution: `class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        import heapq
+        intervals.sort()
+        heap = []
+        for start, end in intervals:
+            if heap and heap[0] <= start:
+                heapq.heapreplace(heap, end)
+            else:
+                heapq.heappush(heap, end)
+        return len(heap)`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Lyft']
 },
 
   ]
