@@ -9415,6 +9415,22 @@ export const patterns: Pattern[] = [
         return True`,
   companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Airbnb']
 },
+{
+  id: 'mi-104',
+  title: 'Meeting Rooms',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/meeting-rooms/',
+  description: 'Determine if a person could attend all meetings given an array of meeting time intervals.',
+  language: 'python',
+  solution: `class Solution:
+    def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
+        intervals.sort()
+        for i in range(1, len(intervals)):
+            if intervals[i][0] < intervals[i-1][1]:
+                return False
+        return True`,
+  companies: ['Facebook', 'Amazon', 'Google', 'Microsoft', 'Bloomberg']
+},
 
   ]
   },
