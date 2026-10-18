@@ -9553,6 +9553,29 @@ export const patterns: Pattern[] = [
         return True`,
   companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Airbnb']
 },
+{
+  id: 'mi-90',
+  title: 'My Calendar II',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/my-calendar-ii/',
+  description: 'Implement a calendar that allows double booking but prevents triple booking.',
+  language: 'python',
+  solution: `class MyCalendarTwo:
+    def __init__(self):
+        self.calendar = []
+        self.overlaps = []
+
+    def book(self, start: int, end: int) -> bool:
+        for s, e in self.overlaps:
+            if start < e and end > s:
+                return False
+        for s, e in self.calendar:
+            if start < e and end > s:
+                self.overlaps.append((max(start, s), min(end, e)))
+        self.calendar.append((start, end))
+        return True`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Airbnb']
+},
 
   ]
   },
