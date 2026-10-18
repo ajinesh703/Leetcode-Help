@@ -9781,6 +9781,54 @@ export const patterns: Pattern[] = [
         return res`,
   companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'LinkedIn']
 },
+{
+  id: 'mi-99',
+  title: 'Range Module',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/range-module/',
+  description: 'Implement a Range Module that tracks ranges of numbers and supports add, remove, and query operations.',
+  language: 'python',
+  solution: `class RangeModule:
+    def __init__(self):
+        self.ranges = []
+
+    def addRange(self, left: int, right: int) -> None:
+        new_ranges = []
+        inserted = False
+        for l, r in self.ranges:
+            if r < left:
+                new_ranges.append((l, r))
+            elif l > right:
+                if not inserted:
+                    new_ranges.append((left, right))
+                    inserted = True
+                new_ranges.append((l, r))
+            else:
+                left = min(left, l)
+                right = max(right, r)
+        if not inserted:
+            new_ranges.append((left, right))
+        self.ranges = new_ranges
+
+    def queryRange(self, left: int, right: int) -> bool:
+        for l, r in self.ranges:
+            if l <= left and right <= r:
+                return True
+        return False
+
+    def removeRange(self, left: int, right: int) -> None:
+        new_ranges = []
+        for l, r in self.ranges:
+            if r <= left or l >= right:
+                new_ranges.append((l, r))
+            else:
+                if l < left:
+                    new_ranges.append((l, left))
+                if r > right:
+                    new_ranges.append((right, r))
+        self.ranges = new_ranges`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Goldman Sachs']
+},
 
   ]
   },
