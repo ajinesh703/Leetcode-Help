@@ -9576,6 +9576,29 @@ export const patterns: Pattern[] = [
         return True`,
   companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Airbnb']
 },
+{
+  id: 'mi-91',
+  title: 'Summary Ranges',
+  difficulty: 'Easy',
+  leetcodeUrl: 'https://leetcode.com/problems/summary-ranges/',
+  description: 'Given a sorted unique integer array, return the smallest sorted list of ranges that cover all the numbers.',
+  language: 'python',
+  solution: `class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        res = []
+        i = 0
+        while i < len(nums):
+            start = nums[i]
+            while i + 1 < len(nums) and nums[i+1] == nums[i] + 1:
+                i += 1
+            if nums[i] == start:
+                res.append(str(start))
+            else:
+                res.append(str(start) + '->' + str(nums[i]))
+            i += 1
+        return res`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
+},
 
   ]
   },
