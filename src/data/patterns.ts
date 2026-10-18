@@ -9763,6 +9763,25 @@ export const patterns: Pattern[] = [
         return res`,
   companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Palantir']
 },
+{
+  id: 'mi-98',
+  title: 'Employee Free Time',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/employee-free-time/',
+  description: 'Find the list of finite intervals representing the free time for all employees.',
+  language: 'python',
+  solution: `class Solution:
+    def employeeFreeTime(self, schedule: List[List[List[int]]]) -> List[List[int]]:
+        intervals = sorted([i for s in schedule for i in s])
+        res = []
+        end = intervals[0][1]
+        for start, finish in intervals[1:]:
+            if start > end:
+                res.append([end, start])
+            end = max(end, finish)
+        return res`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'LinkedIn']
+},
 
   ]
   },
