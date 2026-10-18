@@ -9702,6 +9702,30 @@ export const patterns: Pattern[] = [
         return res`,
   companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
 },
+{
+  id: 'mi-96',
+  title: 'Falling Squares',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/falling-squares/',
+  description: 'Simulate falling squares and return the maximum height after each square falls.',
+  language: 'python',
+  solution: `class Solution:
+    def fallingSquares(self, positions: List[List[int]]) -> List[int]:
+        intervals = []
+        res = []
+        max_height = 0
+        for left, size in positions:
+            right = left + size
+            height = size
+            for l, r, h in intervals:
+                if left < r and right > l:
+                    height = max(height, h + size)
+            intervals.append((left, right, height))
+            max_height = max(max_height, height)
+            res.append(max_height)
+        return res`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
+},
 
   ]
   },
