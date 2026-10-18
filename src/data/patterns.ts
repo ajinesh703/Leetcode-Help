@@ -9652,6 +9652,31 @@ export const patterns: Pattern[] = [
         return [res[q] for q in queries]`,
   companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Adobe']
 },
+{
+  id: 'mi-94',
+  title: 'Amount of New Area Painted Each Day',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/amount-of-new-area-painted-each-day/',
+  description: 'Find the amount of new area painted each day given painting intervals.',
+  language: 'python',
+  solution: `class Solution:
+    def amountPainted(self, paint: List[List[int]]) -> List[int]:
+        painted = {}
+        res = []
+        for start, end in paint:
+            count = 0
+            i = start
+            while i < end:
+                if i in painted:
+                    i = painted[i]
+                else:
+                    painted[i] = end
+                    count += 1
+                    i += 1
+            res.append(count)
+        return res`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Twitter']
+},
 
   ]
   },
