@@ -9598,6 +9598,35 @@ export const patterns: Pattern[] = [
         return res`,
   companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Uber']
 },
+{
+  id: 'mi-92',
+  title: 'Count Integers in Intervals',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/count-integers-in-intervals/',
+  description: 'Design a data structure to add intervals and count integers present in at least one interval.',
+  language: 'python',
+  solution: `class CountIntervals:
+    def __init__(self):
+        self.intervals = []
+        self.count = 0
+
+    def add(self, left: int, right: int) -> None:
+        new_intervals = []
+        for s, e in self.intervals:
+            if e < left or s > right:
+                new_intervals.append((s, e))
+            else:
+                self.count -= e - s + 1
+                left = min(left, s)
+                right = max(right, e)
+        self.count += right - left + 1
+        new_intervals.append((left, right))
+        self.intervals = new_intervals
+
+    def count(self) -> int:
+        return self.count`,
+  companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Palantir']
+},
 
   ]
   },
