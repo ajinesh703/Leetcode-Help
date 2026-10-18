@@ -9677,6 +9677,31 @@ export const patterns: Pattern[] = [
         return res`,
   companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Twitter']
 },
+{
+  id: 'mi-95',
+  title: 'Describe the Painting',
+  difficulty: 'Medium',
+  leetcodeUrl: 'https://leetcode.com/problems/describe-the-painting/',
+  description: 'Describe the painting by merging all segments with their combined color mixtures.',
+  language: 'python',
+  solution: `class Solution:
+    def splitPainting(self, segments: List[List[int]]) -> List[List[int]]:
+        from sortedcontainers import SortedDict
+        events = SortedDict()
+        for l, r, c in segments:
+            events[l] = events.get(l, 0) + c
+            events[r] = events.get(r, 0) - c
+        res = []
+        curr = 0
+        prev = -1
+        for pos, val in events.items():
+            if curr > 0 and prev != -1:
+                res.append([prev, pos, curr])
+            curr += val
+            prev = pos
+        return res`,
+  companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
+},
 
   ]
   },
