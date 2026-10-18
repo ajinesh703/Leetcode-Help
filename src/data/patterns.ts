@@ -9727,6 +9727,42 @@ export const patterns: Pattern[] = [
         return res`,
   companies: ['Google', 'Amazon', 'Facebook', 'Bloomberg', 'Airbnb']
 },
+{
+  id: 'mi-97',
+  title: 'Maximum Sum of 3 Non-Overlapping Subarrays',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/maximum-sum-of-3-non-overlapping-subarrays/',
+  description: 'Find three non-overlapping subarrays of length k with maximum sum.',
+  language: 'python',
+  solution: `class Solution:
+    def maxSumOfThreeSubarrays(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        sums = [sum(nums[:k])]
+        for i in range(1, n - k + 1):
+            sums.append(sums[-1] + nums[i+k-1] - nums[i-1])
+        left = [0] * n
+        best = 0
+        for i in range(n):
+            if sums[i] > sums[best]:
+                best = i
+            left[i] = best
+        right = [0] * n
+        best = n - k
+        for i in range(n - k, -1, -1):
+            if sums[i] >= sums[best]:
+                best = i
+            right[i] = best
+        res = [-1, -1, -1]
+        best_sum = 0
+        for j in range(k, n - 2*k + 1):
+            l, r = left[j-k], right[j+k]
+            total = sums[l] + sums[j] + sums[r]
+            if total > best_sum:
+                best_sum = total
+                res = [l, j, r]
+        return res`,
+  companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Palantir']
+},
 
   ]
   },
