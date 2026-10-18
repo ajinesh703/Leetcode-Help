@@ -9627,6 +9627,31 @@ export const patterns: Pattern[] = [
         return self.count`,
   companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Palantir']
 },
+{
+  id: 'mi-93',
+  title: 'Minimum Interval to Include Each Query',
+  difficulty: 'Hard',
+  leetcodeUrl: 'https://leetcode.com/problems/minimum-interval-to-include-each-query/',
+  description: 'For each query, find the size of the smallest interval that contains the query.',
+  language: 'python',
+  solution: `class Solution:
+    def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+        import heapq
+        intervals.sort()
+        heap = []
+        res = {}
+        i = 0
+        for q in sorted(queries):
+            while i < len(intervals) and intervals[i][0] <= q:
+                l, r = intervals[i]
+                heapq.heappush(heap, (r - l + 1, r))
+                i += 1
+            while heap and heap[0][1] < q:
+                heapq.heappop(heap)
+            res[q] = heap[0][0] if heap else -1
+        return [res[q] for q in queries]`,
+  companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Adobe']
+},
 
   ]
   },
