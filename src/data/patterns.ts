@@ -10082,7 +10082,8 @@ export const patterns: Pattern[] = [
                 diag2.remove(row + col)
                 board[row][col] = '.'
         backtrack(0)
-        return result`
+        return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
         id: 'bt-9',
