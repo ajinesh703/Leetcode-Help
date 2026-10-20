@@ -9936,7 +9936,8 @@ export const patterns: Pattern[] = [
                 backtrack(i, current, total + candidates[i])
                 current.pop()
         backtrack(0, [], 0)
-        return result`
+        return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Samsung']
       },
       {
         id: 'bt-4',
