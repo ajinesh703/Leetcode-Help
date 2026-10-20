@@ -9968,7 +9968,8 @@ export const patterns: Pattern[] = [
             for c in range(cols):
                 if dfs(r, c, 0):
                     return True
-        return False`
+        return False`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'LinkedIn']
       },
       {
         id: 'bt-5',
