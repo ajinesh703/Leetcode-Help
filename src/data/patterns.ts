@@ -10288,7 +10288,8 @@ export const patterns: Pattern[] = [
             node.left = build()
             node.right = build()
             return node
-        return build()`
+        return build()`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Bloomberg']
 },
 
 {
