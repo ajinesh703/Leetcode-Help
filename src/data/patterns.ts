@@ -10262,7 +10262,8 @@ export const patterns: Pattern[] = [
         for r in range(rows):
             for c in range(cols):
                 dfs(r, c, trie)
-        return result`
+        return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
       },
       {
     id: 'bt-15',
