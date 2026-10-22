@@ -10197,7 +10197,8 @@ export const patterns: Pattern[] = [
                                 board[r][c] = '.'
                         return False
             return True
-        backtrack()`
+        backtrack()`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
       },
       {
         id: 'bt-13',
