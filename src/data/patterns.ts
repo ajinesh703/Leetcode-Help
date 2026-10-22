@@ -10311,7 +10311,8 @@ export const patterns: Pattern[] = [
             return node.val + max(left, right)
 
         dfs(root)
-        return self.max_sum`
+        return self.max_sum`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'LinkedIn']
 },
 
 {
