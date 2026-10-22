@@ -10161,7 +10161,8 @@ export const patterns: Pattern[] = [
                 backtrack(current, open_count, close_count + 1)
                 current.pop()
         backtrack([], 0, 0)
-        return result`
+        return result`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
       },
       {
         id: 'bt-12',
