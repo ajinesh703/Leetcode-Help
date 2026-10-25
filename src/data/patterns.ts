@@ -10373,7 +10373,8 @@ export const patterns: Pattern[] = [
         for i in range(numCourses):
             if not dfs(i):
                 return []
-        return order`
+        return order`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
 },
 
 {
