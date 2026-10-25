@@ -10337,7 +10337,8 @@ export const patterns: Pattern[] = [
                     streak += 1
                 best = max(best, streak)
 
-        return best`
+        return best`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 
 {
