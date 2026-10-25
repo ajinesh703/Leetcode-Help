@@ -10517,7 +10517,8 @@ export const patterns: Pattern[] = [
                 l += 1
 
         l, r = res
-        return s[l:r+1] if res_len != float('inf') else ''`
+        return s[l:r+1] if res_len != float('inf') else ''`,
+        companies: ['Facebook', 'Google', 'Amazon', 'Microsoft', 'Uber']
 },
 
 {
