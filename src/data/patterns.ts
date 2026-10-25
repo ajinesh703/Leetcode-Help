@@ -10438,7 +10438,8 @@ export const patterns: Pattern[] = [
                 right_max = max(right_max, height[r])
                 water += right_max - height[r]
 
-        return water`
+        return water`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Bloomberg', 'Goldman Sachs']
 },
 
 {
