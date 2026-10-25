@@ -10408,7 +10408,8 @@ export const patterns: Pattern[] = [
             elif Aleft > Bright:
                 hi = i - 1
             else:
-                lo = i + 1`
+                lo = i + 1`,
+                companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Apple']
 },
 
 {
