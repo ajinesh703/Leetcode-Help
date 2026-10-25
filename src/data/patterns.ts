@@ -10483,7 +10483,8 @@ export const patterns: Pattern[] = [
         if len(self.cache) > self.cap:
             lru = self.left.next
             self.remove(lru)
-            del self.cache[lru.key]`
+            del self.cache[lru.key]`,
+            companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Palantir']
 },
 
 {
