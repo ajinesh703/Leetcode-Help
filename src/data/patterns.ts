@@ -10734,7 +10734,8 @@ export const patterns: Pattern[] = [
             if 10 <= two <= 26:
                 dp[i] += dp[i-2]
 
-        return dp[n]`
+        return dp[n]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
 },
 
 {
