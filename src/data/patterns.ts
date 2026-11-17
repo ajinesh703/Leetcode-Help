@@ -10576,7 +10576,8 @@ export const patterns: Pattern[] = [
                 if current_end >= len(nums) - 1:
                     break
 
-        return jumps`
+        return jumps`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']
 },
 {
     id: 'bt-25',
