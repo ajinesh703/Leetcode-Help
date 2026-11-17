@@ -10550,7 +10550,8 @@ export const patterns: Pattern[] = [
                     dfs(r, c)
                     count += 1
 
-        return count`
+        return count`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 
 {
