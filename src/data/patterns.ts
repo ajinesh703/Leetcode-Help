@@ -10628,7 +10628,8 @@ export const patterns: Pattern[] = [
                     res.append(matrix[r][left])
                 left += 1
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Facebook', 'Uber']
 },
 
 {
