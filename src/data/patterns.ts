@@ -10705,7 +10705,8 @@ export const patterns: Pattern[] = [
                 current.pop()
 
         backtrack(0, [])
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Bloomberg']
 },
 
 {
