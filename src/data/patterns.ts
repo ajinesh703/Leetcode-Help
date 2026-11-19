@@ -10914,7 +10914,8 @@ export const patterns: Pattern[] = [
             prev2 = prev1
             prev1 = curr
 
-        return prev1`
+        return prev1`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Cisco']
 },
 
 {
