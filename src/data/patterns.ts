@@ -10892,7 +10892,8 @@ export const patterns: Pattern[] = [
             current = max(num, current + num)
             max_sum = max(max_sum, current)
 
-        return max_sum`
+        return max_sum`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Apple', 'Bloomberg']
 },
 
 {
