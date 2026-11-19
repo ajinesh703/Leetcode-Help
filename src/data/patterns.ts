@@ -10821,7 +10821,8 @@ export const patterns: Pattern[] = [
                 l -= 1
                 r += 1
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Microsoft', 'Adobe', 'Bloomberg']
 },
 
 {
