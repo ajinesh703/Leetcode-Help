@@ -10768,7 +10768,8 @@ export const patterns: Pattern[] = [
         bfs(pac_starts, pac)
         bfs(atl_starts, atl)
 
-        return [[r, c] for r, c in pac & atl]`
+        return [[r, c] for r, c in pac & atl]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 
 {
