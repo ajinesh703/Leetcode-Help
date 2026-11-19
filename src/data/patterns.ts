@@ -10854,7 +10854,8 @@ export const patterns: Pattern[] = [
                     return False
             return True
 
-        return dfs(0, -1) and len(visited) == n`
+        return dfs(0, -1) and len(visited) == n`,
+        companies: ['Google', 'Amazon', 'Facebook', 'LinkedIn', 'Airbnb']
 },
 {
     id: 'bt-35',
