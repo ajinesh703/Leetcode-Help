@@ -10962,7 +10962,8 @@ export const patterns: Pattern[] = [
             return (validate(node.left, min_val, node.val) and
                     validate(node.right, node.val, max_val))
 
-        return validate(root, float('-inf'), float('inf'))`
+        return validate(root, float('-inf'), float('inf'))`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 
 {
