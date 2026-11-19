@@ -10985,7 +10985,8 @@ export const patterns: Pattern[] = [
             k -= 1
             if k == 0:
                 return curr.val
-            curr = curr.right`
+            curr = curr.right`,
+            companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
 },
 
 {
