@@ -10788,7 +10788,8 @@ export const patterns: Pattern[] = [
             for amt in range(coin, amount + 1):
                 dp[amt] = min(dp[amt], dp[amt - coin] + 1)
 
-        return dp[amount] if dp[amount] != float('inf') else -1`
+        return dp[amount] if dp[amount] != float('inf') else -1`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Uber']
 },
 
 {
