@@ -11028,7 +11028,8 @@ export const patterns: Pattern[] = [
             for j in range(1, n):
                 dp[j] += dp[j - 1]
 
-        return dp[n - 1]`
+        return dp[n - 1]`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 
 {
