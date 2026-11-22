@@ -11186,7 +11186,8 @@ export const patterns: Pattern[] = [
             cur_min = min(tmp, n * cur_min, n)
             res = max(res, cur_max)
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Facebook', 'LinkedIn', 'Uber']
 },
 
 {
