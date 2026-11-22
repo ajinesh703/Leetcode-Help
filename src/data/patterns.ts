@@ -11132,7 +11132,8 @@ export const patterns: Pattern[] = [
         for idx, height in stack:
             max_area = max(max_area, height * (len(heights) - idx))
 
-        return max_area`
+        return max_area`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Adobe']
 },
 
 {
