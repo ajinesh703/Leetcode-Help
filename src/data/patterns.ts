@@ -11210,7 +11210,8 @@ export const patterns: Pattern[] = [
                     dp[i] = True
                     break
 
-        return dp[n]`
+        return dp[n]`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Bloomberg']
 },
     
     ]
