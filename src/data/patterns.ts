@@ -11054,7 +11054,8 @@ export const patterns: Pattern[] = [
             else:
                 e_ptr += 1
 
-        return rooms`
+        return rooms`,
+        companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Uber']
 },
 
 {
