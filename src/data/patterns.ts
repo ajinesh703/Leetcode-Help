@@ -11009,7 +11009,8 @@ export const patterns: Pattern[] = [
             for num in buckets[i]:
                 res.append(num)
                 if len(res) == k:
-                    return res`
+                    return res`,
+               companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Apple']     
 },
 
 {
