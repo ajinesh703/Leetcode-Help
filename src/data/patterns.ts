@@ -11162,7 +11162,8 @@ export const patterns: Pattern[] = [
                     queue.append(node.right)
             res.append(level)
 
-        return res`
+        return res`,
+        companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
 },
 
 {
