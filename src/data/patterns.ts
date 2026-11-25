@@ -11304,6 +11304,64 @@ export const patterns: Pattern[] = [
         return backtrack(0)`,
     companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Airbnb']
 },
+{
+    id: 'bt-55',
+    title: 'Letter Case Permutation',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/letter-case-permutation/',
+    description: 'Given a string s, you can transform every letter individually to be lowercase or uppercase to create another string. Return a list of all possible strings we could create.',
+    language: 'python',
+    solution: `class Solution:
+    def letterCasePermutation(self, s: str) -> List[str]:
+        result = []
+        chars = list(s)
+
+        def backtrack(i):
+            if i == len(chars):
+                result.append(''.join(chars))
+                return
+            backtrack(i + 1)
+            if chars[i].isalpha():
+                chars[i] = chars[i].swapcase()
+                backtrack(i + 1)
+                chars[i] = chars[i].swapcase()
+
+        backtrack(0)
+        return result`,
+    companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
+},
+{
+    id: 'bt-56',
+    title: 'Expression Add Operators',
+    difficulty: 'Hard',
+    leetcodeUrl: 'https://leetcode.com/problems/expression-add-operators/',
+    description: 'Given a string num that contains only digits and an integer target, return all possibilities to insert the binary operators +, - or * between the digits of num so that the resultant expression evaluates to the target value.',
+    language: 'python',
+    solution: `class Solution:
+    def addOperators(self, num: str, target: int) -> List[str]:
+        result = []
+
+        def backtrack(index, path, value, last):
+            if index == len(num):
+                if value == target:
+                    result.append(path)
+                return
+            for i in range(index, len(num)):
+                if i > index and num[index] == '0':
+                    break
+                piece = num[index:i + 1]
+                cur = int(piece)
+                if index == 0:
+                    backtrack(i + 1, piece, cur, cur)
+                else:
+                    backtrack(i + 1, path + '+' + piece, value + cur, cur)
+                    backtrack(i + 1, path + '-' + piece, value - cur, -cur)
+                    backtrack(i + 1, path + '*' + piece, value - last + last * cur, last * cur)
+
+        backtrack(0, '', 0, 0)
+        return result`,
+    companies: ['Google', 'Facebook', 'Amazon', 'Microsoft', 'Uber']
+},
     
     ]
   },
