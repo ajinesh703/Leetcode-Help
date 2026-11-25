@@ -11329,6 +11329,38 @@ export const patterns: Pattern[] = [
         return result`,
     companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
 },
+{
+    id: 'bt-56',
+    title: 'Expression Add Operators',
+    difficulty: 'Hard',
+    leetcodeUrl: 'https://leetcode.com/problems/expression-add-operators/',
+    description: 'Given a string num that contains only digits and an integer target, return all possibilities to insert the binary operators +, - or * between the digits of num so that the resultant expression evaluates to the target value.',
+    language: 'python',
+    solution: `class Solution:
+    def addOperators(self, num: str, target: int) -> List[str]:
+        result = []
+
+        def backtrack(index, path, value, last):
+            if index == len(num):
+                if value == target:
+                    result.append(path)
+                return
+            for i in range(index, len(num)):
+                if i > index and num[index] == '0':
+                    break
+                piece = num[index:i + 1]
+                cur = int(piece)
+                if index == 0:
+                    backtrack(i + 1, piece, cur, cur)
+                else:
+                    backtrack(i + 1, path + '+' + piece, value + cur, cur)
+                    backtrack(i + 1, path + '-' + piece, value - cur, -cur)
+                    backtrack(i + 1, path + '*' + piece, value - last + last * cur, last * cur)
+
+        backtrack(0, '', 0, 0)
+        return result`,
+    companies: ['Google', 'Facebook', 'Amazon', 'Microsoft', 'Uber']
+},
     
     ]
   },
