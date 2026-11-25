@@ -11243,6 +11243,31 @@ export const patterns: Pattern[] = [
         return result`,
     companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
 },
+{
+    id: 'bt-51',
+    title: 'Beautiful Arrangement',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/beautiful-arrangement/',
+    description: 'Given an integer n, return the number of beautiful arrangements of the integers 1 to n. In a beautiful arrangement, for every position i, either perm[i] is divisible by i or i is divisible by perm[i].',
+    language: 'python',
+    solution: `class Solution:
+    def countArrangement(self, n: int) -> int:
+        used = [False] * (n + 1)
+
+        def backtrack(pos):
+            if pos > n:
+                return 1
+            count = 0
+            for num in range(1, n + 1):
+                if not used[num] and (num % pos == 0 or pos % num == 0):
+                    used[num] = True
+                    count += backtrack(pos + 1)
+                    used[num] = False
+            return count
+
+        return backtrack(1)`,
+    companies: ['Google', 'Amazon', 'Microsoft', 'Apple', 'Adobe']
+},
     
     ]
   },
