@@ -11303,6 +11303,32 @@ export const patterns: Pattern[] = [
         return backtrack(0)`,
     companies: ['Google', 'Amazon', 'Facebook', 'Microsoft', 'Airbnb']
 },
+{
+    id: 'bt-55',
+    title: 'Letter Case Permutation',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/letter-case-permutation/',
+    description: 'Given a string s, you can transform every letter individually to be lowercase or uppercase to create another string. Return a list of all possible strings we could create.',
+    language: 'python',
+    solution: `class Solution:
+    def letterCasePermutation(self, s: str) -> List[str]:
+        result = []
+        chars = list(s)
+
+        def backtrack(i):
+            if i == len(chars):
+                result.append(''.join(chars))
+                return
+            backtrack(i + 1)
+            if chars[i].isalpha():
+                chars[i] = chars[i].swapcase()
+                backtrack(i + 1)
+                chars[i] = chars[i].swapcase()
+
+        backtrack(0)
+        return result`,
+    companies: ['Amazon', 'Google', 'Facebook', 'Apple', 'Adobe']
+},
     
     ]
   },
