@@ -11213,6 +11213,36 @@ export const patterns: Pattern[] = [
         return dp[n]`,
         companies: ['Google', 'Amazon', 'Facebook', 'Apple', 'Bloomberg']
 },
+{
+    id: 'bt-50',
+    title: 'Restore IP Addresses',
+    difficulty: 'Medium',
+    leetcodeUrl: 'https://leetcode.com/problems/restore-ip-addresses/',
+    description: 'Given a string s containing only digits, return all possible valid IP addresses that can be formed by inserting dots into s. You cannot reorder or remove any digits.',
+    language: 'python',
+    solution: `class Solution:
+    def restoreIpAddresses(self, s: str) -> List[str]:
+        result = []
+
+        def backtrack(start, parts):
+            if len(parts) == 4:
+                if start == len(s):
+                    result.append('.'.join(parts))
+                return
+            for length in range(1, 4):
+                if start + length > len(s):
+                    break
+                segment = s[start:start + length]
+                if (len(segment) > 1 and segment[0] == '0') or int(segment) > 255:
+                    continue
+                parts.append(segment)
+                backtrack(start + length, parts)
+                parts.pop()
+
+        backtrack(0, [])
+        return result`,
+    companies: ['Amazon', 'Google', 'Facebook', 'Microsoft', 'Bloomberg']
+},
     
     ]
   },
